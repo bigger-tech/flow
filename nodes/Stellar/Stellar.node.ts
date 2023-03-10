@@ -45,5 +45,27 @@ export class Stellar implements INodeType {
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+		const item = this.getInputData();
+		const operation = this.getNodeParameter('operation', 0) as string;
+		const publicKey = item[0].json.publicKey;
+		let outputData = [];
+		if (operation === 'fundAccount') {
+			const fundAccountRequestOptions: IHttpRequestOptions = {
+				url: `https://friendbot.stellar.org/?addr=${publicKey}`,
+				method: 'GET',
 			};
+			const fundAccountResponse = await this.helpers.httpRequest(fundAccountRequestOptions);
+			return [this.helpers.returnJsonArray(fundAccountResponse)];
+		}
+
+		if (operation === 'createAccount') {
+			const pair = StellarSdk.Keypair.random();
+			const newKeyPair = {
+				publicKey: pair.publicKey(),
+				secretKey: pair.secret(),
+			};
+			outputData.push(newKeyPair);
+		}
+		return [this.helpers.returnJsonArray(outputData)];
+	}
 }
