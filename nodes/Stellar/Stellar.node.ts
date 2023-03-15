@@ -1,11 +1,10 @@
-import StellarSdk from 'stellar-sdk';
 import {
 	IExecuteFunctions,
-	IHttpRequestOptions,
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
+import { fundAccount, createAccountKeypair } from './services/stellar';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -45,26 +44,24 @@ export class Stellar implements INodeType {
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const item = this.getInputData();
+		const items = this.getInputData();
 		const operation = this.getNodeParameter('operation', 0) as string;
-		const publicKey = item[0].json.publicKey;
+		const publicKey = items[0].json.publicKey as string;
 		let outputData = [];
-		if (operation === 'fundAccount') {
-			const fundAccountRequestOptions: IHttpRequestOptions = {
-				url: `https://friendbot.stellar.org/?addr=${publicKey}`,
-				method: 'GET',
-			};
-			const fundAccountResponse = await this.helpers.httpRequest(fundAccountRequestOptions);
-			return [this.helpers.returnJsonArray(fundAccountResponse)];
-		}
 
-		if (operation === 'createAccount') {
-			const pair = StellarSdk.Keypair.random();
-			const newKeyPair = {
-				publicKey: pair.publicKey(),
-				secretKey: pair.secret(),
-			};
-			outputData.push(newKeyPair);
+		switch (operation) {
+			case 'fundAccount':
+				try {
+					const fundAccountRequest = fundAccount(publicKey);
+					await this.helpers.httpRequest(fundAccountRequest);
+				} catch (error) {
+					outputData.push(error.message);
+				}
+				break;
+			case 'createAccount':
+				const newKeypair = createAccountKeypair();
+				outputData.push(newKeypair);
+				break;
 		}
 		return [this.helpers.returnJsonArray(outputData)];
 	}
