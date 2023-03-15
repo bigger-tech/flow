@@ -20,4 +20,7 @@ export function fundAccount(publicKey: string): IHttpRequestOptions {
 			method: 'GET',
 		};
 		return fundAccountRequestOptions;
+	} else {
+		throw new InvalidPublicKeyError('Invalid public key');
+	}
 }
