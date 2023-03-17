@@ -34,8 +34,7 @@
 			"dist/credentials/StellarApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Stellar/Stellar.node.js",
-      "dist/nodes/OnPayment/OnPayment.node.js"
+			"dist/nodes/Stellar/Stellar.node.js"
 		]
 	},
 	"devDependencies": {
