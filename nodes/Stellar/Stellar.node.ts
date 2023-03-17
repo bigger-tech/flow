@@ -4,7 +4,7 @@ import {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { fundAccount, createAccountKeypair } from './services/stellar';
+import { fundAccount, createAccountKeypair, getLastPayment } from './services/stellar';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -22,9 +22,23 @@ export class Stellar implements INodeType {
 		outputs: ['main'],
 		properties: [
 			{
+				displayName: 'Resource',
+				name: 'resource',
+				type: 'options',
+				options: [{ name: 'Stellar', value: 'stellar' }],
+				default: 'stellar',
+				noDataExpression: true,
+				required: true,
+			},
+			{
 				displayName: 'Operations',
 				name: 'operation',
 				type: 'options',
+				displayOptions: {
+					show: {
+						resource: ['stellar'],
+					},
+				},
 				options: [
 					{
 						name: 'Create Account',
@@ -37,9 +51,29 @@ export class Stellar implements INodeType {
 						value: 'fundAccount',
 						action: 'Fund account with friendbot',
 					},
+					{
+						name: 'Get Payment',
+						value: 'getPayment',
+						action: 'Get last payment',
+					},
 				],
 				noDataExpression: true,
 				default: 'createAccount',
+			},
+			{
+				displayName: 'Public Key',
+				name: 'publicKey',
+				type: 'string',
+				required: true,
+				displayOptions: {
+					show: {
+						operation: ['getPayment'],
+						resource: ['stellar'],
+					},
+				},
+				default: '',
+				placeholder: '1234',
+				description: 'Account public key',
 			},
 		],
 	};
@@ -61,6 +95,11 @@ export class Stellar implements INodeType {
 			case 'createAccount':
 				const newKeypair = createAccountKeypair();
 				outputData.push(newKeypair);
+				break;
+			case 'getPayment':
+				const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
+				const lastPayment = await getLastPayment(publicKeyParam);
+				outputData.push(lastPayment);
 				break;
 		}
 		return [this.helpers.returnJsonArray(outputData)];
