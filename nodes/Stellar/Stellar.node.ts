@@ -93,7 +93,7 @@ export class Stellar implements INodeType {
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const operation = this.getNodeParameter('operation', 0) as string;
 		const network = this.getNodeParameter('resource', 0) as string;
-		const isAccountToFund = this.getNodeParameter('fundAccount', 0) as boolean;
+		const isAccountToFund = network === 'testnet' ? this.getNodeParameter('fundAccount', 1) : false;
 		let outputData = [];
 		setNetwork(network);
 
