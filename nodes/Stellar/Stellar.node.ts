@@ -54,16 +54,6 @@ export class Stellar implements INodeType {
 						action: 'Create a new stellar account',
 					},
 					{
-						name: 'Fund Account with Friendbot',
-						value: 'fundAccount',
-						action: 'Fund account with friendbot',
-						displayOptions: {
-							show: {
-								resource: ['testnet'],
-							},
-						},
-					},
-					{
 						name: 'Get Payment',
 						value: 'getPayment',
 						action: 'Get last payment',
@@ -72,14 +62,26 @@ export class Stellar implements INodeType {
 				noDataExpression: true,
 			},
 			{
+				displayName: 'Fund Account with Friendbot',
+				name: 'fundAccount',
+				type: 'boolean',
+				default: false,
+				displayOptions: {
+					show: {
+						resource: ['testnet'],
+						operation: ['createAccount'],
+					},
+				},
+			},
+			{
 				displayName: 'Public Key',
 				name: 'publicKey',
 				type: 'string',
 				required: true,
 				displayOptions: {
 					show: {
+						resource: ['pubnet', 'testnet'],
 						operation: ['getPayment'],
-						resource: ['stellar'],
 					},
 				},
 				default: '',
@@ -89,26 +91,25 @@ export class Stellar implements INodeType {
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const items = this.getInputData();
 		const operation = this.getNodeParameter('operation', 0) as string;
 		const network = this.getNodeParameter('resource', 0) as string;
-		const publicKey = items[0].json.publicKey as string;
+		const isAccountToFund = this.getNodeParameter('fundAccount', 0) as boolean;
 		let outputData = [];
-
 		setNetwork(network);
 
 		switch (operation) {
-			case 'fundAccount':
-				try {
-					const fundAccountRequest = fundAccount(publicKey);
-					await this.helpers.httpRequest(fundAccountRequest);
-				} catch (error) {
-					outputData.push(error.message);
-				}
-				break;
 			case 'createAccount':
 				const newKeypair = createAccountKeypair();
 				outputData.push(newKeypair);
+
+				if (isAccountToFund) {
+					try {
+						const fundAccountRequest = fundAccount(newKeypair.publicKey);
+						await this.helpers.httpRequest(fundAccountRequest);
+					} catch (error) {
+						outputData.push({ 'Funding account error': error.message });
+					}
+				}
 				break;
 			case 'getPayment':
 				const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
