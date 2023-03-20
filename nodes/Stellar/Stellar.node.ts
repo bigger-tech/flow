@@ -4,7 +4,7 @@ import {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { fundAccount, createAccountKeypair, getLastPayment } from './services/stellar';
+import { fundAccount, createAccountKeypair, getLastPayment, setNetwork } from './services/stellar';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -20,25 +20,32 @@ export class Stellar implements INodeType {
 		},
 		inputs: ['main'],
 		outputs: ['main'],
+
 		properties: [
 			{
 				displayName: 'Resource',
 				name: 'resource',
 				type: 'options',
-				options: [{ name: 'Stellar', value: 'stellar' }],
-				default: 'stellar',
+				options: [
+					{
+						name: 'Testnet',
+						value: 'testnet',
+					},
+					{
+						name: 'Pubnet',
+						value: 'pubnet',
+					},
+				],
+				default: 'testnet',
 				noDataExpression: true,
 				required: true,
+				description: 'Stellar Network:',
 			},
 			{
 				displayName: 'Operations',
 				name: 'operation',
 				type: 'options',
-				displayOptions: {
-					show: {
-						resource: ['stellar'],
-					},
-				},
+				default: 'createAccount',
 				options: [
 					{
 						name: 'Create Account',
@@ -50,6 +57,11 @@ export class Stellar implements INodeType {
 						name: 'Fund Account with Friendbot',
 						value: 'fundAccount',
 						action: 'Fund account with friendbot',
+						displayOptions: {
+							show: {
+								resource: ['testnet'],
+							},
+						},
 					},
 					{
 						name: 'Get Payment',
@@ -58,7 +70,6 @@ export class Stellar implements INodeType {
 					},
 				],
 				noDataExpression: true,
-				default: 'createAccount',
 			},
 			{
 				displayName: 'Public Key',
@@ -80,8 +91,11 @@ export class Stellar implements INodeType {
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
 		const operation = this.getNodeParameter('operation', 0) as string;
+		const network = this.getNodeParameter('resource', 0) as string;
 		const publicKey = items[0].json.publicKey as string;
 		let outputData = [];
+
+		setNetwork(network);
 
 		switch (operation) {
 			case 'fundAccount':

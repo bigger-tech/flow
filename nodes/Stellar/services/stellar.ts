@@ -1,9 +1,17 @@
 import { IHttpRequestOptions } from 'n8n-workflow';
-import StellarSdk, { StrKey } from 'stellar-sdk';
+import StellarSdk, { Server, StrKey } from 'stellar-sdk';
 import InvalidPublicKeyError from './error/InvalidPublicKeyError';
+import StellarNetwork from './StellarNetwork';
 
 const FRIENDBOT_URL = 'https://friendbot.stellar.org/?addr=';
-const stellarServer = 'https://horizon-testnet.stellar.org';
+
+let stellarNetwork: StellarNetwork;
+let stellarServer: Server;
+
+export function setNetwork(network: string) {
+	stellarNetwork = new StellarNetwork(network);
+	stellarServer = new Server(stellarNetwork.url);
+}
 
 export function createAccountKeypair() {
 	const pair = StellarSdk.Keypair.random();
