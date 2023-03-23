@@ -1,3 +1,3 @@
 import { getLastPaymentDescription as description } from './description';
-
-export { description };
+import { getPayment as execute } from './execute';
+export { description, execute };
