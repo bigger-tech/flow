@@ -4,9 +4,9 @@ import {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { fundAccount, createAccountKeypair, getLastPayment } from './services/stellar';
 import * as newAccount from './actions/newAccount';
 import * as payments from './actions/payments';
+import { router } from './actions/router';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -22,6 +22,7 @@ export class Stellar implements INodeType {
 		},
 		inputs: ['main'],
 		outputs: ['main'],
+		credentials: [{ name: 'stellarNetworkApi', required: true }],
 
 		properties: [
 			{
@@ -56,31 +57,6 @@ export class Stellar implements INodeType {
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const operation = this.getNodeParameter('operation', 0) as string;
-		const network = this.getNodeParameter('resource', 0) as string;
-		const isAccountToFund = network === 'testnet' ? this.getNodeParameter('fundAccount', 1) : false;
-		let outputData = [];
-
-		switch (operation) {
-			case 'createAccount':
-				const newKeypair = createAccountKeypair();
-				outputData.push(newKeypair);
-
-				if (isAccountToFund) {
-					try {
-						const fundAccountRequest = fundAccount(newKeypair.publicKey);
-						await this.helpers.httpRequest(fundAccountRequest);
-					} catch (error) {
-						outputData.push({ 'Funding account error': error.message });
-					}
-				}
-				break;
-			case 'getPayment':
-				const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
-				const lastPayment = await getLastPayment(publicKeyParam);
-				outputData.push({ payment: lastPayment });
-				break;
-		}
-		return [this.helpers.returnJsonArray(outputData)];
+		return router.call(this);
 	}
 }
