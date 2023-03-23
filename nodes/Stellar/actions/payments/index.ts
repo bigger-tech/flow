@@ -1,6 +1,8 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as getPayment from './getPayment';
 
+export { getPayment };
+
 export const description: INodeProperties[] = [
 	{
 		displayName: 'Operation',

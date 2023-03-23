@@ -1,4 +1,8 @@
 import { INodeProperties } from 'n8n-workflow';
+import * as createAccount from './createAccount';
+import * as fundAccount from './fundAccount';
+
+export { createAccount, fundAccount };
 
 export const description: INodeProperties[] = [
 	{
