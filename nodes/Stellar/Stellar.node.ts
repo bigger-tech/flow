@@ -26,20 +26,28 @@ export class Stellar implements INodeType {
 				displayName: 'Resource',
 				name: 'resource',
 				type: 'options',
+				default: 'newAccount',
 				options: [
 					{
-						name: 'Testnet',
-						value: 'testnet',
+						name: 'New Account',
+						value: 'newAccount',
 					},
 					{
-						name: 'Pubnet',
-						value: 'pubnet',
+						name: 'Payment',
+						value: 'payments',
+					},
+					{
+						name: 'Account Option',
+						value: 'options',
+					},
+					{
+						name: 'Offer',
+						value: 'offers',
 					},
 				],
-				default: 'testnet',
 				noDataExpression: true,
 				required: true,
-				description: 'Stellar Network:',
+				description: 'Operation Type:',
 			},
 			{
 				displayName: 'Operations',
@@ -95,7 +103,6 @@ export class Stellar implements INodeType {
 		const network = this.getNodeParameter('resource', 0) as string;
 		const isAccountToFund = network === 'testnet' ? this.getNodeParameter('fundAccount', 1) : false;
 		let outputData = [];
-		setNetwork(network);
 
 		switch (operation) {
 			case 'createAccount':
