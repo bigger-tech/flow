@@ -4,7 +4,9 @@ import {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { fundAccount, createAccountKeypair, getLastPayment, setNetwork } from './services/stellar';
+import { fundAccount, createAccountKeypair, getLastPayment } from './services/stellar';
+import * as newAccount from './actions/newAccount';
+import * as payments from './actions/payments';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -49,53 +51,8 @@ export class Stellar implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
-			{
-				displayName: 'Operations',
-				name: 'operation',
-				type: 'options',
-				default: 'createAccount',
-				options: [
-					{
-						name: 'Create Account',
-						value: 'createAccount',
-						description: 'Create a new Stellar account',
-						action: 'Create a new stellar account',
-					},
-					{
-						name: 'Get Payment',
-						value: 'getPayment',
-						action: 'Get last payment',
-					},
-				],
-				noDataExpression: true,
-			},
-			{
-				displayName: 'Fund Account with Friendbot',
-				name: 'fundAccount',
-				type: 'boolean',
-				default: false,
-				displayOptions: {
-					show: {
-						resource: ['testnet'],
-						operation: ['createAccount'],
-					},
-				},
-			},
-			{
-				displayName: 'Public Key',
-				name: 'publicKey',
-				type: 'string',
-				required: true,
-				displayOptions: {
-					show: {
-						resource: ['pubnet', 'testnet'],
-						operation: ['getPayment'],
-					},
-				},
-				default: '',
-				placeholder: '1234',
-				description: 'Account public key',
-			},
+			...newAccount.description,
+			...payments.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
@@ -121,7 +78,7 @@ export class Stellar implements INodeType {
 			case 'getPayment':
 				const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
 				const lastPayment = await getLastPayment(publicKeyParam);
-				outputData.push(lastPayment);
+				outputData.push({ payment: lastPayment });
 				break;
 		}
 		return [this.helpers.returnJsonArray(outputData)];
