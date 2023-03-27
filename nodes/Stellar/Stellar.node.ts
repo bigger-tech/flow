@@ -4,7 +4,9 @@ import {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
-import { fundAccount, createAccountKeypair, getLastPayment } from './services/stellar';
+import * as newAccount from './actions/newAccount';
+import * as payments from './actions/payments';
+import { router } from './actions/router';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -20,88 +22,41 @@ export class Stellar implements INodeType {
 		},
 		inputs: ['main'],
 		outputs: ['main'],
+		credentials: [{ name: 'stellarNetworkApi', required: true }],
+
 		properties: [
 			{
 				displayName: 'Resource',
 				name: 'resource',
 				type: 'options',
-				options: [{ name: 'Stellar', value: 'stellar' }],
-				default: 'stellar',
-				noDataExpression: true,
-				required: true,
-			},
-			{
-				displayName: 'Operations',
-				name: 'operation',
-				type: 'options',
-				displayOptions: {
-					show: {
-						resource: ['stellar'],
-					},
-				},
+				default: 'newAccount',
 				options: [
 					{
-						name: 'Create Account',
-						value: 'createAccount',
-						description: 'Create a new Stellar account',
-						action: 'Create a new stellar account',
+						name: 'New Account',
+						value: 'newAccount',
 					},
 					{
-						name: 'Fund Account with Friendbot',
-						value: 'fundAccount',
-						action: 'Fund account with friendbot',
+						name: 'Payment',
+						value: 'payments',
 					},
 					{
-						name: 'Get Payment',
-						value: 'getPayment',
-						action: 'Get last payment',
+						name: 'Account Option',
+						value: 'options',
+					},
+					{
+						name: 'Offer',
+						value: 'offers',
 					},
 				],
 				noDataExpression: true,
-				default: 'createAccount',
-			},
-			{
-				displayName: 'Public Key',
-				name: 'publicKey',
-				type: 'string',
 				required: true,
-				displayOptions: {
-					show: {
-						operation: ['getPayment'],
-						resource: ['stellar'],
-					},
-				},
-				default: '',
-				placeholder: '1234',
-				description: 'Account public key',
+				description: 'Operation Type:',
 			},
+			...newAccount.description,
+			...payments.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-		const items = this.getInputData();
-		const operation = this.getNodeParameter('operation', 0) as string;
-		const publicKey = items[0].json.publicKey as string;
-		let outputData = [];
-
-		switch (operation) {
-			case 'fundAccount':
-				try {
-					const fundAccountRequest = fundAccount(publicKey);
-					await this.helpers.httpRequest(fundAccountRequest);
-				} catch (error) {
-					outputData.push(error.message);
-				}
-				break;
-			case 'createAccount':
-				const newKeypair = createAccountKeypair();
-				outputData.push(newKeypair);
-				break;
-			case 'getPayment':
-				const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
-				const lastPayment = await getLastPayment(publicKeyParam);
-				outputData.push(lastPayment);
-				break;
-		}
-		return [this.helpers.returnJsonArray(outputData)];
+		return router.call(this);
 	}
 }
