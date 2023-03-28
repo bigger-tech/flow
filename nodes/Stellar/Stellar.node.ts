@@ -6,6 +6,7 @@ import {
 } from 'n8n-workflow';
 import * as newAccount from './actions/newAccount';
 import * as payments from './actions/payments';
+import * as swapAssets from './actions/swapAssets';
 import { router } from './actions/router';
 
 export class Stellar implements INodeType {
@@ -32,20 +33,24 @@ export class Stellar implements INodeType {
 				default: 'newAccount',
 				options: [
 					{
+						name: 'Account Option',
+						value: 'options',
+					},
+					{
 						name: 'New Account',
 						value: 'newAccount',
+					},
+					{
+						name: 'Offer',
+						value: 'offers',
 					},
 					{
 						name: 'Payment',
 						value: 'payments',
 					},
 					{
-						name: 'Account Option',
-						value: 'options',
-					},
-					{
-						name: 'Offer',
-						value: 'offers',
+						name: 'Swap Asset',
+						value: 'swapAssets',
 					},
 				],
 				noDataExpression: true,
@@ -54,6 +59,7 @@ export class Stellar implements INodeType {
 			},
 			...newAccount.description,
 			...payments.description,
+			...swapAssets.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {

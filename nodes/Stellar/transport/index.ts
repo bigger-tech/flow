@@ -7,9 +7,10 @@ const STELLAR_PUBNET_PASSPHRASE = 'Public Global Stellar Network ; September 201
 const STELLAR_FUTURENET_NETWORK = 'https://horizon-futurenet.stellar.org';
 const STELLAR_FUTURENET_PASSPHRASE = 'Test SDF Future Network ; October 2022';
 
-export async function setNetwork(this: IExecuteFunctions) {
+export async function setNetwork(this: IExecuteFunctions): Promise<StellarNetwork> {
 	const credentials = await this.getCredentials('stellarNetworkApi');
 	let stellarNetwork;
+
 	switch (credentials.network) {
 		case 'testnet':
 			stellarNetwork = new StellarNetwork(STELLAR_TESTNET_NETWORK, STELLAR_TESTNET_PASSPHRASE);
@@ -26,7 +27,12 @@ export async function setNetwork(this: IExecuteFunctions) {
 				credentials.networkPassphrase as string,
 			);
 	}
-	return stellarNetwork;
+
+	if (stellarNetwork) {
+		return stellarNetwork;
+	} else {
+		throw new Error();
+	}
 }
 
 class StellarNetwork {
