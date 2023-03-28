@@ -1,4 +1,5 @@
 import type { IExecuteFunctions } from 'n8n-workflow';
+import SetNetworkError from './errors/SetNetworkError';
 
 const STELLAR_TESTNET_NETWORK = 'https://horizon-testnet.stellar.org/';
 const STELLAR_TESTNET_PASSPHRASE = 'Test SDF Network ; September 2015';
@@ -31,7 +32,7 @@ export async function setNetwork(this: IExecuteFunctions): Promise<StellarNetwor
 	if (stellarNetwork) {
 		return stellarNetwork;
 	} else {
-		throw new Error();
+		throw new SetNetworkError();
 	}
 }
 
