@@ -6,11 +6,9 @@ import * as swapAssets from './swapAssets';
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const operation = this.getNodeParameter('operation', 0);
 	const resource = this.getNodeParameter('resource', 0) as string;
-
+	const stellar = { resource, operation };
 	let outputData = [];
 	let responseData;
-
-	const stellar = { resource, operation };
 
 	try {
 		switch (stellar.operation) {

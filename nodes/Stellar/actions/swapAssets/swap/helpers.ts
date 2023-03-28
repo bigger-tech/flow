@@ -17,7 +17,6 @@ export async function getSwapAssetsTransaction(
 
 	if (offers.records) {
 		const bestOffer = offers.records[0];
-
 		const paymentOperation = Operation.pathPaymentStrictSend({
 			destination: publicKey,
 			sendAsset: sourceAsset,
@@ -44,7 +43,6 @@ export async function getSwapAssetsTransaction(
 function getMinDestinationAmount(offer: string, percentage: string) {
 	const parsedOffer = Number(offer);
 	const parsedPercentage = Number(percentage);
-
 	const result = parsedOffer - parsedOffer * (parsedPercentage / 100);
 
 	return `${result}`;
