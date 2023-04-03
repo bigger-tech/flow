@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
 import { convertAmountToBigNumber } from '../../../transport';
-import IAsset from './IAsset';
+import IAsset from '../../entities/IAsset';
 
 export async function makePayment(this: IExecuteFunctions) {
 	const destinationAccount = this.getNodeParameter('destinationAccount', 0) as string;
