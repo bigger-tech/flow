@@ -3,4 +3,8 @@ export default interface IAsset {
 		code: string;
 		issuer: string;
 	};
+	sendingAsset: {
+		code: string;
+		issuer: string;
+	};
 }
