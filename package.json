@@ -50,6 +50,7 @@
 		"vitest": "^0.29.2"
 	},
 	"dependencies": {
+		"bignumber": "^1.1.0",
 		"stellar-sdk": "^10.4.1"
 	}
 }
