@@ -34,6 +34,7 @@
 			"dist/credentials/StellarApi.credentials.js"
 		],
 		"nodes": [
+			"dist/nodes/StellarTrigger/StellarTrigger.node.js",
 			"dist/nodes/Stellar/Stellar.node.js"
 		]
 	},
