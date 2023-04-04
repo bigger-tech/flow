@@ -24,6 +24,15 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 			case 'swap':
 				responseData = await swapAssets.swap.execute.call(this);
 				break;
+			case 'makePayment':
+				responseData = await payments[stellar.operation].execute.call(this);
+				break;
+			case 'pathPaymentStrictSend':
+				responseData = await payments[stellar.operation].execute.call(this);
+				break;
+			case 'pathPaymentStrictReceive':
+				responseData = await payments[stellar.operation].execute.call(this);
+				break;
 		}
 
 		outputData.push(responseData as IDataObject);
