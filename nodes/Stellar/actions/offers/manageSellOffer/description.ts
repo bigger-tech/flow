@@ -32,7 +32,7 @@ export const manageSellOfferDescription: INodeProperties[] = [
 		required: true,
 		options: [
 			{
-				name: 'sellingAsset',
+				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
@@ -88,7 +88,7 @@ export const manageSellOfferDescription: INodeProperties[] = [
 		required: true,
 		options: [
 			{
-				name: 'buyingAsset',
+				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{

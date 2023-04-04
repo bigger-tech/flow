@@ -9,8 +9,8 @@ export async function manageSellOffer(this: IExecuteFunctions) {
 	if (isSellingAssetNative) {
 		selling = Asset.native();
 	} else {
-		const asset = this.getNodeParameter('sellingAsset', 0) as IAsset;
-		selling = new Asset(asset.sellingAsset.code, asset.sellingAsset.issuer);
+		const sellingAsset = this.getNodeParameter('sellingAsset', 0) as IAsset;
+		selling = new Asset(sellingAsset.values.code, sellingAsset.values.issuer);
 	}
 
 	const isBuyingAssetNative = this.getNodeParameter('isBuyingAssetNative', 0) as boolean;
@@ -18,8 +18,8 @@ export async function manageSellOffer(this: IExecuteFunctions) {
 	if (isBuyingAssetNative) {
 		buying = Asset.native();
 	} else {
-		const asset = this.getNodeParameter('buyingAsset', 0) as IAsset;
-		buying = new Asset(asset.buyingAsset.code, asset.buyingAsset.issuer);
+		const buyingAsset = this.getNodeParameter('buyingAsset', 0) as IAsset;
+		buying = new Asset(buyingAsset.values.code, buyingAsset.values.issuer);
 	}
 
 	const sellingAmount = this.getNodeParameter('sellingAmount', 0) as number;

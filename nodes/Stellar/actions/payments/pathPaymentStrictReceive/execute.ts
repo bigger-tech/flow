@@ -11,8 +11,8 @@ export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 	if (isSendingAssetNative) {
 		sendAsset = Asset.native();
 	} else {
-		const asset = this.getNodeParameter('sendingAsset', 0) as IAsset;
-		sendAsset = new Asset(asset.sendingAsset.code, asset.sendingAsset.issuer);
+		const sendingAsset = this.getNodeParameter('sendingAsset', 0) as IAsset;
+		sendAsset = new Asset(sendingAsset.values.code, sendingAsset.values.issuer);
 	}
 
 	const maxSendingAmount = this.getNodeParameter('maxSendAmount', 0) as number;
@@ -23,7 +23,7 @@ export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 		if (asset.native) {
 			path.push(Asset.native());
 		} else {
-			path.push(new Asset(asset.customAsset.asset.code, asset.customAsset.asset.issuer));
+			path.push(new Asset(asset.customAsset.values.code, asset.customAsset.values.issuer));
 		}
 	});
 
@@ -32,8 +32,8 @@ export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 	if (isDestinationAssetNative) {
 		destAsset = Asset.native();
 	} else {
-		const asset = this.getNodeParameter('destinationAsset', 0) as IAsset;
-		destAsset = new Asset(asset.destinationAsset.code, asset.destinationAsset.issuer);
+		const destinationAsset = this.getNodeParameter('destinationAsset', 0) as IAsset;
+		destAsset = new Asset(destinationAsset.values.code, destinationAsset.values.issuer);
 	}
 
 	const destinationAmount = this.getNodeParameter('destinationAmount', 0) as number;

@@ -41,13 +41,13 @@ export const makePaymentDescription: INodeProperties[] = [
 	},
 	{
 		displayName: 'Destination Asset',
-		name: 'asset',
+		name: 'destinationAsset',
 		type: 'fixedCollection',
 		default: {},
 		required: true,
 		options: [
 			{
-				name: 'destinationAsset',
+				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{

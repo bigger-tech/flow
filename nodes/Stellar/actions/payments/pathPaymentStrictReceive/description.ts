@@ -48,7 +48,7 @@ export const pathPaymentStrictReceiveDescription: INodeProperties[] = [
 		required: true,
 		options: [
 			{
-				name: 'sendingAsset',
+				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
@@ -119,7 +119,7 @@ export const pathPaymentStrictReceiveDescription: INodeProperties[] = [
 				required: true,
 				options: [
 					{
-						name: 'asset',
+						name: 'values',
 						displayName: 'Intermediate Asset',
 						values: [
 							{
@@ -173,7 +173,7 @@ export const pathPaymentStrictReceiveDescription: INodeProperties[] = [
 		default: {},
 		options: [
 			{
-				name: 'destinationAsset',
+				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{

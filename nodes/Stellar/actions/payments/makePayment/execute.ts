@@ -12,8 +12,8 @@ export async function makePayment(this: IExecuteFunctions) {
 	if (isNative) {
 		asset = Asset.native();
 	} else {
-		const assets = this.getNodeParameter('asset', 0) as IAsset;
-		asset = new Asset(assets.destinationAsset.code, assets.destinationAsset.issuer);
+		const destinationAsset = this.getNodeParameter('destinationAsset', 0) as IAsset;
+		asset = new Asset(destinationAsset.values.code, destinationAsset.values.issuer);
 	}
 	const amount = convertAmountToBigNumber(paymentAmount);
 
