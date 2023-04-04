@@ -7,4 +7,12 @@ export default interface IAsset {
 		code: string;
 		issuer: string;
 	};
+	sellingAsset: {
+		code: string;
+		issuer: string;
+	};
+	buyingAsset: {
+		code: string;
+		issuer: string;
+	};
 }
