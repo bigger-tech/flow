@@ -1,4 +1,4 @@
-import type { IExecuteFunctions } from 'n8n-workflow';
+import type { IExecuteFunctions, ITriggerFunctions } from 'n8n-workflow';
 import SetNetworkError from './errors/SetNetworkError';
 
 const STELLAR_TESTNET_NETWORK = 'https://horizon-testnet.stellar.org/';
@@ -8,7 +8,9 @@ const STELLAR_PUBNET_PASSPHRASE = 'Public Global Stellar Network ; September 201
 const STELLAR_FUTURENET_NETWORK = 'https://horizon-futurenet.stellar.org';
 const STELLAR_FUTURENET_PASSPHRASE = 'Test SDF Future Network ; October 2022';
 
-export async function setNetwork(this: IExecuteFunctions): Promise<StellarNetwork> {
+export async function setNetwork(
+	this: IExecuteFunctions | ITriggerFunctions,
+): Promise<StellarNetwork> {
 	const credentials = await this.getCredentials('stellarNetworkApi');
 	let stellarNetwork;
 
