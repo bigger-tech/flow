@@ -1,7 +1,9 @@
 ARG N8N_VERSION=latest
 FROM n8nio/n8n:$N8N_VERSION as build
 
-RUN npm install --global --unsafe-perm n8n
+USER root
+
+RUN npm install --global --unsafe-perm n8n typescript
 
 WORKDIR /usr/src/app
 
@@ -17,6 +19,4 @@ WORKDIR /usr/local/lib/node_modules/n8n
 
 RUN npm link n8n-nodes-stellar
 
-CMD ["n8n", "start"]
-
-EXPOSE 5678
+ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
