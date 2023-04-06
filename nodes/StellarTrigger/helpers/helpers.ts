@@ -1,14 +1,34 @@
-import IAssetParam from '../IAssetParam';
+import { ICodesParam, IIssuersParam, INodeAssets } from '../fixedCollectionTypes';
 
-export function validateTx(tx: any, assets: IAssetParam): boolean {
-	if (!assets.values) {
+export function validateTx(tx: any, assets: INodeAssets): boolean {
+	if (!assets.codes.length && !assets.issuers.length) {
 		return true;
 	}
 
-	const assetCodes = assets.values.map((asset) => asset.code).filter(Boolean);
-	const assetIssuers = assets.values.map((asset) => asset.issuer).filter(Boolean);
-
 	return (
-		assetCodes.includes(tx.asset_code || tx.asset_type) || assetIssuers.includes(tx.asset_issuer)
+		assets.codes.includes(tx.asset_code || tx.asset_type) ||
+		assets.issuers.includes(tx.asset_issuer)
 	);
+}
+
+export function mapFixedCollectionAssets(
+	codesParam: ICodesParam,
+	issuersParam: IIssuersParam,
+): INodeAssets {
+	let codes: string[] = [];
+	let issuers: string[] = [];
+
+	if (codesParam.codes) {
+		codes = codesParam.codes.map((codes) => {
+			return codes.code;
+		});
+	}
+
+	if (issuersParam.issuers) {
+		issuers = issuersParam.issuers.map((issuers) => {
+			return issuers.issuer;
+		});
+	}
+
+	return { codes, issuers };
 }

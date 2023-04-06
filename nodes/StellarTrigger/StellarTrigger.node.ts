@@ -1,8 +1,8 @@
 import { INodeType, INodeTypeDescription, ITriggerFunctions, ITriggerResponse } from 'n8n-workflow';
 
 import { Server } from 'stellar-sdk';
-import IAssetParam from './IAssetParam';
-import { validateTx } from './helpers/helpers';
+import { ICodesParam, IIssuersParam } from './fixedCollectionTypes';
+import { mapFixedCollectionAssets, validateTx } from './helpers/helpers';
 import { setNetwork } from '../Stellar/transport';
 
 export class StellarTrigger implements INodeType {
@@ -35,30 +35,46 @@ export class StellarTrigger implements INodeType {
 				],
 			},
 			{
-				displayName: 'Assets',
-				name: 'assets',
+				displayName: 'Assets Code',
+				name: 'assetsCode',
 				type: 'fixedCollection',
-				required: true,
 				typeOptions: {
 					multipleValues: true,
 				},
 				options: [
 					{
-						name: 'values',
-						displayName: 'Values',
+						name: 'codes',
+						displayName: 'Codes',
 						values: [
 							{
 								displayName: 'Code',
 								name: 'code',
 								type: 'string',
 								default: 'native',
-								required: true,
 							},
+						],
+					},
+				],
+				default: {},
+			},
+			{
+				displayName: 'Assets Issuer',
+				name: 'assetsIssuer',
+				type: 'fixedCollection',
+				typeOptions: {
+					multipleValues: true,
+				},
+				options: [
+					{
+						name: 'issuers',
+						displayName: 'Issuers',
+						values: [
 							{
 								displayName: 'Issuer',
 								name: 'issuer',
 								type: 'string',
 								default: '',
+								required: true,
 							},
 						],
 					},
@@ -70,9 +86,11 @@ export class StellarTrigger implements INodeType {
 
 	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
 		const publicKey = this.getNodeParameter('account', 1) as string;
-		const assets = this.getNodeParameter('assets', 1) as IAssetParam;
 		const network = await setNetwork.call(this);
 		const server = new Server(network.url);
+		const codes = this.getNodeParameter('assetsCode', 1) as ICodesParam;
+		const issuers = this.getNodeParameter('assetsIssuers', 1) as IIssuersParam;
+		const assets = mapFixedCollectionAssets(codes, issuers);
 
 		const handle = (tx: any) => {
 			if (validateTx(tx, assets)) {
