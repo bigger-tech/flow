@@ -24,7 +24,6 @@ export class Stellar implements INodeType {
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [{ name: 'stellarNetworkApi', required: true }],
-
 		properties: [
 			{
 				displayName: 'Resource',

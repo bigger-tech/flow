@@ -1,6 +1,9 @@
 import { INodeType, INodeTypeDescription, ITriggerFunctions, ITriggerResponse } from 'n8n-workflow';
 
 import { Server } from 'stellar-sdk';
+import IAssetParam from './IAssetParam';
+import { validateTx } from './helpers/helpers';
+import { setNetwork } from '../Stellar/transport';
 
 export class StellarTrigger implements INodeType {
 	description: INodeTypeDescription = {
@@ -16,7 +19,7 @@ export class StellarTrigger implements INodeType {
 		},
 		inputs: [],
 		outputs: ['main'],
-		credentials: [],
+		credentials: [{ name: 'stellarNetworkApi', required: true }],
 		properties: [
 			{
 				displayName: 'Account',
@@ -31,20 +34,63 @@ export class StellarTrigger implements INodeType {
 					},
 				],
 			},
+			{
+				displayName: 'Assets',
+				name: 'assets',
+				type: 'fixedCollection',
+				required: true,
+				typeOptions: {
+					multipleValues: true,
+				},
+				options: [
+					{
+						name: 'values',
+						displayName: 'Values',
+						values: [
+							{
+								displayName: 'Code',
+								name: 'code',
+								type: 'string',
+								default: '',
+							},
+							{
+								displayName: 'Issuer',
+								name: 'issuer',
+								type: 'string',
+								default: '',
+							},
+						],
+					},
+				],
+				default: {},
+			},
 		],
 	};
 
 	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
 		const publicKey = this.getNodeParameter('account', 1) as string;
-		const server = new Server('https://horizon-testnet.stellar.org');
+		const assets = this.getNodeParameter('assets', 1) as IAssetParam;
+		const network = await setNetwork.call(this);
+		const server = new Server(network.url);
 
 		const txHandler = (txResponse: any) => {
-			this.emit([this.helpers.returnJsonArray([{ txResponse }])]);
+			const isTxOk = validateTx(txResponse, assets);
+
+			if (isTxOk) {
+				this.emit([this.helpers.returnJsonArray([{ txResponse }])]);
+			}
 		};
 
-		server.payments().forAccount(publicKey).stream({
-			onmessage: txHandler,
-		});
+		server
+			.payments()
+			.forAccount(publicKey)
+			.cursor('now')
+			.limit(1)
+			.stream({
+				onmessage: (r) => {
+					txHandler(r);
+				},
+			});
 
 		async function closeFunction() {
 			return;
