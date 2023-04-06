@@ -51,7 +51,8 @@ export class StellarTrigger implements INodeType {
 								displayName: 'Code',
 								name: 'code',
 								type: 'string',
-								default: '',
+								default: 'native',
+								required: true,
 							},
 							{
 								displayName: 'Issuer',
@@ -73,29 +74,16 @@ export class StellarTrigger implements INodeType {
 		const network = await setNetwork.call(this);
 		const server = new Server(network.url);
 
-		const txHandler = (txResponse: any) => {
-			const isTxOk = validateTx(txResponse, assets);
-
-			if (isTxOk) {
-				this.emit([this.helpers.returnJsonArray([{ txResponse }])]);
+		const handle = (tx: any) => {
+			if (validateTx(tx, assets)) {
+				this.emit([this.helpers.returnJsonArray([{ tx }])]);
 			}
 		};
 
-		server
-			.payments()
-			.forAccount(publicKey)
-			.cursor('now')
-			.limit(1)
-			.stream({
-				onmessage: (r) => {
-					txHandler(r);
-				},
-			});
+		server.payments().forAccount(publicKey).cursor('now').limit(1).stream({
+			onmessage: handle,
+		});
 
-		async function closeFunction() {
-			return;
-		}
-
-		return { closeFunction };
+		return {};
 	}
 }
