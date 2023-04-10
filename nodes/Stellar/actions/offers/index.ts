@@ -1,7 +1,9 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as manageSellOffer from './manageSellOffer';
+import * as manageBuyOffer from './manageBuyOffer';
+import * as createPassiveSellOffer from './createPassiveSellOffer';
 
-export { manageSellOffer };
+export { manageSellOffer, manageBuyOffer, createPassiveSellOffer };
 export const description: INodeProperties[] = [
 	{
 		displayName: 'Operation',
@@ -37,4 +39,6 @@ export const description: INodeProperties[] = [
 		],
 	},
 	...manageSellOffer.description,
+	...manageBuyOffer.description,
+	...createPassiveSellOffer.description,
 ];
