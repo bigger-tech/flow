@@ -8,12 +8,13 @@ import * as newAccount from './actions/newAccount';
 import * as payments from './actions/payments';
 import * as offers from './actions/offers';
 import * as swapAssets from './actions/swapAssets';
-import { router } from './actions/router';
+import * as claimable from './actions/claimable';
 import * as accountMerge from './actions/accountMerge';
 import * as sponsorship from './actions/sponsorship';
 import * as settings from './actions/settings';
 import * as trust from './actions/trust';
 import * as clawback from './actions/clawback/';
+import { router } from './actions/router';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -91,6 +92,7 @@ export class Stellar implements INodeType {
 			...payments.description,
 			...offers.description,
 			...swapAssets.description,
+			...claimable.description,
 			...accountMerge.description,
 			...clawback.description,
 			...settings.description,
