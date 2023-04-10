@@ -6,8 +6,12 @@ import {
 } from 'n8n-workflow';
 import * as newAccount from './actions/newAccount';
 import * as payments from './actions/payments';
+import * as offers from './actions/offers';
 import * as swapAssets from './actions/swapAssets';
 import { router } from './actions/router';
+import * as accountMerge from './actions/accountMerge';
+import * as settings from './actions/settings';
+import * as clawback from './actions/clawback/';
 
 export class Stellar implements INodeType {
 	description: INodeTypeDescription = {
@@ -33,8 +37,24 @@ export class Stellar implements INodeType {
 				default: 'newAccount',
 				options: [
 					{
-						name: 'Account Option',
-						value: 'options',
+						name: 'Account Merge',
+						value: 'accountMerge',
+					},
+					{
+						name: 'Account Setting',
+						value: 'settings',
+					},
+					{
+						name: 'Claimable Balance',
+						value: 'claimableBalance',
+					},
+					{
+						name: 'Clawback',
+						value: 'clawbacks',
+					},
+					{
+						name: 'Liquidity Pool',
+						value: 'liquidityPool',
 					},
 					{
 						name: 'New Account',
@@ -49,8 +69,16 @@ export class Stellar implements INodeType {
 						value: 'payments',
 					},
 					{
+						name: 'Sponsorship',
+						value: 'sponsorship',
+					},
+					{
 						name: 'Swap Asset',
 						value: 'swapAssets',
+					},
+					{
+						name: 'Trust',
+						value: 'trust',
 					},
 				],
 				noDataExpression: true,
@@ -59,7 +87,11 @@ export class Stellar implements INodeType {
 			},
 			...newAccount.description,
 			...payments.description,
+			...offers.description,
 			...swapAssets.description,
+			...accountMerge.description,
+			...clawback.description,
+			...settings.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
