@@ -1,7 +1,8 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as beginSponsoring from './beginSponsoring';
 import * as endSponsoring from './endSponsoring';
-export { beginSponsoring, endSponsoring };
+import * as revokeSponsorship from './revokeSponsorship';
+export { beginSponsoring, endSponsoring, revokeSponsorship };
 
 export const description: INodeProperties[] = [
 	{
@@ -9,6 +10,7 @@ export const description: INodeProperties[] = [
 		name: 'operation',
 		type: 'options',
 		default: 'beginSponsoring',
+		required: true,
 		noDataExpression: true,
 		displayOptions: {
 			show: {
@@ -31,7 +33,7 @@ export const description: INodeProperties[] = [
 			},
 			{
 				name: 'Revoke Sponsorship',
-				value: 'Revoke sponsorship of a ledger entry.',
+				value: 'revokeSponsorship',
 				description: 'Revoke sponsorship of a ledger entry',
 				action: 'Revoke sponsorship',
 			},
@@ -39,4 +41,5 @@ export const description: INodeProperties[] = [
 	},
 	...beginSponsoring.description,
 	...endSponsoring.description,
+	...revokeSponsorship.description,
 ];
