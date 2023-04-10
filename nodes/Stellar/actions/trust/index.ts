@@ -1,7 +1,8 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as setTrustline from './setTrustline';
+import * as changeTrust from './changeTrust';
 
-export { setTrustline };
+export { changeTrust, setTrustline };
 
 export const description: INodeProperties[] = [
 	{
@@ -30,5 +31,6 @@ export const description: INodeProperties[] = [
 			},
 		],
 	},
+	...changeTrust.description,
 	...setTrustline.description,
 ];
