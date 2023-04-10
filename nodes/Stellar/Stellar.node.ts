@@ -12,6 +12,7 @@ import { router } from './actions/router';
 import * as accountMerge from './actions/accountMerge';
 import * as sponsorship from './actions/sponsorship';
 import * as settings from './actions/settings';
+import * as trust from './actions/trust';
 import * as clawback from './actions/clawback/';
 
 export class Stellar implements INodeType {
@@ -94,6 +95,7 @@ export class Stellar implements INodeType {
 			...clawback.description,
 			...settings.description,
 			...sponsorship.description,
+			...trust.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
