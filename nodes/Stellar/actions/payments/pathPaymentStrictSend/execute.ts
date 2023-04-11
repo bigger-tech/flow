@@ -46,6 +46,6 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 		destAsset,
 		destMin,
 		path,
-	});
-	return { pathPaymentStrictSendOperation: pathPaymentStrictSendOperation };
+	}).toXDR('base64');
+	return { operation: pathPaymentStrictSendOperation };
 }

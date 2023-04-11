@@ -36,6 +36,6 @@ export async function manageBuyOffer(this: IExecuteFunctions) {
 		buyAmount,
 		price,
 		offerId,
-	});
+	}).toXDR('base64');
 	return { operation: manageBuyOfferOperation };
 }

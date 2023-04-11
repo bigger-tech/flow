@@ -5,6 +5,6 @@ export async function endSponsoring(this: IExecuteFunctions) {
 	const source = this.getNodeParameter('accountSponsoring', 0) as string;
 	const endSponsoringOperation = Operation.endSponsoringFutureReserves({
 		source,
-	});
+	}).toXDR('base64');
 	return { operation: endSponsoringOperation };
 }

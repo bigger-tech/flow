@@ -21,6 +21,6 @@ export async function setTrustline(this: IExecuteFunctions) {
 			authorizedToMaintainLiabilities,
 			clawbackEnabled,
 		},
-	});
+	}).toXDR('base64');
 	return { operation: setTrustlineOperation };
 }

@@ -7,6 +7,6 @@ export async function revokeOfferSponsorship(this: IExecuteFunctions) {
 	const revokeOfferSponsorshipOperation = Operation.revokeOfferSponsorship({
 		seller,
 		offerId,
-	});
+	}).toXDR('base64');
 	return { operation: revokeOfferSponsorshipOperation };
 }

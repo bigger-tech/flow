@@ -43,6 +43,6 @@ export async function changeTrust(this: IExecuteFunctions) {
 	const changeTrustOperation = Operation.changeTrust({
 		asset,
 		limit,
-	});
+	}).toXDR('base64');
 	return { operation: changeTrustOperation };
 }

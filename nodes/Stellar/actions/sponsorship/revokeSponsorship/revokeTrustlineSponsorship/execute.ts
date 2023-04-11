@@ -17,6 +17,6 @@ export async function revokeTrustlineSponsorship(this: IExecuteFunctions) {
 	const revokeTrustlineSponsorshipOperation = Operation.revokeTrustlineSponsorship({
 		account,
 		asset,
-	});
+	}).toXDR('base64');
 	return { operation: revokeTrustlineSponsorshipOperation };
 }

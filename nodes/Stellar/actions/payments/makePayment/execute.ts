@@ -4,7 +4,7 @@ import { convertAmountToBigNumber } from '../../../transport';
 import IAsset from '../../entities/IAsset';
 
 export async function makePayment(this: IExecuteFunctions) {
-	const destinationAccount = this.getNodeParameter('destinationAccount', 0) as string;
+	const destination = this.getNodeParameter('destinationAccount', 0) as string;
 	const isNative = this.getNodeParameter('isNative', 0) as boolean;
 	const paymentAmount = this.getNodeParameter('amount', 0) as number;
 	let asset: Asset;
@@ -17,7 +17,6 @@ export async function makePayment(this: IExecuteFunctions) {
 	}
 	const amount = convertAmountToBigNumber(paymentAmount);
 
-	const paymentOptions = { amount, asset, destination: destinationAccount };
-	const paymentOperation = Operation.payment(paymentOptions);
-	return { paymentOperation: paymentOperation };
+	const paymentOperation = Operation.payment({ amount, asset, destination }).toXDR('base64');
+	return { operation: paymentOperation };
 }

@@ -36,6 +36,6 @@ export async function manageSellOffer(this: IExecuteFunctions) {
 		amount,
 		price,
 		offerId,
-	});
-	return { manageSellOfferOperation: manageSellOfferOperation };
+	}).toXDR('base64');
+	return { operation: manageSellOfferOperation };
 }

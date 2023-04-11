@@ -22,7 +22,7 @@ export async function revokeSignerSponsorship(this: IExecuteFunctions) {
 	const revokeSignerSponsorshipOperation = Operation.revokeSignerSponsorship({
 		account,
 		signer,
-	});
+	}).toXDR('base64');
 	return { operation: revokeSignerSponsorshipOperation };
 }
 type ISigner = 'ed25519PublicKey' | 'sha256Hash' | 'preAuthTx';

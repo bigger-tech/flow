@@ -33,6 +33,6 @@ export async function createPassiveSellOffer(this: IExecuteFunctions) {
 		buying,
 		amount,
 		price,
-	});
+	}).toXDR('base64');
 	return { operation: createPassiveSellOfferOperation };
 }

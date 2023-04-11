@@ -16,6 +16,6 @@ export async function clawback(this: IExecuteFunctions) {
 		asset = new Asset(destinationAsset.values.code, destinationAsset.values.issuer);
 	}
 	const amount = convertAmountToBigNumber(amountToBurn);
-	const clawbackOperation = Operation.clawback({ asset, amount, from });
+	const clawbackOperation = Operation.clawback({ asset, amount, from }).toXDR('base64');
 	return { operation: clawbackOperation };
 }

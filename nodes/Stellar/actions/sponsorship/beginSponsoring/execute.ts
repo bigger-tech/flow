@@ -3,6 +3,8 @@ import { Operation } from 'stellar-sdk';
 
 export async function beginSponsoring(this: IExecuteFunctions) {
 	const sponsoredId = this.getNodeParameter('sponsoredId', 0) as string;
-	const beginSponsoringOperation = Operation.beginSponsoringFutureReserves({ sponsoredId });
+	const beginSponsoringOperation = Operation.beginSponsoringFutureReserves({ sponsoredId }).toXDR(
+		'base64',
+	);
 	return { operation: beginSponsoringOperation };
 }

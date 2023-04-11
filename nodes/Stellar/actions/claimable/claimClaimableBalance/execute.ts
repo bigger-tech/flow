@@ -5,6 +5,6 @@ export async function claimClaimableBalance(this: IExecuteFunctions) {
 	const balanceId = this.getNodeParameter('balanceId', 0) as string;
 	const claimClaimableBalanceOperation = Operation.claimClaimableBalance({
 		balanceId,
-	});
+	}).toXDR('base64');
 	return { operation: claimClaimableBalanceOperation };
 }

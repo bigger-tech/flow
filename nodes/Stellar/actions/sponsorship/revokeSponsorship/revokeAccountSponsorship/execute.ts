@@ -5,6 +5,6 @@ export async function revokeAccountSponsorship(this: IExecuteFunctions) {
 	const account = this.getNodeParameter('account', 0) as string;
 	const revokeAccountSponsorshipOperation = Operation.revokeAccountSponsorship({
 		account,
-	});
+	}).toXDR('base64');
 	return { operation: revokeAccountSponsorshipOperation };
 }
