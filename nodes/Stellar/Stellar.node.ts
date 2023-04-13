@@ -14,6 +14,7 @@ import * as sponsorship from './actions/sponsorship';
 import * as settings from './actions/settings';
 import * as trust from './actions/trust';
 import * as clawback from './actions/clawback/';
+import * as liquidityPool from './actions/liquidityPool';
 import { router } from './actions/router';
 
 export class Stellar implements INodeType {
@@ -98,6 +99,7 @@ export class Stellar implements INodeType {
 			...settings.description,
 			...sponsorship.description,
 			...trust.description,
+			...liquidityPool.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
