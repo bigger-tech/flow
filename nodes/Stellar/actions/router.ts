@@ -2,6 +2,7 @@ import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow
 import * as newAccount from './newAccount';
 import * as payments from './payments';
 import * as swapAssets from './swapAssets';
+import * as transactionBuilder from './transactionBuilder';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const operation = this.getNodeParameter('operation', 0);
@@ -23,6 +24,12 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 				break;
 			case 'swap':
 				responseData = await swapAssets.swap.execute.call(this);
+				break;
+			case 'build':
+				responseData = await transactionBuilder.build.execute.call(this);
+				break;
+			case 'sign':
+				responseData = await transactionBuilder.sign.execute.call(this);
 				break;
 		}
 

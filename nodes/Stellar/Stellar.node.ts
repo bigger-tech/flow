@@ -7,6 +7,7 @@ import {
 import * as newAccount from './actions/newAccount';
 import * as payments from './actions/payments';
 import * as swapAssets from './actions/swapAssets';
+import * as transactionBuilder from './actions/transactionBuilder';
 import { router } from './actions/router';
 
 export class Stellar implements INodeType {
@@ -51,6 +52,10 @@ export class Stellar implements INodeType {
 						name: 'Swap Asset',
 						value: 'swapAssets',
 					},
+					{
+						name: 'Transaction Builder',
+						value: 'transactionBuilder',
+					},
 				],
 				noDataExpression: true,
 				required: true,
@@ -59,6 +64,7 @@ export class Stellar implements INodeType {
 			...newAccount.description,
 			...payments.description,
 			...swapAssets.description,
+			...transactionBuilder.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
