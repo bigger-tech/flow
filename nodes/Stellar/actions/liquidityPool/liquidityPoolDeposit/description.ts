@@ -13,6 +13,7 @@ export const liquidityPoolDepositDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
+		placeholder: 'Example: 67260c4c1807b262ff851b0a3fe141194936bb0215b2f77447f1df11998eabb9',
 		description: 'The PoolID for the Liquidity Pool to deposit into',
 	},
 	{
