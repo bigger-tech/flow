@@ -24,7 +24,7 @@ export const description: INodeProperties[] = [
 			},
 			{
 				name: 'Clawback Claimable Balance',
-				value: 'Creates a clawback operation for a claimable balance.',
+				value: 'clawbackClaimableBalance',
 				description: 'End a sponsorship',
 				action: 'Clawback claimable balance',
 			},

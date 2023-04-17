@@ -53,7 +53,7 @@ export class Stellar implements INodeType {
 					},
 					{
 						name: 'Clawback',
-						value: 'clawbacks',
+						value: 'clawback',
 					},
 					{
 						name: 'Liquidity Pool',

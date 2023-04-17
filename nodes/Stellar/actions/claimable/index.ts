@@ -1,6 +1,7 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as claimClaimableBalance from './claimClaimableBalance';
-export { claimClaimableBalance };
+import * as createClaimableBalance from './createClaimableBalance';
+export { claimClaimableBalance, createClaimableBalance };
 
 export const description: INodeProperties[] = [
 	{
@@ -11,7 +12,7 @@ export const description: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: ['claimable'],
+				resource: ['claimableBalance'],
 			},
 		},
 		options: [
@@ -29,5 +30,6 @@ export const description: INodeProperties[] = [
 			},
 		],
 	},
+	...createClaimableBalance.description,
 	...claimClaimableBalance.description,
 ];

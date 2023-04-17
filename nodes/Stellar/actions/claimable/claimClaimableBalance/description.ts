@@ -8,7 +8,7 @@ export const claimClaimableBalanceDescription: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: ['claimable'],
+				resource: ['claimableBalance'],
 				operation: ['claimClaimableBalance'],
 			},
 		},
@@ -21,7 +21,7 @@ export const claimClaimableBalanceDescription: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: ['claimable'],
+				resource: ['claimableBalance'],
 				operation: ['claimClaimableBalance'],
 			},
 		},
