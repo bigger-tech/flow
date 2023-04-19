@@ -43,7 +43,7 @@ export async function swapAssets(this: IExecuteFunctions) {
 		);
 
 		return { xdr };
-	} catch (e) {
-		throw new Error(e.message);
+	} catch (error) {
+		throw new Error(error);
 	}
 }
