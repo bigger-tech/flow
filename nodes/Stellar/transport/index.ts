@@ -1,4 +1,5 @@
 import type { IExecuteFunctions, ITriggerFunctions } from 'n8n-workflow';
+import BigNumber from 'bignumber.js';
 import SetNetworkError from './errors/SetNetworkError';
 
 const STELLAR_TESTNET_NETWORK = 'https://horizon-testnet.stellar.org/';
@@ -46,4 +47,8 @@ class StellarNetwork {
 		this.url = networkUrl;
 		this.passphrase = networkPassphrase;
 	}
+}
+
+export function convertAmountToBigNumber(amount: number): string {
+	return new BigNumber(amount).toFixed(7).toString();
 }
