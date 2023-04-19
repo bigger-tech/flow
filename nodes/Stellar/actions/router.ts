@@ -17,13 +17,14 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	const resource = this.getNodeParameter('resource', 0) as string;
 	const stellar = { resource, operation };
 	const items = this.getInputData();
-	let outputData = [];
+	let outputData: IDataObject[] = [];
 	let responseData;
-	items.forEach((item) => {
+
+	for (const item of items) {
 		if (item.json.operation) {
-			outputData.push(item as IDataObject);
+			outputData.push(item);
 		}
-	});
+	}
 
 	try {
 		switch (stellar.operation) {
@@ -98,15 +99,28 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 				break;
 			case 'build':
 				responseData = await transactionBuilder.build.execute.call(this);
+
+				removeOperationsFromOutputData(outputData);
 				break;
 			case 'sign':
 				responseData = await transactionBuilder.sign.execute.call(this);
 				break;
 		}
+
 		outputData.push(responseData as IDataObject);
 	} catch (error) {
 		throw new Error(error);
 	}
 
 	return [this.helpers.returnJsonArray(outputData)];
+}
+
+function removeOperationsFromOutputData(outputData: any[]) {
+	for (let i = outputData.length - 1; i >= 0; i--) {
+		const operation = outputData[i].json.operation;
+
+		if (operation) {
+			outputData.splice(i, 1);
+		}
+	}
 }
