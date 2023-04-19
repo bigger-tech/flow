@@ -8,6 +8,7 @@ import * as newAccount from './actions/newAccount';
 import * as payments from './actions/payments';
 import * as offers from './actions/offers';
 import * as swapAssets from './actions/swapAssets';
+import * as transaction from './actions/transaction';
 import * as claimable from './actions/claimable';
 import * as accountMerge from './actions/accountMerge';
 import * as sponsorship from './actions/sponsorship';
@@ -80,6 +81,10 @@ export class Stellar implements INodeType {
 						value: 'swapAssets',
 					},
 					{
+						name: 'Transaction',
+						value: 'transaction',
+					},
+					{
 						name: 'Trust',
 						value: 'trust',
 					},
@@ -92,6 +97,7 @@ export class Stellar implements INodeType {
 			...payments.description,
 			...offers.description,
 			...swapAssets.description,
+			...transaction.description,
 			...claimable.description,
 			...accountMerge.description,
 			...clawback.description,

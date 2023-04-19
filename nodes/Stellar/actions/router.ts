@@ -2,6 +2,7 @@ import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow
 import * as newAccount from './newAccount';
 import * as payments from './payments';
 import * as swapAssets from './swapAssets';
+import * as transaction from './transaction';
 import * as offers from './offers';
 import * as settings from './settings';
 import * as sponsorship from './sponsorship';
@@ -16,13 +17,14 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	const resource = this.getNodeParameter('resource', 0) as string;
 	const stellar = { resource, operation };
 	const items = this.getInputData();
-	let outputData = [];
+	let outputData: IDataObject[] = [];
 	let responseData;
-	items.forEach((item) => {
+
+	for (const item of items) {
 		if (item.json.operation) {
-			outputData.push(item as IDataObject);
+			outputData.push(item);
 		}
-	});
+	}
 
 	try {
 		switch (stellar.operation) {
@@ -95,11 +97,30 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 			case 'setTrustline':
 				responseData = await trust[stellar.operation].execute.call(this);
 				break;
+			case 'build':
+				responseData = await transaction.build.execute.call(this);
+
+				removeOperationsFromOutputData(outputData);
+				break;
+			case 'sign':
+				responseData = await transaction.sign.execute.call(this);
+				break;
 		}
+
 		outputData.push(responseData as IDataObject);
 	} catch (error) {
 		throw new Error(error);
 	}
 
 	return [this.helpers.returnJsonArray(outputData)];
+}
+
+function removeOperationsFromOutputData(outputData: any[]) {
+	for (let i = outputData.length - 1; i >= 0; i--) {
+		const operation = outputData[i].json.operation;
+
+		if (operation) {
+			outputData.splice(i, 1);
+		}
+	}
 }
