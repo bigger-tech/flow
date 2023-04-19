@@ -1,6 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 
-export const transactionBuilderDescription: INodeProperties[] = [
+export const transactionDescription: INodeProperties[] = [
 	{
 		displayName: 'Source Account',
 		name: 'publicKey',
@@ -8,7 +8,7 @@ export const transactionBuilderDescription: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: ['transactionBuilder'],
+				resource: ['transaction'],
 				operation: ['build'],
 			},
 		},
@@ -22,7 +22,7 @@ export const transactionBuilderDescription: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: ['transactionBuilder'],
+				resource: ['transaction'],
 				operation: ['build'],
 			},
 		},
@@ -36,7 +36,7 @@ export const transactionBuilderDescription: INodeProperties[] = [
 		type: 'number',
 		displayOptions: {
 			show: {
-				resource: ['transactionBuilder'],
+				resource: ['transaction'],
 				operation: ['build'],
 			},
 		},

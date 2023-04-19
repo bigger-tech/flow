@@ -9,7 +9,7 @@ export const transactionSignerDescription: INodeProperties[] = [
 		description: 'Whether to submit the transaction after sign or not',
 		displayOptions: {
 			show: {
-				resource: ['transactionBuilder'],
+				resource: ['transaction'],
 				operation: ['sign'],
 			},
 		},
@@ -20,7 +20,7 @@ export const transactionSignerDescription: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: ['transactionBuilder'],
+				resource: ['transaction'],
 				operation: ['sign'],
 			},
 		},
@@ -36,7 +36,7 @@ export const transactionSignerDescription: INodeProperties[] = [
 		},
 		displayOptions: {
 			show: {
-				resource: ['transactionBuilder'],
+				resource: ['transaction'],
 				operation: ['sign'],
 			},
 		},

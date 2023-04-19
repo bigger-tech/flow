@@ -13,7 +13,7 @@ export const description: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: ['transactionBuilder'],
+				resource: ['transaction'],
 			},
 		},
 		options: [

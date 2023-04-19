@@ -2,7 +2,7 @@ import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow
 import * as newAccount from './newAccount';
 import * as payments from './payments';
 import * as swapAssets from './swapAssets';
-import * as transactionBuilder from './transactionBuilder';
+import * as transaction from './transaction';
 import * as offers from './offers';
 import * as settings from './settings';
 import * as sponsorship from './sponsorship';
@@ -98,12 +98,12 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 				responseData = await trust[stellar.operation].execute.call(this);
 				break;
 			case 'build':
-				responseData = await transactionBuilder.build.execute.call(this);
+				responseData = await transaction.build.execute.call(this);
 
 				removeOperationsFromOutputData(outputData);
 				break;
 			case 'sign':
-				responseData = await transactionBuilder.sign.execute.call(this);
+				responseData = await transaction.sign.execute.call(this);
 				break;
 		}
 
