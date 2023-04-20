@@ -1,8 +1,7 @@
-import { Asset, BASE_FEE, Operation, Server, TransactionBuilder } from 'stellar-sdk';
+import { Asset, Operation, Server } from 'stellar-sdk';
 
-export async function getSwapAssetsTransaction(
+export async function getSwapAssetsOperation(
 	server: Server,
-	networkPassphrase: string,
 	sourceAsset: Asset,
 	destinationAsset: Asset,
 	amount: string,
@@ -25,16 +24,7 @@ export async function getSwapAssetsTransaction(
 			destMin: getMinDestinationAmount(bestOffer.destination_amount, slippageAmount),
 		});
 
-		const account = await server.loadAccount(publicKey);
-		const transaction = new TransactionBuilder(account, {
-			fee: BASE_FEE,
-			networkPassphrase,
-		});
-
-		transaction.setTimeout(30);
-		transaction.addOperation(paymentOperation);
-
-		return transaction.build().toXDR();
+		return paymentOperation.toXDR('base64');
 	} else {
 		throw new Error();
 	}

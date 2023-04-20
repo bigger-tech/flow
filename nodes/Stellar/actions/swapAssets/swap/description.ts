@@ -67,69 +67,115 @@ export const swapAssetsDescription: INodeProperties[] = [
 		},
 	},
 	{
+		displayName: 'Source Asset Type',
+		name: 'isSourceAssetNative',
+		type: 'options',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['swapAssets'],
+				operation: ['swap'],
+			},
+		},
+		options: [
+			{
+				name: 'Native',
+				value: true,
+			},
+			{
+				name: 'Custom Asset',
+				value: false,
+			},
+		],
+		default: true,
+	},
+	{
 		displayName: 'Source Asset',
 		name: 'sourceAsset',
 		type: 'fixedCollection',
+		default: {},
 		required: true,
 		options: [
 			{
 				name: 'values',
-				displayName: 'Values',
+				displayName: 'Asset',
 				values: [
 					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
-						default: 'native',
+						default: '',
 					},
 					{
 						displayName: 'Issuer',
 						name: 'issuer',
 						type: 'string',
-						default: 'native',
+						default: '',
+						placeholder: 'GCEVJ...',
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				operation: ['swap'],
-				resource: ['swapAssets'],
+				isSourceAssetNative: [false],
 			},
 		},
-		default: {},
+	},
+	{
+		displayName: 'Destination Asset Type',
+		name: 'isDestinationAssetNative',
+		type: 'options',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['swapAssets'],
+				operation: ['swap'],
+			},
+		},
+		options: [
+			{
+				name: 'Native',
+				value: true,
+			},
+			{
+				name: 'Custom Asset',
+				value: false,
+			},
+		],
+		default: true,
 	},
 	{
 		displayName: 'Destination Asset',
 		name: 'destinationAsset',
 		type: 'fixedCollection',
+		default: {},
 		required: true,
 		options: [
 			{
 				name: 'values',
-				displayName: 'Values',
+				displayName: 'Asset',
 				values: [
 					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
-						default: 'native',
+						default: '',
 					},
 					{
 						displayName: 'Issuer',
 						name: 'issuer',
 						type: 'string',
-						default: 'native',
+						default: '',
+						placeholder: 'GCEVJ...',
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				operation: ['swap'],
-				resource: ['swapAssets'],
+				isDestinationAssetNative: [false],
 			},
 		},
-		default: {},
 	},
 ];

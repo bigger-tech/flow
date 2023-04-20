@@ -3,46 +3,53 @@ import { Asset, Server } from 'stellar-sdk';
 import { setNetwork } from '../../../transport';
 import IAssetParameter from './entities/IAssetParameter';
 import ISlippageParameter from './entities/ISlippageParameter';
-import { getSwapAssetsTransaction } from './helpers';
+import { getSwapAssetsOperation } from './helpers';
 
 export async function swapAssets(this: IExecuteFunctions) {
 	try {
-		let sourceAsset: Asset;
-		let destinationAssets: Asset;
 		const stellarNetwork = await setNetwork.call(this);
 		const server = new Server(stellarNetwork.url as string);
 		const amount = this.getNodeParameter('amount', 1) as string;
 		const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
 		const slippageAmount = this.getNodeParameter('slippage', 1) as ISlippageParameter;
-		const sourceAssetValues = this.getNodeParameter('sourceAsset', 1) as IAssetParameter;
-		const destinationAssetValues = this.getNodeParameter('destinationAsset', 1) as IAssetParameter;
+		const isSourceAssetNative = this.getNodeParameter('isSourceAssetNative', 1) as boolean;
+		const isDestinationAssetNative = this.getNodeParameter(
+			'isDestinationAssetNative',
+			1,
+		) as boolean;
 
-		if (sourceAssetValues.values.code === 'native') {
+		let sourceAsset: Asset;
+		let destinationAsset: Asset;
+		let sourceAssetValues: IAssetParameter;
+		let destinationAssetValues: IAssetParameter;
+
+		if (isSourceAssetNative) {
 			sourceAsset = Asset.native();
 		} else {
+			sourceAssetValues = this.getNodeParameter('sourceAsset', 1) as IAssetParameter;
 			sourceAsset = new Asset(sourceAssetValues.values.code, sourceAssetValues.values.issuer);
 		}
 
-		if (destinationAssetValues.values.code === 'native') {
-			destinationAssets = Asset.native();
+		if (isDestinationAssetNative) {
+			destinationAsset = Asset.native();
 		} else {
-			destinationAssets = new Asset(
+			destinationAssetValues = this.getNodeParameter('destinationAsset', 1) as IAssetParameter;
+			destinationAsset = new Asset(
 				destinationAssetValues.values.code,
 				destinationAssetValues.values.issuer,
 			);
 		}
 
-		const xdr = await getSwapAssetsTransaction(
+		const swapAssetOperation = await getSwapAssetsOperation(
 			server,
-			stellarNetwork.passphrase,
 			sourceAsset,
-			destinationAssets,
+			destinationAsset,
 			amount,
 			publicKeyParam,
 			slippageAmount.amount,
 		);
 
-		return { xdr };
+		return { operation: swapAssetOperation };
 	} catch (error) {
 		throw new Error(error);
 	}
