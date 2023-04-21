@@ -174,6 +174,8 @@ export const swapAssetsDescription: INodeProperties[] = [
 		],
 		displayOptions: {
 			show: {
+				resource: ['swapAssets'],
+				operation: ['swap'],
 				isDestinationAssetNative: [false],
 			},
 		},
