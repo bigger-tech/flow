@@ -192,6 +192,8 @@ export const pathPaymentStrictSendDescription: INodeProperties[] = [
 		],
 		displayOptions: {
 			show: {
+				resource: ['payments'],
+				operation: ['pathPaymentStrictSend'],
 				isDestinationAssetNative: [false],
 			},
 		},
