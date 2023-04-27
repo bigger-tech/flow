@@ -21,21 +21,25 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 		const destination = claimantValues.destination;
 		const predicateValues = claimantValues.predicate.values;
 		let predicate;
-		if (predicateValues.ispredicateConditional) {
+		if (predicateValues.isPredicateConditional) {
 			switch (predicateValues.predicateType) {
 				case 'time':
 					predicate = buildTimePredicate(predicateValues);
+					break;
 				case 'and':
 					const andPredicate1 = buildPredicate(predicateValues.predicate1.values);
 					const andPredicate2 = buildPredicate(predicateValues.predicate2.values);
 					predicate = Claimant.predicateAnd(andPredicate1, andPredicate2);
+					break;
 				case 'or':
 					const orPredicate1 = buildPredicate(predicateValues.predicate1.values);
 					const orPredicate2 = buildPredicate(predicateValues.predicate2.values);
 					predicate = Claimant.predicateOr(orPredicate1, orPredicate2);
+					break;
 				case 'not':
 					const notPredicate = buildPredicate(predicateValues.predicate1.values);
 					predicate = Claimant.predicateNot(notPredicate);
+					break;
 			}
 		} else {
 			predicate = Claimant.predicateUnconditional();
@@ -54,16 +58,16 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 function buildTimePredicate(predicateValues: any) {
 	let predicate;
 	if (predicateValues.isPredicateTimeRelative)
-		predicate = Claimant.predicateBeforeRelativeTime(predicateValues.predicateTimeValue);
+		predicate = Claimant.predicateBeforeRelativeTime(predicateValues.predicateTimeValue.toString());
 	else {
-		predicate = Claimant.predicateBeforeAbsoluteTime(predicateValues.predicateTimeValue);
+		predicate = Claimant.predicateBeforeAbsoluteTime(predicateValues.predicateTimeValue.toString());
 	}
 	return predicate;
 }
 
 function buildSubpredicate(subPredicateValues: any) {
 	let subpredicate;
-	if (subPredicateValues.ispredicateConditional) {
+	if (subPredicateValues.isPredicateConditional) {
 		subpredicate = buildTimePredicate(subPredicateValues);
 	} else {
 		subpredicate = Claimant.predicateUnconditional();
@@ -73,7 +77,7 @@ function buildSubpredicate(subPredicateValues: any) {
 
 function buildPredicate(predicateValues: any) {
 	let predicate;
-	if (predicateValues.ispredicateConditional) {
+	if (predicateValues.isPredicateConditional) {
 		switch (predicateValues.predicateType) {
 			case 'time':
 				predicate = buildTimePredicate(predicateValues);
