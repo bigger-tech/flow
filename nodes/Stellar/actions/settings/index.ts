@@ -1,7 +1,8 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as bumpSequence from '../settings/bumpSequence';
 import * as manageData from '../settings/manageData';
-export { bumpSequence, manageData };
+import * as setOptions from './setOptions';
+export { bumpSequence, manageData, setOptions };
 
 export const description: INodeProperties[] = [
 	{
@@ -38,4 +39,5 @@ export const description: INodeProperties[] = [
 	},
 	...bumpSequence.description,
 	...manageData.description,
+	...setOptions.description,
 ];
