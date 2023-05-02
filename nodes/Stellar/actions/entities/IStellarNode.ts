@@ -2,18 +2,18 @@ import type { AllEntities, Entity, PropertiesOf } from 'n8n-workflow';
 
 type StellarMap = {
 	accountMerge: 'accountMerge';
-	newAccount: 'createAccount';
-	fundAccount: 'fundAccount';
-	payments: 'getPayment' | 'makePayment' | 'pathPaymentStrictSend' | 'pathPaymentStrictReceive';
-	offers: 'manageSellOffer' | 'manageBuyOffer' | 'createPassiveSellOffer';
-	swapAssets: 'swap';
-	transaction: 'build' | 'sign';
+	settings: 'bumpSequence' | 'manageData' | 'setOptions';
 	claimableBalance: 'createClaimableBalance' | 'claimClaimableBalance';
 	clawback: 'clawback' | 'clawbackClaimableBalance';
-	settings: 'bumpSequence' | 'manageData' | 'setOptions';
-	sponsorship: 'beginSponsoring' | 'endSponsoring' | 'revokeSponsorship';
-	trust: 'changeTrust' | 'setTrustline';
+	fundAccount: 'fundAccount';
 	liquidityPool: 'liquidityPoolDeposit' | 'liquidityPoolWithdraw';
+	newAccount: 'createAccount';
+	offers: 'manageSellOffer' | 'manageBuyOffer' | 'createPassiveSellOffer';
+	payments: 'getPayment' | 'makePayment' | 'pathPaymentStrictSend' | 'pathPaymentStrictReceive';
+	sponsorship: 'beginSponsoring' | 'endSponsoring' | 'revokeSponsorship';
+	swapAssets: 'swap';
+	transaction: 'build' | 'sign';
+	trust: 'changeTrust' | 'setTrustline';
 };
 
 export type Stellar = AllEntities<StellarMap>;

@@ -4,19 +4,19 @@ import {
 	INodeType,
 	INodeTypeDescription,
 } from 'n8n-workflow';
+import * as accountMerge from './actions/accountMerge';
+import * as settings from './actions/settings';
+import * as claimable from './actions/claimable';
+import * as clawback from './actions/clawback/';
+import * as fundAccount from './actions/fundAccount';
+import * as liquidityPool from './actions/liquidityPool';
 import * as newAccount from './actions/newAccount';
-import * as payments from './actions/payments';
 import * as offers from './actions/offers';
+import * as payments from './actions/payments';
+import * as sponsorship from './actions/sponsorship';
 import * as swapAssets from './actions/swapAssets';
 import * as transaction from './actions/transaction';
-import * as claimable from './actions/claimable';
-import * as accountMerge from './actions/accountMerge';
-import * as sponsorship from './actions/sponsorship';
-import * as settings from './actions/settings';
 import * as trust from './actions/trust';
-import * as clawback from './actions/clawback/';
-import * as liquidityPool from './actions/liquidityPool';
-import * as fundAccount from './actions/fundAccount';
 import { router } from './actions/router';
 
 export class Stellar implements INodeType {
@@ -98,19 +98,19 @@ export class Stellar implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
-			...newAccount.description,
+			...accountMerge.description,
+			...settings.description,
+			...claimable.description,
+			...clawback.description,
 			...fundAccount.description,
-			...payments.description,
+			...liquidityPool.description,
+			...newAccount.description,
 			...offers.description,
+			...payments.description,
+			...sponsorship.description,
 			...swapAssets.description,
 			...transaction.description,
-			...claimable.description,
-			...accountMerge.description,
-			...clawback.description,
-			...settings.description,
-			...sponsorship.description,
 			...trust.description,
-			...liquidityPool.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
