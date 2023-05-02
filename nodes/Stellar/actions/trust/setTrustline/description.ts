@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { TrustProperties } from '../../entities/IStellarNode';
 
-export const setTrustlineDescription: INodeProperties[] = [
+export const setTrustlineDescription: TrustProperties = [
 	{
 		displayName: 'Trustor',
 		name: 'trustor',

@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { SettingsProperties } from '../../entities/IStellarNode';
 
-export const setOptionsDescription: INodeProperties[] = [
+export const setOptionsDescription: SettingsProperties = [
 	{
 		displayName: 'Inflation Destination',
 		name: 'inflationDest',

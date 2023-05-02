@@ -3,7 +3,7 @@ import * as revokeAccountSponsorship from './revokeAccountSponsorship';
 import * as revokeClaimableBalanceSponsorship from './revokeClaimableBalanceSponsorship';
 import * as revokeDataSponsorship from './revokeDataSponsorship';
 import * as revokeOfferSponsorship from './revokeOfferSponsorship';
-// import * as revokeSignerSponsorship from './revokeSignerSponsorship';
+import * as revokeSignerSponsorship from './revokeSignerSponsorship';
 import * as revokeTrustlineSponsorship from './revokeTrustlineSponsorship';
 
 export const revokeSponsorshipDescription: INodeProperties[] = [
@@ -50,6 +50,6 @@ export const revokeSponsorshipDescription: INodeProperties[] = [
 	...revokeClaimableBalanceSponsorship.description,
 	...revokeDataSponsorship.description,
 	...revokeOfferSponsorship.description,
-	// ...revokeSignerSponsorship.description,
+	...revokeSignerSponsorship.description,
 	...revokeTrustlineSponsorship.description,
 ];

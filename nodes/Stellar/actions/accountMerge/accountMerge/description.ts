@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { AccountMergeProperties } from '../../entities/IStellarNode';
 
-export const accountMergeDescription: INodeProperties[] = [
+export const accountMergeDescription: AccountMergeProperties = [
 	{
 		displayName: 'Destination Account',
 		name: 'destinationAccount',

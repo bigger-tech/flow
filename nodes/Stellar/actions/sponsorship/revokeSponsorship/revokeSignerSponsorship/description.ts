@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { SponsorshipProperties } from '../../../entities/IStellarNode';
 
-export const revokeSignerSponsorshipDescription: INodeProperties[] = [
+export const revokeSignerSponsorshipDescription: SponsorshipProperties = [
 	{
 		displayName: 'Account',
 		name: 'account',

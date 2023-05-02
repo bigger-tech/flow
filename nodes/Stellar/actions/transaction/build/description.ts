@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { TransactionProperties } from '../../entities/IStellarNode';
 
-export const transactionDescription: INodeProperties[] = [
+export const transactionDescription: TransactionProperties = [
 	{
 		displayName: 'Source Account',
 		name: 'publicKey',

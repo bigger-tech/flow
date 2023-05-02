@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { TransactionProperties } from '../../entities/IStellarNode';
 
-export const transactionSignerDescription: INodeProperties[] = [
+export const transactionSignerDescription: TransactionProperties = [
 	{
 		displayName: 'Submit Transaction',
 		name: 'submit',

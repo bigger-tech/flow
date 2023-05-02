@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { LiquidityPoolProperties } from '../../entities/IStellarNode';
 
-export const liquidityPoolDepositDescription: INodeProperties[] = [
+export const liquidityPoolDepositDescription: LiquidityPoolProperties = [
 	{
 		displayName: 'Liquidity Pool ID',
 		name: 'liquidityPoolId',

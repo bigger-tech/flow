@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { SwapAssetsProperties } from '../../entities/IStellarNode';
 
-export const swapAssetsDescription: INodeProperties[] = [
+export const swapAssetsDescription: SwapAssetsProperties = [
 	{
 		displayName: 'Public Key',
 		name: 'publicKey',

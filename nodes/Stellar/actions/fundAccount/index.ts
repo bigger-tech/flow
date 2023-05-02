@@ -1,9 +1,9 @@
-import { INodeProperties } from 'n8n-workflow';
+import { FundAccountProperties } from '../entities/IStellarNode';
 import * as fundAccount from './fundAccount';
 
 export { fundAccount };
 
-export const description: INodeProperties[] = [
+export const description: FundAccountProperties = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -12,7 +12,7 @@ export const description: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: ['newAccount'],
+				resource: ['fundAccount'],
 			},
 		},
 		options: [

@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { ClawbackProperties } from '../../entities/IStellarNode';
 
-export const clawbackDescription: INodeProperties[] = [
+export const clawbackDescription: ClawbackProperties = [
 	{
 		displayName: 'Asset Type',
 		name: 'isNative',

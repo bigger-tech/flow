@@ -1,9 +1,9 @@
-import { INodeProperties } from 'n8n-workflow';
+import { NewAccountProperties } from '../entities/IStellarNode';
 import * as createAccount from './createAccount';
 
 export { createAccount };
 
-export const description: INodeProperties[] = [
+export const description: NewAccountProperties = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
