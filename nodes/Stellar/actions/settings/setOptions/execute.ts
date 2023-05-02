@@ -1,11 +1,12 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import {
+	Operation,
 	AuthClawbackEnabledFlag,
 	AuthRequiredFlag,
-	Operation,
 	AuthRevocableFlag,
 	AuthImmutableFlag,
 	Signer,
+	AuthFlag,
 } from 'stellar-sdk';
 import ISetOptionsOperationOptions from '../../entities/ISetOptionsOperationOptions';
 
@@ -22,7 +23,7 @@ export async function setOptions(this: IExecuteFunctions) {
 			if (flagsToSet.values.authorizationRevocable) flags += AuthRevocableFlag;
 			if (flagsToSet.values.authorizationInmutable) flags += AuthImmutableFlag;
 			if (flagsToSet.values.authorizationClawbackEnabled) flags += AuthClawbackEnabledFlag;
-			operationOptions.setFlags = flags;
+			operationOptions.setFlags = flags as AuthFlag;
 		}
 
 		const flagsToClear = this.getNodeParameter('flagsToClear', 0) as any;
@@ -31,7 +32,7 @@ export async function setOptions(this: IExecuteFunctions) {
 			if (flagsToClear.values.authorizationRequired) flags += AuthRequiredFlag;
 			if (flagsToClear.values.authorizationRevocable) flags += AuthRevocableFlag;
 			if (flagsToClear.values.authorizationClawbackEnabled) flags += AuthClawbackEnabledFlag;
-			operationOptions.clearFlags = flags;
+			operationOptions.clearFlags = flags as AuthFlag;
 		}
 
 		const masterWeight = this.getNodeParameter('masterWeight', 0) as string;

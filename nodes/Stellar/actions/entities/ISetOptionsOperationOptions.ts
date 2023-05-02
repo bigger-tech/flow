@@ -2,8 +2,8 @@ import { AuthFlag, Signer } from 'stellar-sdk';
 
 export default interface ISetOptionsOperationOptions {
 	inflationDest?: string;
-	clearFlags?: number | AuthFlag | undefined;
-	setFlags?: number | AuthFlag | undefined;
+	clearFlags?: AuthFlag | undefined;
+	setFlags?: AuthFlag | undefined;
 	masterWeight?: number;
 	lowThreshold?: number;
 	medThreshold?: number;
