@@ -1,10 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'stellar-sdk';
+import { signerType } from '../../../entities/signerType';
 
 export async function revokeSignerSponsorship(this: IExecuteFunctions) {
 	try {
 		const account = this.getNodeParameter('account', 0) as string;
-		const signerType = this.getNodeParameter('signerType', 0) as ISigner;
+		const signerType = this.getNodeParameter('signerType', 0) as signerType;
 		const signerKey = this.getNodeParameter('signerKey', 0) as string;
 		let signer;
 		switch (signerType) {
@@ -29,5 +30,3 @@ export async function revokeSignerSponsorship(this: IExecuteFunctions) {
 		throw new Error(error);
 	}
 }
-
-type ISigner = 'ed25519PublicKey' | 'sha256Hash' | 'preAuthTx';
