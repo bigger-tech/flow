@@ -1,14 +1,14 @@
 import { INodeProperties } from 'n8n-workflow';
-import * as createAccount from './createAccount';
+import * as fundAccount from './fundAccount';
 
-export { createAccount };
+export { fundAccount };
 
 export const description: INodeProperties[] = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
-		default: 'createAccount',
+		default: 'fundAccount',
 		noDataExpression: true,
 		displayOptions: {
 			show: {
@@ -17,10 +17,10 @@ export const description: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Create Account',
-				value: 'createAccount',
-				description: 'Create a new Stellar account',
-				action: 'Create a new stellar account',
+				name: 'Fund Account with Friendbot',
+				value: 'fundAccount',
+				description: 'Get testnet lumens',
+				action: 'Fund account in testnet',
 			},
 		],
 	},

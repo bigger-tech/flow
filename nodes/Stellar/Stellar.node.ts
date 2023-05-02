@@ -16,6 +16,7 @@ import * as settings from './actions/settings';
 import * as trust from './actions/trust';
 import * as clawback from './actions/clawback/';
 import * as liquidityPool from './actions/liquidityPool';
+import * as fundAccount from './actions/fundAccount';
 import { router } from './actions/router';
 
 export class Stellar implements INodeType {
@@ -57,6 +58,10 @@ export class Stellar implements INodeType {
 						value: 'clawback',
 					},
 					{
+						name: 'Fund Account in testnet',
+						value: 'fundAccount',
+					},
+					{
 						name: 'Liquidity Pool',
 						value: 'liquidityPool',
 					},
@@ -94,6 +99,7 @@ export class Stellar implements INodeType {
 				description: 'Operation Type:',
 			},
 			...newAccount.description,
+			...fundAccount.description,
 			...payments.description,
 			...offers.description,
 			...swapAssets.description,

@@ -18,6 +18,7 @@ export async function fundAccount(this: IExecuteFunctions) {
 		} else {
 			throw new InvalidPublicKeyError('Invalid public key');
 		}
+		return { accountFunded: publicKey };
 	} catch (error) {
 		throw new Error(error);
 	}
