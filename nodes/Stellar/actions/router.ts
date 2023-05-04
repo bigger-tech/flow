@@ -37,7 +37,13 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 			case 'bumpSequence':
 				responseData = await settings[stellar.operation].execute.call(this);
 				break;
+			case 'setOptions':
+				responseData = await settings[stellar.operation].execute.call(this);
+				break;
 			case 'claimClaimableBalance':
+				responseData = await claimableBalance[stellar.operation].execute.call(this);
+				break;
+			case 'createClaimableBalance':
 				responseData = await claimableBalance[stellar.operation].execute.call(this);
 				break;
 			case 'clawback':
