@@ -1,0 +1,53 @@
+import {
+	IExecuteFunctions,
+	INodeExecutionData,
+	INodeType,
+	INodeTypeDescription,
+} from 'n8n-workflow';
+import * as token from './actions/token';
+import * as transactions from './actions/transactions';
+import { router } from './actions/router';
+
+export class Anclap implements INodeType {
+	description: INodeTypeDescription = {
+		displayName: 'Anclap',
+		name: 'anclap',
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
+		icon: 'file:anclap.png',
+		group: ['transform'],
+		version: 1,
+		subtitle: '={{ $parameter["operation"] }}',
+		description: 'Anclap Node',
+		defaults: {
+			name: 'Anclap',
+		},
+		inputs: ['main'],
+		outputs: ['main'],
+		properties: [
+			{
+				displayName: 'Resource',
+				name: 'resource',
+				type: 'options',
+				default: 'token',
+				options: [
+					{
+						name: 'Token',
+						value: 'token',
+					},
+					{
+						name: 'Transaction',
+						value: 'transactions',
+					},
+				],
+				noDataExpression: true,
+				required: true,
+				description: 'Operation Type:',
+			},
+			...token.description,
+			...transactions.description,
+		],
+	};
+	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+		return router.call(this);
+	}
+}
