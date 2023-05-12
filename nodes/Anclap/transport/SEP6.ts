@@ -1,5 +1,6 @@
 import axios from 'axios';
 import IAnclapTomlResponse from './IAnclapTomlResponse';
+import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 
 export default class SEP6 {
 	private tomlInfo: IAnclapTomlResponse;
@@ -9,8 +10,12 @@ export default class SEP6 {
 	}
 
 	async getInfo() {
-		const info = await axios.get(`${this.tomlInfo.TRANSFER_SERVER}/info`);
+		try {
+			const info = await axios.get(`${this.tomlInfo.TRANSFER_SERVER}/info`);
 
-		return info.data;
+			return info.data;
+		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
 	}
 }

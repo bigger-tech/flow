@@ -1,5 +1,6 @@
 import axios from 'axios';
 import IAnclapTomlResponse from './IAnclapTomlResponse';
+import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 
 export default class SEP10 {
 	private tomlInfo: IAnclapTomlResponse;
@@ -9,9 +10,13 @@ export default class SEP10 {
 	}
 
 	async getChallenge(publicKey: string) {
-		const challenge = await axios.get(`${this.tomlInfo.WEB_AUTH_ENDPOINT}/?account=${publicKey}`);
+		try {
+			const challenge = await axios.get(`${this.tomlInfo.WEB_AUTH_ENDPOINT}/?account=${publicKey}`);
 
-		return challenge.data;
+			return challenge.data;
+		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
 	}
 
 	async sendChallenge(signedXdr: string) {
@@ -22,13 +27,7 @@ export default class SEP10 {
 
 			return token.data;
 		} catch (e) {
-			const data = e.response.data;
-
-			if (data) {
-				throw new Error(data.error);
-			}
-
-			throw new Error(e);
+			throw new AxiosHttpRequestError(e);
 		}
 	}
 }

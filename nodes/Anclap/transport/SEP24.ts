@@ -1,5 +1,6 @@
 import axios from 'axios';
 import IAnclapTomlResponse from './IAnclapTomlResponse';
+import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 
 export default class SEP24 {
 	private tomlInfo: IAnclapTomlResponse;
@@ -11,28 +12,36 @@ export default class SEP24 {
 	}
 
 	async getDepositInteractiveUrl(assetCode: string, publicKey: string) {
-		const result = await axios.post(
-			`${this.tomlInfo.TRANSFER_SERVER_SEP0024}/transactions/deposit/interactive`,
-			{
-				asset_code: assetCode,
-				account: publicKey,
-			},
-			{ headers: { Authorization: `Bearer ${this.token}` } },
-		);
+		try {
+			const result = await axios.post(
+				`${this.tomlInfo.TRANSFER_SERVER_SEP0024}/transactions/deposit/interactive`,
+				{
+					asset_code: assetCode,
+					account: publicKey,
+				},
+				{ headers: { Authorization: `Bearer ${this.token}` } },
+			);
 
-		return result.data;
+			return result.data;
+		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
 	}
 
 	async getWithdrawInteractiveUrl(assetCode: string, publicKey: string) {
-		const result = await axios.post(
-			`${this.tomlInfo.TRANSFER_SERVER_SEP0024}/transactions/withdraw/interactive`,
-			{
-				asset_code: assetCode,
-				account: publicKey,
-			},
-			{ headers: { Authorization: `Bearer ${this.token}` } },
-		);
+		try {
+			const result = await axios.post(
+				`${this.tomlInfo.TRANSFER_SERVER_SEP0024}/transactions/withdraw/interactive`,
+				{
+					asset_code: assetCode,
+					account: publicKey,
+				},
+				{ headers: { Authorization: `Bearer ${this.token}` } },
+			);
 
-		return result.data;
+			return result.data;
+		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
 	}
 }
