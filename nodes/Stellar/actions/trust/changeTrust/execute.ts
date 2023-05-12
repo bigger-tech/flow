@@ -41,8 +41,8 @@ export async function changeTrust(this: IExecuteFunctions) {
 			default:
 				asset = Asset.native();
 		}
-		const limit = this.getNodeParameter('trustLimit', 0) as string;
-
+		const trustLimit = this.getNodeParameter('trustLimit', 0) as string;
+		const limit = trustLimit ? convertAmountToBigNumber(Number(trustLimit)) : undefined;
 		const changeTrustOperation = Operation.changeTrust({
 			asset,
 			limit,

@@ -200,7 +200,7 @@ export const changeTrustDescription: TrustProperties = [
 	{
 		displayName: 'Trust Limit',
 		name: 'trustLimit',
-		type: 'number',
+		type: 'string',
 		required: true,
 		displayOptions: {
 			show: {

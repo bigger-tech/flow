@@ -166,7 +166,7 @@ export const manageSellOfferDescription: INodeProperties[] = [
 	{
 		displayName: 'Offer ID',
 		name: 'offerId',
-		type: 'number',
+		type: 'string',
 		required: true,
 		displayOptions: {
 			show: {
@@ -176,7 +176,7 @@ export const manageSellOfferDescription: INodeProperties[] = [
 		},
 		description:
 			'If 0, will create a new offer. Existing offer ID numbers can be found using the Offers for Account endpoint.',
-		default: 0,
+		default: '',
 	},
 
 	{
