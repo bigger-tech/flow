@@ -25,7 +25,7 @@ export const description: INodeProperties[] = [
 			},
 			{
 				name: 'Bump Sequence',
-				value: 'BumpSequence',
+				value: 'bumpSequence',
 				description: 'Bumps sequence number',
 				action: 'Bump sequence',
 			},

@@ -67,44 +67,45 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 		},
 	},
 	{
-		displayName: 'Source Asset Type',
-		name: 'isSourceAssetNative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['swapAssets'],
-				operation: ['swap'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
 		displayName: 'Source Asset',
 		name: 'sourceAsset',
 		type: 'fixedCollection',
 		default: {},
 		required: true,
+		placeholder: 'Select source asset',
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
@@ -112,6 +113,11 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 						type: 'string',
 						default: '',
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
@@ -120,32 +126,8 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 			show: {
 				resource: ['swapAssets'],
 				operation: ['swap'],
-				isSourceAssetNative: [false],
 			},
 		},
-	},
-	{
-		displayName: 'Destination Asset Type',
-		name: 'isDestinationAssetNative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['swapAssets'],
-				operation: ['swap'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
 	},
 	{
 		displayName: 'Destination Asset',
@@ -153,16 +135,40 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 		type: 'fixedCollection',
 		default: {},
 		required: true,
+		placeholder: 'Select destination asset',
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
@@ -170,6 +176,11 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 						type: 'string',
 						default: '',
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
@@ -178,7 +189,6 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 			show: {
 				resource: ['swapAssets'],
 				operation: ['swap'],
-				isDestinationAssetNative: [false],
 			},
 		},
 	},

@@ -1,5 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, LiquidityPoolAsset, Operation } from 'stellar-sdk';
+import { checkAsset, convertAmountToBigNumber } from '../../../transport';
 import IAsset from '../../entities/IAsset';
 
 export async function changeTrust(this: IExecuteFunctions) {
@@ -9,29 +10,30 @@ export async function changeTrust(this: IExecuteFunctions) {
 
 		switch (assetType) {
 			case 'asset':
-				const assetToTrust = this.getNodeParameter('assetType', 0) as IAsset;
+				const assetToTrust = this.getNodeParameter('asset', 0) as IAsset;
 				asset = new Asset(assetToTrust.values.code, assetToTrust.values.issuer);
 				break;
 
 			case 'liquidityPool':
 				let assetA;
 				let assetB;
-				const isAssetANative = this.getNodeParameter('isAssetANative', 0) as boolean;
 
-				if (isAssetANative) {
+				const assetAValues = this.getNodeParameter('assetA', 0) as IAsset;
+				checkAsset(assetAValues);
+				if (assetAValues.values.isNative) {
 					assetA = Asset.native();
 				} else {
-					const assetAValue = this.getNodeParameter('assetA', 0) as IAsset;
-					assetA = new Asset(assetAValue.values.code, assetAValue.values.issuer);
+					assetA = new Asset(assetAValues.values.code, assetAValues.values.issuer);
 				}
-				const isAssetBNative = this.getNodeParameter('isAssetBNative', 0) as boolean;
 
-				if (isAssetBNative) {
+				const assetBValues = this.getNodeParameter('assetB', 0) as IAsset;
+				checkAsset(assetBValues);
+				if (assetBValues.values.isNative) {
 					assetB = Asset.native();
 				} else {
-					const assetBValue = this.getNodeParameter('assetA', 0) as IAsset;
-					assetB = new Asset(assetBValue.values.code, assetBValue.values.issuer);
+					assetB = new Asset(assetBValues.values.code, assetBValues.values.issuer);
 				}
+
 				const fee = this.getNodeParameter('fee', 0) as number;
 				asset = new LiquidityPoolAsset(assetA, assetB, fee);
 				break;

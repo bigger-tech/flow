@@ -1,18 +1,21 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Claimant, Operation } from 'stellar-sdk';
-import { convertAmountToBigNumber } from '../../../transport';
+import { checkAsset, convertAmountToBigNumber } from '../../../transport';
 import IAsset from '../../entities/IAsset';
 
 export async function createClaimableBalance(this: IExecuteFunctions) {
-	const isNative = this.getNodeParameter('isNative', 0) as boolean;
+	const claimableAsset = this.getNodeParameter('claimableAsset', 0) as IAsset;
 	const claimableAmount = this.getNodeParameter('amount', 0) as number;
-	let asset;
-	if (isNative) {
+	let asset: Asset;
+
+	checkAsset(claimableAsset);
+
+	if (claimableAsset.values.isNative) {
 		asset = Asset.native();
 	} else {
-		const assetValues = this.getNodeParameter('asset', 0) as IAsset;
-		asset = new Asset(assetValues.values.code, assetValues.values.issuer);
+		asset = new Asset(claimableAsset.values.code, claimableAsset.values.issuer);
 	}
+
 	const amount = convertAmountToBigNumber(claimableAmount);
 	let claimants: Claimant[] = [];
 	const claimantsValues = this.getNodeParameter('claimants', 0, []) as any;

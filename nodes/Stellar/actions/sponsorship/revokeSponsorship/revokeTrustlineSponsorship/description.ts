@@ -17,30 +17,6 @@ export const revokeTrustlineSponsorshipDescription: SponsorshipProperties = [
 		placeholder: 'GCEVJ...',
 	},
 	{
-		displayName: 'Asset Type',
-		name: 'isNative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['sponsorship'],
-				operation: ['revokeSponsorship'],
-				revokeSponsorshipType: ['revokeTrustlineSponsorship'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
 		displayName: 'Asset',
 		name: 'asset',
 		type: 'fixedCollection',
@@ -52,10 +28,33 @@ export const revokeTrustlineSponsorshipDescription: SponsorshipProperties = [
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
@@ -63,13 +62,20 @@ export const revokeTrustlineSponsorshipDescription: SponsorshipProperties = [
 						type: 'string',
 						default: '',
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				isNative: [false],
+				resource: ['sponsorship'],
+				operation: ['revokeSponsorship'],
+				revokeSponsorshipType: ['revokeTrustlineSponsorship'],
 			},
 		},
 	},

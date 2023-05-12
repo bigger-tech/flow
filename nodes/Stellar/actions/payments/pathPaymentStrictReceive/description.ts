@@ -18,60 +18,71 @@ export const pathPaymentStrictReceiveDescription: PaymentsProperties = [
 	},
 	{
 		displayName: 'Sending Asset',
-		name: 'isSendingAssetNative',
-		type: 'options',
-		description: "The asset to be deduced from the sender's account",
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['payments'],
-				operation: ['pathPaymentStrictReceive'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
-		displayName: 'Sending Asset',
 		name: 'sendingAsset',
 		type: 'fixedCollection',
 		default: {},
 		required: true,
+		placeholder: 'Select asset',
+		typeOptions: {
+			multipleValues: false,
+		},
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset Type',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						required: true,
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
 						name: 'issuer',
 						type: 'string',
 						default: '',
+						required: true,
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				isSendingAssetNative: [false],
+				resource: ['payments'],
+				operation: ['pathPaymentStrictReceive'],
 			},
 		},
+		description: 'Asset held by the destination account',
 	},
 	{
 		displayName: 'Maximum Send Amount',
@@ -91,103 +102,59 @@ export const pathPaymentStrictReceiveDescription: PaymentsProperties = [
 	{
 		displayName: 'Intermediate Path',
 		name: 'intermediatePathAssets',
-		type: 'collection',
+		type: 'fixedCollection',
+		default: {},
+		placeholder: 'Add new intermediate asset',
 		typeOptions: {
 			multipleValues: true,
 			multipleValueButtonText: 'Add new intermediate asset',
 		},
-		displayOptions: {
-			show: {
-				resource: ['payments'],
-				operation: ['pathPaymentStrictReceive'],
-			},
-		},
-		default: {},
-		options: [
-			{
-				displayName: 'Native asset',
-				name: 'native',
-				type: 'notice',
-				default: true,
-				value: 'native',
-			},
-			{
-				displayName: 'Custom Asset',
-				name: 'customAsset',
-				type: 'fixedCollection',
-				default: {},
-				required: true,
-				options: [
-					{
-						name: 'values',
-						displayName: 'Intermediate Asset',
-						values: [
-							{
-								displayName: 'Code',
-								name: 'code',
-								type: 'string',
-								default: '',
-							},
-							{
-								displayName: 'Issuer',
-								name: 'issuer',
-								type: 'string',
-								default: '',
-								placeholder: 'GCEVJ...',
-							},
-						],
-					},
-				],
-			},
-		],
-	},
-
-	{
-		displayName: 'Destination Asset',
-		name: 'isDestinationAssetNative',
-		description: 'The asset to be received by the destination account',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['payments'],
-				operation: ['pathPaymentStrictReceive'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
-		displayName: 'Destination Asset',
-		name: 'destinationAsset',
-		type: 'fixedCollection',
-		default: {},
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset Type',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						required: true,
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
 						name: 'issuer',
 						type: 'string',
 						default: '',
+						required: true,
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
@@ -196,9 +163,78 @@ export const pathPaymentStrictReceiveDescription: PaymentsProperties = [
 			show: {
 				resource: ['payments'],
 				operation: ['pathPaymentStrictReceive'],
-				isDestinationAssetNative: [false],
 			},
 		},
+		description:
+			'The assets (other than send asset and destination asset) involved in the offers the path takes',
+	},
+	{
+		displayName: 'Destination Asset',
+		name: 'destinationAsset',
+		type: 'fixedCollection',
+		default: {},
+		required: true,
+		placeholder: 'Select asset',
+		typeOptions: {
+			multipleValues: false,
+		},
+		options: [
+			{
+				name: 'values',
+				displayName: 'Asset',
+				values: [
+					{
+						displayName: 'Asset Type',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
+						displayName: 'Code',
+						name: 'code',
+						type: 'string',
+						default: '',
+						required: true,
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
+					},
+					{
+						displayName: 'Issuer',
+						name: 'issuer',
+						type: 'string',
+						default: '',
+						required: true,
+						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
+					},
+				],
+			},
+		],
+		displayOptions: {
+			show: {
+				resource: ['payments'],
+				operation: ['pathPaymentStrictReceive'],
+			},
+		},
+		description: 'The asset the destination account receives',
 	},
 	{
 		displayName: 'Destination Amount',

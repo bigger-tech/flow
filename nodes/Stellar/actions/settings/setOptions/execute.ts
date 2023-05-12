@@ -51,7 +51,7 @@ export async function setOptions(this: IExecuteFunctions) {
 		if (homeDomain) operationOptions.homeDomain = homeDomain;
 
 		const signerInfo = this.getNodeParameter('signer', 0) as any;
-		if (signerInfo) {
+		if (signerInfo.values) {
 			const signerType = signerInfo.values.signerType;
 			const signerKey = signerInfo.values.signerKey;
 			const weight = signerInfo.values.signerWeight;

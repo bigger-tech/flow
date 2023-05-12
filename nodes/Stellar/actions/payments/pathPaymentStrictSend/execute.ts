@@ -1,42 +1,49 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
-import { convertAmountToBigNumber } from '../../../transport';
+import { checkAsset, convertAmountToBigNumber } from '../../../transport';
+import IAseetsPath from '../../entities/IAseetsPath';
 import IAsset from '../../entities/IAsset';
+import IAseetInPath from '../../entities/IAssetInPath';
 
 export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 	try {
 		const destination = this.getNodeParameter('destinationAccount', 0) as string;
-		const isSendingAssetNative = this.getNodeParameter('isSendingAssetNative', 0) as boolean;
+
+		const sendingAsset = this.getNodeParameter('sendingAsset', 0) as IAsset;
 		let sendAsset: Asset;
-		let path: Asset[] = [];
-		if (isSendingAssetNative) {
+		checkAsset(sendingAsset);
+		if (sendingAsset.values.isNative) {
 			sendAsset = Asset.native();
 		} else {
-			const sendingAsset = this.getNodeParameter('sendingAsset', 0) as IAsset;
 			sendAsset = new Asset(sendingAsset.values.code, sendingAsset.values.issuer);
 		}
 
 		const sendingAmount = this.getNodeParameter('sendAmount', 0) as number;
 		const sendAmount = convertAmountToBigNumber(sendingAmount);
 
-		const intermediateAssets = this.getNodeParameter('intermediatePathAssets', 0, []) as any;
-		intermediateAssets.forEach((asset: any) => {
-			if (asset.native) {
-				path.push(Asset.native());
+		let path: Asset[] = [];
+		const intermediateAssets = this.getNodeParameter(
+			'intermediatePathAssets',
+			0,
+			[],
+		) as IAseetsPath;
+
+		intermediateAssets.values.forEach((asset: IAseetInPath) => {
+			let intermediateAsset: Asset;
+			if (asset.isNative) {
+				intermediateAsset = Asset.native();
 			} else {
-				path.push(new Asset(asset.customAsset.values.code, asset.customAsset.values.issuer));
+				intermediateAsset = new Asset(asset.code, asset.issuer);
 			}
+			path.push(intermediateAsset);
 		});
 
-		const isDestinationAssetNative = this.getNodeParameter(
-			'isDestinationAssetNative',
-			0,
-		) as boolean;
+		const destinationAsset = this.getNodeParameter('destinationAsset', 0) as IAsset;
 		let destAsset: Asset;
-		if (isDestinationAssetNative) {
+		checkAsset(destinationAsset);
+		if (destinationAsset.values.isNative) {
 			destAsset = Asset.native();
 		} else {
-			const destinationAsset = this.getNodeParameter('destinationAsset', 0) as IAsset;
 			destAsset = new Asset(destinationAsset.values.code, destinationAsset.values.issuer);
 		}
 

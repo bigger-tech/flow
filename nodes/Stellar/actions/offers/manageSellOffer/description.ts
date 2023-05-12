@@ -2,83 +2,72 @@ import { INodeProperties } from 'n8n-workflow';
 
 export const manageSellOfferDescription: INodeProperties[] = [
 	{
-		displayName: 'Selling',
-		name: 'isSellingAssetNative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['offers'],
-				operation: ['manageSellOffer'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
 		displayName: 'Selling Asset',
 		name: 'sellingAsset',
 		type: 'fixedCollection',
 		default: {},
+		placeholder: 'Select asset',
 		required: true,
+		typeOptions: {
+			multipleValues: false,
+		},
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset Type',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						required: true,
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
 						name: 'issuer',
 						type: 'string',
 						default: '',
+						required: true,
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				isSellingAssetNative: [false],
-			},
-		},
-	},
-	{
-		displayName: 'Buying',
-		name: 'isBuyingAssetNative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
 				resource: ['offers'],
 				operation: ['manageSellOffer'],
 			},
 		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
+		description: 'Asset the offer creator is selling',
 	},
 	{
 		displayName: 'Buying Asset',
@@ -86,16 +75,43 @@ export const manageSellOfferDescription: INodeProperties[] = [
 		type: 'fixedCollection',
 		default: {},
 		required: true,
+		placeholder: 'Select asset',
+		typeOptions: {
+			multipleValues: false,
+		},
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset Type',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
@@ -103,15 +119,22 @@ export const manageSellOfferDescription: INodeProperties[] = [
 						type: 'string',
 						default: '',
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				isBuyingAssetNative: [false],
+				resource: ['offers'],
+				operation: ['manageSellOffer'],
 			},
 		},
+		description: 'Asset the offer creator is buying',
 	},
 	{
 		displayName: 'Amount You Are Selling',

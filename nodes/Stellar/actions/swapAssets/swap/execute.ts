@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Server } from 'stellar-sdk';
-import { setNetwork } from '../../../transport';
-import IAssetParameter from '../../entities/IAsset';
+import { checkAsset, setNetwork } from '../../../transport';
+import IAsset from '../../entities/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
 
@@ -12,32 +12,24 @@ export async function swapAssets(this: IExecuteFunctions) {
 		const amount = this.getNodeParameter('amount', 0) as string;
 		const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
 		const slippageAmount = this.getNodeParameter('slippage', 1) as ISlippageParameter;
-		const isSourceAssetNative = this.getNodeParameter('isSourceAssetNative', 1) as boolean;
-		const isDestinationAssetNative = this.getNodeParameter(
-			'isDestinationAssetNative',
-			1,
-		) as boolean;
+		const sourceAssetValues = this.getNodeParameter('sourceAsset', 1) as IAsset;
+		const destinationAssetValues = this.getNodeParameter('destinationValues', 1) as IAsset;
 
 		let sourceAsset: Asset;
 		let destinationAsset: Asset;
-		let sourceAssetValues: IAssetParameter;
-		let destinationAssetValues: IAssetParameter;
 
-		if (isSourceAssetNative) {
+		checkAsset(sourceAssetValues);
+		if (sourceAssetValues.values.isNative) {
 			sourceAsset = Asset.native();
 		} else {
-			sourceAssetValues = this.getNodeParameter('sourceAsset', 1) as IAssetParameter;
 			sourceAsset = new Asset(sourceAssetValues.values.code, sourceAssetValues.values.issuer);
 		}
 
-		if (isDestinationAssetNative) {
+		checkAsset(destinationAssetValues);
+		if (sourceAssetValues.values.isNative) {
 			destinationAsset = Asset.native();
 		} else {
-			destinationAssetValues = this.getNodeParameter('destinationAsset', 1) as IAssetParameter;
-			destinationAsset = new Asset(
-				destinationAssetValues.values.code,
-				destinationAssetValues.values.issuer,
-			);
+			destinationAsset = new Asset(sourceAssetValues.values.code, sourceAssetValues.values.issuer);
 		}
 
 		const swapAssetOperation = await getSwapAssetsOperation(

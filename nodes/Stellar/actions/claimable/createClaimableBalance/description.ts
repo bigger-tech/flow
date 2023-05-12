@@ -3,30 +3,7 @@ import { ClaimableBalanceProperties } from '../../entities/IStellarNode';
 export const createClaimableBalanceDescription: ClaimableBalanceProperties = [
 	{
 		displayName: 'Asset',
-		name: 'isNative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['claimableBalance'],
-				operation: ['createClaimableBalance'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
-		displayName: 'Asset',
-		name: 'asset',
+		name: 'claimableAsset',
 		type: 'fixedCollection',
 		default: {},
 		required: true,
@@ -36,10 +13,33 @@ export const createClaimableBalanceDescription: ClaimableBalanceProperties = [
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
@@ -47,13 +47,19 @@ export const createClaimableBalanceDescription: ClaimableBalanceProperties = [
 						type: 'string',
 						default: '',
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				isNative: [false],
+				resource: ['claimableBalance'],
+				operation: ['createClaimableBalance'],
 			},
 		},
 	},
