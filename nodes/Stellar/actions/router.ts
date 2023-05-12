@@ -19,75 +19,75 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	const resource = this.getNodeParameter('resource', 0) as string;
 	const stellar = { resource, operation } as Stellar;
 	const items = this.getInputData();
-	let outputData: IDataObject[] = [];
-	let responseData;
+	let nodeOutput: IDataObject[] = [];
+	let response;
 
 	for (const item of items) {
 		if (item.json.operation) {
-			outputData.push(item);
+			nodeOutput.push(item);
 		}
 	}
 
 	try {
 		switch (stellar.resource) {
 			case 'accountMerge':
-				responseData = await accountMerge[stellar.operation].execute.call(this);
+				response = await accountMerge[stellar.operation].execute.call(this);
 				break;
 			case 'settings':
-				responseData = await settings[stellar.operation].execute.call(this);
+				response = await settings[stellar.operation].execute.call(this);
 				break;
 			case 'claimableBalance':
-				responseData = await claimableBalance[stellar.operation].execute.call(this);
+				response = await claimableBalance[stellar.operation].execute.call(this);
 				break;
 			case 'clawback':
-				responseData = await clawback[stellar.operation].execute.call(this);
+				response = await clawback[stellar.operation].execute.call(this);
 				break;
 			case 'liquidityPool':
-				responseData = await liquidityPool[stellar.operation].execute.call(this);
+				response = await liquidityPool[stellar.operation].execute.call(this);
 				break;
 			case 'newAccount':
-				responseData = await newAccount[stellar.operation].execute.call(this);
+				response = await newAccount[stellar.operation].execute.call(this);
 				break;
 			case 'fundAccount':
-				responseData = await fundAccount[stellar.operation].execute.call(this);
+				response = await fundAccount[stellar.operation].execute.call(this);
 				break;
 			case 'offers':
-				responseData = await offers[stellar.operation].execute.call(this);
+				response = await offers[stellar.operation].execute.call(this);
 				break;
 			case 'payments':
 				if (stellar.operation === 'getPayment')
-					responseData = await payments.getPayment.execute.call(this);
-				else responseData = await payments[stellar.operation].execute.call(this);
+					response = await payments.getPayment.execute.call(this);
+				else response = await payments[stellar.operation].execute.call(this);
 				break;
 			case 'sponsorship':
-				responseData = await sponsorship[stellar.operation].execute.call(this);
+				response = await sponsorship[stellar.operation].execute.call(this);
 				break;
 			case 'swapAssets':
-				responseData = await swapAssets[stellar.operation].execute.call(this);
+				response = await swapAssets[stellar.operation].execute.call(this);
 				break;
 			case 'trust':
-				responseData = await trust[stellar.operation].execute.call(this);
+				response = await trust[stellar.operation].execute.call(this);
 				break;
 			case 'transaction':
-				responseData = await transaction[stellar.operation].execute.call(this);
-				if (stellar.operation === 'build') removeOperationsFromOutputData(outputData);
+				response = await transaction[stellar.operation].execute.call(this);
+				if (stellar.operation === 'build') removeOperationsFromnodeOutput(nodeOutput);
 				break;
 		}
 
-		outputData.push(responseData as IDataObject);
+		nodeOutput.push(response as IDataObject);
 	} catch (error) {
 		throw new Error(error);
 	}
 
-	return [this.helpers.returnJsonArray(outputData)];
+	return [this.helpers.returnJsonArray(nodeOutput)];
 }
 
-function removeOperationsFromOutputData(outputData: any[]) {
-	for (let i = outputData.length - 1; i >= 0; i--) {
-		const operation = outputData[i].json.operation;
+function removeOperationsFromnodeOutput(nodeOutput: any[]) {
+	for (let i = nodeOutput.length - 1; i >= 0; i--) {
+		const operation = nodeOutput[i].json.operation;
 
 		if (operation) {
-			outputData.splice(i, 1);
+			nodeOutput.splice(i, 1);
 		}
 	}
 }
