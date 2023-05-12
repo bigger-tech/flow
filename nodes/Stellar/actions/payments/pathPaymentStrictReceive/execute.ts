@@ -49,8 +49,8 @@ export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 			destAsset,
 			destAmount,
 			path,
-		});
-		return { pathPaymentStrictReceiveOperation: pathPaymentStrictReceiveOperation };
+		}).toXDR('base64');
+		return { operation: pathPaymentStrictReceiveOperation };
 	} catch (error) {
 		throw new Error(error);
 	}

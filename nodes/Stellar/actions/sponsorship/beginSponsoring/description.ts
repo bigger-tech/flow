@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { SponsorshipProperties } from '../../entities/IStellarNode';
 
-export const beginSponsoringDescription: INodeProperties[] = [
+export const beginSponsoringDescription: SponsorshipProperties = [
 	{
 		displayName: 'Sponsored ID',
 		name: 'sponsoredId',

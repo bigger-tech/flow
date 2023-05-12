@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Server } from 'stellar-sdk';
 import { setNetwork } from '../../../transport';
-import IAssetParameter from './entities/IAssetParameter';
+import IAssetParameter from '../../entities/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
 

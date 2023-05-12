@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { PaymentsProperties } from '../../entities/IStellarNode';
 
-export const pathPaymentStrictReceiveDescription: INodeProperties[] = [
+export const pathPaymentStrictReceiveDescription: PaymentsProperties = [
 	{
 		displayName: 'Destination Account',
 		name: 'destinationAccount',

@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { PaymentsProperties } from '../../entities/IStellarNode';
 
-export const getLastPaymentDescription: INodeProperties[] = [
+export const getLastPaymentDescription: PaymentsProperties = [
 	{
 		displayName: 'Public Key',
 		name: 'publicKey',

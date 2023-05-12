@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { ClawbackProperties } from '../../entities/IStellarNode';
 
-export const clawbackClaimableBalanceDescription: INodeProperties[] = [
+export const clawbackClaimableBalanceDescription: ClawbackProperties = [
 	{
 		displayName: 'Claimable Balance ID',
 		name: 'balanceId',

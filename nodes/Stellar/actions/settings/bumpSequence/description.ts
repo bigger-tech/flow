@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { SettingsProperties } from '../../entities/IStellarNode';
 
-export const bumpSequenceDescription: INodeProperties[] = [
+export const bumpSequenceDescription: SettingsProperties = [
 	{
 		displayName: 'BumpTo',
 		name: 'bumpTo',

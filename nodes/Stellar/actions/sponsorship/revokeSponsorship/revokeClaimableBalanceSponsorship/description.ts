@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { SponsorshipProperties } from '../../../entities/IStellarNode';
 
-export const revokeClaimableBalanceSponsorshipDescription: INodeProperties[] = [
+export const revokeClaimableBalanceSponsorshipDescription: SponsorshipProperties = [
 	{
 		displayName: 'Claimable Balance ID',
 		name: 'balanceId',

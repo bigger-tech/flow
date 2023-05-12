@@ -1,5 +1,6 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import * as newAccount from './newAccount';
+import * as fundAccount from './fundAccount';
 import * as payments from './payments';
 import * as swapAssets from './swapAssets';
 import * as transaction from './transaction';
@@ -11,11 +12,12 @@ import * as liquidityPool from './liquidityPool';
 import * as claimableBalance from './claimable';
 import * as clawback from './clawback';
 import * as trust from './trust';
+import { Stellar } from '../actions/entities/IStellarNode';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const operation = this.getNodeParameter('operation', 0);
 	const resource = this.getNodeParameter('resource', 0) as string;
-	const stellar = { resource, operation };
+	const stellar = { resource, operation } as Stellar;
 	const items = this.getInputData();
 	let outputData: IDataObject[] = [];
 	let responseData;
@@ -27,89 +29,48 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	}
 
 	try {
-		switch (stellar.operation) {
+		switch (stellar.resource) {
 			case 'accountMerge':
 				responseData = await accountMerge[stellar.operation].execute.call(this);
 				break;
-			case 'manageData':
+			case 'settings':
 				responseData = await settings[stellar.operation].execute.call(this);
 				break;
-			case 'bumpSequence':
-				responseData = await settings[stellar.operation].execute.call(this);
-				break;
-			case 'setOptions':
-				responseData = await settings[stellar.operation].execute.call(this);
-				break;
-			case 'claimClaimableBalance':
-				responseData = await claimableBalance[stellar.operation].execute.call(this);
-				break;
-			case 'createClaimableBalance':
+			case 'claimableBalance':
 				responseData = await claimableBalance[stellar.operation].execute.call(this);
 				break;
 			case 'clawback':
 				responseData = await clawback[stellar.operation].execute.call(this);
 				break;
-			case 'clawbackClaimableBalance':
-				responseData = await clawback[stellar.operation].execute.call(this);
-				break;
-			case 'liquidityPoolDeposit':
+			case 'liquidityPool':
 				responseData = await liquidityPool[stellar.operation].execute.call(this);
 				break;
-			case 'liquidityPoolWithdraw':
-				responseData = await liquidityPool[stellar.operation].execute.call(this);
-				break;
-			case 'createAccount':
+			case 'newAccount':
 				responseData = await newAccount[stellar.operation].execute.call(this);
 				break;
 			case 'fundAccount':
-				responseData = await newAccount[stellar.operation].execute.call(this);
+				responseData = await fundAccount[stellar.operation].execute.call(this);
 				break;
-			case 'manageSellOffer':
+			case 'offers':
 				responseData = await offers[stellar.operation].execute.call(this);
 				break;
-			case 'manageBuyOffer':
-				responseData = await offers[stellar.operation].execute.call(this);
+			case 'payments':
+				if (stellar.operation === 'getPayment')
+					responseData = await payments.getPayment.execute.call(this);
+				else responseData = await payments[stellar.operation].execute.call(this);
 				break;
-			case 'pathPaymentStrictReceive':
-				responseData = await payments[stellar.operation].execute.call(this);
-				break;
-			case 'getPayment':
-				responseData = await payments[stellar.operation].execute.call(this);
-				break;
-			case 'makePayment':
-				responseData = await payments[stellar.operation].execute.call(this);
-				break;
-			case 'pathPaymentStrictSend':
-				responseData = await payments[stellar.operation].execute.call(this);
-				break;
-			case 'pathPaymentStrictReceive':
-				responseData = await payments[stellar.operation].execute.call(this);
-				break;
-			case 'beginSponsoring':
+			case 'sponsorship':
 				responseData = await sponsorship[stellar.operation].execute.call(this);
 				break;
-			case 'endSponsoring':
-				responseData = await sponsorship[stellar.operation].execute.call(this);
-				break;
-			case 'revokeSponsorship':
-				responseData = await sponsorship[stellar.operation].execute.call(this);
-				break;
-			case 'swap':
+			case 'swapAssets':
 				responseData = await swapAssets[stellar.operation].execute.call(this);
 				break;
-			case 'changeTrust':
+			case 'trust':
 				responseData = await trust[stellar.operation].execute.call(this);
 				break;
-			case 'setTrustline':
-				responseData = await trust[stellar.operation].execute.call(this);
-				break;
-			case 'build':
-				responseData = await transaction.build.execute.call(this);
-
-				removeOperationsFromOutputData(outputData);
-				break;
-			case 'sign':
-				responseData = await transaction.sign.execute.call(this);
+			case 'transaction':
+				responseData = await transaction[stellar.operation].execute.call(this);
+				if (stellar.operation === 'build') removeOperationsFromOutputData(outputData);
 				break;
 		}
 

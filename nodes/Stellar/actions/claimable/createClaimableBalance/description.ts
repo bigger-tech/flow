@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { ClaimableBalanceProperties } from '../../entities/IStellarNode';
 
-export const createClaimableBalanceDescription: INodeProperties[] = [
+export const createClaimableBalanceDescription: ClaimableBalanceProperties = [
 	{
 		displayName: 'Asset',
 		name: 'isNative',

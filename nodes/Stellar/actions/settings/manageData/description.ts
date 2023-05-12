@@ -1,6 +1,6 @@
-import { INodeProperties } from 'n8n-workflow';
+import { SettingsProperties } from '../../entities/IStellarNode';
 
-export const manageDataDescription: INodeProperties[] = [
+export const manageDataDescription: SettingsProperties = [
 	{
 		displayName: 'Entry Name',
 		name: 'entryName',
