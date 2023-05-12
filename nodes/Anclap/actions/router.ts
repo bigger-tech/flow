@@ -7,35 +7,35 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	const resource = this.getNodeParameter('resource', 0) as string;
 	const anclap = { resource, operation };
 	const items = this.getInputData();
-	let outputData: IDataObject[] = [];
-	let responseData;
+	let output: IDataObject[] = [];
+	let response;
 
 	for (const item of items) {
 		if (item.json.operation) {
-			outputData.push(item);
+			output.push(item);
 		}
 	}
 
 	try {
 		switch (anclap.operation) {
 			case 'get':
-				responseData = await token.get.call(this);
+				response = await token.get.call(this);
 				break;
 			case 'send':
-				responseData = await token.send.call(this);
+				response = await token.send.call(this);
 				break;
 			case 'deposit':
-				responseData = await transactions.deposit.call(this);
+				response = await transactions.deposit.call(this);
 				break;
 			case 'withdraw':
-				responseData = await transactions.withdraw.call(this);
+				response = await transactions.withdraw.call(this);
 				break;
 		}
 
-		outputData.push(responseData as IDataObject);
+		output.push(response as IDataObject);
 	} catch (error) {
 		throw new Error(error);
 	}
 
-	return [this.helpers.returnJsonArray(outputData)];
+	return [this.helpers.returnJsonArray(output)];
 }
