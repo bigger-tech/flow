@@ -19,16 +19,16 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	try {
 		switch (anclap.operation) {
 			case 'get':
-				responseData = await token.get.execute.call(this);
+				responseData = await token.get.call(this);
 				break;
 			case 'send':
-				responseData = await token.send.execute.call(this);
+				responseData = await token.send.call(this);
 				break;
 			case 'deposit':
-				responseData = await transactions.deposit.execute.call(this);
+				responseData = await transactions.deposit.call(this);
 				break;
 			case 'withdraw':
-				responseData = await transactions.withdraw.execute.call(this);
+				responseData = await transactions.withdraw.call(this);
 				break;
 		}
 
