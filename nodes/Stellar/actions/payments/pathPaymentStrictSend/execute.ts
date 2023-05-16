@@ -1,9 +1,8 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
 import { checkAsset, convertAmountToBigNumber } from '../../../transport';
-import IAseetsPath from '../../entities/IAseetsPath';
+import IAssetsPath from '../../entities/IAssetsPath';
 import IAsset from '../../entities/IAsset';
-import IAseetInPath from '../../entities/IAssetInPath';
 
 export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 	try {
@@ -26,9 +25,9 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			'intermediatePathAssets',
 			0,
 			[],
-		) as IAseetsPath;
+		) as IAssetsPath;
 
-		intermediateAssets.values.forEach((asset: IAseetInPath) => {
+		intermediateAssets.values.forEach((asset: IAsset['values']) => {
 			let intermediateAsset: Asset;
 			if (asset.isNative) {
 				intermediateAsset = Asset.native();
