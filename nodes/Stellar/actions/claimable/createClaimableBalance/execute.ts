@@ -2,6 +2,7 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Claimant, Operation } from 'stellar-sdk';
 import { checkAsset, convertAmountToBigNumber } from '../../../transport';
 import IAsset from '../../entities/IAsset';
+import IClaimants from '../../entities/IClaimants';
 
 export async function createClaimableBalance(this: IExecuteFunctions) {
 	const claimableAsset = this.getNodeParameter('claimableAsset', 0) as IAsset;
@@ -18,9 +19,9 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 
 	const amount = convertAmountToBigNumber(claimableAmount);
 	let claimants: Claimant[] = [];
-	const claimantsValues = this.getNodeParameter('claimants', 0, []) as any;
+	const claimantsValues = this.getNodeParameter('claimants', 0) as IClaimants;
 
-	claimantsValues.values.forEach((claimantValues: any) => {
+	claimantsValues.values.forEach((claimantValues) => {
 		const destination = claimantValues.destination;
 		const predicateValues = claimantValues.predicate.values;
 		let predicate;
@@ -30,17 +31,17 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 					predicate = buildTimePredicate(predicateValues);
 					break;
 				case 'and':
-					const andPredicate1 = buildPredicate(predicateValues.predicate1.values);
-					const andPredicate2 = buildPredicate(predicateValues.predicate2.values);
+					const andPredicate1 = buildPredicate(predicateValues.predicate1?.values);
+					const andPredicate2 = buildPredicate(predicateValues.predicate2?.values);
 					predicate = Claimant.predicateAnd(andPredicate1, andPredicate2);
 					break;
 				case 'or':
-					const orPredicate1 = buildPredicate(predicateValues.predicate1.values);
-					const orPredicate2 = buildPredicate(predicateValues.predicate2.values);
+					const orPredicate1 = buildPredicate(predicateValues.predicate1?.values);
+					const orPredicate2 = buildPredicate(predicateValues.predicate2?.values);
 					predicate = Claimant.predicateOr(orPredicate1, orPredicate2);
 					break;
 				case 'not':
-					const notPredicate = buildPredicate(predicateValues.predicate1.values);
+					const notPredicate = buildPredicate(predicateValues.predicate1?.values);
 					predicate = Claimant.predicateNot(notPredicate);
 					break;
 			}

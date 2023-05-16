@@ -70,7 +70,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 				break;
 			case 'transaction':
 				response = await transaction[stellar.operation].execute.call(this);
-				if (stellar.operation === 'build') removeOperationsFromnodeOutput(nodeOutput);
+				if (stellar.operation === 'build') removeOperationsFromNodeOutput(nodeOutput);
 				break;
 		}
 
@@ -82,12 +82,15 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	return [this.helpers.returnJsonArray(nodeOutput)];
 }
 
-function removeOperationsFromnodeOutput(nodeOutput: any[]) {
+function removeOperationsFromNodeOutput(nodeOutput: IDataObject[]) {
+	//sería un IDataObject[], ver como lo paso // tiene que ser un array de operaciones o mas bien refactorizar para que tome solo los que son operaciones
 	for (let i = nodeOutput.length - 1; i >= 0; i--) {
-		const operation = nodeOutput[i].json.operation;
+		if (nodeOutput[i] != (null || undefined)) {
+			const operation = nodeOutput[i].json.operation;
 
-		if (operation) {
-			nodeOutput.splice(i, 1);
+			if (operation) {
+				nodeOutput.splice(i, 1);
+			}
 		}
 	}
 }

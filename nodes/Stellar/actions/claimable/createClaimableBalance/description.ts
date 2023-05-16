@@ -6,6 +6,9 @@ export const createClaimableBalanceDescription: ClaimableBalanceProperties = [
 		name: 'claimableAsset',
 		type: 'fixedCollection',
 		default: {},
+		typeOptions: {
+			multipleValues: false,
+		},
 		required: true,
 		options: [
 			{
