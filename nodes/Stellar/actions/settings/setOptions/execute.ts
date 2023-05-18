@@ -9,6 +9,7 @@ import {
 	AuthFlag,
 } from 'stellar-sdk';
 import ISetOptionsOperationOptions from '../../entities/ISetOptionsOperationOptions';
+import ISigner from '../../entities/ISigner';
 
 export async function setOptions(this: IExecuteFunctions) {
 	try {
@@ -50,25 +51,21 @@ export async function setOptions(this: IExecuteFunctions) {
 		const homeDomain = this.getNodeParameter('homeDomain', 0) as string;
 		if (homeDomain) operationOptions.homeDomain = homeDomain;
 
-		const signerInfo = this.getNodeParameter('signer', 0) as any;
+		const signerInfo = this.getNodeParameter('signer', 0) as ISigner;
 		if (signerInfo.values) {
 			const signerType = signerInfo.values.signerType;
 			const signerKey = signerInfo.values.signerKey;
-			const weight = signerInfo.values.signerWeight;
+			const weight = Number(signerInfo.values.signerWeight);
 			let signer: Signer;
-			switch (signerType) {
-				case 'ed25519PublicKey':
-					signer = { ed25519PublicKey: signerKey, weight };
-					break;
-				case 'sha256Hash':
-					signer = { sha256Hash: signerKey, weight };
-					break;
-				case 'preAuthTx':
-					signer = { preAuthTx: signerKey, weight };
-					break;
-				default:
-					signer = { ed25519PublicKey: signerKey, weight };
+
+			if (typeof signerKey != 'string' && signerType != 'ed25519PublicKey') {
+				signerType === 'sha256Hash'
+					? (signer = { sha256Hash: signerKey, weight })
+					: (signer = { preAuthTx: signerKey, weight });
+			} else {
+				signer = { ed25519PublicKey: signerKey as string, weight };
 			}
+
 			operationOptions.signer = signer;
 		}
 
