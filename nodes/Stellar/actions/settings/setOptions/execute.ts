@@ -8,8 +8,9 @@ import {
 	Signer,
 	AuthFlag,
 } from 'stellar-sdk';
-import ISetOptionsOperationOptions from '../../entities/ISetOptionsOperationOptions';
+import IFlags from '../../entities/IFlags';
 import ISigner from '../../entities/ISigner';
+import ISetOptionsOperationOptions from '../../entities/ISetOptionsOperationOptions';
 
 export async function setOptions(this: IExecuteFunctions) {
 	try {
@@ -17,7 +18,7 @@ export async function setOptions(this: IExecuteFunctions) {
 		const inflationDest = this.getNodeParameter('inflationDest', 0) as string;
 		if (inflationDest) operationOptions.inflationDest = inflationDest;
 
-		const flagsToSet = this.getNodeParameter('flagsToSet', 0) as any;
+		const flagsToSet = this.getNodeParameter('flagsToSet', 0) as IFlags;
 		if (flagsToSet.values) {
 			let flags = 0;
 			if (flagsToSet.values.authorizationRequired) flags += AuthRequiredFlag;
@@ -27,7 +28,7 @@ export async function setOptions(this: IExecuteFunctions) {
 			operationOptions.setFlags = flags as AuthFlag;
 		}
 
-		const flagsToClear = this.getNodeParameter('flagsToClear', 0) as any;
+		const flagsToClear = this.getNodeParameter('flagsToClear', 0) as IFlags;
 		if (flagsToClear.values) {
 			let flags = 0;
 			if (flagsToClear.values.authorizationRequired) flags += AuthRequiredFlag;
