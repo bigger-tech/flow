@@ -1,8 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Claimant, Operation } from 'stellar-sdk';
+import ClaimantPredicate from 'stellar-sdk';
 import { checkAsset, convertAmountToBigNumber } from '../../../transport';
 import IAsset from '../../entities/IAsset';
 import IClaimants from '../../entities/IClaimants';
+import IPredicate from '../../entities/IPredicate';
+import InvalidPredicateError from './error/InvalidPredicateError';
 
 export async function createClaimableBalance(this: IExecuteFunctions) {
 	const claimableAsset = this.getNodeParameter('claimableAsset', 0) as IAsset;
@@ -31,18 +34,24 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 					predicate = buildTimePredicate(predicateValues);
 					break;
 				case 'and':
-					const andPredicate1 = buildPredicate(predicateValues.predicate1?.values);
-					const andPredicate2 = buildPredicate(predicateValues.predicate2?.values);
-					predicate = Claimant.predicateAnd(andPredicate1, andPredicate2);
+					if (predicateValues.predicate1 && predicateValues.predicate2) {
+						const andPredicate1 = buildPredicate(predicateValues.predicate1?.values);
+						const andPredicate2 = buildPredicate(predicateValues.predicate2?.values);
+						predicate = Claimant.predicateAnd(andPredicate1, andPredicate2);
+					}
 					break;
 				case 'or':
-					const orPredicate1 = buildPredicate(predicateValues.predicate1?.values);
-					const orPredicate2 = buildPredicate(predicateValues.predicate2?.values);
-					predicate = Claimant.predicateOr(orPredicate1, orPredicate2);
+					if (predicateValues.predicate1 && predicateValues.predicate2) {
+						const orPredicate1 = buildPredicate(predicateValues.predicate1?.values);
+						const orPredicate2 = buildPredicate(predicateValues.predicate2?.values);
+						predicate = Claimant.predicateOr(orPredicate1, orPredicate2);
+					}
 					break;
 				case 'not':
-					const notPredicate = buildPredicate(predicateValues.predicate1?.values);
-					predicate = Claimant.predicateNot(notPredicate);
+					if (predicateValues.predicate1) {
+						const notPredicate = buildPredicate(predicateValues.predicate1?.values);
+						predicate = Claimant.predicateNot(notPredicate);
+					}
 					break;
 			}
 		} else {
@@ -59,17 +68,21 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 	return { operation: createClaimableBalanceOperation };
 }
 
-function buildTimePredicate(predicateValues: any) {
+function buildTimePredicate(predicateValues: IPredicate) {
 	let predicate;
-	if (predicateValues.isPredicateTimeRelative)
-		predicate = Claimant.predicateBeforeRelativeTime(predicateValues.predicateTimeValue.toString());
-	else {
-		predicate = Claimant.predicateBeforeAbsoluteTime(predicateValues.predicateTimeValue.toString());
+	if (predicateValues.predicateTimeValue) {
+		predicateValues.isPredicateTimeRelative
+			? (predicate = Claimant.predicateBeforeRelativeTime(
+					predicateValues.predicateTimeValue.toString(),
+			  ))
+			: (predicate = Claimant.predicateBeforeAbsoluteTime(
+					predicateValues.predicateTimeValue.toString(),
+			  ));
 	}
 	return predicate;
 }
 
-function buildSubpredicate(subPredicateValues: any) {
+function buildSubpredicate(subPredicateValues: IPredicate): typeof ClaimantPredicate {
 	let subpredicate;
 	if (subPredicateValues.isPredicateConditional) {
 		subpredicate = buildTimePredicate(subPredicateValues);
@@ -79,7 +92,7 @@ function buildSubpredicate(subPredicateValues: any) {
 	return subpredicate;
 }
 
-function buildPredicate(predicateValues: any) {
+function buildPredicate(predicateValues: IPredicate): typeof ClaimantPredicate {
 	let predicate;
 	if (predicateValues.isPredicateConditional) {
 		switch (predicateValues.predicateType) {
@@ -87,22 +100,27 @@ function buildPredicate(predicateValues: any) {
 				predicate = buildTimePredicate(predicateValues);
 				break;
 			case 'and':
-				const andSubpredicate1 = buildSubpredicate(predicateValues.predicate1.values);
-				const andSubpredicate2 = buildSubpredicate(predicateValues.predicate2.values);
-				predicate = Claimant.predicateAnd(andSubpredicate1, andSubpredicate2);
+				if (predicateValues.predicate1 && predicateValues.predicate2) {
+					const andSubpredicate1 = buildSubpredicate(predicateValues.predicate1.values);
+					const andSubpredicate2 = buildSubpredicate(predicateValues.predicate2.values);
+					predicate = Claimant.predicateAnd(andSubpredicate1, andSubpredicate2);
+				}
 				break;
 			case 'or':
-				const orSubpredicate1 = buildSubpredicate(predicateValues.predicate1.values);
-				const orSubpredicate2 = buildSubpredicate(predicateValues.predicate2.values);
-				predicate = Claimant.predicateAnd(orSubpredicate1, orSubpredicate2);
+				if (predicateValues.predicate1 && predicateValues.predicate2) {
+					const orSubpredicate1 = buildSubpredicate(predicateValues.predicate1.values);
+					const orSubpredicate2 = buildSubpredicate(predicateValues.predicate2.values);
+					predicate = Claimant.predicateAnd(orSubpredicate1, orSubpredicate2);
+				}
 				break;
-
 			case 'not':
-				const notSubpredicate = buildSubpredicate(predicateValues.predicate1.values);
-				predicate = Claimant.predicateNot(notSubpredicate);
+				if (predicateValues.predicate1) {
+					const notSubpredicate = buildSubpredicate(predicateValues.predicate1.values);
+					predicate = Claimant.predicateNot(notSubpredicate);
+				}
 				break;
 			default:
-				predicate = Claimant.predicateUnconditional();
+				throw InvalidPredicateError;
 				break;
 		}
 	} else {
