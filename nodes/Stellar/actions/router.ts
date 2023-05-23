@@ -23,7 +23,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	let response;
 
 	for (const item of items) {
-		if (item.json.operation) {
+		if (stellar.resource != 'transaction' && item.json.operation) {
 			nodeOutput.push(item);
 		}
 	}
@@ -70,7 +70,6 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 				break;
 			case 'transaction':
 				response = await transaction[stellar.operation].execute.call(this);
-				if (stellar.operation === 'build') removeOperationsFromNodeOutput(nodeOutput);
 				break;
 		}
 
@@ -80,17 +79,4 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	}
 
 	return [this.helpers.returnJsonArray(nodeOutput)];
-}
-
-function removeOperationsFromNodeOutput(nodeOutput: IDataObject[]) {
-	//sería un IDataObject[], ver como lo paso // tiene que ser un array de operaciones o mas bien refactorizar para que tome solo los que son operaciones
-	for (let i = nodeOutput.length - 1; i >= 0; i--) {
-		if (nodeOutput[i] != (null || undefined)) {
-			const operation = nodeOutput[i].json.operation;
-
-			if (operation) {
-				nodeOutput.splice(i, 1);
-			}
-		}
-	}
 }
