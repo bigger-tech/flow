@@ -27,18 +27,4 @@ export const manageDataDescription: SettingsProperties = [
 		description: 'If empty, will delete the data entry named in this operation',
 		default: '',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['settings'],
-				operation: ['manageData'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

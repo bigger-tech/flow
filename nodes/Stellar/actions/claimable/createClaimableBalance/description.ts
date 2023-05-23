@@ -743,18 +743,4 @@ export const createClaimableBalanceDescription: ClaimableBalanceProperties = [
 		],
 		default: {},
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['claimableBalance'],
-				operation: ['createClaimableBalance'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

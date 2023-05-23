@@ -211,19 +211,4 @@ export const changeTrustDescription: TrustProperties = [
 		default: '',
 		description: 'Leave empty to default to the max int64. Set to 0 to remove the trust line.',
 	},
-
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['trust'],
-				operation: ['changeTrust'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

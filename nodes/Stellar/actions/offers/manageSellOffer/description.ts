@@ -178,19 +178,4 @@ export const manageSellOfferDescription: INodeProperties[] = [
 			'If 0, will create a new offer. Existing offer ID numbers can be found using the Offers for Account endpoint.',
 		default: '',
 	},
-
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['offers'],
-				operation: ['manageSellOffer'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

@@ -98,18 +98,4 @@ export const makePaymentDescription: PaymentsProperties = [
 		default: '',
 		description: 'Amount to be transfer',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['payments'],
-				operation: ['makePayment'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

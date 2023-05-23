@@ -97,18 +97,4 @@ export const clawbackDescription: ClawbackProperties = [
 		default: '',
 		description: 'Amount of the aforementioned asset to burn',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['clawback'],
-				operation: ['clawback'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

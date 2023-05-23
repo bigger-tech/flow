@@ -182,18 +182,4 @@ export const liquidityPoolDepositDescription: LiquidityPoolProperties = [
 			},
 		},
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['liquidityPool'],
-				operation: ['liquidityPoolDeposit'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

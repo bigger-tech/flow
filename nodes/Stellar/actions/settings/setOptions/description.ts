@@ -247,18 +247,4 @@ export const setOptionsDescription: SettingsProperties = [
 		placeholder: 'Example: example.com',
 		description: 'Sets the home domain of an account',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['settings'],
-				operation: ['setOptions'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

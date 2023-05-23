@@ -91,18 +91,4 @@ export const setTrustlineDescription: TrustProperties = [
 		description:
 			'Whether the issuer will be allowed to clawback its asset (both from accounts and claimable balances)',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['trust'],
-				operation: ['setTrustline'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

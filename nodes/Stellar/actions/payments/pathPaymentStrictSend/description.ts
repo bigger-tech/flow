@@ -249,18 +249,4 @@ export const pathPaymentStrictSendDescription: PaymentsProperties = [
 		default: '',
 		description: 'The minimum amount the destination can receive',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['payments'],
-				operation: ['pathPaymentStrictSend'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

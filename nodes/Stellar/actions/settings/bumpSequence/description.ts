@@ -14,18 +14,4 @@ export const bumpSequenceDescription: SettingsProperties = [
 		},
 		default: '',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['settings'],
-				operation: ['bumpSequence'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

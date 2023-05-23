@@ -163,19 +163,4 @@ export const createPassiveSellOfferDescription: INodeProperties[] = [
 		},
 		default: '',
 	},
-
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['offers'],
-				operation: ['createPassiveSellOffer'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];
