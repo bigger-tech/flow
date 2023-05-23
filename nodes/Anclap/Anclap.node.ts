@@ -6,6 +6,7 @@ import {
 } from 'n8n-workflow';
 import * as token from './actions/token';
 import * as transactions from './actions/transactions';
+import * as info from './actions/info';
 import { router } from './actions/router';
 
 export class Anclap implements INodeType {
@@ -39,6 +40,10 @@ export class Anclap implements INodeType {
 						name: 'Transaction',
 						value: 'transactions',
 					},
+					{
+						name: 'Info',
+						value: 'info',
+					},
 				],
 				noDataExpression: true,
 				required: true,
@@ -46,6 +51,7 @@ export class Anclap implements INodeType {
 			},
 			...token.description,
 			...transactions.description,
+			...info.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {

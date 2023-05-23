@@ -44,4 +44,17 @@ export default class SEP24 {
 			throw new AxiosHttpRequestError(e);
 		}
 	}
+
+	async getTransactions(assetCode: string, publicKey: string) {
+		try {
+			const result = await axios.get(`${this.tomlInfo.TRANSFER_SERVER_SEP0024}/transactions`, {
+				headers: { Authorization: `Bearer ${this.token}` },
+				params: { asset_code: assetCode, account: publicKey },
+			});
+
+			return result.data;
+		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
+	}
 }

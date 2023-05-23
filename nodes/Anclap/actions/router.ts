@@ -1,6 +1,7 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import * as token from './token';
 import * as transactions from './transactions';
+import * as info from './info';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const operation = this.getNodeParameter('operation', 0);
@@ -29,6 +30,9 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 				break;
 			case 'withdraw':
 				response = await transactions.withdraw.call(this);
+				break;
+			case 'transactions':
+				response = await info.transactions.call(this);
 				break;
 		}
 
