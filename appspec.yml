@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: .
+    destination: /home/ec2-user/flow/
+hooks:
+  ApplicationStart:
+   - location: docker-entrypoint.sh
+     timeout: 300
+     runas: root
