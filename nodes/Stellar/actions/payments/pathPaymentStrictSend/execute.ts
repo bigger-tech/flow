@@ -1,53 +1,32 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
-import { checkAsset, convertAmountToBigNumber } from '../../../transport';
+import { buildAsset, convertAmountToBigNumber } from '../../../transport';
 import IAssetsPath from '../../entities/IAssetsPath';
 import IAsset from '../../entities/IAsset';
 
 export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 	try {
-		const destination = this.getNodeParameter('destinationAccount', 0) as string;
-
-		const sendingAsset = this.getNodeParameter('sendingAsset', 0) as IAsset;
-		let sendAsset: Asset;
-		checkAsset(sendingAsset);
-		if (sendingAsset.values.isNative) {
-			sendAsset = Asset.native();
-		} else {
-			sendAsset = new Asset(sendingAsset.values.code, sendingAsset.values.issuer);
-		}
-
+		const { values: sendingAsset } = this.getNodeParameter('sendingAsset', 0) as IAsset;
 		const sendingAmount = this.getNodeParameter('sendAmount', 0) as number;
-		const sendAmount = convertAmountToBigNumber(sendingAmount);
-
-		let path: Asset[] = [];
+		const destination = this.getNodeParameter('destinationAccount', 0) as string;
+		const { values: destinationAsset } = this.getNodeParameter('destinationAsset', 0) as IAsset;
+		const minDestinationAmount = this.getNodeParameter('minDestinationAmount', 0) as number;
 		const { values: intermediateAssets } = this.getNodeParameter(
 			'intermediatePathAssets',
 			0,
 			[],
 		) as IAssetsPath;
 
+		const sendAsset = buildAsset(sendingAsset);
+		const sendAmount = convertAmountToBigNumber(sendingAmount);
+		const destAsset = buildAsset(destinationAsset);
+		const destMin = convertAmountToBigNumber(minDestinationAmount);
+		let path: Asset[] = [];
+
 		intermediateAssets.forEach((asset) => {
-			let intermediateAsset: Asset;
-			if (asset.isNative) {
-				intermediateAsset = Asset.native();
-			} else {
-				intermediateAsset = new Asset(asset.code, asset.issuer);
-			}
+			const intermediateAsset = buildAsset(asset);
 			path.push(intermediateAsset);
 		});
-
-		const destinationAsset = this.getNodeParameter('destinationAsset', 0) as IAsset;
-		let destAsset: Asset;
-		checkAsset(destinationAsset);
-		if (destinationAsset.values.isNative) {
-			destAsset = Asset.native();
-		} else {
-			destAsset = new Asset(destinationAsset.values.code, destinationAsset.values.issuer);
-		}
-
-		const minDestinationAmount = this.getNodeParameter('minDestinationAmount', 0) as number;
-		const destMin = convertAmountToBigNumber(minDestinationAmount);
 
 		let pathPaymentStrictSendOperation = Operation.pathPaymentStrictSend({
 			sendAsset,
@@ -57,6 +36,7 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			destMin,
 			path,
 		}).toXDR('base64');
+
 		return { operation: pathPaymentStrictSendOperation };
 	} catch (error) {
 		throw new Error(error);

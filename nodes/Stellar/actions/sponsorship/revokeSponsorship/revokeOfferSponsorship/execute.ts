@@ -9,6 +9,7 @@ export async function revokeOfferSponsorship(this: IExecuteFunctions) {
 			seller,
 			offerId,
 		}).toXDR('base64');
+
 		return { operation: revokeOfferSponsorshipOperation };
 	} catch (error) {
 		throw new Error(error);

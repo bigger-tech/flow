@@ -3,6 +3,7 @@ import BigNumber from 'bignumber.js';
 import SetNetworkError from './errors/SetNetworkError';
 import NoAssetSelectedError from './errors/NoAssetSelectedError';
 import IAsset from '../actions/entities/IAsset';
+import { Asset } from 'stellar-sdk';
 
 const STELLAR_TESTNET_NETWORK = 'https://horizon-testnet.stellar.org/';
 const STELLAR_TESTNET_PASSPHRASE = 'Test SDF Network ; September 2015';
@@ -55,6 +56,15 @@ export function convertAmountToBigNumber(amount: number): string {
 	return new BigNumber(amount).toFixed(7).toString();
 }
 
-export function checkAsset(asset: IAsset) {
-	if (!asset.values) throw new NoAssetSelectedError('An asset must be selected');
+export function buildAsset(assetValues: IAsset['values']): Asset {
+	let asset: Asset;
+	if (!assetValues) throw new NoAssetSelectedError('An asset must be selected');
+	else {
+	}
+	if (assetValues.isNative) {
+		asset = Asset.native();
+	} else {
+		asset = new Asset(assetValues.code, assetValues.issuer);
+	}
+	return asset;
 }

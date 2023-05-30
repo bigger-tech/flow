@@ -1,16 +1,19 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Asset, Claimant, Operation } from 'stellar-sdk';
+import { Claimant, Operation } from 'stellar-sdk';
 import ClaimantPredicate from 'stellar-sdk';
-import { checkAsset, convertAmountToBigNumber } from '../../../transport';
+import { buildAsset, convertAmountToBigNumber } from '../../../transport';
 import IAsset from '../../entities/IAsset';
 import IClaimants from '../../entities/IClaimants';
 import IPredicate from '../../entities/IPredicate';
 import InvalidPredicateError from './error/InvalidPredicateError';
 
 export async function createClaimableBalance(this: IExecuteFunctions) {
+	try {
+		const { values: claimableAsset } = this.getNodeParameter('claimableAsset', 0) as IAsset;
 		const claimableAmount = this.getNodeParameter('amount', 0) as number;
 		const { values: claimantsValues } = this.getNodeParameter('claimants', 0) as IClaimants;
 
+		const asset = buildAsset(claimableAsset);
 		const claimants = buildClaimantsList(claimantsValues);
 		const amount = convertAmountToBigNumber(claimableAmount);
 
@@ -26,11 +29,9 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 	}
 }
 
-	const amount = convertAmountToBigNumber(claimableAmount);
-	let claimants: Claimant[] = [];
-	const claimantsValues = this.getNodeParameter('claimants', 0) as IClaimants;
-
-	claimantsValues.values.forEach((claimantValues) => {
+function buildClaimantsList(claimantsValues: IClaimants['values']) {
+	const claimants: Claimant[] = [];
+	claimantsValues.forEach((claimantValues) => {
 		const destination = claimantValues.destination;
 		const predicateValues = claimantValues.predicate.values;
 		let predicate;
@@ -66,12 +67,7 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 		const claimant = new Claimant(destination, predicate);
 		claimants.push(claimant);
 	});
-	const createClaimableBalanceOperation = Operation.createClaimableBalance({
-		asset,
-		amount,
-		claimants,
-	}).toXDR('base64');
-	return { operation: createClaimableBalanceOperation };
+	return claimants;
 }
 
 function buildTimePredicate(predicateValues: IPredicate) {

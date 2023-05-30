@@ -7,6 +7,7 @@ export async function beginSponsoring(this: IExecuteFunctions) {
 		const beginSponsoringOperation = Operation.beginSponsoringFutureReserves({ sponsoredId }).toXDR(
 			'base64',
 		);
+
 		return { operation: beginSponsoringOperation };
 	} catch (error) {
 		throw new Error(error);

@@ -7,6 +7,7 @@ export async function endSponsoring(this: IExecuteFunctions) {
 		const endSponsoringOperation = Operation.endSponsoringFutureReserves({
 			source,
 		}).toXDR('base64');
+
 		return { operation: endSponsoringOperation };
 	} catch (error) {
 		throw new Error(error);

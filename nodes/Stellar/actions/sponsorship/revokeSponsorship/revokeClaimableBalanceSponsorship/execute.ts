@@ -7,6 +7,7 @@ export async function revokeClaimableBalanceSponsorship(this: IExecuteFunctions)
 		const revokeClaimableBalanceSponsorshipOperation = Operation.revokeClaimableBalanceSponsorship({
 			balanceId,
 		}).toXDR('base64');
+
 		return { operation: revokeClaimableBalanceSponsorshipOperation };
 	} catch (error) {
 		throw new Error(error);
