@@ -8,17 +8,23 @@ import IPredicate from '../../entities/IPredicate';
 import InvalidPredicateError from './error/InvalidPredicateError';
 
 export async function createClaimableBalance(this: IExecuteFunctions) {
-	const claimableAsset = this.getNodeParameter('claimableAsset', 0) as IAsset;
-	const claimableAmount = this.getNodeParameter('amount', 0) as number;
-	let asset: Asset;
+		const claimableAmount = this.getNodeParameter('amount', 0) as number;
+		const { values: claimantsValues } = this.getNodeParameter('claimants', 0) as IClaimants;
 
-	checkAsset(claimableAsset);
+		const claimants = buildClaimantsList(claimantsValues);
+		const amount = convertAmountToBigNumber(claimableAmount);
 
-	if (claimableAsset.values.isNative) {
-		asset = Asset.native();
-	} else {
-		asset = new Asset(claimableAsset.values.code, claimableAsset.values.issuer);
+		const createClaimableBalanceOperation = Operation.createClaimableBalance({
+			asset,
+			amount,
+			claimants,
+		}).toXDR('base64');
+
+		return { operation: createClaimableBalanceOperation };
+	} catch (error) {
+		throw new Error(error);
 	}
+}
 
 	const amount = convertAmountToBigNumber(claimableAmount);
 	let claimants: Claimant[] = [];
