@@ -1,7 +1,5 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
-import * as token from './token';
-import * as transactions from './transactions';
-import * as info from './info';
+import resources from './resources';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const operation = this.getNodeParameter('operation', 0);
@@ -18,24 +16,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	}
 
 	try {
-		switch (anclap.operation) {
-			case 'get':
-				response = await token.get.call(this);
-				break;
-			case 'send':
-				response = await token.send.call(this);
-				break;
-			case 'deposit':
-				response = await transactions.deposit.call(this);
-				break;
-			case 'withdraw':
-				response = await transactions.withdraw.call(this);
-				break;
-			case 'transactions':
-				response = await info.transactions.call(this);
-				break;
-		}
-
+		response = await resources[anclap.resource].operations[anclap.operation].execute.call(this);
 		output.push(response as IDataObject);
 	} catch (error) {
 		throw new Error(error);
