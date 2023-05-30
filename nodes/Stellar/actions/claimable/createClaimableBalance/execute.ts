@@ -121,7 +121,6 @@ function buildPredicate(predicateValues: IPredicate): typeof ClaimantPredicate {
 				break;
 			default:
 				throw InvalidPredicateError;
-				break;
 		}
 	} else {
 		predicate = Claimant.predicateUnconditional();
