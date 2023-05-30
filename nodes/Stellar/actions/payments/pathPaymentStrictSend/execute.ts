@@ -21,13 +21,13 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 		const sendAmount = convertAmountToBigNumber(sendingAmount);
 
 		let path: Asset[] = [];
-		const intermediateAssets = this.getNodeParameter(
+		const { values: intermediateAssets } = this.getNodeParameter(
 			'intermediatePathAssets',
 			0,
 			[],
 		) as IAssetsPath;
 
-		intermediateAssets.values.forEach((asset: IAsset['values']) => {
+		intermediateAssets.forEach((asset) => {
 			let intermediateAsset: Asset;
 			if (asset.isNative) {
 				intermediateAsset = Asset.native();
