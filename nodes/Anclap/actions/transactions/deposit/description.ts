@@ -15,9 +15,9 @@ export const depositDescription: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Asset Code',
-		name: 'assetCode',
-		type: 'string',
+		displayName: 'Is Interactive',
+		name: 'isInteractive',
+		type: 'boolean',
 		required: true,
 		displayOptions: {
 			show: {
@@ -25,8 +25,28 @@ export const depositDescription: INodeProperties[] = [
 				operation: ['deposit'],
 			},
 		},
-		default: '',
-		placeholder: 'ARS',
+		default: true,
+		description:
+			'Whether to get an interactive URL to do the transaction or do it manually ("manually" requires the user to be registered in Anclap)',
+	},
+	{
+		displayName: 'Asset Code',
+		name: 'assetCode',
+		type: 'options',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['transactions'],
+				operation: ['deposit'],
+			},
+		},
+		options: [
+			{
+				name: 'ARS',
+				value: 'ARS',
+			},
+		],
+		default: 'ARS',
 	},
 	{
 		displayName: 'Public Key',
@@ -41,5 +61,19 @@ export const depositDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'GCEVJ...',
+	},
+	{
+		displayName: 'Amount',
+		name: 'amount',
+		type: 'number',
+		required: true,
+		displayOptions: {
+			show: {
+				isInteractive: [false],
+				resource: ['transactions'],
+				operation: ['deposit'],
+			},
+		},
+		default: '',
 	},
 ];
