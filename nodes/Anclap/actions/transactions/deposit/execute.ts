@@ -13,10 +13,18 @@ export async function deposit(this: IExecuteFunctions) {
 	const anclapToml = await getAnclapToml.call(this);
 
 	if (isInteractive) {
+		return await getSep24DepositUrl();
+	} else {
+		return await getSep6DepositInfo();
+	}
+
+	async function getSep24DepositUrl() {
 		const sep24 = new SEP24(anclapToml, token);
 		const interactiveUrl = await sep24.getDepositInteractiveUrl(assetCode, publicKey);
 		return { interactiveUrl };
-	} else {
+	}
+
+	async function getSep6DepositInfo() {
 		const sep6 = new SEP6(anclapToml, token);
 		const info = await sep6.getInfo();
 		const depositAsset = info.deposit[assetCode];
