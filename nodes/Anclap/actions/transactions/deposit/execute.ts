@@ -2,7 +2,8 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { getAnclapToml } from '../../../transport/anclapToml';
 import SEP24 from '../../../transport/SEP24';
 import SEP6 from '../../../transport/SEP6';
-import { AnclapAssetCode, DepositAsset } from '../../../transport/IAnclapInfoResponse';
+import { AnclapAssetCode } from '../../../transport/IAnclapInfoResponse';
+import { verifyAmount } from '../../../transport/helpers';
 
 export async function deposit(this: IExecuteFunctions) {
 	const token = this.getNodeParameter('token', 0) as string;
@@ -35,10 +36,4 @@ export async function deposit(this: IExecuteFunctions) {
 			return { error: 'The amount is less than the min amount', depositAsset };
 		}
 	}
-}
-
-function verifyAmount(asset: DepositAsset, amount: string) {
-	const minAmount = asset.min_amount;
-	const parsedAmount = Number(amount);
-	return parsedAmount >= minAmount;
 }

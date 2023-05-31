@@ -15,7 +15,7 @@ export const depositDescription: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Is Interactive',
+		displayName: 'Get Interactive URL',
 		name: 'isInteractive',
 		type: 'boolean',
 		required: true,
