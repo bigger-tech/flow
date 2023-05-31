@@ -15,9 +15,9 @@ export const withdrawDescription: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Asset Code',
-		name: 'assetCode',
-		type: 'string',
+		displayName: 'Get Interactive URL',
+		name: 'isInteractive',
+		type: 'boolean',
 		required: true,
 		displayOptions: {
 			show: {
@@ -25,8 +25,28 @@ export const withdrawDescription: INodeProperties[] = [
 				operation: ['withdraw'],
 			},
 		},
-		default: '',
-		placeholder: 'ARS',
+		default: true,
+		description:
+			'Whether to get an interactive URL to do the transaction or do it manually ("manually" requires the user to be registered in Anclap)',
+	},
+	{
+		displayName: 'Asset Code',
+		name: 'assetCode',
+		type: 'options',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['transactions'],
+				operation: ['withdraw'],
+			},
+		},
+		options: [
+			{
+				name: 'ARS',
+				value: 'ARS',
+			},
+		],
+		default: 'ARS',
 	},
 	{
 		displayName: 'Public Key',
@@ -41,5 +61,53 @@ export const withdrawDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'GCEVJ...',
+	},
+	{
+		displayName: 'Type',
+		name: 'type',
+		type: 'options',
+		required: true,
+		displayOptions: {
+			show: {
+				isInteractive: [false],
+				resource: ['transactions'],
+				operation: ['withdraw'],
+			},
+		},
+		options: [
+			{
+				name: 'Bank Account',
+				value: 'bank_account',
+			},
+		],
+		default: 'bank_account',
+	},
+	{
+		displayName: 'Dest',
+		name: 'dest',
+		type: 'string',
+		required: true,
+		displayOptions: {
+			show: {
+				isInteractive: [false],
+				resource: ['transactions'],
+				operation: ['withdraw'],
+			},
+		},
+		default: '',
+	},
+	{
+		displayName: 'Amount',
+		name: 'amount',
+		type: 'number',
+		required: true,
+		displayOptions: {
+			show: {
+				isInteractive: [false],
+				resource: ['transactions'],
+				operation: ['withdraw'],
+			},
+		},
+		default: '',
 	},
 ];
