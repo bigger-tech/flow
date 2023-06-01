@@ -16,12 +16,13 @@ import {
 	pathPaymentStrictReceive,
 	pathPaymentStrictSend,
 } from './payments';
+import { StellarResources } from '../actions/entities/IStellarNode';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
 }
 
-const resources: { [key: string]: IOperations } = {
+const resources: { [key in keyof StellarResources]: IOperations } = {
 	newAccount: {
 		operations: {
 			createAccount: { execute: createAccount.execute },
@@ -68,7 +69,7 @@ const resources: { [key: string]: IOperations } = {
 			liquidityPoolWithdraw: { execute: liquidityPoolWithdraw.execute },
 		},
 	},
-	claimable: {
+	claimableBalance: {
 		operations: {
 			claimClaimableBalance: { execute: claimClaimableBalance.execute },
 			createClaimableBalance: { execute: createClaimableBalance.execute },
