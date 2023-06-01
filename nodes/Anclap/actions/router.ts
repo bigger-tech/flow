@@ -1,9 +1,9 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
-import resources from './resources';
+import resources, { AnclapResources } from './resources';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const operation = this.getNodeParameter('operation', 0);
-	const resource = this.getNodeParameter('resource', 0) as string;
+	const resource = this.getNodeParameter('resource', 0) as AnclapResources;
 	const anclap = { resource, operation };
 	const items = this.getInputData();
 	let output: IDataObject[] = [];

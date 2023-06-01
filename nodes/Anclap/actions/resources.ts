@@ -6,7 +6,7 @@ interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
 }
 
-const resources: { [key: string]: IOperations } = {
+const resources: { [key in AnclapResources]: IOperations } = {
 	info: {
 		operations: {
 			transactions: { execute: transactions },
@@ -25,5 +25,7 @@ const resources: { [key: string]: IOperations } = {
 		},
 	},
 };
+
+export type AnclapResources = 'info' | 'token' | 'transactions';
 
 export default resources;
