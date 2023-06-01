@@ -16,14 +16,14 @@ const description: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Get Deposit',
+				name: 'Deposit',
 				value: 'deposit',
-				action: 'Get deposit interactive URL',
+				action: 'Deposit',
 			},
 			{
-				name: 'Get Withdraw',
+				name: 'Withdraw',
 				value: 'withdraw',
-				action: 'Get withdraw interactive URL',
+				action: 'Withdraw',
 			},
 		],
 	},
