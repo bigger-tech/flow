@@ -59,8 +59,6 @@ export function convertAmountToBigNumber(amount: number): string {
 export function buildAsset(assetValues: IAsset['values']): Asset {
 	let asset: Asset;
 	if (!assetValues) throw new NoAssetSelectedError('An asset must be selected');
-	else {
-	}
 	if (assetValues.isNative) {
 		asset = Asset.native();
 	} else {
