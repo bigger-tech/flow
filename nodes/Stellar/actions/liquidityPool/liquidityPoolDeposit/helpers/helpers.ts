@@ -3,17 +3,15 @@ import ILiquidityPoolPrice from '../../../entities/ILiquidityPoolPrice';
 import IPriceFraction from '../../../entities/IPriceFraction';
 import NoPriceSelectedError from '../errors/NoPriceSelectedError';
 
-export default function getPrice(priceValues: ILiquidityPoolPrice['values']) {
-	let price: string | IPriceFraction;
-	if (priceValues.isPriceAFraction && priceValues.priceNumerator && priceValues.priceDenominator) {
-		price = {
-			n: convertAmountToBigNumber(priceValues.priceNumerator),
-			d: convertAmountToBigNumber(priceValues.priceDenominator),
+export default function getPrice(price: ILiquidityPoolPrice['values']): string | IPriceFraction {
+	if (price.isPriceAFraction && price.priceNumerator && price.priceDenominator) {
+		return {
+			n: convertAmountToBigNumber(price.priceNumerator),
+			d: convertAmountToBigNumber(price.priceDenominator),
 		};
-	} else if (priceValues.priceNumber) {
-		price = convertAmountToBigNumber(priceValues.priceNumber);
-	} else {
-		throw new NoPriceSelectedError();
 	}
-	return price;
+	if (price.priceNumber) {
+		return convertAmountToBigNumber(price.priceNumber);
+	}
+	throw new NoPriceSelectedError();
 }
