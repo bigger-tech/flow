@@ -15,18 +15,4 @@ export const accountMergeDescription: AccountMergeProperties = [
 		default: '',
 		placeholder: 'GCEVJ...',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['accountMerge'],
-				operation: ['accountMerge'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

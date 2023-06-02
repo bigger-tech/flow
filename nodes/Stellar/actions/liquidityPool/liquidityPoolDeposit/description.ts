@@ -46,154 +46,158 @@ export const liquidityPoolDepositDescription: LiquidityPoolProperties = [
 	},
 	{
 		displayName: 'Min Price',
-		name: 'isMinPriceAFraction',
+		name: 'minPrice',
 		description: 'Minimum depositA/depositB price',
-		type: 'options',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: ['liquidityPool'],
-				operation: ['liquidityPoolDeposit'],
-			},
-		},
-		options: [
-			{
-				name: 'Number',
-				value: false,
-			},
-			{
-				name: 'Fraction',
-				value: true,
-			},
-		],
-	},
-	{
-		displayName: 'Number',
-		name: 'minPriceNumber',
-		type: 'number',
-		default: 0,
-		required: true,
-		displayOptions: {
-			show: {
-				isMinPriceAFraction: [false],
-			},
-		},
-	},
-	{
-		displayName: 'Min Price Fraction',
-		name: 'minPriceFraction',
 		type: 'fixedCollection',
+		placeholder: 'Select a min price',
 		default: {},
-		required: true,
 		options: [
 			{
 				name: 'values',
-				displayName: 'Fraction',
+				displayName: 'minPrice',
 				values: [
 					{
+						displayName: 'Type',
+						name: 'isPriceAFraction',
+						type: 'options',
+						default: false,
+						options: [
+							{
+								name: 'Number',
+								value: false,
+							},
+							{
+								name: 'Fraction',
+								value: true,
+							},
+						],
+					},
+					{
+						displayName: 'Number',
+						name: 'priceNumber',
+						type: 'number',
+						default: 0,
+						required: true,
+						displayOptions: {
+							show: {
+								isPriceAFraction: [false],
+							},
+						},
+					},
+
+					{
 						displayName: 'Numerator',
-						name: 'numerator',
+						name: 'priceNumerator',
 						type: 'number',
 						placeholder: 'Numerator',
 						default: '',
+						displayOptions: {
+							show: {
+								isPriceAFraction: [true],
+							},
+						},
 					},
 					{
 						displayName: 'Denominator',
-						name: 'denominator',
+						name: 'priceDenominator',
 						type: 'number',
+						typeOptions: {
+							minValue: 1,
+						},
 						placeholder: 'Denominator',
-						default: '',
+						default: 1,
+						displayOptions: {
+							show: {
+								isPriceAFraction: [true],
+							},
+						},
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				isMinPriceAFraction: [true],
+				resource: ['liquidityPool'],
+				operation: ['liquidityPoolDeposit'],
 			},
 		},
 	},
 	{
 		displayName: 'Max Price',
-		name: 'isMaxPriceAFraction',
-		description: 'Maximum depositA/depositB price',
-		type: 'options',
-		default: false,
-		displayOptions: {
-			show: {
-				resource: ['liquidityPool'],
-				operation: ['liquidityPoolDeposit'],
-			},
-		},
-		options: [
-			{
-				name: 'Number',
-				value: false,
-			},
-			{
-				name: 'Fraction',
-				value: true,
-			},
-		],
-	},
-	{
-		displayName: 'Number',
-		name: 'maxPriceNumber',
-		type: 'number',
-		default: 0,
-		required: true,
-		displayOptions: {
-			show: {
-				isMaxPriceAFraction: [false],
-			},
-		},
-	},
-	{
-		displayName: 'Fraction',
-		name: 'maxPriceFraction',
+		name: 'maxPrice',
+		description: 'Minimum depositA/depositB price',
 		type: 'fixedCollection',
+		placeholder: 'Select a max price',
 		default: {},
-		required: true,
 		options: [
 			{
 				name: 'values',
-				displayName: 'Max Price Fraction',
+				displayName: 'Max Price',
 				values: [
 					{
+						displayName: 'Type',
+						name: 'isPriceAFraction',
+						type: 'options',
+						default: false,
+						options: [
+							{
+								name: 'Number',
+								value: false,
+							},
+							{
+								name: 'Fraction',
+								value: true,
+							},
+						],
+					},
+					{
+						displayName: 'Number',
+						name: 'priceNumber',
+						type: 'number',
+						default: 0,
+						required: true,
+						displayOptions: {
+							show: {
+								isPriceAFraction: [false],
+							},
+						},
+					},
+
+					{
 						displayName: 'Numerator',
-						name: 'numerator',
+						name: 'priceNumerator',
 						type: 'number',
 						placeholder: 'Numerator',
 						default: '',
+						displayOptions: {
+							show: {
+								isPriceAFraction: [true],
+							},
+						},
 					},
 					{
 						displayName: 'Denominator',
-						name: 'denominator',
+						name: 'priceDenominator',
 						type: 'number',
 						placeholder: 'Denominator',
+						typeOptions: {
+							minValue: 1,
+						},
 						default: '',
+						displayOptions: {
+							show: {
+								isPriceAFraction: [true],
+							},
+						},
 					},
 				],
 			},
 		],
 		displayOptions: {
 			show: {
-				isMaxPriceAFraction: [true],
-			},
-		},
-	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
 				resource: ['liquidityPool'],
 				operation: ['liquidityPoolDeposit'],
 			},
 		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
 	},
 ];

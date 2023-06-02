@@ -1,47 +1,32 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
-import { convertAmountToBigNumber } from '../../../transport';
+import { buildAsset, convertAmountToBigNumber } from '../../../transport';
+import IAssetsPath from '../../entities/IAssetsPath';
 import IAsset from '../../entities/IAsset';
 
 export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 	try {
-		const destination = this.getNodeParameter('destinationAccount', 0) as string;
-		const isSendingAssetNative = this.getNodeParameter('isSendingAssetNative', 0) as boolean;
-		let sendAsset: Asset;
-		let path: Asset[] = [];
-		if (isSendingAssetNative) {
-			sendAsset = Asset.native();
-		} else {
-			const sendingAsset = this.getNodeParameter('sendingAsset', 0) as IAsset;
-			sendAsset = new Asset(sendingAsset.values.code, sendingAsset.values.issuer);
-		}
-
+		const { values: sendingAsset } = this.getNodeParameter('sendingAsset', 0) as IAsset;
 		const sendingAmount = this.getNodeParameter('sendAmount', 0) as number;
-		const sendAmount = convertAmountToBigNumber(sendingAmount);
-
-		const intermediateAssets = this.getNodeParameter('intermediatePathAssets', 0, []) as any;
-		intermediateAssets.forEach((asset: any) => {
-			if (asset.native) {
-				path.push(Asset.native());
-			} else {
-				path.push(new Asset(asset.customAsset.values.code, asset.customAsset.values.issuer));
-			}
-		});
-
-		const isDestinationAssetNative = this.getNodeParameter(
-			'isDestinationAssetNative',
-			0,
-		) as boolean;
-		let destAsset: Asset;
-		if (isDestinationAssetNative) {
-			destAsset = Asset.native();
-		} else {
-			const destinationAsset = this.getNodeParameter('destinationAsset', 0) as IAsset;
-			destAsset = new Asset(destinationAsset.values.code, destinationAsset.values.issuer);
-		}
-
+		const destination = this.getNodeParameter('destinationAccount', 0) as string;
+		const { values: destinationAsset } = this.getNodeParameter('destinationAsset', 0) as IAsset;
 		const minDestinationAmount = this.getNodeParameter('minDestinationAmount', 0) as number;
+		const { values: intermediateAssets } = this.getNodeParameter(
+			'intermediatePathAssets',
+			0,
+			[],
+		) as IAssetsPath;
+
+		const sendAsset = buildAsset(sendingAsset);
+		const sendAmount = convertAmountToBigNumber(sendingAmount);
+		const destAsset = buildAsset(destinationAsset);
 		const destMin = convertAmountToBigNumber(minDestinationAmount);
+		let path: Asset[] = [];
+
+		intermediateAssets.forEach((asset) => {
+			const intermediateAsset = buildAsset(asset);
+			path.push(intermediateAsset);
+		});
 
 		let pathPaymentStrictSendOperation = Operation.pathPaymentStrictSend({
 			sendAsset,
@@ -51,6 +36,7 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			destMin,
 			path,
 		}).toXDR('base64');
+
 		return { operation: pathPaymentStrictSendOperation };
 	} catch (error) {
 		throw new Error(error);

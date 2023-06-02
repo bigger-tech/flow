@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Asset, Server } from 'stellar-sdk';
-import { setNetwork } from '../../../transport';
-import IAssetParameter from '../../entities/IAsset';
+import { Server } from 'stellar-sdk';
+import { buildAsset, setNetwork } from '../../../transport';
+import IAsset from '../../entities/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
 
@@ -10,35 +10,16 @@ export async function swapAssets(this: IExecuteFunctions) {
 		const stellarNetwork = await setNetwork.call(this);
 		const server = new Server(stellarNetwork.url as string);
 		const amount = this.getNodeParameter('amount', 0) as string;
-		const publicKeyParam = this.getNodeParameter('publicKey', 1) as string;
-		const slippageAmount = this.getNodeParameter('slippage', 1) as ISlippageParameter;
-		const isSourceAssetNative = this.getNodeParameter('isSourceAssetNative', 1) as boolean;
-		const isDestinationAssetNative = this.getNodeParameter(
-			'isDestinationAssetNative',
-			1,
-		) as boolean;
+		const publicKeyParam = this.getNodeParameter('publicKey', 0) as string;
+		const slippageAmount = this.getNodeParameter('slippage', 0) as ISlippageParameter;
+		const { values: sourceAssetValues } = this.getNodeParameter('sourceAsset', 0) as IAsset;
+		const { values: destinationAssetValues } = this.getNodeParameter(
+			'destinationValues',
+			0,
+		) as IAsset;
 
-		let sourceAsset: Asset;
-		let destinationAsset: Asset;
-		let sourceAssetValues: IAssetParameter;
-		let destinationAssetValues: IAssetParameter;
-
-		if (isSourceAssetNative) {
-			sourceAsset = Asset.native();
-		} else {
-			sourceAssetValues = this.getNodeParameter('sourceAsset', 1) as IAssetParameter;
-			sourceAsset = new Asset(sourceAssetValues.values.code, sourceAssetValues.values.issuer);
-		}
-
-		if (isDestinationAssetNative) {
-			destinationAsset = Asset.native();
-		} else {
-			destinationAssetValues = this.getNodeParameter('destinationAsset', 1) as IAssetParameter;
-			destinationAsset = new Asset(
-				destinationAssetValues.values.code,
-				destinationAssetValues.values.issuer,
-			);
-		}
+		const sourceAsset = buildAsset(sourceAssetValues);
+		const destinationAsset = buildAsset(destinationAssetValues);
 
 		const swapAssetOperation = await getSwapAssetsOperation(
 			server,

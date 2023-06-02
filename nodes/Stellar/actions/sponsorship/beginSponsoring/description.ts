@@ -16,18 +16,4 @@ export const beginSponsoringDescription: SponsorshipProperties = [
 		placeholder: 'GCEVJ...',
 		description: 'Account public key',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['sponsorship'],
-				operation: ['beginSponsoring'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

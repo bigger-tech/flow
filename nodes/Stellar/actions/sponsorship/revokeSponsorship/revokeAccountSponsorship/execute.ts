@@ -7,6 +7,7 @@ export async function revokeAccountSponsorship(this: IExecuteFunctions) {
 		const revokeAccountSponsorshipOperation = Operation.revokeAccountSponsorship({
 			account,
 		}).toXDR('base64');
+
 		return { operation: revokeAccountSponsorshipOperation };
 	} catch (error) {
 		throw new Error(error);

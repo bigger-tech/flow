@@ -1,6 +1,6 @@
 import type { AllEntities, Entity, PropertiesOf } from 'n8n-workflow';
 
-type StellarMap = {
+export type StellarResources = {
 	accountMerge: 'accountMerge';
 	settings: 'bumpSequence' | 'manageData' | 'setOptions';
 	claimableBalance: 'createClaimableBalance' | 'claimClaimableBalance';
@@ -16,21 +16,21 @@ type StellarMap = {
 	trust: 'changeTrust' | 'setTrustline';
 };
 
-export type Stellar = AllEntities<StellarMap>;
+export type Stellar = AllEntities<StellarResources>;
 
-type StellarAccountMerge = Entity<StellarMap, 'accountMerge'>;
-type StellarSettings = Entity<StellarMap, 'settings'>;
-type StellarClaimableBalance = Entity<StellarMap, 'claimableBalance'>;
-type StellarClawback = Entity<StellarMap, 'clawback'>;
-type StellarFundAccount = Entity<StellarMap, 'fundAccount'>;
-type StellarLiquidityPool = Entity<StellarMap, 'liquidityPool'>;
-type StellarNewAccount = Entity<StellarMap, 'newAccount'>;
-type StellarOffers = Entity<StellarMap, 'offers'>;
-type StellarPayments = Entity<StellarMap, 'payments'>;
-type StellarSponsorship = Entity<StellarMap, 'sponsorship'>;
-type StellarSwapAssets = Entity<StellarMap, 'swapAssets'>;
-type StellarTransaction = Entity<StellarMap, 'transaction'>;
-type StellarTrust = Entity<StellarMap, 'trust'>;
+type StellarAccountMerge = Entity<StellarResources, 'accountMerge'>;
+type StellarSettings = Entity<StellarResources, 'settings'>;
+type StellarClaimableBalance = Entity<StellarResources, 'claimableBalance'>;
+type StellarClawback = Entity<StellarResources, 'clawback'>;
+type StellarFundAccount = Entity<StellarResources, 'fundAccount'>;
+type StellarLiquidityPool = Entity<StellarResources, 'liquidityPool'>;
+type StellarNewAccount = Entity<StellarResources, 'newAccount'>;
+type StellarOffers = Entity<StellarResources, 'offers'>;
+type StellarPayments = Entity<StellarResources, 'payments'>;
+type StellarSponsorship = Entity<StellarResources, 'sponsorship'>;
+type StellarSwapAssets = Entity<StellarResources, 'swapAssets'>;
+type StellarTransaction = Entity<StellarResources, 'transaction'>;
+type StellarTrust = Entity<StellarResources, 'trust'>;
 
 export type AccountMergeProperties = PropertiesOf<StellarAccountMerge>;
 export type SettingsProperties = PropertiesOf<StellarSettings>;

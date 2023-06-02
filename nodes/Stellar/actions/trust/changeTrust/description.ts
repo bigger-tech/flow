@@ -59,41 +59,43 @@ export const changeTrustDescription: TrustProperties = [
 	},
 	{
 		displayName: 'Asset A',
-		name: 'isAssetANative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				assetType: ['liquidityPool'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
-		displayName: 'Asset A',
 		name: 'assetA',
 		type: 'fixedCollection',
 		default: {},
+		required: true,
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
@@ -101,6 +103,11 @@ export const changeTrustDescription: TrustProperties = [
 						type: 'string',
 						default: '',
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
@@ -108,47 +115,51 @@ export const changeTrustDescription: TrustProperties = [
 		displayOptions: {
 			show: {
 				assetType: ['liquidityPool'],
-				isAssetANative: [false],
+				resource: ['trust'],
+				operation: ['changeTrust'],
 			},
 		},
 	},
+
 	{
 		displayName: 'Asset B',
-		name: 'isAssetBNative',
-		type: 'options',
-		required: true,
-		displayOptions: {
-			show: {
-				assetType: ['liquidityPool'],
-			},
-		},
-		options: [
-			{
-				name: 'Native',
-				value: true,
-			},
-			{
-				name: 'Custom Asset',
-				value: false,
-			},
-		],
-		default: true,
-	},
-	{
-		displayName: 'Asset B',
-		name: 'asset B',
+		name: 'assetB',
 		type: 'fixedCollection',
 		default: {},
+		required: true,
 		options: [
 			{
 				name: 'values',
 				displayName: 'Asset',
 				values: [
 					{
+						displayName: 'Asset',
+						name: 'isNative',
+						type: 'options',
+						required: true,
+
+						options: [
+							{
+								name: 'Native',
+								value: true,
+							},
+							{
+								name: 'Custom Asset',
+								value: false,
+							},
+						],
+						default: true,
+					},
+					{
 						displayName: 'Code',
 						name: 'code',
 						type: 'string',
 						default: '',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 					{
 						displayName: 'Issuer',
@@ -156,6 +167,11 @@ export const changeTrustDescription: TrustProperties = [
 						type: 'string',
 						default: '',
 						placeholder: 'GCEVJ...',
+						displayOptions: {
+							show: {
+								isNative: [false],
+							},
+						},
 					},
 				],
 			},
@@ -163,7 +179,8 @@ export const changeTrustDescription: TrustProperties = [
 		displayOptions: {
 			show: {
 				assetType: ['liquidityPool'],
-				isAssetBNative: [false],
+				resource: ['trust'],
+				operation: ['changeTrust'],
 			},
 		},
 	},
@@ -183,7 +200,7 @@ export const changeTrustDescription: TrustProperties = [
 	{
 		displayName: 'Trust Limit',
 		name: 'trustLimit',
-		type: 'number',
+		type: 'string',
 		required: true,
 		displayOptions: {
 			show: {
@@ -193,20 +210,5 @@ export const changeTrustDescription: TrustProperties = [
 		},
 		default: '',
 		description: 'Leave empty to default to the max int64. Set to 0 to remove the trust line.',
-	},
-
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['trust'],
-				operation: ['changeTrust'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
 	},
 ];

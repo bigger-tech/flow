@@ -57,18 +57,4 @@ export const liquidityPoolWithdrawDescription: LiquidityPoolProperties = [
 		default: '',
 		description: 'Minimum amount of the second asset to withdraw',
 	},
-	{
-		displayName: 'Source Account',
-		name: 'sourceAccount',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['liquidityPool'],
-				operation: ['liquidityPoolWithdraw'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-		description: 'Account public key',
-	},
 ];

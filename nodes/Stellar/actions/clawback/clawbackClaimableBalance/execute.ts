@@ -7,6 +7,7 @@ export async function clawbackClaimableBalance(this: IExecuteFunctions) {
 		const clawbackClaimableBalanceOperation = Operation.clawbackClaimableBalance({
 			balanceId,
 		}).toXDR('base64');
+
 		return { operation: clawbackClaimableBalanceOperation };
 	} catch (error) {
 		throw new Error(error);
