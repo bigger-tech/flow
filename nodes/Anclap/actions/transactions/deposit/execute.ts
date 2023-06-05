@@ -2,7 +2,7 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { getAnclapToml } from '../../../transport/anclapToml';
 import SEP24 from '../../../transport/SEP24';
 import SEP6 from '../../../transport/SEP6';
-import { AnclapAssetCode } from '../../../transport/IAnclapInfoResponse';
+import { AnclapAssetCode } from '../../../transport/responses/IAnclapInfoResponse';
 import { verifyAmount } from '../../../transport/helpers';
 
 export async function deposit(this: IExecuteFunctions) {

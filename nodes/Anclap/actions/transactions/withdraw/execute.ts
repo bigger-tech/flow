@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { getAnclapToml } from '../../../transport/anclapToml';
 import SEP24 from '../../../transport/SEP24';
-import { AnclapAssetCode } from '../../../transport/IAnclapInfoResponse';
+import { AnclapAssetCode } from '../../../transport/responses/IAnclapInfoResponse';
 import SEP6 from '../../../transport/SEP6';
 import { verifyAmount } from '../../../transport/helpers';
 

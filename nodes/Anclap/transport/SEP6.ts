@@ -1,7 +1,7 @@
 import axios from 'axios';
 import IAnclapTomlResponse from './IAnclapTomlResponse';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
-import { IAnclapInfoResponse } from './IAnclapInfoResponse';
+import { IAnclapInfoResponse } from './responses/IAnclapInfoResponse';
 
 export default class SEP6 {
 	private tomlInfo: IAnclapTomlResponse;
