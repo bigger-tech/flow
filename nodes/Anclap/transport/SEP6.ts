@@ -1,7 +1,10 @@
 import axios from 'axios';
-import IAnclapTomlResponse from './IAnclapTomlResponse';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
-import { IAnclapInfoResponse } from './responses/IAnclapInfoResponse';
+import {
+	IAnclapTomlResponse,
+	IAnclapInfoResponse,
+	IAnclapWithdrawResponse,
+} from './responses/responses';
 
 export default class SEP6 {
 	private tomlInfo: IAnclapTomlResponse;
@@ -35,7 +38,13 @@ export default class SEP6 {
 		}
 	}
 
-	async withdraw(code: string, type: string, dest: string, account: string, amount: string) {
+	async withdraw(
+		code: string,
+		type: string,
+		dest: string,
+		account: string,
+		amount: string,
+	): Promise<IAnclapWithdrawResponse> {
 		try {
 			const info = await axios.get(
 				`${this.tomlInfo.TRANSFER_SERVER}/withdraw?asset_code=${code}&type=${type}&dest=${dest}&account=${account}&amount=${amount}`,
