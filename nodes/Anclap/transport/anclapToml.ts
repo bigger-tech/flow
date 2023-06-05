@@ -1,6 +1,6 @@
 import type { IExecuteFunctions, ITriggerFunctions } from 'n8n-workflow';
 import GetAnclapTomlError from './errors/GetAnclapTomlError';
-import IAnclapTomlResponse from './IAnclapTomlResponse';
+import IAnclapTomlResponse from './responses/IAnclapTomlResponse';
 import SEP1 from './SEP1';
 
 export async function getAnclapToml(
