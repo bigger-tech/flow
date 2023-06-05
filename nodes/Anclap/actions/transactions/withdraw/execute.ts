@@ -3,9 +3,11 @@ import { getAnclapToml } from '../../../transport/anclapToml';
 import SEP24 from '../../../transport/SEP24';
 import { AnclapAssetCode } from '../../../transport/responses/IAnclapInfoResponse';
 import SEP6 from '../../../transport/SEP6';
-import { verifyAmount } from '../../../transport/helpers';
+import { buildWithdrawTransaction, verifyAmount } from '../../../transport/helpers';
+import { setNetwork } from '../../../../Stellar/transport';
 
 export async function withdraw(this: IExecuteFunctions) {
+	const stellarNetwork = await setNetwork.call(this);
 	const token = this.getNodeParameter('token', 0) as string;
 	const assetCode = this.getNodeParameter('assetCode', 0) as AnclapAssetCode;
 	const publicKey = this.getNodeParameter('publicKey', 0) as string;
@@ -14,8 +16,7 @@ export async function withdraw(this: IExecuteFunctions) {
 
 	const getSep24WithdrawUrl = async () => {
 		const sep24 = new SEP24(anclapToml, token);
-		const interactiveUrl = await sep24.getWithdrawInteractiveUrl(assetCode, publicKey);
-		return { interactiveUrl };
+		return await sep24.getWithdrawInteractiveUrl(assetCode, publicKey);
 	};
 
 	const getSep6WithdrawInfo = async () => {
@@ -27,7 +28,14 @@ export async function withdraw(this: IExecuteFunctions) {
 		const withdrawAsset = info.withdraw[assetCode];
 
 		if (verifyAmount(withdrawAsset, amount)) {
-			return await sep6.withdraw(assetCode, type, dest, publicKey, amount);
+			const withdraw = await sep6.withdraw(assetCode, type, dest, publicKey, amount);
+			const transaction = await buildWithdrawTransaction(
+				publicKey,
+				withdraw,
+				stellarNetwork.url,
+				stellarNetwork.passphrase,
+			);
+			return { withdraw, transaction };
 		} else {
 			return { error: 'The amount is less than the min amount', withdrawAsset };
 		}
