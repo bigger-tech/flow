@@ -1,6 +1,6 @@
 import axios from 'axios';
 import toml from 'toml';
-import IAnclapTomlResponse from './IAnclapTomlResponse';
+import IAnclapTomlResponse from './responses/IAnclapTomlResponse';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 
 export default class SEP1 {

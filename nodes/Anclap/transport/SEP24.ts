@@ -1,5 +1,5 @@
 import axios from 'axios';
-import IAnclapTomlResponse from './IAnclapTomlResponse';
+import IAnclapTomlResponse from './responses/IAnclapTomlResponse';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 
 export default class SEP24 {
