@@ -57,10 +57,12 @@ export default class SEP6 {
 		}
 	}
 
-	async getTransactions(code: string, account: string) {
+	async getTransactions(code: string, account: string, kind: string) {
 		try {
 			const info = await axios.get(
-				`${this.tomlInfo.TRANSFER_SERVER}/transactions?asset_code=${code}&account=${account}`,
+				`${this.tomlInfo.TRANSFER_SERVER}/transactions?asset_code=${code}&account=${account}&kind=${
+					kind !== 'default' ? kind : ''
+				}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 

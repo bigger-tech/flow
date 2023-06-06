@@ -1,6 +1,7 @@
 import axios from 'axios';
 import IAnclapTomlResponse from './responses/IAnclapTomlResponse';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
+import { TransactionType } from './transactionInfoTypes';
 
 export default class SEP24 {
 	private tomlInfo: IAnclapTomlResponse;
@@ -45,11 +46,11 @@ export default class SEP24 {
 		}
 	}
 
-	async getTransactions(assetCode: string, publicKey: string) {
+	async getTransactions(assetCode: string, publicKey: string, kind: TransactionType) {
 		try {
 			const result = await axios.get(`${this.tomlInfo.TRANSFER_SERVER_SEP0024}/transactions`, {
 				headers: { Authorization: `Bearer ${this.token}` },
-				params: { asset_code: assetCode, account: publicKey },
+				params: { asset_code: assetCode, account: publicKey, kind: kind !== 'default' ? kind : '' },
 			});
 
 			return result.data;
