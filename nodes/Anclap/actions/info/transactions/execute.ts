@@ -20,11 +20,19 @@ export async function transactions(this: IExecuteFunctions) {
 
 	async function getSep24Transactions() {
 		const sep24 = new SEP24(anclapToml, token);
-		return await sep24.getTransactions(assetCode, publicKey, transactionType);
+		return await sep24.getTransactions({
+			account: publicKey,
+			code: assetCode,
+			kind: transactionType,
+		});
 	}
 
 	async function getSep6Transactions() {
 		const sep6 = new SEP6(anclapToml, token);
-		return await sep6.getTransactions(assetCode, publicKey, transactionType);
+		return await sep6.getTransactions({
+			account: publicKey,
+			code: assetCode,
+			kind: transactionType,
+		});
 	}
 }

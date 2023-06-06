@@ -5,6 +5,7 @@ import {
 	IAnclapInfoResponse,
 	IAnclapWithdrawResponse,
 } from './responses/responses';
+import TransactionsRequest from './requests/TransactionsRequest';
 
 export default class SEP6 {
 	private tomlInfo: IAnclapTomlResponse;
@@ -57,12 +58,10 @@ export default class SEP6 {
 		}
 	}
 
-	async getTransactions(code: string, account: string, kind: string) {
+	async getTransactions(request: TransactionsRequest) {
 		try {
 			const info = await axios.get(
-				`${this.tomlInfo.TRANSFER_SERVER}/transactions?asset_code=${code}&account=${account}&kind=${
-					kind !== 'default' ? kind : ''
-				}`,
+				`${this.tomlInfo.TRANSFER_SERVER}/transactions?asset_code=${request.code}&account=${request.account}&kind=${request.kind}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
