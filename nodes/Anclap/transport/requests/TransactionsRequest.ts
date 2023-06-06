@@ -8,6 +8,9 @@ export default class TransactionsRequest {
 	constructor(code: string, account: string, kind: TransactionType) {
 		this.code = code;
 		this.account = account;
-		this.kind = kind !== 'default' ? kind : this.kind;
+
+		if (kind !== 'default') {
+			this.kind = kind;
+		}
 	}
 }
