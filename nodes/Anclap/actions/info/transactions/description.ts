@@ -34,6 +34,56 @@ export const transactionsDescription: INodeProperties[] = [
 		default: 'ARS',
 	},
 	{
+		displayName: 'Transaction Type',
+		name: 'transactionType',
+		type: 'options',
+		required: true,
+		options: [
+			{
+				name: 'Default',
+				value: 'default',
+			},
+			{
+				name: 'Withdraw',
+				value: 'withdrawal',
+			},
+			{
+				name: 'Deposit',
+				value: 'deposit',
+			},
+		],
+		displayOptions: {
+			show: {
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: 'default',
+	},
+	{
+		displayName: 'Protocol',
+		name: 'protocol',
+		type: 'options',
+		required: true,
+		options: [
+			{
+				name: 'SEP24',
+				value: 'sep24',
+			},
+			{
+				name: 'SEP6',
+				value: 'sep6',
+			},
+		],
+		displayOptions: {
+			show: {
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: 'sep24',
+	},
+	{
 		displayName: 'Public Key',
 		name: 'publicKey',
 		type: 'string',
