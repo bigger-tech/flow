@@ -1,7 +1,6 @@
-import { Asset, BASE_FEE, Operation, Server, TransactionBuilder, Memo } from 'stellar-sdk';
+import { Asset, Operation, Server, TransactionBuilder, Memo } from 'stellar-sdk';
 import { DepositAsset, WithdrawAsset } from './responses/IAnclapInfoResponse';
 import { IAnclapWithdrawResponse } from './responses/responses';
-import CryptoJS from 'crypto-js';
 
 export function verifyAmount(asset: DepositAsset | WithdrawAsset, amount: string) {
 	const minAmount = asset.min_amount;
@@ -16,6 +15,7 @@ export async function buildWithdrawTransaction(
 	networkPassphrase: string,
 ) {
 	const server = new Server(networkUrl);
+	const fee = (await server.feeStats()).fee_charged.p90;
 	const paymentOp = Operation.payment({
 		destination: withdrawInfo.how,
 		asset: getAsset(),
@@ -23,10 +23,10 @@ export async function buildWithdrawTransaction(
 	});
 
 	const transaction = new TransactionBuilder(await server.loadAccount(publicKey), {
-		fee: BASE_FEE,
+		fee,
 		networkPassphrase,
 	})
-		.setTimeout(30)
+		.setTimeout(100)
 		.addOperation(paymentOp)
 		.addMemo(getMemo());
 
@@ -48,7 +48,9 @@ export async function buildWithdrawTransaction(
 	}
 
 	function getMemo() {
-		const memo = CryptoJS.SHA256(withdrawInfo.memo).toString(CryptoJS.enc.Hex);
-		return Memo.hash(memo);
+		const buffer = Buffer.from(withdrawInfo.memo, 'base64');
+		const hex = buffer.toString('hex');
+
+		return Memo.hash(hex);
 	}
 }
