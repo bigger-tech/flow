@@ -28,13 +28,21 @@ export async function withdraw(this: IExecuteFunctions) {
 		const withdrawAsset = info.withdraw[assetCode];
 
 		if (verifyAmount(withdrawAsset, amount)) {
-			const withdraw = await sep6.withdraw(assetCode, type, dest, publicKey, amount);
+			const withdraw = await sep6.withdraw({
+				code: assetCode,
+				type,
+				dest,
+				account: publicKey,
+				amount,
+			});
+
 			const transaction = await buildWithdrawTransaction(
 				publicKey,
 				withdraw,
 				stellarNetwork.url,
 				stellarNetwork.passphrase,
 			);
+
 			return { withdraw, transaction };
 		} else {
 			return { error: 'The amount is less than the min amount', withdrawAsset };
