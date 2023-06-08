@@ -1,7 +1,7 @@
 import axios from 'axios';
 import IAnclapTomlResponse from './responses/IAnclapTomlResponse';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
-import TransactionsRequest from './requests/TransactionsRequest';
+import TransactionsRequest from './requests/TransactionsRequest/TransactionsRequest';
 
 export default class SEP24 {
 	private tomlInfo: IAnclapTomlResponse;
