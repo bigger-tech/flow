@@ -1,5 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 import { transactionsDescription } from './transactions/description';
+import { transactionDescription } from './transaction/description';
 
 const description: INodeProperties[] = [
 	{
@@ -15,13 +16,19 @@ const description: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Get Transactions Info',
+				name: 'Get Transactions',
 				value: 'transactions',
-				action: 'Get transactions info',
+				action: 'Get transactions',
+			},
+			{
+				name: 'Get Transaction By ID',
+				value: 'transaction',
+				action: 'Get transaction by ID',
 			},
 		],
 	},
 	...transactionsDescription,
+	...transactionDescription,
 ];
 
 export default description;
