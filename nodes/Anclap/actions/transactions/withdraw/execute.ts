@@ -8,7 +8,7 @@ import stellar from '../../../transport/stellar';
 
 export async function withdraw(this: IExecuteFunctions) {
 	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
-
+	const isInteractive = this.getNodeParameter('isInteractive', 0) as boolean;
 	const token = this.getNodeParameter('token', 0) as string;
 	const assetCode = this.getNodeParameter('assetCode', 0) as AnclapAssetCode;
 
@@ -46,7 +46,7 @@ export async function withdraw(this: IExecuteFunctions) {
 		}
 	};
 
-	if (anclapCredentials.protocol === 'sep24') {
+	if (isInteractive) {
 		return await getSep24WithdrawUrl();
 	} else {
 		return await getSep6WithdrawInfo();

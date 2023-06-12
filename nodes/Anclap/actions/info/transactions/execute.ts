@@ -2,11 +2,12 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import AnclapCredentials from '../../../transport/AnclapCredentials';
 import SEP24 from '../../../transport/SEP24';
 import SEP6 from '../../../transport/SEP6';
-import { TransactionType } from '../../../transport/types';
+import { Protocol, TransactionType } from '../../../transport/types';
 import TransactionsRequest from '../../../transport/requests/TransactionsRequest/TransactionsRequest';
 export async function transactions(this: IExecuteFunctions) {
 	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
+	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
 	const transactionType = this.getNodeParameter('transactionType', 0) as TransactionType;
 	const assetCode = this.getNodeParameter('assetCode', 0) as string;
 	const request = new TransactionsRequest({
@@ -14,7 +15,7 @@ export async function transactions(this: IExecuteFunctions) {
 		kind: transactionType,
 	});
 
-	if (anclapCredentials.protocol === 'sep24') {
+	if (protocol === 'sep24') {
 		return await getSep24Transactions();
 	} else {
 		return await getSep6Transactions();

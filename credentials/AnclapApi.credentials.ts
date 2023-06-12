@@ -6,23 +6,6 @@ export class AnclapApi implements ICredentialType {
 	description = 'Youre using this account';
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Protocol',
-			name: 'protocol',
-			type: 'options',
-			required: true,
-			options: [
-				{
-					name: 'SEP24',
-					value: 'sep24',
-				},
-				{
-					name: 'SEP6',
-					value: 'sep6',
-				},
-			],
-			default: 'sep24',
-		},
-		{
 			displayName: 'Stellar Network',
 			name: 'stellarNetwork',
 			type: 'options',

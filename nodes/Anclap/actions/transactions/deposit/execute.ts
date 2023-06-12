@@ -6,9 +6,10 @@ import { verifyAmount } from '../../../transport/helpers';
 import AnclapCredentials from '../../../transport/AnclapCredentials';
 
 export async function deposit(this: IExecuteFunctions) {
+	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
+	const isInteractive = this.getNodeParameter('isInteractive', 0) as boolean;
 	const assetCode = this.getNodeParameter('assetCode', 0) as AnclapAssetCode;
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapCredentials'));
 
 	const getSep24DepositUrl = async () => {
 		const sep24 = new SEP24(anclapCredentials, token);
@@ -29,7 +30,7 @@ export async function deposit(this: IExecuteFunctions) {
 		}
 	};
 
-	if (anclapCredentials.protocol === 'sep24') {
+	if (isInteractive) {
 		return await getSep24DepositUrl();
 	} else {
 		return await getSep6DepositInfo();
