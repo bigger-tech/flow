@@ -13,8 +13,7 @@ export async function deposit(this: IExecuteFunctions) {
 
 	const getSep24DepositUrl = async () => {
 		const sep24 = new SEP24(anclapCredentials, token);
-		const interactiveUrl = await sep24.getDepositInteractiveUrl(assetCode);
-		return { interactiveUrl };
+		return await sep24.getDepositInteractiveUrl(assetCode);
 	};
 
 	const getSep6DepositInfo = async () => {
