@@ -1,25 +1,23 @@
 import axios from 'axios';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
-import {
-	IAnclapTomlResponse,
-	IAnclapInfoResponse,
-	IAnclapWithdrawResponse,
-} from './responses/responses';
+import { IAnclapInfoResponse, IAnclapWithdrawResponse } from './responses/responses';
 import TransactionsRequest from './requests/TransactionsRequest/TransactionsRequest';
 import WithdrawRequest from './requests/WithdrawRequest/WithdrawRequest';
+import AnclapCredentials from './AnclapCredentials';
 
 export default class SEP6 {
-	private tomlInfo: IAnclapTomlResponse;
+	private anclapCredentials: AnclapCredentials;
 	private token: string;
 
-	constructor(tomlInfo: IAnclapTomlResponse, token: string) {
-		this.tomlInfo = tomlInfo;
+	constructor(anclapCredentials: AnclapCredentials, token: string) {
+		this.anclapCredentials = anclapCredentials;
 		this.token = token;
 	}
 
 	async getInfo(): Promise<IAnclapInfoResponse> {
 		try {
-			const info = await axios.get(`${this.tomlInfo.TRANSFER_SERVER}/info`);
+			const toml = await this.anclapCredentials.getToml();
+			const info = await axios.get(`${toml.TRANSFER_SERVER}/info`);
 
 			return info.data;
 		} catch (e) {
@@ -27,10 +25,11 @@ export default class SEP6 {
 		}
 	}
 
-	async deposit(code: string, account: string, amount: string) {
+	async deposit(code: string, amount: string) {
 		try {
+			const toml = await this.anclapCredentials.getToml();
 			const info = await axios.get(
-				`${this.tomlInfo.TRANSFER_SERVER}/deposit?asset_code=${code}&account=${account}&amount=${amount}`,
+				`${toml.TRANSFER_SERVER}/deposit?asset_code=${code}&account=${this.anclapCredentials.publicKey}&amount=${amount}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
@@ -42,8 +41,9 @@ export default class SEP6 {
 
 	async withdraw(request: WithdrawRequest): Promise<IAnclapWithdrawResponse> {
 		try {
+			const toml = await this.anclapCredentials.getToml();
 			const info = await axios.get(
-				`${this.tomlInfo.TRANSFER_SERVER}/withdraw?asset_code=${request.code}&type=${request.type}&dest=${request.dest}&account=${request.account}&amount=${request.amount}`,
+				`${toml.TRANSFER_SERVER}/withdraw?asset_code=${request.code}&type=${request.type}&dest=${request.dest}&account=${this.anclapCredentials.publicKey}&amount=${request.amount}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
@@ -55,8 +55,9 @@ export default class SEP6 {
 
 	async getTransactions(request: TransactionsRequest) {
 		try {
+			const toml = await this.anclapCredentials.getToml();
 			const info = await axios.get(
-				`${this.tomlInfo.TRANSFER_SERVER}/transactions?asset_code=${request.code}&account=${request.account}&kind=${request.kind}`,
+				`${toml.TRANSFER_SERVER}/transactions?asset_code=${request.code}&account=${this.anclapCredentials.publicKey}&kind=${request.kind}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
@@ -68,7 +69,8 @@ export default class SEP6 {
 
 	async getTransactionById(id: string) {
 		try {
-			const info = await axios.get(`${this.tomlInfo.TRANSFER_SERVER}/transaction?id=${id}`, {
+			const toml = await this.anclapCredentials.getToml();
+			const info = await axios.get(`${toml.TRANSFER_SERVER}/transaction?id=${id}`, {
 				headers: { Authorization: `Bearer ${this.token}` },
 			});
 

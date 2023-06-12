@@ -15,21 +15,6 @@ export const withdrawDescription: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Get Interactive URL',
-		name: 'isInteractive',
-		type: 'boolean',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['transactions'],
-				operation: ['withdraw'],
-			},
-		},
-		default: true,
-		description:
-			'Whether to get an interactive URL to do the transaction or do it manually ("manually" requires the user to be registered in Anclap)',
-	},
-	{
 		displayName: 'Asset Code',
 		name: 'assetCode',
 		type: 'options',
@@ -47,20 +32,6 @@ export const withdrawDescription: INodeProperties[] = [
 			},
 		],
 		default: 'ARS',
-	},
-	{
-		displayName: 'Public Key',
-		name: 'publicKey',
-		type: 'string',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['transactions'],
-				operation: ['withdraw'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
 	},
 	{
 		displayName: 'Type',

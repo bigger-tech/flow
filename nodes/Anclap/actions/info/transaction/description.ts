@@ -15,29 +15,6 @@ export const transactionDescription: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Protocol',
-		name: 'protocol',
-		type: 'options',
-		required: true,
-		options: [
-			{
-				name: 'SEP24',
-				value: 'sep24',
-			},
-			{
-				name: 'SEP6',
-				value: 'sep6',
-			},
-		],
-		displayOptions: {
-			show: {
-				resource: ['info'],
-				operation: ['transaction'],
-			},
-		},
-		default: 'sep24',
-	},
-	{
 		displayName: 'Transaction ID',
 		name: 'id',
 		type: 'string',

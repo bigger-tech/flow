@@ -1,29 +1,29 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { getAnclapToml } from '../../../transport/anclapToml';
 import SEP24 from '../../../transport/SEP24';
-import { AnclapAssetCode } from '../../../transport/responses/IAnclapInfoResponse';
 import SEP6 from '../../../transport/SEP6';
+import { AnclapAssetCode } from '../../../transport/responses/IAnclapInfoResponse';
 import { buildWithdrawTransaction, verifyAmount } from '../../../transport/helpers';
-import { setNetwork } from '../../../../Stellar/transport';
+import AnclapCredentials from '../../../transport/AnclapCredentials';
+import stellar from '../../../transport/stellar';
 
 export async function withdraw(this: IExecuteFunctions) {
-	const stellarNetwork = await setNetwork.call(this);
+	const anclapCredentials = new AnclapCredentials(
+		await this.getCredentials('anclapCredentialsApi'),
+	);
+
 	const token = this.getNodeParameter('token', 0) as string;
 	const assetCode = this.getNodeParameter('assetCode', 0) as AnclapAssetCode;
-	const publicKey = this.getNodeParameter('publicKey', 0) as string;
-	const isInteractive = this.getNodeParameter('isInteractive', 0) as boolean;
-	const anclapToml = await getAnclapToml.call(this);
 
 	const getSep24WithdrawUrl = async () => {
-		const sep24 = new SEP24(anclapToml, token);
-		return await sep24.getWithdrawInteractiveUrl(assetCode, publicKey);
+		const sep24 = new SEP24(anclapCredentials, token);
+		return await sep24.getWithdrawInteractiveUrl(assetCode);
 	};
 
 	const getSep6WithdrawInfo = async () => {
 		const amount = this.getNodeParameter('amount', 0) as string;
 		const type = this.getNodeParameter('type', 0) as string;
 		const dest = this.getNodeParameter('dest', 0) as string;
-		const sep6 = new SEP6(anclapToml, token);
+		const sep6 = new SEP6(anclapCredentials, token);
 		const info = await sep6.getInfo();
 		const withdrawAsset = info.withdraw[assetCode];
 
@@ -32,15 +32,14 @@ export async function withdraw(this: IExecuteFunctions) {
 				code: assetCode,
 				type,
 				dest,
-				account: publicKey,
 				amount,
 			});
 
 			const transaction = await buildWithdrawTransaction(
-				publicKey,
+				anclapCredentials.publicKey,
 				withdraw,
-				stellarNetwork.url,
-				stellarNetwork.passphrase,
+				stellar[anclapCredentials.stellarNetwork].url,
+				stellar[anclapCredentials.stellarNetwork].passphrase,
 			);
 
 			return { withdraw, transaction };
@@ -49,7 +48,7 @@ export async function withdraw(this: IExecuteFunctions) {
 		}
 	};
 
-	if (isInteractive) {
+	if (anclapCredentials.protocol === 'sep24') {
 		return await getSep24WithdrawUrl();
 	} else {
 		return await getSep6WithdrawInfo();
