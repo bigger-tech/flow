@@ -1,11 +1,11 @@
 import { Asset, Operation, Server, TransactionBuilder, Memo } from 'stellar-sdk';
 import { DepositAsset, WithdrawAsset } from './responses/IAnclapInfoResponse';
 import { IAnclapWithdrawResponse } from './responses/responses';
+import GetAssetError from './errors/GetAssetError';
 
 export function verifyAmount(asset: DepositAsset | WithdrawAsset, amount: string) {
 	const minAmount = asset.min_amount;
-	const parsedAmount = Number(amount);
-	return parsedAmount >= minAmount;
+	return Number(amount) >= minAmount;
 }
 
 export async function buildWithdrawTransaction(
@@ -22,17 +22,15 @@ export async function buildWithdrawTransaction(
 		amount: withdrawInfo.amount_in,
 	});
 
-	const transaction = new TransactionBuilder(await server.loadAccount(publicKey), {
+	return new TransactionBuilder(await server.loadAccount(publicKey), {
 		fee,
 		networkPassphrase,
 	})
 		.setTimeout(100)
 		.addOperation(paymentOp)
-		.addMemo(getMemo());
-
-	const transactionXdr = transaction.build().toXDR();
-
-	return transactionXdr;
+		.addMemo(getMemo())
+		.build()
+		.toXDR();
 
 	function getAsset() {
 		const issuerRegex = new RegExp(/[G][A-Z0-9]{55}/g);
@@ -43,7 +41,7 @@ export async function buildWithdrawTransaction(
 		if (issuer && assetCode) {
 			return new Asset(assetCode[1], issuer[0]);
 		} else {
-			throw new Error();
+			throw new GetAssetError();
 		}
 	}
 
