@@ -1,8 +1,8 @@
 import { ICredentialType, INodeProperties } from 'n8n-workflow';
 
 export class AnclapApi implements ICredentialType {
-	name = 'anclapCredentialsApi';
-	displayName = 'Anclap Credentials API';
+	name = 'anclapApi';
+	displayName = 'Anclap API';
 	description = 'Youre using this account';
 	properties: INodeProperties[] = [
 		{

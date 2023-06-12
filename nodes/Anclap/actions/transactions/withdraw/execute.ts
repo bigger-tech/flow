@@ -7,9 +7,7 @@ import AnclapCredentials from '../../../transport/AnclapCredentials';
 import stellar from '../../../transport/stellar';
 
 export async function withdraw(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(
-		await this.getCredentials('anclapCredentialsApi'),
-	);
+	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
 
 	const token = this.getNodeParameter('token', 0) as string;
 	const assetCode = this.getNodeParameter('assetCode', 0) as AnclapAssetCode;

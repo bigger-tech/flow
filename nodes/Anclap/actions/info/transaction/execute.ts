@@ -4,9 +4,7 @@ import SEP24 from '../../../transport/SEP24';
 import AnclapCredentials from '../../../transport/AnclapCredentials';
 
 export async function transaction(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(
-		await this.getCredentials('anclapCredentialsApi'),
-	);
+	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 	const id = this.getNodeParameter('id', 0) as string;
 
