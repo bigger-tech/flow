@@ -3,7 +3,7 @@ import { DepositAsset, WithdrawAsset } from './responses/IAnclapInfoResponse';
 import { IAnclapWithdrawResponse } from './responses/responses';
 import GetAssetError from './errors/GetAssetError';
 
-export function verifyAmount(asset: DepositAsset | WithdrawAsset, amount: string) {
+export function verifyAmount(asset: DepositAsset | WithdrawAsset, amount: string): boolean {
 	const minAmount = asset.min_amount;
 	return Number(amount) >= minAmount;
 }
@@ -13,7 +13,7 @@ export async function buildWithdrawTransaction(
 	withdrawInfo: IAnclapWithdrawResponse,
 	networkUrl: string,
 	networkPassphrase: string,
-) {
+): Promise<string> {
 	const server = new Server(networkUrl);
 	const fee = (await server.feeStats()).fee_charged.p90;
 	const paymentOp = Operation.payment({
@@ -32,7 +32,7 @@ export async function buildWithdrawTransaction(
 		.build()
 		.toXDR();
 
-	function getAsset() {
+	function getAsset(): Asset {
 		const issuerRegex = new RegExp(/[G][A-Z0-9]{55}/g);
 		const assetCodeRegex = new RegExp(/iso4217:(\w+)/);
 		const issuer = withdrawInfo.amount_in_asset.match(issuerRegex);
@@ -41,11 +41,11 @@ export async function buildWithdrawTransaction(
 		if (issuer && assetCode) {
 			return new Asset(assetCode[1], issuer[0]);
 		} else {
-			throw new GetAssetError();
+			throw new GetAssetError('Invalid asset');
 		}
 	}
 
-	function getMemo() {
+	function getMemo(): Memo<'hash'> {
 		const buffer = Buffer.from(withdrawInfo.memo, 'base64');
 		const hex = buffer.toString('hex');
 
