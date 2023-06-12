@@ -10,12 +10,9 @@ import { liquidityPoolDeposit, liquidityPoolWithdraw } from './liquidityPool';
 import { claimClaimableBalance, createClaimableBalance } from './claimable';
 import { clawback, clawbackClaimableBalance } from './clawback';
 import { changeTrust, setTrustline } from './trust';
-import {
-	getPayment,
-	makePayment,
-	pathPaymentStrictReceive,
-	pathPaymentStrictSend,
-} from './payments';
+import { checkLiquidityPool, checkLastPayments } from './server';
+
+import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './payments';
 import { StellarResources } from '../actions/entities/IStellarNode';
 
 interface IOperations {
@@ -87,9 +84,14 @@ const resources: { [key in keyof StellarResources]: IOperations } = {
 			setTrustline: { execute: setTrustline.execute },
 		},
 	},
+	server: {
+		operations: {
+			checkLastPayments: { execute: checkLastPayments.execute },
+			checkLiquidityPool: { execute: checkLiquidityPool.execute },
+		},
+	},
 	payments: {
 		operations: {
-			getPayment: { execute: getPayment.execute },
 			makePayment: { execute: makePayment.execute },
 			pathPaymentStrictReceive: { execute: pathPaymentStrictReceive.execute },
 			pathPaymentStrictSend: { execute: pathPaymentStrictSend.execute },
