@@ -4,6 +4,7 @@ import SEP24 from '../../../transport/SEP24';
 import SEP6 from '../../../transport/SEP6';
 import { Protocol, TransactionType } from '../../../transport/types';
 import TransactionsRequest from '../../../transport/requests/TransactionsRequest/TransactionsRequest';
+
 export async function transactions(this: IExecuteFunctions) {
 	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
