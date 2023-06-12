@@ -6,16 +6,10 @@ import GetAnclapTomlError from './errors/GetAnclapTomlError';
 export default class AnclapCredentials {
 	public stellarNetwork: StellarNetwork;
 	public publicKey: string;
-	public secretKey?: string;
 
 	constructor(credentials: ICredentialDataDecryptedObject) {
 		this.stellarNetwork = credentials.stellarNetwork as StellarNetwork;
 		this.publicKey = credentials.publicKey as string;
-		const secretKey = credentials.secretKey as string | undefined;
-
-		if (secretKey) {
-			this.secretKey = secretKey;
-		}
 	}
 
 	async getToml() {
