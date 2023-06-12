@@ -1,7 +1,6 @@
-import { TransactionType } from '../../transactionInfoTypes';
+import { TransactionType } from '../../types';
 
 export default interface ITransactionsRequest {
 	code: string;
-	account: string;
 	kind: '' | TransactionType;
 }

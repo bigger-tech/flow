@@ -15,6 +15,29 @@ export const transactionsDescription: INodeProperties[] = [
 		default: '',
 	},
 	{
+		displayName: 'Protocol',
+		name: 'protocol',
+		type: 'options',
+		required: true,
+		options: [
+			{
+				name: 'SEP24',
+				value: 'sep24',
+			},
+			{
+				name: 'SEP6',
+				value: 'sep6',
+			},
+		],
+		displayOptions: {
+			show: {
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: 'sep24',
+	},
+	{
 		displayName: 'Asset Code',
 		name: 'assetCode',
 		type: 'options',
@@ -59,42 +82,5 @@ export const transactionsDescription: INodeProperties[] = [
 			},
 		},
 		default: 'default',
-	},
-	{
-		displayName: 'Protocol',
-		name: 'protocol',
-		type: 'options',
-		required: true,
-		options: [
-			{
-				name: 'SEP24',
-				value: 'sep24',
-			},
-			{
-				name: 'SEP6',
-				value: 'sep6',
-			},
-		],
-		displayOptions: {
-			show: {
-				resource: ['info'],
-				operation: ['transactions'],
-			},
-		},
-		default: 'sep24',
-	},
-	{
-		displayName: 'Public Key',
-		name: 'publicKey',
-		type: 'string',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['info'],
-				operation: ['transactions'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
 	},
 ];

@@ -49,20 +49,6 @@ export const withdrawDescription: INodeProperties[] = [
 		default: 'ARS',
 	},
 	{
-		displayName: 'Public Key',
-		name: 'publicKey',
-		type: 'string',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['transactions'],
-				operation: ['withdraw'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-	},
-	{
 		displayName: 'Type',
 		name: 'type',
 		type: 'options',

@@ -49,20 +49,6 @@ export const depositDescription: INodeProperties[] = [
 		default: 'ARS',
 	},
 	{
-		displayName: 'Public Key',
-		name: 'publicKey',
-		type: 'string',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['transactions'],
-				operation: ['deposit'],
-			},
-		},
-		default: '',
-		placeholder: 'GCEVJ...',
-	},
-	{
 		displayName: 'Amount',
 		name: 'amount',
 		type: 'number',

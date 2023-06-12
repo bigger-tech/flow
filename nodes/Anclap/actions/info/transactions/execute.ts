@@ -1,20 +1,17 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { getAnclapToml } from '../../../transport/anclapToml';
+import AnclapCredentials from '../../../transport/AnclapCredentials';
 import SEP24 from '../../../transport/SEP24';
 import SEP6 from '../../../transport/SEP6';
-import { Protocol, TransactionType } from '../../../transport/transactionInfoTypes';
+import { Protocol, TransactionType } from '../../../transport/types';
 import TransactionsRequest from '../../../transport/requests/TransactionsRequest/TransactionsRequest';
-
 export async function transactions(this: IExecuteFunctions) {
+	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
-	const transactionType = this.getNodeParameter('transactionType', 0) as TransactionType;
 	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
+	const transactionType = this.getNodeParameter('transactionType', 0) as TransactionType;
 	const assetCode = this.getNodeParameter('assetCode', 0) as string;
-	const publicKey = this.getNodeParameter('publicKey', 0) as string;
-	const anclapToml = await getAnclapToml.call(this);
 	const request = new TransactionsRequest({
 		code: assetCode,
-		account: publicKey,
 		kind: transactionType,
 	});
 
@@ -25,12 +22,12 @@ export async function transactions(this: IExecuteFunctions) {
 	}
 
 	async function getSep24Transactions() {
-		const sep24 = new SEP24(anclapToml, token);
+		const sep24 = new SEP24(anclapCredentials, token);
 		return await sep24.getTransactions(request);
 	}
 
 	async function getSep6Transactions() {
-		const sep6 = new SEP6(anclapToml, token);
+		const sep6 = new SEP6(anclapCredentials, token);
 		return await sep6.getTransactions(request);
 	}
 }

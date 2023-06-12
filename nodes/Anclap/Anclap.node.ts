@@ -24,7 +24,7 @@ export class Anclap implements INodeType {
 		},
 		inputs: ['main'],
 		outputs: ['main'],
-		credentials: [{ name: 'stellarNetworkApi', required: true }],
+		credentials: [{ name: 'anclapApi', required: true }],
 		properties: [
 			{
 				displayName: 'Resource',

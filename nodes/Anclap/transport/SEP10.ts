@@ -1,17 +1,21 @@
 import axios from 'axios';
-import IAnclapTomlResponse from './responses/IAnclapTomlResponse';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
+import AnclapCredentials from './AnclapCredentials';
 
 export default class SEP10 {
-	private tomlInfo: IAnclapTomlResponse;
+	private anclapCredentials: AnclapCredentials;
 
-	constructor(tomlInfo: IAnclapTomlResponse) {
-		this.tomlInfo = tomlInfo;
+	constructor(anclapCredentials: AnclapCredentials) {
+		this.anclapCredentials = anclapCredentials;
 	}
 
-	async getChallenge(publicKey: string) {
+	async getChallenge() {
+		const toml = await this.anclapCredentials.getToml();
+
 		try {
-			const challenge = await axios.get(`${this.tomlInfo.WEB_AUTH_ENDPOINT}/?account=${publicKey}`);
+			const challenge = await axios.get(
+				`${toml.WEB_AUTH_ENDPOINT}/?account=${this.anclapCredentials.publicKey}`,
+			);
 
 			return challenge.data;
 		} catch (e) {
@@ -20,8 +24,10 @@ export default class SEP10 {
 	}
 
 	async sendChallenge(signedXdr: string) {
+		const toml = await this.anclapCredentials.getToml();
+
 		try {
-			const token = await axios.post(`${this.tomlInfo.WEB_AUTH_ENDPOINT}/`, {
+			const token = await axios.post(`${toml.WEB_AUTH_ENDPOINT}/`, {
 				transaction: signedXdr,
 			});
 
