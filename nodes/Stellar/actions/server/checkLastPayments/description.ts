@@ -1,6 +1,6 @@
-import { PaymentsProperties } from '../../entities/IStellarNode';
+import { ServerProperties } from '../../entities/IStellarNode';
 
-export const getLastPaymentDescription: PaymentsProperties = [
+export const checkLastPaymentsDescription: ServerProperties = [
 	{
 		displayName: 'Public Key',
 		name: 'publicKey',
@@ -8,8 +8,8 @@ export const getLastPaymentDescription: PaymentsProperties = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: ['payments'],
-				operation: ['getPayment'],
+				resource: ['server'],
+				operation: ['checkLastPayments'],
 			},
 		},
 		default: '',

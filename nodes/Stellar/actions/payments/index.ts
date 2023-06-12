@@ -1,4 +1,4 @@
-import * as getPayment from './getPayment';
+import * as getPayment from '../server/checkLastPayments';
 import * as makePayment from './makePayment';
 import * as pathPaymentStrictSend from './pathPaymentStrictSend';
 import * as pathPaymentStrictReceive from './pathPaymentStrictReceive';

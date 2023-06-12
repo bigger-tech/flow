@@ -2,7 +2,7 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { Server } from 'stellar-sdk';
 import { setNetwork } from '../../../transport';
 
-export async function getPayment(this: IExecuteFunctions) {
+export async function checkLastPayments(this: IExecuteFunctions) {
 	try {
 		const publicKey = this.getNodeParameter('publicKey', 1) as string;
 		const stellarNetwork = await setNetwork.call(this);

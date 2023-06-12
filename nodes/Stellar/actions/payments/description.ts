@@ -1,5 +1,4 @@
 import { INodeProperties } from 'n8n-workflow';
-import * as getPayment from './getPayment';
 import * as makePayment from './makePayment';
 import * as pathPaymentStrictSend from './pathPaymentStrictSend';
 import * as pathPaymentStrictReceive from './pathPaymentStrictReceive';
@@ -9,7 +8,7 @@ const description: INodeProperties[] = [
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
-		default: 'getPayment',
+		default: 'makePayment',
 		noDataExpression: true,
 		displayOptions: {
 			show: {
@@ -17,12 +16,6 @@ const description: INodeProperties[] = [
 			},
 		},
 		options: [
-			{
-				name: 'Get Payment',
-				value: 'getPayment',
-				description: 'Gets the last payment received by an account',
-				action: 'Get last payment',
-			},
 			{
 				name: 'Make Payment',
 				value: 'makePayment',
@@ -45,7 +38,6 @@ const description: INodeProperties[] = [
 			},
 		],
 	},
-	...getPayment.description,
 	...makePayment.description,
 	...pathPaymentStrictSend.description,
 	...pathPaymentStrictReceive.description,
