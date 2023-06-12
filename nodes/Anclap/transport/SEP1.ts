@@ -8,11 +8,12 @@ export default class SEP1 {
 	private anclapUrl: string;
 
 	constructor(network: StellarNetwork) {
-		if (network === 'public') {
-			this.anclapUrl = 'https://api.anclap.com/.well-known/stellar.toml';
-		} else {
-			this.anclapUrl = 'https://api-stage.anclap.ar/.well-known/stellar.toml';
-		}
+		const tomlUrls: { [key in StellarNetwork]: string } = {
+			public: 'https://api.anclap.com/.well-known/stellar.toml',
+			testnet: 'https://api-stage.anclap.ar/.well-known/stellar.toml',
+		};
+
+		this.anclapUrl = tomlUrls[network];
 	}
 
 	async getInfo(): Promise<IAnclapTomlResponse> {
