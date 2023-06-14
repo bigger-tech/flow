@@ -6,7 +6,7 @@ export default class Payment implements IPayment {
 	sourceAccount: string;
 	transactionHash: string;
 	assetType?: string;
-	assetCode?: string | undefined;
+	assetCode?: string;
 	assetIssuer?: string;
 	from: string;
 	amount: string;
