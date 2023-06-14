@@ -10,7 +10,7 @@ export type StellarResources = {
 	newAccount: 'createAccount';
 	offers: 'manageSellOffer' | 'manageBuyOffer' | 'createPassiveSellOffer';
 	payments: 'getPayment' | 'makePayment' | 'pathPaymentStrictSend' | 'pathPaymentStrictReceive';
-	server: 'checkLiquidityPool' | 'checkLastPayments';
+	server: 'checkLiquidityPool' | 'checkPayments';
 	sponsorship: 'beginSponsoring' | 'endSponsoring' | 'revokeSponsorship';
 	swapAssets: 'swap';
 	transaction: 'build' | 'sign';

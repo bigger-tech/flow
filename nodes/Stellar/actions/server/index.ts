@@ -1,5 +1,5 @@
-import * as checkLastPayments from './checkLastPayments';
+import * as checkPayments from './checkPayments';
 import * as checkLiquidityPool from './checkLiquidityPool';
 import description from './description';
 
-export { checkLastPayments, checkLiquidityPool, description };
+export { checkPayments, checkLiquidityPool, description };

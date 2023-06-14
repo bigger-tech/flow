@@ -1,6 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as checkLiquidityPool from './checkLiquidityPool';
-import * as checkLastPayments from './checkLastPayments';
+import * as checkPayments from './checkPayments';
 const description: INodeProperties[] = [
 	{
 		displayName: 'Operation',
@@ -21,13 +21,13 @@ const description: INodeProperties[] = [
 				action: 'Check liquidity pools availables',
 			},
 			{
-				name: 'Check Last Payments',
-				value: 'checkLastPayments',
-				action: 'Check last payments',
+				name: 'Check Payments',
+				value: 'checkPayments',
+				action: 'Check payments',
 			},
 		],
 	},
-	...checkLastPayments.description,
+	...checkPayments.description,
 	...checkLiquidityPool.description,
 ];
 
