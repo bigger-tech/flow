@@ -13,6 +13,7 @@ import * as liquidityPool from './actions/liquidityPool';
 import * as newAccount from './actions/newAccount';
 import * as offers from './actions/offers';
 import * as payments from './actions/payments';
+import * as server from './actions/server';
 import * as sponsorship from './actions/sponsorship';
 import * as swapAssets from './actions/swapAssets';
 import * as transaction from './actions/transaction';
@@ -78,6 +79,10 @@ export class Stellar implements INodeType {
 						value: 'payments',
 					},
 					{
+						name: 'Server',
+						value: 'server',
+					},
+					{
 						name: 'Sponsorship',
 						value: 'sponsorship',
 					},
@@ -107,6 +112,7 @@ export class Stellar implements INodeType {
 			...newAccount.description,
 			...offers.description,
 			...payments.description,
+			...server.description,
 			...sponsorship.description,
 			...swapAssets.description,
 			...transaction.description,
