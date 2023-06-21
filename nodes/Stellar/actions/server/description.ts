@@ -1,12 +1,12 @@
 import { INodeProperties } from 'n8n-workflow';
-import * as checkLiquidityPool from './checkLiquidityPool';
-import * as checkPayments from './checkPayments';
+import * as findLiquidityPool from './findLiquidityPool';
+import * as findPayments from './findPayments';
 const description: INodeProperties[] = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
-		default: 'checkLiquidityPool',
+		default: 'findLiquidityPool',
 		noDataExpression: true,
 		displayOptions: {
 			show: {
@@ -15,20 +15,21 @@ const description: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Check Liquidity Pool',
-				value: 'checkLiquidityPool',
-				description: 'Check liquidity pools availables',
-				action: 'Check liquidity pools availables',
+				name: 'Find Liquidity Pool',
+				value: 'findLiquidityPool',
+				description: 'Find liquidity pools availables',
+				action: 'Find liquidity pools availables',
 			},
 			{
-				name: 'Check Payments',
-				value: 'checkPayments',
-				action: 'Check payments',
+				name: 'Find Payments',
+				value: 'findPayments',
+				description: 'Find payments received by an account',
+				action: 'Find payments',
 			},
 		],
 	},
-	...checkPayments.description,
-	...checkLiquidityPool.description,
+	...findPayments.description,
+	...findLiquidityPool.description,
 ];
 
 export default description;

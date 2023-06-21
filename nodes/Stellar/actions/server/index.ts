@@ -1,5 +1,5 @@
-import * as checkPayments from './checkPayments';
-import * as checkLiquidityPool from './checkLiquidityPool';
+import * as findPayments from './findPayments';
+import * as findLiquidityPool from './findLiquidityPool';
 import description from './description';
 
-export { checkPayments, checkLiquidityPool, description };
+export { findPayments, findLiquidityPool, description };

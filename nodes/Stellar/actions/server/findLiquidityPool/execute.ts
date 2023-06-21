@@ -7,7 +7,7 @@ import liquidityPoolMapper from './helpers/helpers';
 import LiquidityPoolNotFoundError from './errors/LiquidityPoolNotFoundError';
 import LiquidityPool from '../../entities/LiquidityPool';
 
-export async function checkLiquidityPool(this: IExecuteFunctions) {
+export async function findLiquidityPool(this: IExecuteFunctions) {
 	const stellarNetwork = await setNetwork.call(this);
 	const server = new Server(stellarNetwork.url as string);
 	const liquiditPoolSearchType = this.getNodeParameter('liquiditPoolSearchType', 0) as string;

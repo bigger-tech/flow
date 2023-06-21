@@ -1,6 +1,6 @@
 import { ServerProperties } from '../../entities/IStellarNode';
 
-export const checkLiquidityPoolDescription: ServerProperties = [
+export const findLiquidityPoolDescription: ServerProperties = [
 	{
 		displayName: 'Liquidity Pool Options',
 		name: 'liquiditPoolSearchType',
@@ -9,7 +9,7 @@ export const checkLiquidityPoolDescription: ServerProperties = [
 		displayOptions: {
 			show: {
 				resource: ['server'],
-				operation: ['checkLiquidityPool'],
+				operation: ['findLiquidityPool'],
 			},
 		},
 		default: 'liquidityPoolForID',
@@ -26,7 +26,7 @@ export const checkLiquidityPoolDescription: ServerProperties = [
 		displayOptions: {
 			show: {
 				resource: ['server'],
-				operation: ['checkLiquidityPool'],
+				operation: ['findLiquidityPool'],
 				liquiditPoolSearchType: ['liquidityPoolForID'],
 			},
 		},
@@ -97,7 +97,7 @@ export const checkLiquidityPoolDescription: ServerProperties = [
 		displayOptions: {
 			show: {
 				resource: ['server'],
-				operation: ['checkLiquidityPool'],
+				operation: ['findLiquidityPool'],
 				liquiditPoolSearchType: ['liquidityPoolForAssets'],
 			},
 		},

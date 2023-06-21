@@ -1,6 +1,6 @@
 import { ServerProperties } from '../../entities/IStellarNode';
 
-export const checkPaymentsDescription: ServerProperties = [
+export const findPaymentsDescription: ServerProperties = [
 	{
 		displayName: 'Public Key',
 		name: 'publicKey',
@@ -9,7 +9,7 @@ export const checkPaymentsDescription: ServerProperties = [
 		displayOptions: {
 			show: {
 				resource: ['server'],
-				operation: ['checkPayments'],
+				operation: ['findPayments'],
 			},
 		},
 		default: '',
@@ -25,7 +25,7 @@ export const checkPaymentsDescription: ServerProperties = [
 		displayOptions: {
 			show: {
 				resource: ['server'],
-				operation: ['checkPayments'],
+				operation: ['findPayments'],
 			},
 		},
 	},
@@ -41,7 +41,7 @@ export const checkPaymentsDescription: ServerProperties = [
 		displayOptions: {
 			show: {
 				resource: ['server'],
-				operation: ['checkPayments'],
+				operation: ['findPayments'],
 			},
 		},
 	},
@@ -54,7 +54,7 @@ export const checkPaymentsDescription: ServerProperties = [
 		displayOptions: {
 			show: {
 				resource: ['server'],
-				operation: ['checkPayments'],
+				operation: ['findPayments'],
 			},
 		},
 		options: [

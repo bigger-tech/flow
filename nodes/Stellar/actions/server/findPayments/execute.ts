@@ -4,7 +4,7 @@ import { setNetwork } from '../../../transport';
 import { getPayments, filterPaymentFromAccount, filterPaymentFromAsset } from './helpers/helpers';
 import IAdditionalPaymentFilter from '../../entities/IAdditionalPaymentFilter';
 
-export async function checkPayments(this: IExecuteFunctions) {
+export async function findPayments(this: IExecuteFunctions) {
 	try {
 		const publicKey = this.getNodeParameter('publicKey', 1) as string;
 		const isOrderDescending = this.getNodeParameter('isOrderDescending', 0) as boolean;
