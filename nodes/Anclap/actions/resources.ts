@@ -1,4 +1,4 @@
-import { transactions, transaction } from './info';
+import { transactions, transaction, fee } from './info';
 import { get, send } from './token';
 import { deposit, withdraw } from './transactions';
 
@@ -11,6 +11,7 @@ const resources: { [key in AnclapResources]: IOperations } = {
 		operations: {
 			transactions: { execute: transactions },
 			transaction: { execute: transaction },
+			fee: {execute: fee},
 		},
 	},
 	token: {
