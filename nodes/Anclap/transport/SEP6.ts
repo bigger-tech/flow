@@ -4,6 +4,8 @@ import { IAnclapInfoResponse, IAnclapWithdrawResponse } from './responses/respon
 import TransactionsRequest from './requests/TransactionsRequest/TransactionsRequest';
 import WithdrawRequest from './requests/WithdrawRequest/WithdrawRequest';
 import AnclapCredentials from './AnclapCredentials';
+import FeeRequest from './requests/FeeRequest/FeeRequest';
+import queryBuilder from './utils/queryBuilder';
 
 export default class SEP6 {
 	private anclapCredentials: AnclapCredentials;
@@ -76,6 +78,20 @@ export default class SEP6 {
 
 			return info.data;
 		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
+	}
+
+	async getFee(request: FeeRequest) {
+		try {
+			const toml = await this.anclapCredentials.getToml();
+			const queryParams = queryBuilder(request);
+			const info = await axios.get(`${toml.TRANSFER_SERVER}/fee?${queryParams}`, {
+				headers: { Authorization: `Bearer ${this.token}` },
+			});
+
+			return info.data;
+		}catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
 	}
