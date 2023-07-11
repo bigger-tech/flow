@@ -1,6 +1,6 @@
 import { transactions, transaction, fee } from './info';
 import { get, send } from './token';
-import { deposit, withdraw } from './transactions';
+import { deposit, withdraw, depositInteractive, depositExchange, withdrawExchange } from './transactions';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
@@ -24,6 +24,9 @@ const resources: { [key in AnclapResources]: IOperations } = {
 		operations: {
 			deposit: { execute: deposit },
 			withdraw: { execute: withdraw },
+			depositInteractive: { execute: depositInteractive },
+			depositExchange: {execute: depositExchange},
+			withdrawExchange: {execute: withdrawExchange}
 		},
 	},
 };
