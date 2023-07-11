@@ -1,6 +1,6 @@
 import { TransactionType } from '../../types';
 
 export default interface ITransactionsRequest {
-	code: string;
+	assetCode: string;
 	kind: '' | TransactionType;
 }

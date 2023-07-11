@@ -12,7 +12,7 @@ export async function transactions(this: IExecuteFunctions) {
 	const transactionType = this.getNodeParameter('transactionType', 0) as TransactionType;
 	const assetCode = this.getNodeParameter('assetCode', 0) as string;
 	const request = new TransactionsRequest({
-		code: assetCode,
+		assetCode,
 		kind: transactionType,
 	});
 
