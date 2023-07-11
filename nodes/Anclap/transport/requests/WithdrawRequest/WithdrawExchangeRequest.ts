@@ -1,7 +1,9 @@
-import IWithdrawRequest from './IWithdrawRequest';
+import IWithdrawExchangeRequest from './IWithdrawExchangeRequest';
 
-export default class WithdrawRequest implements IWithdrawRequest {
-	public assetCode: string;
+export default class WithdrawExchangeRequest implements IWithdrawExchangeRequest {
+    public sourceAsset: string;
+    public destinationAsset: string;
+    public quoteId?: string;
 	public type: string;
 	public dest: string;
 	public amount: string;
@@ -17,9 +19,10 @@ export default class WithdrawRequest implements IWithdrawRequest {
 	public refundMemo?: string;
 	public refundMemoType?: string;
 
-	constructor(request: IWithdrawRequest) {
+	constructor(request: IWithdrawExchangeRequest) {
 		const {
-			assetCode,
+			sourceAsset,
+            destinationAsset,
 			dest,
 			destExtra,
             memoType,
@@ -36,7 +39,8 @@ export default class WithdrawRequest implements IWithdrawRequest {
 			refundMemoType
         } = request;
 
-		this.assetCode = assetCode;
+		this.sourceAsset = sourceAsset;
+        this.destinationAsset = destinationAsset;
 		this.type = type;
 		this.dest = dest;
 		this.amount = amount;

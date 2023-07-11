@@ -1,6 +1,5 @@
-export default interface IWithdrawRequest {
-	code: string;
-	type: string;
-	dest: string;
-	amount: string;
+import BaseWithdrawRequest from "./BaseWithdrawRequest";
+
+export default interface IWithdrawRequest extends BaseWithdrawRequest {
+    assetCode: string;
 }
