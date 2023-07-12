@@ -26,7 +26,7 @@ export const withdrawDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-        placeholder: "stellar:USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+        placeholder: "ARS",
         description: "Code of the on-chain asset the user wants to withdraw. The value passed must match one of the codes listed in the /info response's withdraw object."
 	},
     {
