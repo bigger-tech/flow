@@ -7,10 +7,12 @@ import { IAnclapTomlResponse } from './responses/responses';
 export default class AnclapCredentials {
 	public stellarNetwork: StellarNetwork;
 	public publicKey: string;
+	public secretKey: string;
 
 	constructor(credentials: ICredentialDataDecryptedObject) {
 		this.stellarNetwork = credentials.stellarNetwork as StellarNetwork;
 		this.publicKey = credentials.publicKey as string;
+		this.secretKey = credentials.secretKey as string;
 	}
 
 	async getToml(): Promise<IAnclapTomlResponse> {
