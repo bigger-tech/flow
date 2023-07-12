@@ -1,15 +1,15 @@
 import type IAnclapTomlResponse from './IAnclapTomlResponse';
 import type IAnclapWithdrawResponse from './IAnclapWithdrawResponse';
-import IAnclapInfoResponse, {
+import IAnclapTransferServerInfoResponse, {
 	AnclapAssetCode,
 	WithdrawAsset,
 	DepositAsset,
-} from './IAnclapInfoResponse';
+} from './IAnclapTransferServerInfoResponse';
 
 export {
 	IAnclapTomlResponse,
 	IAnclapWithdrawResponse,
-	IAnclapInfoResponse,
+	IAnclapTransferServerInfoResponse,
 	AnclapAssetCode,
 	WithdrawAsset,
 	DepositAsset,
