@@ -1,5 +1,5 @@
 import { Asset, Operation, Server, TransactionBuilder, Memo } from 'stellar-sdk';
-import { DepositAsset, WithdrawAsset } from './responses/IAnclapInfoResponse';
+import { DepositAsset, WithdrawAsset } from './responses/IAnclapTransferServerInfoResponse';
 import { IAnclapWithdrawResponse } from './responses/responses';
 import GetAssetError from './errors/GetAssetError';
 

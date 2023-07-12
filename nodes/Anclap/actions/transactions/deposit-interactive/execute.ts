@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import AnclapCredentials from '../../../transport/AnclapCredentials';
-import { AnclapAssetCode } from '../../../transport/responses/IAnclapInfoResponse';
+import { AnclapAssetCode } from '../../../transport/responses/IAnclapTransferServerInfoResponse';
 import SEP24 from '../../../transport/SEP24';
 
 export async function depositInteractive(this: IExecuteFunctions){
