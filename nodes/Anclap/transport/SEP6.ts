@@ -1,6 +1,6 @@
 import axios from 'axios';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
-import { IAnclapInfoResponse, IAnclapWithdrawResponse } from './responses/responses';
+import { IAnclapTransferServerInfoResponse, IAnclapWithdrawResponse } from './responses/responses';
 import TransactionsRequest from './requests/TransactionsRequest/TransactionsRequest';
 import WithdrawRequest from './requests/WithdrawRequest/WithdrawRequest';
 import AnclapCredentials from './AnclapCredentials';
@@ -10,6 +10,8 @@ import IAnclapDepositResponse from './responses/IAnclapDepositResponse';
 import IDepositRequest from './requests/DepositRequest/IDepositRequest';
 import IWithdrawExchangeRequest from './requests/WithdrawRequest/IWithdrawExchangeRequest';
 import IDepositExchangeRequest from './requests/DepositRequest/IDepositExchangeRequest';
+import ITransferServerRequest from './requests/TransferServerRequest/ITransferServerRequest';
+import TransactionRequest from './requests/TransactionRequest/TransactionRequest';
 
 export default class SEP6 {
 	private anclapCredentials: AnclapCredentials;
@@ -20,12 +22,14 @@ export default class SEP6 {
 		this.token = token;
 	}
 
-	async getInfo(): Promise<IAnclapInfoResponse> {
+	async getInfo(request?: ITransferServerRequest): Promise<IAnclapTransferServerInfoResponse> {
 		try {
 			const toml = await this.anclapCredentials.getToml();
-			const info = await axios.get(`${toml.TRANSFER_SERVER}/info`);
 
-			return info.data;
+			const url = request ? `${toml.TRANSFER_SERVER}/info?${queryBuilder(request)}` : `${toml.TRANSFER_SERVER}/info`;
+			const transferServerInfo = await axios.get(url);
+
+			return transferServerInfo.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
@@ -69,28 +73,31 @@ export default class SEP6 {
 	async getTransactions(request: TransactionsRequest) {
 		try {
 			const toml = await this.anclapCredentials.getToml();
-
+			
+			request.account = this.anclapCredentials.publicKey;
 			const queryParams = queryBuilder(request);
 
-			const info = await axios.get(
-				`${toml.TRANSFER_SERVER}/transactions?account=${this.anclapCredentials.publicKey}&${queryParams}`,
+			const transactions = await axios.get(
+				`${toml.TRANSFER_SERVER}/transactions?${queryParams}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
-			return info.data;
+			return transactions.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
 	}
 
-	async getTransactionById(id: string) {
+	async getTransactionById(request: TransactionRequest) {
 		try {
 			const toml = await this.anclapCredentials.getToml();
-			const info = await axios.get(`${toml.TRANSFER_SERVER}/transaction?id=${id}`, {
+			const queryParams = queryBuilder(request);
+			
+			const transactionDetail = await axios.get(`${toml.TRANSFER_SERVER}/transaction?${queryParams}`, {
 				headers: { Authorization: `Bearer ${this.token}` },
 			});
 
-			return info.data;
+			return transactionDetail.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}

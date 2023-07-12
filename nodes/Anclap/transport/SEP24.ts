@@ -2,6 +2,8 @@ import axios from 'axios';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 import TransactionsRequest from './requests/TransactionsRequest/TransactionsRequest';
 import AnclapCredentials from './AnclapCredentials';
+import queryBuilder from './utils/queryBuilder';
+import TransactionRequest from './requests/TransactionRequest/TransactionRequest';
 
 export default class SEP24 {
 	private anclapCredentials: AnclapCredentials;
@@ -53,14 +55,11 @@ export default class SEP24 {
 	async getTransactions(request: TransactionsRequest) {
 		const toml = await this.anclapCredentials.getToml();
 
+		request.account = this.anclapCredentials.publicKey;
+		const queryParams = queryBuilder(request);
 		try {
-			const result = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transactions`, {
+			const result = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transactions?${queryParams}`, {
 				headers: { Authorization: `Bearer ${this.token}` },
-				params: {
-					asset_code: request.code,
-					account: this.anclapCredentials.publicKey,
-					kind: request.kind,
-				},
 			});
 
 			return result.data;
@@ -69,13 +68,13 @@ export default class SEP24 {
 		}
 	}
 
-	async getTransactionById(id: string) {
+	async getTransactionById(request: TransactionRequest) {
 		const toml = await this.anclapCredentials.getToml();
 
+		const queryParams= queryBuilder(request);
 		try {
-			const info = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transaction`, {
+			const info = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transaction?${queryParams}`, {
 				headers: { Authorization: `Bearer ${this.token}` },
-				params: { id },
 			});
 
 			return info.data;
