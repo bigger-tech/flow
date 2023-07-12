@@ -2,5 +2,10 @@ import { TransactionType } from '../../types';
 
 export default interface ITransactionsRequest {
 	assetCode: string;
-	kind: '' | TransactionType;
+	account?: string;
+	noOlderThan?: string;
+	limit?: number;
+	pagingId?: string;
+	lang?: string;
+	kind?: TransactionType;
 }
