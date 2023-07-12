@@ -27,6 +27,7 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: 'deposit',
 		placeholder: 'deposit',
+		description: 'Kind of operation (deposit or withdraw).'
 	},
     {
 		displayName: 'Offchain Operation',
@@ -41,6 +42,7 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: 'bank_account',
 		placeholder: 'bank_account',
+		description:' Type of deposit or withdrawal (SEPA, bank_account, cash, etc...).'
 	},
     {
 		displayName: 'Asset Code',
@@ -55,6 +57,7 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: 'ARS',
 		placeholder: 'ARS',
+		description: 'Stellar asset code.'
 	},
     {
 		displayName: 'Amount',
@@ -69,5 +72,6 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '100',
+		description: 'Amount of the asset that will be deposited/withdrawn.'
 	},
 ]
