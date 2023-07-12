@@ -40,27 +40,67 @@ export const transactionsDescription: INodeProperties[] = [
 	{
 		displayName: 'Asset Code',
 		name: 'assetCode',
-		type: 'options',
+		type: 'string',
 		required: true,
-		options: [
-			{
-				name: 'ARS',
-				value: 'ARS',
-			},
-		],
 		displayOptions: {
 			show: {
 				resource: ['info'],
 				operation: ['transactions'],
 			},
 		},
-		default: 'ARS',
+		default: '',
+		description: 'The code of the asset of interest. E.g. BTC, ETH, USD, INR, etc.'
+	},
+	{
+		displayName: 'Show Optional Values',
+		name: 'showOptionalValues',
+		type: 'boolean',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: false,
+	},
+	{
+		displayName: 'No Older Than',
+		name: 'noOlderThan',
+		type: 'string',
+		required: false,
+		displayOptions: {
+			show: {
+				showOptionalValues: [true],
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: '',
+		placeholder: 'YYYY-MM-DD',
+		description: 'The response should contain transactions starting on or after this date & time.'
+	},
+	{
+		displayName: 'Limit Transactions Count',
+		name: 'limit',
+		type: 'number',
+		required: false,
+		displayOptions: {
+			show: {
+				showOptionalValues: [true],
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: '',
+		placeholder: '10',
+		description: 'The response should contain at most limit transactions.'
 	},
 	{
 		displayName: 'Transaction Type',
-		name: 'transactionType',
+		name: 'kind',
 		type: 'options',
-		required: true,
+		required: false,
 		options: [
 			{
 				name: 'Default',
@@ -74,13 +114,55 @@ export const transactionsDescription: INodeProperties[] = [
 				name: 'Deposit',
 				value: 'deposit',
 			},
+			{
+				name: 'Withdraw Exchange',
+				value: 'withdrawal-exchange',
+			},
+			{
+				name: 'Deposit Exchange',
+				value: 'deposit-exchange',
+			},
 		],
 		displayOptions: {
 			show: {
+				showOptionalValues: [true],
 				resource: ['info'],
 				operation: ['transactions'],
 			},
 		},
-		default: 'default',
+		default: '',
+		description: 'A list containing the desired transaction kinds. The possible values are deposit, deposit-exchange, withdrawal and withdrawal-exchange.'
+	},
+	{
+		displayName: 'Paging ID',
+		name: 'pagingId',
+		type: 'string',
+		required: false,
+		displayOptions: {
+			show: {
+				showOptionalValues: [true],
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: '',
+		placeholder: '10',
+		description: 'The response should contain transactions starting prior to this ID (exclusive).'
+	},
+	{
+		displayName: 'Language',
+		name: 'lang',
+		type: 'string',
+		required: false,
+		displayOptions: {
+			show: {
+				showOptionalValues: [true],
+				resource: ['info'],
+				operation: ['transactions'],
+			},
+		},
+		default: '',
+		placeholder: 'en',
+		description: 'Defaults to en if not specified or if the specified language is not supported. Language code specified using RFC 4646. error fields and other human readable messages in the response should be in this language.'
 	},
 ];
