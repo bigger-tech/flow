@@ -18,7 +18,7 @@ export default class SEP24 {
 		const toml = await this.anclapCredentials.getToml();
 
 		try {
-			const result = await axios.post(
+			const depositUrl = await axios.post(
 				`${toml.TRANSFER_SERVER_SEP0024}/transactions/deposit/interactive`,
 				{
 					asset_code: assetCode,
@@ -27,7 +27,7 @@ export default class SEP24 {
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
-			return result.data;
+			return depositUrl.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
@@ -37,7 +37,7 @@ export default class SEP24 {
 		const toml = await this.anclapCredentials.getToml();
 
 		try {
-			const result = await axios.post(
+			const withdrawUrl = await axios.post(
 				`${toml.TRANSFER_SERVER_SEP0024}/transactions/withdraw/interactive`,
 				{
 					asset_code: assetCode,
@@ -46,7 +46,7 @@ export default class SEP24 {
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
-			return result.data;
+			return withdrawUrl.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
@@ -58,11 +58,11 @@ export default class SEP24 {
 		request.account = this.anclapCredentials.publicKey;
 		const queryParams = queryBuilder(request);
 		try {
-			const result = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transactions?${queryParams}`, {
+			const transactions = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transactions?${queryParams}`, {
 				headers: { Authorization: `Bearer ${this.token}` },
 			});
 
-			return result.data;
+			return transactions.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
@@ -73,11 +73,11 @@ export default class SEP24 {
 
 		const queryParams= queryBuilder(request);
 		try {
-			const info = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transaction?${queryParams}`, {
+			const transactionDetail = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transaction?${queryParams}`, {
 				headers: { Authorization: `Bearer ${this.token}` },
 			});
 
-			return info.data;
+			return transactionDetail.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}

@@ -59,12 +59,12 @@ export default class SEP6 {
 			request.account = this.anclapCredentials.publicKey;
 			const queryParams = queryBuilder(request);
 
-			const info = await axios.get(
+			const withdrawInformation = await axios.get(
 				`${toml.TRANSFER_SERVER}/withdraw?${queryParams}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
-			return info.data;
+			return withdrawInformation.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
@@ -109,11 +109,11 @@ export default class SEP6 {
 
 			const queryParams = queryBuilder(request);
 
-			const info = await axios.get(`${toml.TRANSFER_SERVER}/fee?${queryParams}`, {
+			const fee = await axios.get(`${toml.TRANSFER_SERVER}/fee?${queryParams}`, {
 				headers: { Authorization: `Bearer ${this.token}` },
 			});
 
-			return info.data;
+			return fee.data;
 		}catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
