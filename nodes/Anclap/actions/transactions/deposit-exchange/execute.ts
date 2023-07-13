@@ -12,6 +12,7 @@ export async function depositExchange(this: IExecuteFunctions){
     const sourceAsset = this.getNodeParameter('sourceAsset', 0) as string;
     const destinationAsset = this.getNodeParameter('destinationAsset', 0) as string;
     const amount = this.getNodeParameter('amount', 0) as string;
+    const type = this?.getNodeParameter('type', 0) as string;
 
     const showOptionalValues = this.getNodeParameter('showOptionalValues', 0) as boolean;
     
@@ -23,7 +24,6 @@ export async function depositExchange(this: IExecuteFunctions){
             const quoteId = this?.getNodeParameter('quoteId', 0) as string;
             const memoType = this?.getNodeParameter('memoType', 0) as string;
             const memo = this?.getNodeParameter('memo', 0) as string;
-            const type = this?.getNodeParameter('type', 0) as string;
             const walletName = this?.getNodeParameter('walletName', 0) as string;
             const walletUrl = this?.getNodeParameter('walletUrl', 0) as string;
             const lang = this?.getNodeParameter('lang', 0) as string;
@@ -50,7 +50,8 @@ export async function depositExchange(this: IExecuteFunctions){
             depositExchangeRequest = new DepositExchangeRequest({
                 sourceAsset,
                 amount,
-                destinationAsset
+                destinationAsset,
+                type
             })
         }
         return await sep6.getDepositExchange(depositExchangeRequest);

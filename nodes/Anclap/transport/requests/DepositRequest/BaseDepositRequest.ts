@@ -3,7 +3,7 @@ export default interface BaseDepositRequest {
     memoType?: string;
     memo?: string;
     emailAddress?: string;
-    type?: string;
+    type: string;
     walletName?: string;
     walletUrl?: string;
     lang?: string;

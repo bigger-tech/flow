@@ -57,6 +57,20 @@ export const depositExchangeDescription: INodeProperties[] = [
         description: "The code of the on-chain asset the user wants to get from the Anchor after doing an off-chain deposit. The value passed must match one of the codes listed in the /info response's deposit-exchange object."
 	},
 	{
+		displayName: 'Type',
+		name: 'type',
+		type: 'string',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['transactions'],
+				operation: ['depositExchange'],
+			},
+		},
+		default: '',
+        description: "Type of deposit. If the anchor supports multiple deposit methods (e.g. SEPA or SWIFT), the wallet should specify type. This field may be necessary for the anchor to determine which KYC fields to collect."
+	},
+	{
 		displayName: 'Show Optional Values',
 		name: 'showOptionalValues',
 		type: 'boolean',
@@ -128,21 +142,6 @@ export const depositExchangeDescription: INodeProperties[] = [
 		},
 		default: '',
         description: "Email address of depositor. If desired, an anchor can use this to send email updates to the user about the deposit."
-	},
-	{
-		displayName: 'Type',
-		name: 'type',
-		type: 'string',
-		required: false,
-		displayOptions: {
-			show: {
-				showOptionalValues: [true],
-				resource: ['transactions'],
-				operation: ['depositExchange'],
-			},
-		},
-		default: '',
-        description: "Type of deposit. If the anchor supports multiple deposit methods (e.g. SEPA or SWIFT), the wallet should specify type. This field may be necessary for the anchor to determine which KYC fields to collect."
 	},
 	{
 		displayName: 'Wallet Name',

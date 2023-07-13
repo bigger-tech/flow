@@ -6,7 +6,7 @@ export default class DepositRequest implements IDepositRequest{
     public memoType?: string;
     public memo?: string;
     public account?: string;
-    public type?: string;
+    public type: string;
     public walletName?: string;
     public walletUrl?: string;
     public lang?: string;
