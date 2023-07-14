@@ -1,4 +1,4 @@
-export default interface IAnclapInfoResponse {
+export default interface IAnclapTransferServerInfoResponse {
 	deposit: { [key in AnclapAssetCode]: DepositAsset };
 	withdraw: { [key in AnclapAssetCode]: WithdrawAsset };
 }

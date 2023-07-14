@@ -1,6 +1,11 @@
 import { TransactionType } from '../../types';
 
 export default interface ITransactionsRequest {
-	code: string;
-	kind: '' | TransactionType;
+	assetCode: string;
+	account?: string;
+	noOlderThan?: string;
+	limit?: number;
+	pagingId?: string;
+	lang?: string;
+	kind?: TransactionType;
 }
