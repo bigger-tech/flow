@@ -22,19 +22,19 @@ export default class WithdrawRequest implements IWithdrawRequest {
 			assetCode,
 			dest,
 			destExtra,
-            memoType,
-            memo,
-            account,
-            type,
-            walletName,
-            walletUrl,
-            lang,
-            onChangeCallback,
-            countryCode,
-            amount,
+			memoType,
+			memo,
+			account,
+			type,
+			walletName,
+			walletUrl,
+			lang,
+			onChangeCallback,
+			countryCode,
+			amount,
 			refundMemo,
-			refundMemoType
-        } = request;
+			refundMemoType,
+		} = request;
 
 		this.assetCode = assetCode;
 		this.type = type;
