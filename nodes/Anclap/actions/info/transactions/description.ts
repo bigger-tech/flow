@@ -49,7 +49,7 @@ export const transactionsDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The code of the asset of interest. E.g. BTC, ETH, USD, INR, etc.'
+		description: 'The code of the asset of interest. E.g. BTC, ETH, USD, INR, etc.',
 	},
 	{
 		displayName: 'Show Optional Values',
@@ -78,7 +78,7 @@ export const transactionsDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'YYYY-MM-DD',
-		description: 'The response should contain transactions starting on or after this date & time.'
+		description: 'The response should contain transactions starting on or after this date & time.',
 	},
 	{
 		displayName: 'Limit Transactions Count',
@@ -94,7 +94,7 @@ export const transactionsDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '10',
-		description: 'The response should contain at most limit transactions.'
+		description: 'The response should contain at most limit transactions.',
 	},
 	{
 		displayName: 'Transaction Type',
@@ -131,7 +131,8 @@ export const transactionsDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'A list containing the desired transaction kinds. The possible values are deposit, deposit-exchange, withdrawal and withdrawal-exchange.'
+		description:
+			'A list containing the desired transaction kinds. The possible values are deposit, deposit-exchange, withdrawal and withdrawal-exchange.',
 	},
 	{
 		displayName: 'Paging ID',
@@ -147,7 +148,7 @@ export const transactionsDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '10',
-		description: 'The response should contain transactions starting prior to this ID (exclusive).'
+		description: 'The response should contain transactions starting prior to this ID (exclusive).',
 	},
 	{
 		displayName: 'Language',
@@ -163,6 +164,7 @@ export const transactionsDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'en',
-		description: 'Defaults to en if not specified or if the specified language is not supported. Language code specified using RFC 4646. error fields and other human readable messages in the response should be in this language.'
+		description:
+			'Defaults to EN if not specified or if the specified language is not supported. Language code specified using RFC 4646. error fields and other human readable messages in the response should be in this language.',
 	},
 ];

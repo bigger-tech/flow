@@ -21,13 +21,14 @@ export const transferServerDescription: INodeProperties[] = [
 		required: false,
 		displayOptions: {
 			show: {
-                showOptionalValues: [true],
+				showOptionalValues: [true],
 				resource: ['info'],
 				operation: ['transferServer'],
 			},
 		},
 		default: '',
 		placeholder: '',
-        description:"Defaults to en if not specified or if the specified language is not supported. Language code specified using RFC 4646. error fields and other human readable messages in the response should be in this language."
-	}
-]
+		description:
+			'Defaults to EN if not specified or if the specified language is not supported. Language code specified using RFC 4646. error fields and other human readable messages in the response should be in this language.',
+	},
+];

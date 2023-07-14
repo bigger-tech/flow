@@ -78,7 +78,7 @@ export const transactionDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '',
-		description: 'The stellar transaction id of the transaction.'
+		description: 'The stellar transaction id of the transaction.',
 	},
 	{
 		displayName: 'External Transaction ID',
@@ -94,11 +94,11 @@ export const transactionDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '',
-		description: 'The external transaction id of the transaction.'
+		description: 'The external transaction id of the transaction.',
 	},
 	{
 		displayName: 'Language',
-		name: 'language',
+		name: 'lang',
 		type: 'string',
 		required: false,
 		displayOptions: {
@@ -110,6 +110,7 @@ export const transactionDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '',
-		description: 'Defaults to en if not specified or if the specified language is not supported. Language code specified using RFC 4646. error fields and other human readable messages in the response should be in this language.'
+		description:
+			'Defaults to EN if not specified or if the specified language is not supported. Language code specified using RFC 4646. error fields and other human readable messages in the response should be in this language.',
 	},
 ];
