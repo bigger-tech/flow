@@ -1,6 +1,7 @@
 import axios from 'axios';
 import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 import AnclapCredentials from './AnclapCredentials';
+import { validateXdrProvenance, signXdr } from './helpers';
 
 export default class SEP10 {
 	private anclapCredentials: AnclapCredentials;
@@ -21,6 +22,15 @@ export default class SEP10 {
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
+	}
+
+	async validateChallenge(challengeXdr: string) {
+		const toml = await this.anclapCredentials.getToml();
+		return await validateXdrProvenance(toml, challengeXdr, this.anclapCredentials.publicKey);
+	}
+
+	async signChallenge(challengeXdr: string) {
+		return signXdr(challengeXdr, this.anclapCredentials);
 	}
 
 	async sendChallenge(signedXdr: string) {
