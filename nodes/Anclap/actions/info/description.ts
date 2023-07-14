@@ -42,7 +42,7 @@ const description: INodeProperties[] = [
 	...transactionsDescription,
 	...transactionDescription,
 	...feeDescription,
-	...transferServerDescription
+	...transferServerDescription,
 ];
 
 export default description;

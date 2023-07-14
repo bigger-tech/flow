@@ -18,44 +18,44 @@ export async function withdraw(this: IExecuteFunctions) {
 	const getSep6WithdrawInfo = async () => {
 		const sep6 = new SEP6(anclapCredentials, token);
 
-		let withdrawRequest : IWithdrawRequest;
+		let withdrawRequest: IWithdrawRequest;
 
-		if(showOptionalValues){
+		if (showOptionalValues) {
 			const destExtra = this?.getNodeParameter('destExtra', 0) as string;
-            const memo = this?.getNodeParameter('memo', 0) as string;
-            const memoType = this?.getNodeParameter('memoType', 0) as string;
-            const refundMemo = this?.getNodeParameter('refundMemo', 0) as string;
-            const refundMemoType = this?.getNodeParameter('refundMemoType', 0) as string;
-            const walletName = this?.getNodeParameter('walletName', 0) as string;
-            const walletUrl = this?.getNodeParameter('walletUrl', 0) as string;
-            const lang = this?.getNodeParameter('lang', 0) as string;
-            const onChangeCallback = this?.getNodeParameter('onChangeCallback', 0) as string;
-            const countryCode = this?.getNodeParameter('countryCode', 0) as string;
+			const memo = this?.getNodeParameter('memo', 0) as string;
+			const memoType = this?.getNodeParameter('memoType', 0) as string;
+			const refundMemo = this?.getNodeParameter('refundMemo', 0) as string;
+			const refundMemoType = this?.getNodeParameter('refundMemoType', 0) as string;
+			const walletName = this?.getNodeParameter('walletName', 0) as string;
+			const walletUrl = this?.getNodeParameter('walletUrl', 0) as string;
+			const lang = this?.getNodeParameter('lang', 0) as string;
+			const onChangeCallback = this?.getNodeParameter('onChangeCallback', 0) as string;
+			const countryCode = this?.getNodeParameter('countryCode', 0) as string;
 			const dest = this.getNodeParameter('dest', 0) as string;
 
-            withdrawRequest = new WithdrawRequest({
-				assetCode,
-                dest, 
-                amount,
-                memoType,
-                memo,
-                type,
-                walletName,
-                walletUrl,
-                lang,
-                onChangeCallback,
-                countryCode,
-                destExtra,
-                refundMemo,
-                refundMemoType,
-            })
-		}else{
 			withdrawRequest = new WithdrawRequest({
 				assetCode,
-                dest, 
-                amount,
-                type,
-            })
+				dest,
+				amount,
+				memoType,
+				memo,
+				type,
+				walletName,
+				walletUrl,
+				lang,
+				onChangeCallback,
+				countryCode,
+				destExtra,
+				refundMemo,
+				refundMemoType,
+			});
+		} else {
+			withdrawRequest = new WithdrawRequest({
+				assetCode,
+				dest,
+				amount,
+				type,
+			});
 		}
 		return await sep6.withdraw(withdrawRequest);
 	};

@@ -17,7 +17,7 @@ export async function transactions(this: IExecuteFunctions) {
 
 	let transactionsRequest: ITransactionsRequest;
 
-	if(showOptionalValues){
+	if (showOptionalValues) {
 		const kind = this.getNodeParameter('kind', 0) as TransactionType;
 		const noOlderThan = this.getNodeParameter('noOlderThan', 0) as string;
 		const limit = this.getNodeParameter('limit', 0) as number;
@@ -30,10 +30,10 @@ export async function transactions(this: IExecuteFunctions) {
 			noOlderThan,
 			limit,
 			pagingId,
-			lang
+			lang,
 		});
-	}else{
-		transactionsRequest = new TransactionsRequest({assetCode});
+	} else {
+		transactionsRequest = new TransactionsRequest({ assetCode });
 	}
 	async function getSep24Transactions() {
 		const sep24 = new SEP24(anclapCredentials, token);

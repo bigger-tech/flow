@@ -1,7 +1,7 @@
-import BaseDepositRequest from "./BaseDepositRequest";
+import BaseDepositRequest from './BaseDepositRequest';
 
 export default interface IDepositExchangeRequest extends BaseDepositRequest {
-    destinationAsset: string;
-    sourceAsset: string;
-    quoteId?: string;
+	destinationAsset: string;
+	sourceAsset: string;
+	quoteId?: string;
 }

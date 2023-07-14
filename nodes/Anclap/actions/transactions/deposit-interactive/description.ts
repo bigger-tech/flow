@@ -26,6 +26,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: 'ARS',
-		description: 'The code of the on-chain asset the user wants to get from the Anchor after doing an off-chain deposit.'
-	}
+		description:
+			'The code of the on-chain asset the user wants to get from the Anchor after doing an off-chain deposit.',
+	},
 ];

@@ -1,9 +1,9 @@
 import IWithdrawExchangeRequest from './IWithdrawExchangeRequest';
 
 export default class WithdrawExchangeRequest implements IWithdrawExchangeRequest {
-    public sourceAsset: string;
-    public destinationAsset: string;
-    public quoteId?: string;
+	public sourceAsset: string;
+	public destinationAsset: string;
+	public quoteId?: string;
 	public type: string;
 	public dest: string;
 	public amount: string;
@@ -22,25 +22,25 @@ export default class WithdrawExchangeRequest implements IWithdrawExchangeRequest
 	constructor(request: IWithdrawExchangeRequest) {
 		const {
 			sourceAsset,
-            destinationAsset,
+			destinationAsset,
 			dest,
 			destExtra,
-            memoType,
-            memo,
-            account,
-            type,
-            walletName,
-            walletUrl,
-            lang,
-            onChangeCallback,
-            countryCode,
-            amount,
+			memoType,
+			memo,
+			account,
+			type,
+			walletName,
+			walletUrl,
+			lang,
+			onChangeCallback,
+			countryCode,
+			amount,
 			refundMemo,
-			refundMemoType
-        } = request;
+			refundMemoType,
+		} = request;
 
 		this.sourceAsset = sourceAsset;
-        this.destinationAsset = destinationAsset;
+		this.destinationAsset = destinationAsset;
 		this.type = type;
 		this.dest = dest;
 		this.amount = amount;

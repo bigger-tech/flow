@@ -1,6 +1,6 @@
-export default interface ITransactionRequest{
-    id?: string;
-    stellarTransactionId?: string;
-    externalTransactionId?: string;
-    lang?: string;
+export default interface ITransactionRequest {
+	id?: string;
+	stellarTransactionId?: string;
+	externalTransactionId?: string;
+	lang?: string;
 }

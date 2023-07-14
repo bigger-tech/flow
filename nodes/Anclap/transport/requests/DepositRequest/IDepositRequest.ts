@@ -1,6 +1,5 @@
-import BaseDepositRequest from "./BaseDepositRequest";
+import BaseDepositRequest from './BaseDepositRequest';
 
 export default interface IDepositRequest extends BaseDepositRequest {
-    assetCode: string;
+	assetCode: string;
 }
-

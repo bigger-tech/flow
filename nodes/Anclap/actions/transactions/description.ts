@@ -49,7 +49,7 @@ const description: INodeProperties[] = [
 	...withdrawDescription,
 	...depositInteractiveDescription,
 	...depositExchangeDescription,
-	...withdrawExchangeDescription
+	...withdrawExchangeDescription,
 ];
 
 export default description;

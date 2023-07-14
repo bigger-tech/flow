@@ -11,7 +11,7 @@ export default class TransactionsRequest implements ITransactionsRequest {
 	public kind?: TransactionType;
 
 	constructor(request: ITransactionsRequest) {
-		const {assetCode, kind, account, noOlderThan, limit, pagingId, lang} = request;
+		const { assetCode, kind, account, noOlderThan, limit, pagingId, lang } = request;
 
 		this.account = account;
 		this.assetCode = assetCode;

@@ -15,15 +15,15 @@ export async function transaction(this: IExecuteFunctions) {
 
 	const showOptionalValues = this.getNodeParameter('showOptionalValues', 0) as boolean;
 
-	let transactionRequest: ITransactionRequest
+	let transactionRequest: ITransactionRequest;
 
-	if(showOptionalValues){
+	if (showOptionalValues) {
 		const stellarTransactionId = this.getNodeParameter('stellarTransactionId', 0) as string;
 		const externalTransactionId = this.getNodeParameter('externalTransactionId', 0) as string;
 		const lang = this.getNodeParameter('lang', 0) as string;
 
-		if(!id && !stellarTransactionId && !externalTransactionId){
-			throw new Error('On of id or stellar Transaction Id or external Transaction Id is required');
+		if (!id && !stellarTransactionId && !externalTransactionId) {
+			throw new Error('One of these properties: Transaction ID, Stellar Transaction ID or External transaction ID is required in order to execute this node');
 		}
 
 		transactionRequest = new TransactionRequest({
@@ -32,11 +32,11 @@ export async function transaction(this: IExecuteFunctions) {
 			externalTransactionId,
 			lang,
 		});
-	}else{
-		if(!id){
-			throw new Error('On of id or stellar Transaction Id or external Transaction Id is required');
+	} else {
+		if (!id) {
+			throw new Error('Transaction Id is required');
 		}
-		transactionRequest = new TransactionRequest({id});
+		transactionRequest = new TransactionRequest({ id });
 	}
 
 	async function getSep24Transaction() {

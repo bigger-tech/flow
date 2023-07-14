@@ -1,3 +1,3 @@
 export default interface ITransferServerRequest {
-    lang?:string;
+	lang?: string;
 }

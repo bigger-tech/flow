@@ -1,11 +1,11 @@
-import ITransferServerRequest from "./ITransferServerRequest";
+import ITransferServerRequest from './ITransferServerRequest';
 
 export default class TransferServerRequest implements ITransferServerRequest {
-    public lang?:string;
+	public lang?: string;
 
-    constructor(request: ITransferServerRequest){
-        const {lang} = request;
-        
-        this.lang = lang;
-    }
+	constructor(request: ITransferServerRequest) {
+		const { lang } = request;
+
+		this.lang = lang;
+	}
 }

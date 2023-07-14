@@ -58,9 +58,12 @@ export default class SEP24 {
 		request.account = this.anclapCredentials.publicKey;
 		const queryParams = queryBuilder(request);
 		try {
-			const transactions = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transactions?${queryParams}`, {
-				headers: { Authorization: `Bearer ${this.token}` },
-			});
+			const transactions = await axios.get(
+				`${toml.TRANSFER_SERVER_SEP0024}/transactions?${queryParams}`,
+				{
+					headers: { Authorization: `Bearer ${this.token}` },
+				},
+			);
 
 			return transactions.data;
 		} catch (e) {
@@ -71,11 +74,14 @@ export default class SEP24 {
 	async getTransactionById(request: TransactionRequest) {
 		const toml = await this.anclapCredentials.getToml();
 
-		const queryParams= queryBuilder(request);
+		const queryParams = queryBuilder(request);
 		try {
-			const transactionDetail = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/transaction?${queryParams}`, {
-				headers: { Authorization: `Bearer ${this.token}` },
-			});
+			const transactionDetail = await axios.get(
+				`${toml.TRANSFER_SERVER_SEP0024}/transaction?${queryParams}`,
+				{
+					headers: { Authorization: `Bearer ${this.token}` },
+				},
+			);
 
 			return transactionDetail.data;
 		} catch (e) {

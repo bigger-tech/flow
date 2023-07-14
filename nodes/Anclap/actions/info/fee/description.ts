@@ -1,7 +1,7 @@
 import { INodeProperties } from 'n8n-workflow';
 
 export const feeDescription: INodeProperties[] = [
-    {
+	{
 		displayName: 'Token',
 		name: 'token',
 		type: 'string',
@@ -27,9 +27,9 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: 'deposit',
 		placeholder: 'deposit',
-		description: 'Kind of operation (deposit or withdraw).'
+		description: 'Kind of operation (deposit or withdraw).',
 	},
-    {
+	{
 		displayName: 'Offchain Operation',
 		name: 'type',
 		type: 'string',
@@ -42,9 +42,9 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: 'bank_account',
 		placeholder: 'bank_account',
-		description:' Type of deposit or withdrawal (SEPA, bank_account, cash, etc...).'
+		description: ' Type of deposit or withdrawal (SEPA, bank_account, cash, etc...).',
 	},
-    {
+	{
 		displayName: 'Asset Code',
 		name: 'assetCode',
 		type: 'string',
@@ -57,9 +57,9 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: 'ARS',
 		placeholder: 'ARS',
-		description: 'Stellar asset code.'
+		description: 'Stellar asset code.',
 	},
-    {
+	{
 		displayName: 'Amount',
 		name: 'amount',
 		type: 'number',
@@ -72,6 +72,6 @@ export const feeDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '100',
-		description: 'Amount of the asset that will be deposited/withdrawn.'
+		description: 'Amount of the asset that will be deposited/withdrawn.',
 	},
-]
+];

@@ -26,7 +26,9 @@ export default class SEP6 {
 		try {
 			const toml = await this.anclapCredentials.getToml();
 
-			const url = request ? `${toml.TRANSFER_SERVER}/info?${queryBuilder(request)}` : `${toml.TRANSFER_SERVER}/info`;
+			const url = request
+				? `${toml.TRANSFER_SERVER}/info?${queryBuilder(request)}`
+				: `${toml.TRANSFER_SERVER}/info`;
 			const transferServerInfo = await axios.get(url);
 
 			return transferServerInfo.data;
@@ -41,11 +43,10 @@ export default class SEP6 {
 
 			request.account = this.anclapCredentials.publicKey;
 			const queryParams = queryBuilder(request);
-			
-			const depositInformation = await axios.get(
-				`${toml.TRANSFER_SERVER}/deposit?${queryParams}`,
-				{ headers: { Authorization: `Bearer ${this.token}` } },
-			);
+
+			const depositInformation = await axios.get(`${toml.TRANSFER_SERVER}/deposit?${queryParams}`, {
+				headers: { Authorization: `Bearer ${this.token}` },
+			});
 			return depositInformation.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
@@ -73,14 +74,13 @@ export default class SEP6 {
 	async getTransactions(request: TransactionsRequest) {
 		try {
 			const toml = await this.anclapCredentials.getToml();
-			
+
 			request.account = this.anclapCredentials.publicKey;
 			const queryParams = queryBuilder(request);
 
-			const transactions = await axios.get(
-				`${toml.TRANSFER_SERVER}/transactions?${queryParams}`,
-				{ headers: { Authorization: `Bearer ${this.token}` } },
-			);
+			const transactions = await axios.get(`${toml.TRANSFER_SERVER}/transactions?${queryParams}`, {
+				headers: { Authorization: `Bearer ${this.token}` },
+			});
 
 			return transactions.data;
 		} catch (e) {
@@ -92,10 +92,13 @@ export default class SEP6 {
 		try {
 			const toml = await this.anclapCredentials.getToml();
 			const queryParams = queryBuilder(request);
-			
-			const transactionDetail = await axios.get(`${toml.TRANSFER_SERVER}/transaction?${queryParams}`, {
-				headers: { Authorization: `Bearer ${this.token}` },
-			});
+
+			const transactionDetail = await axios.get(
+				`${toml.TRANSFER_SERVER}/transaction?${queryParams}`,
+				{
+					headers: { Authorization: `Bearer ${this.token}` },
+				},
+			);
 
 			return transactionDetail.data;
 		} catch (e) {
@@ -114,12 +117,12 @@ export default class SEP6 {
 			});
 
 			return fee.data;
-		}catch (e) {
+		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
 	}
 
-	async getDepositExchange(request: IDepositExchangeRequest): Promise<IAnclapDepositResponse>{
+	async getDepositExchange(request: IDepositExchangeRequest): Promise<IAnclapDepositResponse> {
 		try {
 			const toml = await this.anclapCredentials.getToml();
 
@@ -130,14 +133,14 @@ export default class SEP6 {
 				`${toml.TRANSFER_SERVER}/deposit-exchange?${queryParams}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
-	
+
 			return depositInformation.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
 	}
 
-	async getWithdrawExchange(request: IWithdrawExchangeRequest): Promise<IAnclapWithdrawResponse>{
+	async getWithdrawExchange(request: IWithdrawExchangeRequest): Promise<IAnclapWithdrawResponse> {
 		try {
 			const toml = await this.anclapCredentials.getToml();
 
@@ -148,7 +151,7 @@ export default class SEP6 {
 				`${toml.TRANSFER_SERVER}/withdraw-exchange?${queryParams}`,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
-	
+
 			return withdrawInformation.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);

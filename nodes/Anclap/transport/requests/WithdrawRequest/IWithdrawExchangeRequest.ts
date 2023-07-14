@@ -1,7 +1,7 @@
-import BaseWithdrawRequest from "./BaseWithdrawRequest";
+import BaseWithdrawRequest from './BaseWithdrawRequest';
 
 export default interface IWithdrawExchangeRequest extends BaseWithdrawRequest {
-    sourceAsset: string;
-    destinationAsset: string;
-    quoteId?: string;
+	sourceAsset: string;
+	destinationAsset: string;
+	quoteId?: string;
 }
