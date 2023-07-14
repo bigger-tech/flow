@@ -35,6 +35,9 @@ export class AnclapApi implements ICredentialType {
 			name: 'secretKey',
 			type: 'string',
 			default: '',
+			typeOptions: {
+				password: true,
+			},
 		},
 	];
 }
