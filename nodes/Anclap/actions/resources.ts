@@ -1,5 +1,5 @@
 import { transactions, transaction, fee, transferServer } from './info';
-import { get, send } from './token';
+import { get, send, validate, sign } from './token';
 import {
 	deposit,
 	withdraw,
@@ -26,6 +26,8 @@ const resources: { [key in AnclapResources]: IOperations } = {
 		operations: {
 			get: { execute: get },
 			send: { execute: send },
+			validate: { execute: validate },
+			sign: { execute: sign },
 		},
 	},
 	transactions: {
