@@ -109,7 +109,7 @@ export async function validateXdrProvenance(
 		)
 	)
 		throw new GetChallengeValidationError(
-			'Value of operation with name "web_auth_domain" must be the Server domain',
+			'The value of operation with name "web_auth_domain" must be the Server domain',
 		);
 
 	if (operations.length > 2) {
