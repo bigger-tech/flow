@@ -13,16 +13,15 @@ export async function getFeeAmount(this: IExecuteFunctions) {
 	const type = this.getNodeParameter('type', 0) as OffChainOperationType;
 	const assetCode = this.getNodeParameter('assetCode', 0) as string;
 	const amount = this.getNodeParameter('amount', 0) as number;
-  
+
 	const request = new FeeRequest({
-	  operation: operationType,
-	  type,
-	  assetCode,
-	  amount,
+		operation: operationType,
+		type,
+		assetCode,
+		amount,
 	});
-  
+
 	const feeProvider = getProtocolProvider(anclapCredentials, token, protocol);
-	
+
 	return await feeProvider.getFee(request);
-  }
-  
+}

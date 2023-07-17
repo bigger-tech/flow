@@ -18,5 +18,7 @@ export async function getTransferServer(this: IExecuteFunctions) {
 	}
 	const transferServerProvider = getProtocolProvider(anclapCredentials, '', protocol);
 
-	return transferServerRequest ? await transferServerProvider.getInfo(transferServerRequest): await transferServerProvider.getInfo();
+	return transferServerRequest
+		? await transferServerProvider.getInfo(transferServerRequest)
+		: await transferServerProvider.getInfo();
 }
