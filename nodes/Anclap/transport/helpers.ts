@@ -139,9 +139,10 @@ export function signXdr(challengeXdr: string, anclapCredentials: AnclapCredentia
 
 function extractHomeDomain(url: string): string {
 	const domainRegex = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/g;
+	const domainIndex = 1;
 	const matches = domainRegex.exec(url);
-	if (matches && matches.length >= 2) {
-		return matches[1];
+	if (matches) {
+		return matches[domainIndex];
 	}
 	return '';
 }
