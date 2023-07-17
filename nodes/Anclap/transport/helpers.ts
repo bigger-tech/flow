@@ -71,6 +71,7 @@ export async function validateXdrProvenance(
 ): Promise<object> {
 	const transaction = new Transaction(challengeXdr, 'base64');
 	const anchorHomeDomain = extractHomeDomain(anchor.WEB_AUTH_ENDPOINT);
+	const challengeMinimumOperationsAmount = 2;
 
 	if (transaction.sequence !== '0')
 		throw new GetChallengeValidationError('Invalid sequence number');
@@ -112,8 +113,8 @@ export async function validateXdrProvenance(
 			'The value of operation with name "web_auth_domain" must be the Server domain',
 		);
 
-	if (operations.length > 2) {
-		const additionalOperations = operations.slice(2);
+	if (operations.length > challengeMinimumOperationsAmount) {
+		const additionalOperations = operations.slice(challengeMinimumOperationsAmount);
 		const isValidManageData = additionalOperations.every(
 			(operation) => operation.source === anchor.SIGNING_KEY,
 		);
