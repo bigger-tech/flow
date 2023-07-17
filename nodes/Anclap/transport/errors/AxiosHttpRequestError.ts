@@ -9,8 +9,8 @@ export default class AxiosHttpRequestError extends Error {
 
 		if (axios.isAxiosError(this.error)) {
 			const errorStatus = error.response.status;
-			const errorData = JSON.stringify(error.response.data);
-			this.message = `${errorStatus} ${errorData}`;
+			const errorDetail = JSON.stringify(error.response.data);
+			this.message = `${errorStatus} ${errorDetail}`;
 		}
 	}
 }
