@@ -2,6 +2,29 @@ import { INodeProperties } from 'n8n-workflow';
 
 export const transferServerDescription: INodeProperties[] = [
 	{
+		displayName: 'Protocol',
+		name: 'protocol',
+		type: 'options',
+		required: true,
+		options: [
+			{
+				name: 'SEP24',
+				value: 'sep24',
+			},
+			{
+				name: 'SEP6',
+				value: 'sep6',
+			},
+		],
+		displayOptions: {
+			show: {
+				resource: ['info'],
+				operation: ['transferServer'],
+			},
+		},
+		default: 'sep24',
+	},
+	{
 		displayName: 'Show Optional Values',
 		name: 'showOptionalValues',
 		type: 'boolean',
