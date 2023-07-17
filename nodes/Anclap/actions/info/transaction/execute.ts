@@ -23,7 +23,9 @@ export async function transaction(this: IExecuteFunctions) {
 		const lang = this.getNodeParameter('lang', 0) as string;
 
 		if (!id && !stellarTransactionId && !externalTransactionId) {
-			throw new Error('One of these properties: Transaction ID, Stellar Transaction ID or External transaction ID is required in order to execute this node');
+			throw new Error(
+				'One of these properties: Transaction ID, Stellar Transaction ID or External transaction ID is required in order to execute this node',
+			);
 		}
 
 		transactionRequest = new TransactionRequest({
