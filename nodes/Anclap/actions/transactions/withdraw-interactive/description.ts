@@ -1,6 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 
-export const depositInteractiveDescription: INodeProperties[] = [
+export const withdrawInteractiveDescription: INodeProperties[] = [
 	{
 		displayName: 'Token',
 		name: 'token',
@@ -9,7 +9,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
@@ -22,27 +22,29 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
-		default: 'ARS',
+		default: '',
+		placeholder: 'ARS',
 		description:
-			'The code of the on-chain asset the user wants to get from the Anchor after doing an off-chain deposit.',
+			"Code of the on-chain asset the user wants to withdraw. The value passed must match one of the codes listed in the /info response's withdraw object.",
 	},
 	{
 		displayName: 'Amount',
 		name: 'amount',
-		type: 'number',
+		type: 'string',
 		required: true,
 		displayOptions: {
 			show: {
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
+		placeholder: '5.00',
 		description:
-			'The amount of the asset the user would like to deposit with the anchor. This field may be necessary for the anchor to determine what KYC information is necessary to collect.',
+			'The amount of the asset the user would like to withdraw. This field may be necessary for the anchor to determine what KYC information is necessary to collect.',
 	},
 	{
 		displayName: 'Type',
@@ -52,12 +54,28 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: 'bank_account',
 		description:
-			'Type of deposit. If the anchor supports multiple deposit methods (e.g. SEPA or SWIFT), the wallet should specify type. This field may be necessary for the anchor to determine which KYC fields to collect.',
+			'Type of withdrawal. Can be: crypto, bank_account, cash, mobile, bill_payment or other custom values. This field may be necessary for the anchor to determine what KYC information is necessary to collect.',
+	},
+	{
+		displayName: 'User Account Destination',
+		name: 'dest',
+		type: 'string',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['transactions'],
+				operation: ['withdrawInteractive'],
+			},
+		},
+		default: '',
+		placeholder: '12345454566',
+		description:
+			'The account that the user wants to withdraw their funds to. This can be a crypto account, a bank account number, IBAN, mobile number, or email address.',
 	},
 	{
 		displayName: 'Show Optional Values',
@@ -67,26 +85,26 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: false,
 	},
 	{
-		displayName: 'Memo Type',
-		name: 'memoType',
+		displayName: 'Destination Extra info',
+		name: 'destExtra',
 		type: 'string',
 		required: false,
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
 		description:
-			'Type of memo that the anchor should attach to the Stellar payment transaction, one of text, id or hash.',
+			'TThe account that the user wants to withdraw their funds to. This can be a crypto account, a bank account number, IBAN, mobile number, or email address.',
 	},
 	{
 		displayName: 'Memo',
@@ -97,28 +115,28 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
 		description:
-			'Value of memo to attach to transaction, for hash this should be base64-encoded. Because a memo can be specified in the SEP-10 JWT for Shared Accounts, this field as well as memo_type can be different than the values included in the SEP-10 JWT. For example, a client application could use the value passed for this parameter as a reference number used to match payments made to account.',
+			'This field should only be used if SEP-10 authentication is not. It was originally intended to distinguish users of the same Stellar account. However if SEP-10 is supported, the anchor should use the sub value included in the decoded SEP-10 JWT instead. See the Shared Account Authentication section for more information.',
 	},
 	{
-		displayName: 'Email Address',
-		name: 'emailAddress',
+		displayName: 'Memo Type',
+		name: 'memoType',
 		type: 'string',
 		required: false,
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
 		description:
-			'Email address of depositor. If desired, an anchor can use this to send email updates to the user about the deposit.',
+			'Type of memo. One of text, id or hash. Deprecated because memos used to identify users of the same Stellar account should always be of type of id.',
 	},
 	{
 		displayName: 'Wallet Name',
@@ -129,12 +147,12 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
 		description:
-			'In communications / pages about the deposit, anchor should display the wallet name to the user to explain where funds are going.',
+			'In communications / pages about the withdrawal, anchor should display the wallet name to the user to explain where funds are coming from.',
 	},
 	{
 		displayName: 'Wallet Url',
@@ -145,12 +163,12 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
 		description:
-			'Anchor should link to this when notifying the user that the transaction has completed.',
+			"Anchor can show this to the user when referencing the wallet involved in the withdrawal (ex. in the anchor's transaction history).",
 	},
 	{
 		displayName: 'Language',
@@ -161,7 +179,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
@@ -177,7 +195,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
@@ -193,7 +211,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
 		default: '',
@@ -201,19 +219,35 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			"The ISO 3166-1 alpha-3 code of the user's current address. This field may be necessary for the anchor to determine what KYC information is necessary to collect.",
 	},
 	{
-		displayName: 'Claimable balance supported',
-		name: 'claimableBalanceSupported',
-		type: 'boolean',
+		displayName: 'Refund Memo',
+		name: 'refundMemo',
+		type: 'string',
 		required: false,
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
 				resource: ['transactions'],
-				operation: ['depositInteractive'],
+				operation: ['withdrawInteractive'],
 			},
 		},
-		default: 'false',
+		default: '',
 		description:
-			'true if the client supports receiving deposit transactions as a claimable balance, false otherwise.',
+			'The memo the anchor must use when sending refund payments back to the user. If not specified, the anchor should use the same memo used by the user to send the original payment. If specified, refund_memo_type must also be specified.',
+	},
+	{
+		displayName: 'Refund Memo Type',
+		name: 'refundMemoType',
+		type: 'string',
+		required: false,
+		displayOptions: {
+			show: {
+				showOptionalValues: [true],
+				resource: ['transactions'],
+				operation: ['withdrawInteractive'],
+			},
+		},
+		default: '',
+		description:
+			'The type of the refund_memo. Can be id, text, or hash. See the memos documentation for more information. If specified, refund_memo must also be specified.',
 	},
 ];

@@ -1,12 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import SEP6 from '../../../transport/SEP6';
-import SEP24 from '../../../transport/SEP24';
 import AnclapCredentials from '../../../transport/AnclapCredentials';
-import { Protocol } from '../../../transport/types';
 import TransactionRequest from '../../../transport/requests/TransactionRequest/TransactionRequest';
 import ITransactionRequest from '../../../transport/requests/TransactionRequest/ITransactionRequest';
+import getProtocolProvider from '../../../transport/providers/protocolProvider';
+import { Protocol } from '../../../transport/enums/protocol';
 
-export async function transaction(this: IExecuteFunctions) {
+export async function getTransaction(this: IExecuteFunctions) {
 	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
 	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
 	const token = this.getNodeParameter('token', 0) as string;
@@ -23,7 +22,9 @@ export async function transaction(this: IExecuteFunctions) {
 		const lang = this.getNodeParameter('lang', 0) as string;
 
 		if (!id && !stellarTransactionId && !externalTransactionId) {
-			throw new Error('One of these properties: Transaction ID, Stellar Transaction ID or External transaction ID is required in order to execute this node');
+			throw new Error(
+				'One of these properties: Transaction ID, Stellar Transaction ID or External transaction ID is required in order to execute this node',
+			);
 		}
 
 		transactionRequest = new TransactionRequest({
@@ -39,19 +40,7 @@ export async function transaction(this: IExecuteFunctions) {
 		transactionRequest = new TransactionRequest({ id });
 	}
 
-	async function getSep24Transaction() {
-		const sep24 = new SEP24(anclapCredentials, token);
-		return await sep24.getTransactionById(transactionRequest);
-	}
+	const transactionProvider = getProtocolProvider(anclapCredentials, token, protocol);
 
-	async function getSep6Transaction() {
-		const sep6 = new SEP6(anclapCredentials, token);
-		return await sep6.getTransactionById(transactionRequest);
-	}
-
-	if (protocol === 'sep24') {
-		return await getSep24Transaction();
-	} else {
-		return await getSep6Transaction();
-	}
+	return await transactionProvider.getTransactionById(transactionRequest);
 }

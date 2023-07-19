@@ -1,6 +1,6 @@
 import description from './description';
-import { transactions } from './transactions/execute';
-import { transaction } from './transaction/execute';
-import { fee } from './fee/execute';
-import { transferServer } from './transfer-server/execute';
+import { getTransactions as transactions } from './transactions/execute';
+import { getTransaction as transaction } from './transaction/execute';
+import { getFeeAmount as fee } from './fee/execute';
+import { getTransferServer as transferServer } from './transfer-server/execute';
 export { transactions, transaction, fee, transferServer, description };

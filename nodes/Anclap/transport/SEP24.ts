@@ -4,6 +4,12 @@ import TransactionsRequest from './requests/TransactionsRequest/TransactionsRequ
 import AnclapCredentials from './AnclapCredentials';
 import queryBuilder from './utils/queryBuilder';
 import TransactionRequest from './requests/TransactionRequest/TransactionRequest';
+import FeeRequest from './requests/FeeRequest/FeeRequest';
+import ITransferServerRequest from './requests/TransferServerRequest/ITransferServerRequest';
+import IDepositRequest from './requests/DepositRequest/IDepositRequest';
+import parseObjectKeyCaseType from './utils/parseObjectKeyCaseType';
+import IWithdrawRequest from './requests/WithdrawRequest/IWithdrawRequest';
+import convertToSnakeCase from './utils/convertToSnakeCase';
 
 export default class SEP24 {
 	private anclapCredentials: AnclapCredentials;
@@ -14,16 +20,14 @@ export default class SEP24 {
 		this.token = token;
 	}
 
-	async getDepositInteractiveUrl(assetCode: string) {
+	async getDepositInteractiveUrl(request: IDepositRequest) {
 		const toml = await this.anclapCredentials.getToml();
+		request.account = this.anclapCredentials.publicKey;
 
 		try {
 			const depositUrl = await axios.post(
 				`${toml.TRANSFER_SERVER_SEP0024}/transactions/deposit/interactive`,
-				{
-					asset_code: assetCode,
-					account: this.anclapCredentials.publicKey,
-				},
+				parseObjectKeyCaseType(request, convertToSnakeCase),
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
@@ -33,16 +37,14 @@ export default class SEP24 {
 		}
 	}
 
-	async getWithdrawInteractiveUrl(assetCode: string) {
+	async getWithdrawInteractiveUrl(request: IWithdrawRequest) {
 		const toml = await this.anclapCredentials.getToml();
+		request.account = this.anclapCredentials.publicKey;
 
 		try {
 			const withdrawUrl = await axios.post(
 				`${toml.TRANSFER_SERVER_SEP0024}/transactions/withdraw/interactive`,
-				{
-					asset_code: assetCode,
-					account: this.anclapCredentials.publicKey,
-				},
+				parseObjectKeyCaseType(request, convertToSnakeCase),
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
@@ -84,6 +86,37 @@ export default class SEP24 {
 			);
 
 			return transactionDetail.data;
+		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
+	}
+
+	async getFee(request: FeeRequest) {
+		try {
+			const toml = await this.anclapCredentials.getToml();
+
+			const queryParams = queryBuilder(request);
+
+			const fee = await axios.get(`${toml.TRANSFER_SERVER_SEP0024}/fee?${queryParams}`, {
+				headers: { Authorization: `Bearer ${this.token}` },
+			});
+
+			return fee.data;
+		} catch (e) {
+			throw new AxiosHttpRequestError(e);
+		}
+	}
+
+	async getInfo(request?: ITransferServerRequest) {
+		try {
+			const toml = await this.anclapCredentials.getToml();
+
+			const url = request
+				? `${toml.TRANSFER_SERVER_SEP0024}/info?${queryBuilder(request)}`
+				: `${toml.TRANSFER_SERVER_SEP0024}/info`;
+			const transferServerInfo = await axios.get(url);
+
+			return transferServerInfo.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}

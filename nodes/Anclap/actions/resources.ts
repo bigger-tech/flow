@@ -4,6 +4,7 @@ import {
 	deposit,
 	withdraw,
 	depositInteractive,
+	withdrawInteractive,
 	depositExchange,
 	withdrawExchange,
 } from './transactions';
@@ -34,6 +35,7 @@ const resources: { [key in AnclapResources]: IOperations } = {
 			deposit: { execute: deposit },
 			withdraw: { execute: withdraw },
 			depositInteractive: { execute: depositInteractive },
+			withdrawInteractive: { execute: withdrawInteractive },
 			depositExchange: { execute: depositExchange },
 			withdrawExchange: { execute: withdrawExchange },
 		},
