@@ -12,7 +12,7 @@ import { IAnclapWithdrawResponse, IAnclapTomlResponse } from './responses/respon
 import GetAssetError from './errors/GetAssetError';
 import GetChallengeValidationError from './errors/GetChallengeValidationError';
 import AnclapCredentials from './AnclapCredentials';
-import { networkPassphrase } from './enums/networkPassphrase';
+import { NetworkPassphrase } from './enums/networkPassphrase';
 
 export function verifyAmount(asset: DepositAsset | WithdrawAsset, amount: string): boolean {
 	const minAmount = asset.min_amount;
@@ -130,7 +130,7 @@ export async function validateXdrProvenance(
 export function signXdr(challengeXdr: string, anclapCredentials: AnclapCredentials): object {
 	const transaction = TransactionBuilder.fromXDR(
 		challengeXdr,
-		networkPassphrase[anclapCredentials.stellarNetwork],
+		NetworkPassphrase[anclapCredentials.stellarNetwork],
 	);
 	transaction.sign(Keypair.fromSecret(anclapCredentials.secretKey));
 
