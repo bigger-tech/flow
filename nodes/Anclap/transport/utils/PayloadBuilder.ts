@@ -1,13 +1,13 @@
 export default class PayloadBuilder {
-	private obj: object;
+	private request: object;
 
-	constructor(obj: object) {
-		this.obj = obj;
+	constructor(request: object) {
+		this.request = request;
 	}
 
 	parseObjectKeyCaseType(caseTypeParser: Function): PayloadBuilder {
-		this.obj = Object.fromEntries(
-			Object.entries(this.obj).map(([key, value]) => [caseTypeParser(key), value]),
+		this.request = Object.fromEntries(
+			Object.entries(this.request).map(([key, value]) => [caseTypeParser(key), value]),
 		);
 		return this;
 	}
@@ -15,17 +15,17 @@ export default class PayloadBuilder {
 	filterUndefinedValues(): PayloadBuilder {
 		const filtered: Record<string, any> = {};
 
-		for (const [key, value] of Object.entries(this.obj)) {
+		for (const [key, value] of Object.entries(this.request)) {
 			if (value !== undefined && value.length !== 0) {
 				filtered[key] = value;
 			}
 		}
 
-		this.obj = filtered;
+		this.request = filtered;
 		return this;
 	}
 
 	build(): object {
-		return this.obj;
+		return this.request;
 	}
 }
