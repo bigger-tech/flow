@@ -1,4 +1,14 @@
-import { transactions, transaction, fee, transferServer, quoteServer, prices, price, firmQuote, quote } from './info';
+import {
+	transactions,
+	transaction,
+	fee,
+	transferServer,
+	quoteServer,
+	prices,
+	price,
+	firmQuote,
+	quote,
+} from './info';
 import { get, send, validate, sign } from './token';
 import {
 	deposit,

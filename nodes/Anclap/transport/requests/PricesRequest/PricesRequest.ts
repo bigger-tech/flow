@@ -1,19 +1,19 @@
-import IPricesRequest from "./IPricesRequest";
+import IPricesRequest from './IPricesRequest';
 
 export class PricesRequest implements IPricesRequest {
-    sellAsset: string;
-    sellAmount?: string;
-    sellDeliveryMethod?: string;
-    buyDeliveryMethod?: string;
-    countryCode?: string;
+	sellAsset: string;
+	sellAmount?: string;
+	sellDeliveryMethod?: string;
+	buyDeliveryMethod?: string;
+	countryCode?: string;
 
-    constructor(request: IPricesRequest) {
-        const {sellAsset, sellAmount, sellDeliveryMethod, buyDeliveryMethod, countryCode} = request;
+	constructor(request: IPricesRequest) {
+		const { sellAsset, sellAmount, sellDeliveryMethod, buyDeliveryMethod, countryCode } = request;
 
-        this.sellAsset = sellAsset;
-        this.sellAmount = sellAmount;
-        this.sellDeliveryMethod = sellDeliveryMethod;
-        this.buyDeliveryMethod = buyDeliveryMethod;
-        this.countryCode = countryCode;
-    }
+		this.sellAsset = sellAsset;
+		this.sellAmount = sellAmount;
+		this.sellDeliveryMethod = sellDeliveryMethod;
+		this.buyDeliveryMethod = buyDeliveryMethod;
+		this.countryCode = countryCode;
+	}
 }

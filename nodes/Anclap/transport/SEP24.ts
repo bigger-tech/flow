@@ -24,9 +24,7 @@ export default class SEP24 {
 		const toml = await this.anclapCredentials.getToml();
 		request.account = this.anclapCredentials.publicKey;
 
-		const payload = new PayloadBuilder(request)
-			.parseObjectKeyCaseType(convertToSnakeCase)
-			.build();
+		const payload = new PayloadBuilder(request).parseObjectKeyCaseType(convertToSnakeCase).build();
 
 		try {
 			const depositUrl = await axios.post(
@@ -45,9 +43,7 @@ export default class SEP24 {
 		const toml = await this.anclapCredentials.getToml();
 		request.account = this.anclapCredentials.publicKey;
 
-		const payload = new PayloadBuilder(request)
-			.parseObjectKeyCaseType(convertToSnakeCase)
-			.build();
+		const payload = new PayloadBuilder(request).parseObjectKeyCaseType(convertToSnakeCase).build();
 
 		try {
 			const withdrawUrl = await axios.post(

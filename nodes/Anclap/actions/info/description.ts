@@ -7,7 +7,7 @@ import { quoteServerDescription } from './quote-server/description';
 import { pricesDescription } from './prices/description';
 import { priceDescription } from './price/description';
 import { firmQuoteDescription } from './firm-quote/description';
-import {quoteDescription} from './quote/description'
+import { quoteDescription } from './quote/description';
 
 const description: INodeProperties[] = [
 	{
@@ -77,7 +77,7 @@ const description: INodeProperties[] = [
 	...pricesDescription,
 	...priceDescription,
 	...firmQuoteDescription,
-	...quoteDescription
+	...quoteDescription,
 ];
 
 export default description;

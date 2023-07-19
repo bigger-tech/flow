@@ -8,4 +8,15 @@ import { getPrices as prices } from './prices/execute';
 import { getPrice as price } from './price/execute';
 import { getFirmQuote as firmQuote } from './firm-quote/execute';
 import { getQuote as quote } from './quote/execute';
-export { transactions, transaction, fee, transferServer, quoteServer, prices, price, firmQuote, quote, description };
+export {
+	transactions,
+	transaction,
+	fee,
+	transferServer,
+	quoteServer,
+	prices,
+	price,
+	firmQuote,
+	quote,
+	description,
+};

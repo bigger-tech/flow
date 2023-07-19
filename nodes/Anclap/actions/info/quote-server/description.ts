@@ -10,7 +10,7 @@ export const quoteServerDescription: INodeProperties[] = [
 			{
 				name: 'SEP38',
 				value: 'sep38',
-			}
+			},
 		],
 		displayOptions: {
 			show: {
@@ -20,4 +20,4 @@ export const quoteServerDescription: INodeProperties[] = [
 		},
 		default: 'sep38',
 	},
-]
+];

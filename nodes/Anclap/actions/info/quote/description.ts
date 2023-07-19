@@ -1,7 +1,7 @@
 import { INodeProperties } from 'n8n-workflow';
 
 export const quoteDescription: INodeProperties[] = [
-    {
+	{
 		displayName: 'Token',
 		name: 'token',
 		type: 'string',
@@ -23,7 +23,7 @@ export const quoteDescription: INodeProperties[] = [
 			{
 				name: 'SEP38',
 				value: 'sep38',
-			}
+			},
 		],
 		displayOptions: {
 			show: {
@@ -33,7 +33,7 @@ export const quoteDescription: INodeProperties[] = [
 		},
 		default: 'sep38',
 	},
-    {
+	{
 		displayName: 'Quote ID',
 		name: 'id',
 		type: 'string',
@@ -46,6 +46,7 @@ export const quoteDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'de762cda-a193-4961-861e-57b31fed6eb3',
-		description: 'The unique identifier for the quote. Same as the id returned in the POST /quote response.',
+		description:
+			'The unique identifier for the quote. Same as the id returned in the POST /quote response.',
 	},
-]
+];

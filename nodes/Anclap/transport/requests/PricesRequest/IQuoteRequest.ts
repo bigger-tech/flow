@@ -1,3 +1,3 @@
 export default interface IQuoteRequest {
-    id: string;
+	id: string;
 }
