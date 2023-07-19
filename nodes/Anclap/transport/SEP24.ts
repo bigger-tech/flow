@@ -7,9 +7,9 @@ import TransactionRequest from './requests/TransactionRequest/TransactionRequest
 import FeeRequest from './requests/FeeRequest/FeeRequest';
 import ITransferServerRequest from './requests/TransferServerRequest/ITransferServerRequest';
 import IDepositRequest from './requests/DepositRequest/IDepositRequest';
-import parseObjectKeyCaseType from './utils/parseObjectKeyCaseType';
 import IWithdrawRequest from './requests/WithdrawRequest/IWithdrawRequest';
 import convertToSnakeCase from './utils/convertToSnakeCase';
+import PayloadBuilder from './utils/PayloadBuilder';
 
 export default class SEP24 {
 	private anclapCredentials: AnclapCredentials;
@@ -24,10 +24,14 @@ export default class SEP24 {
 		const toml = await this.anclapCredentials.getToml();
 		request.account = this.anclapCredentials.publicKey;
 
+		const payload = new PayloadBuilder(request)
+			.parseObjectKeyCaseType(convertToSnakeCase)
+			.build();
+
 		try {
 			const depositUrl = await axios.post(
 				`${toml.TRANSFER_SERVER_SEP0024}/transactions/deposit/interactive`,
-				parseObjectKeyCaseType(request, convertToSnakeCase),
+				payload,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
@@ -41,10 +45,14 @@ export default class SEP24 {
 		const toml = await this.anclapCredentials.getToml();
 		request.account = this.anclapCredentials.publicKey;
 
+		const payload = new PayloadBuilder(request)
+			.parseObjectKeyCaseType(convertToSnakeCase)
+			.build();
+
 		try {
 			const withdrawUrl = await axios.post(
 				`${toml.TRANSFER_SERVER_SEP0024}/transactions/withdraw/interactive`,
-				parseObjectKeyCaseType(request, convertToSnakeCase),
+				payload,
 				{ headers: { Authorization: `Bearer ${this.token}` } },
 			);
 
