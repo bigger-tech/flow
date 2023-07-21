@@ -28,6 +28,7 @@ import {
 	deleteKYCInformation,
 	verificationCodes,
 } from './kyc';
+import { memoToHex } from './utils';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
@@ -77,8 +78,13 @@ const resources: { [key in AnclapResources]: IOperations } = {
 			verificationCodes: { execute: verificationCodes },
 		},
 	},
+	utils: {
+		operations:{
+			memoToHex: {execute: memoToHex}
+		}
+	}
 };
 
-export type AnclapResources = 'info' | 'token' | 'transactions' | 'kyc';
+export type AnclapResources = 'info' | 'token' | 'transactions' | 'kyc' | 'utils';
 
 export default resources;
