@@ -7,6 +7,7 @@ import {
 import * as token from './actions/token';
 import * as transactions from './actions/transactions';
 import * as info from './actions/info';
+import * as kyc from './actions/kyc';
 import { router } from './actions/router';
 
 export class Anclap implements INodeType {
@@ -44,6 +45,10 @@ export class Anclap implements INodeType {
 						name: 'Info',
 						value: 'info',
 					},
+					{
+						name: 'KYC',
+						value: 'kyc',
+					},
 				],
 				noDataExpression: true,
 				required: true,
@@ -52,6 +57,7 @@ export class Anclap implements INodeType {
 			...token.description,
 			...transactions.description,
 			...info.description,
+			...kyc.description
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
