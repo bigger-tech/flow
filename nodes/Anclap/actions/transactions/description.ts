@@ -1,10 +1,10 @@
 import { INodeProperties } from 'n8n-workflow';
 import { description as depositDescription } from './deposit';
 import { description as withdrawDescription } from './withdraw';
-import { description as depositInteractiveDescription } from './deposit-interactive';
-import { description as withdrawInteractiveDescription } from './withdraw-interactive';
-import { description as depositExchangeDescription } from './deposit-exchange';
-import { description as withdrawExchangeDescription } from './withdraw-exchange';
+import { description as depositInteractiveDescription } from './depositInteractive';
+import { description as withdrawInteractiveDescription } from './withdrawInteractive';
+import { description as depositExchangeDescription } from './depositExchange';
+import { description as withdrawExchangeDescription } from './withdrawExchange';
 
 const description: INodeProperties[] = [
 	{
