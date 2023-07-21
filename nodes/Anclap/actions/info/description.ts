@@ -2,11 +2,11 @@ import { INodeProperties } from 'n8n-workflow';
 import { transactionsDescription } from './transactions/description';
 import { transactionDescription } from './transaction/description';
 import { feeDescription } from './fee/description';
-import { transferServerDescription } from './transfer-server/description';
-import { quoteServerDescription } from './quote-server/description';
+import { transferServerDescription } from './transferServer/description';
+import { quoteServerDescription } from './quoteServer/description';
 import { pricesDescription } from './prices/description';
 import { priceDescription } from './price/description';
-import { firmQuoteDescription } from './firm-quote/description';
+import { firmQuoteDescription } from './firmQuote/description';
 import { quoteDescription } from './quote/description';
 
 const description: INodeProperties[] = [
