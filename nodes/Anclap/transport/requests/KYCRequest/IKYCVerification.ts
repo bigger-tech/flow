@@ -1,4 +1,4 @@
-export interface IKYCVerification{
-    id: string,
-    [key: string]: string;
+export interface IKYCVerification {
+	id: string;
+	[key: string]: string;
 }

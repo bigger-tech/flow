@@ -139,6 +139,6 @@ export function signXdr(challengeXdr: string, anclapCredentials: AnclapCredentia
 
 function extractHomeDomain(anchorUrl: string): string {
 	const url = new URL(anchorUrl);
-	
+
 	return url.hostname;
 }

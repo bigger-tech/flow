@@ -1,9 +1,9 @@
-import { IBinaryFieldRequest } from "./IBinaryFieldRequest";
+import { IBinaryFieldRequest } from './IBinaryFieldRequest';
 
-export default class BinaryFieldRequest implements IBinaryFieldRequest{
-    file: string;
+export default class BinaryFieldRequest implements IBinaryFieldRequest {
+	file: string;
 
-    constructor(request: IBinaryFieldRequest){
-        this.file = request.file;
-    }
+	constructor(request: IBinaryFieldRequest) {
+		this.file = request.file;
+	}
 }

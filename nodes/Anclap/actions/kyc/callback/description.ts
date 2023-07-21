@@ -33,7 +33,7 @@ export const callbackDescription: INodeProperties[] = [
 		},
 		default: 'sep12',
 	},
-    {
+	{
 		displayName: 'Callback URL',
 		name: 'url',
 		type: 'string',

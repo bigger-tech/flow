@@ -1,4 +1,4 @@
-export interface IFilesRequest{
-    fileId?: string,
-    customerId?: string
+export interface IFilesRequest {
+	fileId?: string;
+	customerId?: string;
 }

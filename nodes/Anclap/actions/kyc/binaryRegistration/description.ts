@@ -1,7 +1,7 @@
-import { INodeProperties } from "n8n-workflow";
+import { INodeProperties } from 'n8n-workflow';
 
 export const binaryRegistrationDescription: INodeProperties[] = [
-    {
+	{
 		displayName: 'Token',
 		name: 'token',
 		type: 'string',
@@ -33,7 +33,7 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		},
 		default: 'sep12',
 	},
-    {
+	{
 		displayName: 'Photo ID Back File ID',
 		name: 'photoIdBackFileId',
 		type: 'string',
@@ -45,9 +45,10 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Photo ID back".',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Photo ID back".',
 	},
-    {
+	{
 		displayName: 'Photo ID Front File ID',
 		name: 'photoIdFrontFileId',
 		type: 'string',
@@ -59,9 +60,10 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Photo ID front".',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Photo ID front".',
 	},
-    {
+	{
 		displayName: 'Notary Approval of photo ID File ID',
 		name: 'notaryApprovalOfPhotoIdFileId',
 		type: 'string',
@@ -73,9 +75,10 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Notary Approval of photo ID".',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Notary Approval of photo ID".',
 	},
-    {
+	{
 		displayName: 'Photo proof Residence File ID',
 		name: 'photoProofResidenceFileId',
 		type: 'string',
@@ -87,9 +90,10 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Photo proof Residence".',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Photo proof Residence".',
 	},
-    {
+	{
 		displayName: 'Proof of Income File ID',
 		name: 'proofOfIncomeFileId',
 		type: 'string',
@@ -101,9 +105,10 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Proof of Income".',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Proof of Income".',
 	},
-    {
+	{
 		displayName: 'Proof of Liveness File ID',
 		name: 'proofOfLivenessFileId',
 		type: 'string',
@@ -115,6 +120,7 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Proof of Liveness".',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Proof of Liveness".',
 	},
-]
+];

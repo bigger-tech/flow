@@ -1,5 +1,5 @@
-import { IKYCBaseRequest } from "./IKYCBaseRequest";
+import { IKYCBaseRequest } from './IKYCBaseRequest';
 
 export interface ICallbackRequest extends IKYCBaseRequest {
-    url: string;
+	url: string;
 }

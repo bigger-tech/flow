@@ -1,5 +1,5 @@
-import { IKYCBaseRequest } from "./IKYCBaseRequest";
+import { IKYCBaseRequest } from './IKYCBaseRequest';
 
 export interface IKYCRegistrationRequest extends IKYCBaseRequest {
-    type?: string;
+	type?: string;
 }

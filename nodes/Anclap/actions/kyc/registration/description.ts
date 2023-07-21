@@ -1,7 +1,7 @@
-import { INodeProperties } from "n8n-workflow";
+import { INodeProperties } from 'n8n-workflow';
 
 export const registrationDescription: INodeProperties[] = [
-    {
+	{
 		displayName: 'Token',
 		name: 'token',
 		type: 'string',
@@ -33,7 +33,7 @@ export const registrationDescription: INodeProperties[] = [
 		},
 		default: 'sep12',
 	},
-    {
+	{
 		displayName: 'Family name',
 		name: 'familyName',
 		type: 'string',
@@ -47,7 +47,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Family name',
 	},
-    {
+	{
 		displayName: 'Last name',
 		name: 'lastName',
 		type: 'string',
@@ -61,7 +61,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Last name',
 	},
-    {
+	{
 		displayName: 'Given name',
 		name: 'givenName',
 		type: 'string',
@@ -75,7 +75,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Given name',
 	},
-    {
+	{
 		displayName: 'First name',
 		name: 'firstName',
 		type: 'string',
@@ -89,7 +89,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'First name',
 	},
-    {
+	{
 		displayName: 'Additional name',
 		name: 'additionalName',
 		type: 'string',
@@ -103,7 +103,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Middle name or other additional name',
 	},
-    {
+	{
 		displayName: 'Address Country Code',
 		name: 'addressCountryCode',
 		type: 'string',
@@ -117,7 +117,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Country code for current address',
 	},
-    {
+	{
 		displayName: 'State or Province',
 		name: 'stateOrProvince',
 		type: 'string',
@@ -131,7 +131,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Name of state/province/region/prefecture',
 	},
-    {
+	{
 		displayName: 'City',
 		name: 'city',
 		type: 'string',
@@ -145,7 +145,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Name of city/town',
 	},
-    {
+	{
 		displayName: 'Postal Code',
 		name: 'postalCode',
 		type: 'string',
@@ -157,9 +157,9 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Postal or other code identifying user\'s locale',
+		description: "Postal or other code identifying user's locale",
 	},
-    {
+	{
 		displayName: 'Address',
 		name: 'address',
 		type: 'string',
@@ -171,9 +171,10 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Entire address (country, state, postal code, street address, etc...) as a multi-line string',
+		description:
+			'Entire address (country, state, postal code, street address, etc...) as a multi-line string',
 	},
-    {
+	{
 		displayName: 'Mobile number',
 		name: 'mobileNumber',
 		type: 'string',
@@ -187,7 +188,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Mobile phone number with country code, in E.164 format',
 	},
-    {
+	{
 		displayName: 'Email Address',
 		name: 'emailAddress',
 		type: 'string',
@@ -201,7 +202,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Email address',
 	},
-    {
+	{
 		displayName: 'Birth Date',
 		name: 'birthDate',
 		type: 'dateTime',
@@ -215,7 +216,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Date of birth, e.g. 1976-07-04',
 	},
-    {
+	{
 		displayName: 'Birth Place',
 		name: 'birthPlace',
 		type: 'string',
@@ -229,7 +230,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Place of birth (city, state, country; as on passport)',
 	},
-    {
+	{
 		displayName: 'Birth Country Code',
 		name: 'birthCountryCode',
 		type: 'string',
@@ -243,7 +244,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'ISO Code of country of birth',
 	},
-    {
+	{
 		displayName: 'Bank Account Number',
 		name: 'bankAccountNumber',
 		type: 'string',
@@ -257,7 +258,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Number identifying bank account',
 	},
-    {
+	{
 		displayName: 'Tax ID',
 		name: 'taxId',
 		type: 'string',
@@ -271,7 +272,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Tax identifier of user in their country (social security number in US)',
 	},
-    {
+	{
 		displayName: 'Tax ID Name',
 		name: 'taxIdName',
 		type: 'string',
@@ -285,7 +286,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Name of the tax ID (SSN or ITIN in the US)',
 	},
-    {
+	{
 		displayName: 'Occupation ISCO Code',
 		name: 'occupation',
 		type: 'number',
@@ -299,7 +300,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Occupation ISCO code',
 	},
-    {
+	{
 		displayName: 'Employer Name',
 		name: 'employerName',
 		type: 'string',
@@ -313,7 +314,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Name of employer',
 	},
-    {
+	{
 		displayName: 'Employer Address',
 		name: 'employerAddress',
 		type: 'string',
@@ -327,7 +328,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Address of employer',
 	},
-    {
+	{
 		displayName: 'Language Code',
 		name: 'languageCode',
 		type: 'string',
@@ -341,7 +342,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Primary language',
 	},
-    {
+	{
 		displayName: 'ID Type',
 		name: 'idType',
 		type: 'string',
@@ -355,7 +356,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Passport, drivers_license, id_card, etc...',
 	},
-    {
+	{
 		displayName: 'ID Country Code',
 		name: 'idCountryCode',
 		type: 'string',
@@ -369,7 +370,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Country issuing passport or photo ID as ISO 3166-1 alpha-3 code',
 	},
-    {
+	{
 		displayName: 'ID Issue Date',
 		name: 'idIssueDate',
 		type: 'dateTime',
@@ -383,7 +384,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'ID issue date',
 	},
-    {
+	{
 		displayName: 'ID Expiration Date',
 		name: 'idExpirationDate',
 		type: 'dateTime',
@@ -397,7 +398,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'ID expiration date',
 	},
-    {
+	{
 		displayName: 'ID Number',
 		name: 'idNumber',
 		type: 'string',
@@ -411,7 +412,7 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Passport or ID number',
 	},
-    {
+	{
 		displayName: 'IP Address',
 		name: 'ipAddress',
 		type: 'string',
@@ -423,9 +424,9 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'IP address of customer\'s computer',
+		description: "IP address of customer's computer",
 	},
-    {
+	{
 		displayName: 'Sex',
 		name: 'sex',
 		type: 'string',
@@ -439,4 +440,4 @@ export const registrationDescription: INodeProperties[] = [
 		default: '',
 		description: 'Male, female, or other',
 	},
-]
+];

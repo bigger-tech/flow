@@ -1,7 +1,7 @@
-import { INodeProperties } from "n8n-workflow";
+import { INodeProperties } from 'n8n-workflow';
 
 export const verificationCodesDescription: INodeProperties[] = [
-    {
+	{
 		displayName: 'Token',
 		name: 'token',
 		type: 'string',
@@ -33,7 +33,7 @@ export const verificationCodesDescription: INodeProperties[] = [
 		},
 		default: 'sep12',
 	},
-    {
+	{
 		displayName: 'Customer ID',
 		name: 'id',
 		type: 'string',
@@ -47,7 +47,7 @@ export const verificationCodesDescription: INodeProperties[] = [
 		default: '',
 		description: 'The ID of the customer as returned in the response of a previous PUT request.',
 	},
-    {
+	{
 		displayName: 'Mobile number verification code',
 		name: 'mobileNumber',
 		type: 'string',
@@ -61,7 +61,7 @@ export const verificationCodesDescription: INodeProperties[] = [
 		default: '',
 		description: 'Mobile number verification code',
 	},
-    {
+	{
 		displayName: 'Email Address verification code.',
 		name: 'emailAddress',
 		type: 'string',
@@ -72,7 +72,7 @@ export const verificationCodesDescription: INodeProperties[] = [
 				operation: ['verificationCodes'],
 			},
 		},
-        default: '',
+		default: '',
 		description: 'Email Address verification code.',
 	},
-]
+];

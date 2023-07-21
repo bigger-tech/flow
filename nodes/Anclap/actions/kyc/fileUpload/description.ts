@@ -1,7 +1,7 @@
-import { INodeProperties } from "n8n-workflow";
+import { INodeProperties } from 'n8n-workflow';
 
 export const fileUploadDescription: INodeProperties[] = [
-    {
+	{
 		displayName: 'Token',
 		name: 'token',
 		type: 'string',
@@ -33,7 +33,7 @@ export const fileUploadDescription: INodeProperties[] = [
 		},
 		default: 'sep12',
 	},
-    {
+	{
 		displayName: 'Binary File',
 		name: 'file',
 		type: 'string',
@@ -45,6 +45,7 @@ export const fileUploadDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'A file to upload. The file should follow the specifications of RFC 2388 (which defines file transfers for the multipart/form-data protocol).',
+		description:
+			'A file to upload. The file should follow the specifications of RFC 2388 (which defines file transfers for the multipart/form-data protocol).',
 	},
-]
+];

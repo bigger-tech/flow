@@ -1,3 +1,3 @@
-export interface IBinaryFieldRequest{
-    file: string
+export interface IBinaryFieldRequest {
+	file: string;
 }

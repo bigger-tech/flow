@@ -8,4 +8,14 @@ import { execute as deleteKYCInformation } from './delete';
 import { execute as verificationCodes } from './verification';
 import description from './description';
 
-export { status, callback, registration, fileUpload, files, binaryRegistration, deleteKYCInformation, verificationCodes, description };
+export {
+	status,
+	callback,
+	registration,
+	fileUpload,
+	files,
+	binaryRegistration,
+	deleteKYCInformation,
+	verificationCodes,
+	description,
+};

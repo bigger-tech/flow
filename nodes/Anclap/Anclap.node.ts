@@ -57,7 +57,7 @@ export class Anclap implements INodeType {
 			...token.description,
 			...transactions.description,
 			...info.description,
-			...kyc.description
+			...kyc.description,
 		],
 	};
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
