@@ -21,7 +21,7 @@ const description: INodeProperties[] = [
 			},
 		],
 	},
-    ...memoToHexDescription
+	...memoToHexDescription,
 ];
 
 export default description;

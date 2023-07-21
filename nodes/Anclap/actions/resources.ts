@@ -79,10 +79,10 @@ const resources: { [key in AnclapResources]: IOperations } = {
 		},
 	},
 	utils: {
-		operations:{
-			memoToHex: {execute: memoToHex}
-		}
-	}
+		operations: {
+			memoToHex: { execute: memoToHex },
+		},
+	},
 };
 
 export type AnclapResources = 'info' | 'token' | 'transactions' | 'kyc' | 'utils';

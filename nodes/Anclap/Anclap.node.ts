@@ -53,7 +53,7 @@ export class Anclap implements INodeType {
 					{
 						name: 'Utils',
 						value: 'utils',
-					}
+					},
 				],
 				noDataExpression: true,
 				required: true,

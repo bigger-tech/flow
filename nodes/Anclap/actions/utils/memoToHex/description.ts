@@ -1,7 +1,7 @@
-import { INodeProperties } from "n8n-workflow";
+import { INodeProperties } from 'n8n-workflow';
 
 export const memoToHexDescription: INodeProperties[] = [
-    {
+	{
 		displayName: 'Memo to Convert',
 		name: 'memo',
 		type: 'string',
@@ -13,6 +13,6 @@ export const memoToHexDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-        description: 'The memo given by the anchor that needs to be encoded from base64 to hex',
+		description: 'The memo given by the anchor that needs to be encoded from base64 to hex',
 	},
-]
+];

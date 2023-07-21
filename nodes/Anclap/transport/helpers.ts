@@ -1,9 +1,4 @@
-import {
-	Operation,
-	TransactionBuilder,
-	Transaction,
-	Keypair,
-} from 'stellar-sdk';
+import { Operation, TransactionBuilder, Transaction, Keypair } from 'stellar-sdk';
 import { IAnclapTomlResponse } from './responses/responses';
 import GetChallengeValidationError from './errors/GetChallengeValidationError';
 import AnclapCredentials from './AnclapCredentials';
