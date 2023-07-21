@@ -18,6 +18,16 @@ import {
 	depositExchange,
 	withdrawExchange,
 } from './transactions';
+import {
+	status,
+	callback,
+	registration,
+	fileUpload,
+	files,
+	binaryRegistration,
+	deleteKYCInformation,
+	verificationCodes,
+} from './kyc';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
@@ -55,8 +65,20 @@ const resources: { [key in AnclapResources]: IOperations } = {
 			withdrawExchange: { execute: withdrawExchange },
 		},
 	},
+	kyc: {
+		operations: {
+			status: { execute: status },
+			callback: { execute: callback },
+			registration: { execute: registration },
+			fileUpload: { execute: fileUpload },
+			files: { execute: files },
+			binaryRegistration: { execute: binaryRegistration },
+			deleteKYCInformation: { execute: deleteKYCInformation },
+			verificationCodes: { execute: verificationCodes },
+		},
+	},
 };
 
-export type AnclapResources = 'info' | 'token' | 'transactions';
+export type AnclapResources = 'info' | 'token' | 'transactions' | 'kyc';
 
 export default resources;
