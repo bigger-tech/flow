@@ -27,8 +27,7 @@ export async function build(this: IExecuteFunctions) {
 			networkPassphrase: stellarNetwork.passphrase,
 		}).setTimeout(timeout | 30);
 
-		if(memo){
-			console.log(memo)
+		if (memo) {
 			const memoOptions = ['hash', 'id', 'return', 'text'];
 
 			memoOptions.forEach((option) => {
@@ -51,7 +50,6 @@ export async function build(this: IExecuteFunctions) {
 				}
 			});
 		}
-
 
 		for (const operationXdr of operations) {
 			if (operationXdr) {
