@@ -11,6 +11,7 @@ import AxiosHttpRequestError from './errors/AxiosHttpRequestError';
 import PayloadBuilder from './utils/PayloadBuilder';
 import convertToSnakeCase from './utils/convertToSnakeCase';
 import { IBaseStandardFieldsRequest } from './requests/StandardFieldsRequest/IBaseStandardFieldsRequest';
+import FormData from 'form-data';
 
 export default class SEP12 {
 	private anclapCredentials: AnclapCredentials;
@@ -122,11 +123,15 @@ export default class SEP12 {
 	async uploadBinaryFile(request: IBinaryFieldRequest) {
 		const toml = await this.anclapCredentials.getToml();
 
-		try {
-			const fileId = await axios.post(`${toml.KYC_SERVER}/customer/files`, request, {
-				headers: { Authorization: `Bearer ${this.token}` },
-			});
+		const imageBuffer = Buffer.from(request.file, 'base64');
 
+		const formData = new FormData();
+		formData.append('file', imageBuffer, 'file.jpeg');
+		try {
+			const fileId = await axios.post(`${toml.KYC_SERVER}/customer/files`, formData, {
+				headers: { Authorization: `Bearer ${this.token}`,
+				'Content-Type': 'multipart/form-data'},
+			});
 			return fileId.data;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
