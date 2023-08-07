@@ -12,6 +12,7 @@ import PayloadBuilder from './utils/PayloadBuilder';
 import convertToSnakeCase from './utils/convertToSnakeCase';
 import { IBaseStandardFieldsRequest } from './requests/StandardFieldsRequest/IBaseStandardFieldsRequest';
 import FormData from 'form-data';
+import { getImageFormatFromBase64, imageFormats } from './utils/imageFormatFromBase64';
 
 export default class SEP12 {
 	private anclapCredentials: AnclapCredentials;
@@ -123,14 +124,20 @@ export default class SEP12 {
 	async uploadBinaryFile(request: IBinaryFieldRequest) {
 		const toml = await this.anclapCredentials.getToml();
 
+		const imageFormat = getImageFormatFromBase64(request.file);
+		if (!imageFormat) {
+			const supportedFormats = Object.keys(imageFormats).join(', ');
+
+			throw new Error(`Invalid image format, try again.`);
+		}
+
 		const imageBuffer = Buffer.from(request.file, 'base64');
 
 		const formData = new FormData();
-		formData.append('file', imageBuffer, 'file.jpeg');
+		formData.append('file', imageBuffer, `file.${imageFormat}`);
 		try {
 			const fileId = await axios.post(`${toml.KYC_SERVER}/customer/files`, formData, {
-				headers: { Authorization: `Bearer ${this.token}`,
-				'Content-Type': 'multipart/form-data'},
+				headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'multipart/form-data' },
 			});
 			return fileId.data;
 		} catch (e) {
