@@ -126,8 +126,6 @@ export default class SEP12 {
 
 		const imageFormat = getImageFormatFromBase64(request.file);
 		if (!imageFormat) {
-			const supportedFormats = Object.keys(imageFormats).join(', ');
-
 			throw new Error(`Invalid image format, try again.`);
 		}
 
