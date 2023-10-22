@@ -12,7 +12,7 @@ import PayloadBuilder from './utils/PayloadBuilder';
 import convertToSnakeCase from './utils/convertToSnakeCase';
 import { IBaseStandardFieldsRequest } from './requests/StandardFieldsRequest/IBaseStandardFieldsRequest';
 import FormData from 'form-data';
-import { getImageFormatFromBase64, imageFormats } from './utils/imageFormatFromBase64';
+import { getImageFormatFromBase64 } from './utils/imageFormatFromBase64';
 
 export default class SEP12 {
 	private anclapCredentials: AnclapCredentials;
