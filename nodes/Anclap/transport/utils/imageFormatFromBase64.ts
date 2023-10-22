@@ -10,7 +10,7 @@ export function getImageFormatFromBase64(base64String: string): string | null {
 
 	return null;
 }
-export const imageFormats: Record<string, string> = {
+const imageFormats: Record<string, string> = {
 	jpeg: '/9j/4',
 	png: 'iVBORw0KGgoAAAANSUhEUgAA',
 	gif: 'R0lGODlh',
@@ -19,5 +19,5 @@ export const imageFormats: Record<string, string> = {
 	tiff: 'SUkq',
 	ico: 'AAAB',
 	svg: 'PHN2Zy',
-	pdf: 'JVBERi0'
+	pdf: 'JVBERi0',
 };
