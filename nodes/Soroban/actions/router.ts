@@ -7,6 +7,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	const resource = this.getNodeParameter('resource', 0) as string;
 	const soroban = { resource, operation } as Soroban;
 	const items = this.getInputData();
+
 	let nodeOutput: IDataObject[] = [];
 	let response;
 
