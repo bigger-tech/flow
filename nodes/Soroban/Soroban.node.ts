@@ -10,8 +10,7 @@ export class Soroban implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Soroban',
 		name: 'soroban',
-		// eslint-disable-next-line n8n-nodes-base/node-class-description-icon-not-svg
-		icon: 'file:soroban.png',
+		icon: 'file:soroban.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{ $parameter["operation"] }}',
@@ -34,9 +33,9 @@ export class Soroban implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
-			// ...newAccount.description,
 		],
 	};
+
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		return router.call(this);
 	}
