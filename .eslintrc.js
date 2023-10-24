@@ -27,6 +27,10 @@ module.exports = {
 			extends: ['plugin:n8n-nodes-base/community'],
 			rules: {
 				'n8n-nodes-base/community-package-json-name-still-default': 'off',
+				'n8n-nodes-base/community-package-json-author-email-still-default': 'off',
+				'n8n-nodes-base/community-package-json-author-name-still-default':'off',
+				'n8n-nodes-base/community-package-json-description-still-default':'off',
+				'n8n-nodes-base/community-package-json-repository-url-still-default':'off'
 			},
 		},
 		{
