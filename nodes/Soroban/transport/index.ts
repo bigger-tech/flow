@@ -17,6 +17,7 @@ export class SorobanNetwork {
     this: IExecuteFunctions | ITriggerFunctions
   ): Promise<SorobanNetwork> {
     const credentials = await this.getCredentials('sorobanNetworkApi');
+
     let sorobanNetwork;
 
     switch (credentials.network) {
