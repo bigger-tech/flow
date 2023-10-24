@@ -26,7 +26,7 @@
 		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
 		"test": "vitest nodes",
 		"build:n8n": "tsc && gulp build:icons && n8n start",
-    "watch:n8n": "nodemon -e ts,json,yaml -x  \"npm run build:n8n\""
+        "watch:n8n": "nodemon -e ts,json,yaml -x  \"npm run build:n8n\""
 	},
 	"files": [
 		"dist"
