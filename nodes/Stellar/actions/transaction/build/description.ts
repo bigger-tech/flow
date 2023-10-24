@@ -1,4 +1,4 @@
-import { TransactionProperties } from '../../entities/IStellarNode';
+import { TransactionProperties } from '../../entities/StellarNode';
 
 export const transactionDescription: TransactionProperties = [
 	{

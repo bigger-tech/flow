@@ -1,6 +1,6 @@
 import { Horizon } from 'stellar-sdk';
-import ILiquidityPool from './ILiquidityPool';
-import ILiquidityPoolReserve from './ILiquidityPoolReserve';
+import ILiquidityPool from '../../../../common/interfaces/stellarBlockchain/ILiquidityPool';
+import ILiquidityPoolReserve from '../../../../common/interfaces/stellarBlockchain/ILiquidityPoolReserve';
 
 export default class LiquidityPool implements ILiquidityPool {
 	public id: string;

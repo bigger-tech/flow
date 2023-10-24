@@ -1,5 +1,5 @@
 import type { IExecuteFunctions, ITriggerFunctions } from 'n8n-workflow';
-import SetNetworkError from './errors/SetNetworkError';
+import SetNetworkError from '../../../common/errors/stellarBlockchain/SetNetworkError';
 
 const SOROBAN_FUTURENET_NETWORK = 'https://horizon-futurenet.stellar.org';
 const SOROBAN_FUTURENET_PASSPHRASE = 'Test SDF Future Network ; October 2022';

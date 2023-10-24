@@ -1,7 +1,8 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
-import { buildAsset } from '../../../transport';
-import IAsset from '../../entities/IAsset';
+import { Operation, Asset } from 'stellar-sdk';
+import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
+import { NetworkEnum } from '../../../../../common/enum/stellarBlockchain/networkEnum';
+import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
 
 export async function setTrustline(this: IExecuteFunctions) {
 	try {
@@ -14,7 +15,7 @@ export async function setTrustline(this: IExecuteFunctions) {
 		) as boolean;
 		const clawbackEnabled = this.getNodeParameter('clawbackEnabled', 0) as boolean;
 
-		const asset = buildAsset(assetToTrust);
+		const asset = buildAsset(assetToTrust, NetworkEnum.STELLAR) as Asset;
 
 		const setTrustlineOperation = Operation.setTrustLineFlags({
 			trustor,

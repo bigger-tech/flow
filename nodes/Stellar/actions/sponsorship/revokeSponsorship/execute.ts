@@ -5,7 +5,7 @@ import * as revokeDataSponsorship from './revokeDataSponsorship';
 import * as revokeOfferSponsorship from './revokeOfferSponsorship';
 import * as revokeTrustlineSponsorship from './revokeTrustlineSponsorship';
 import * as revokeSignerSponsorship from './revokeSignerSponsorship';
-import type { revokeSponsorshipType } from '../../entities/IRevokeSponsorshipType';
+import type { revokeSponsorshipType } from '../../../../../common/types/stellarBlockchain/RevokeSponsorshipType';
 
 export async function revokeSponsorship(this: IExecuteFunctions) {
 	const revokeSponsorshipType = this.getNodeParameter(

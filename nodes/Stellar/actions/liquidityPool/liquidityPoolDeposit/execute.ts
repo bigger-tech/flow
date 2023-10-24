@@ -1,7 +1,8 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'stellar-sdk';
-import { convertAmountToBigNumber } from '../../../transport';
-import ILiquidityPoolPrice from '../../entities/ILiquidityPoolPrice';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
+
+import ILiquidityPoolPrice from '../../../../../common/interfaces/stellarBlockchain/ILiquidityPoolPrice';
 import getPrice from './helpers/helpers';
 
 export async function liquidityPoolDeposit(this: IExecuteFunctions) {

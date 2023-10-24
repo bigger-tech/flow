@@ -1,5 +1,5 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
-import { Stellar } from '../actions/entities/IStellarNode';
+import { Stellar } from './entities/StellarNode';
 import resources from './resources';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {

@@ -1,4 +1,4 @@
-import { ServerProperties } from '../../entities/IStellarNode';
+import { ServerProperties } from '../../entities/StellarNode';
 
 export const findLiquidityPoolDescription: ServerProperties = [
 	{

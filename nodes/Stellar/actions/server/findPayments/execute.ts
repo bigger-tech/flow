@@ -2,7 +2,7 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { Server } from 'stellar-sdk';
 import { setNetwork } from '../../../transport';
 import { getPayments, filterPaymentFromAccount, filterPaymentFromAsset } from './helpers/helpers';
-import IAdditionalPaymentFilter from '../../entities/IAdditionalPaymentFilter';
+import IAdditionalPaymentFilter from '../../../../../common/interfaces/stellarBlockchain/IAdditionalPaymentFilter';
 
 export async function findPayments(this: IExecuteFunctions) {
 	try {

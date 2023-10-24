@@ -1,7 +1,9 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
-import { buildAsset, convertAmountToBigNumber } from '../../../transport';
-import IAsset from '../../entities/IAsset';
+import { Operation, Asset } from 'stellar-sdk';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
+import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
+import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
+import { NetworkEnum } from '../../../../../common/enum/stellarBlockchain/networkEnum';
 
 export async function createPassiveSellOffer(this: IExecuteFunctions) {
 	try {
@@ -10,8 +12,8 @@ export async function createPassiveSellOffer(this: IExecuteFunctions) {
 		const sellingAmount = this.getNodeParameter('sellingAmount', 0) as number;
 		const sellingPrice = this.getNodeParameter('price', 0) as number;
 
-		const selling = buildAsset(sellingAsset);
-		const buying = buildAsset(buyingAsset);
+		const selling = buildAsset(sellingAsset, NetworkEnum.STELLAR) as Asset;
+		const buying = buildAsset(buyingAsset, NetworkEnum.STELLAR) as Asset;
 		const amount = convertAmountToBigNumber(sellingAmount);
 		const price = convertAmountToBigNumber(sellingPrice);
 

@@ -3,7 +3,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import getPrice from '../helpers';
-import ILiquidityPoolPrice from '../../../../entities/ILiquidityPoolPrice';
+import ILiquidityPoolPrice from '../../../../../../../common/interfaces/stellarBlockchain/ILiquidityPoolPrice';
 import NoPriceSelectedError from '../../errors/NoPriceSelectedError';
 
 describe('Get liquidity pool price', () => {

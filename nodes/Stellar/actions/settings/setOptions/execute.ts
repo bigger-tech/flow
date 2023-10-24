@@ -8,9 +8,9 @@ import {
 	Signer,
 	AuthFlag,
 } from 'stellar-sdk';
-import IFlags from '../../entities/IFlags';
-import ISigner from '../../entities/ISigner';
-import ISetOptionsOperationOptions from '../../entities/ISetOptionsOperationOptions';
+import IFlags from '../../../../../common/interfaces/stellarBlockchain/IFlags';
+import ISigner from '../../../../../common/interfaces/stellarBlockchain/ISigner';
+import ISetOptionsOperationOptions from '../../interfaces/ISetOptionsOperationOptions';
 
 export async function setOptions(this: IExecuteFunctions) {
 	try {

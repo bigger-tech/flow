@@ -13,7 +13,7 @@ import { changeTrust, setTrustline } from './trust';
 import { findLiquidityPool, findPayments } from './server';
 
 import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './payments';
-import { StellarResources } from '../actions/entities/IStellarNode';
+import { StellarResources } from './entities/StellarNode';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import IAsset from '../../../../entities/IAsset';
+import IAsset from '../../../../../../../common/interfaces/stellarBlockchain/IAsset';
 import Payment from '../../../../entities/Payment';
 import NoPaymentFoundError from '../../errors/NoPaymentFoundError';
 import { filterPaymentFromAccount, filterPaymentFromAsset } from '../helpers';

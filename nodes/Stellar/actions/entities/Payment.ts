@@ -1,5 +1,5 @@
 import { Horizon } from 'stellar-sdk';
-import IPayment from './IPayment';
+import IPayment from '../../../../common/interfaces/stellarBlockchain/IPayment';
 
 export default class Payment implements IPayment {
 	id: string;
