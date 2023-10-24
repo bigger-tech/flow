@@ -12,10 +12,11 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	let response;
 
 	for (const item of items) {
-		const { json: { operation } } = item;
-		if ( operation) {
-			nodeOutput.push(item);
-		}
+		const {
+			json: { operation },
+		} = item;
+
+		if (operation) nodeOutput.push(item);
 	}
 
 	try {
