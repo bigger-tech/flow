@@ -45,13 +45,13 @@ export const verificationCodesDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The ID of the customer as returned in the response of a previous PUT request.',
+		description: 'The ID of the customer as returned in the response of a previous PUT request',
 	},
 	{
-		displayName: 'Mobile number verification code',
+		displayName: 'Mobile Number Verification Code',
 		name: 'mobileNumber',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -59,13 +59,13 @@ export const verificationCodesDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Mobile number verification code',
+
 	},
 	{
-		displayName: 'Email Address verification code.',
+		displayName: 'Email Address Verification Code.',
 		name: 'emailAddress',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -73,6 +73,6 @@ export const verificationCodesDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Email Address verification code.',
+		description: 'Email Address verification code',
 	},
 ];

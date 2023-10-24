@@ -68,7 +68,7 @@ export const transactionsDescription: INodeProperties[] = [
 		displayName: 'No Older Than',
 		name: 'noOlderThan',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -78,13 +78,16 @@ export const transactionsDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'YYYY-MM-DD',
-		description: 'The response should contain transactions starting on or after this date & time.',
+		description: 'The response should contain transactions starting on or after this date & time',
 	},
 	{
 		displayName: 'Limit Transactions Count',
 		name: 'limit',
 		type: 'number',
-		required: false,
+		typeOptions: {
+			minValue: 1,
+		},
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -92,15 +95,15 @@ export const transactionsDescription: INodeProperties[] = [
 				operation: ['transactions'],
 			},
 		},
-		default: '',
+		default: 50,
 		placeholder: '10',
-		description: 'The response should contain at most limit transactions.',
+		description: 'Max number of results to return',
 	},
 	{
 		displayName: 'Transaction Type',
 		name: 'kind',
 		type: 'options',
-		required: false,
+
 		options: [
 			{
 				name: 'Default',
@@ -130,7 +133,7 @@ export const transactionsDescription: INodeProperties[] = [
 				operation: ['transactions'],
 			},
 		},
-		default: '',
+		default: 'default',
 		description:
 			'A list containing the desired transaction kinds. The possible values are deposit, deposit-exchange, withdrawal and withdrawal-exchange.',
 	},
@@ -138,7 +141,7 @@ export const transactionsDescription: INodeProperties[] = [
 		displayName: 'Paging ID',
 		name: 'pagingId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -148,13 +151,13 @@ export const transactionsDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '10',
-		description: 'The response should contain transactions starting prior to this ID (exclusive).',
+		description: 'The response should contain transactions starting prior to this ID (exclusive)',
 	},
 	{
 		displayName: 'Language',
 		name: 'lang',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],

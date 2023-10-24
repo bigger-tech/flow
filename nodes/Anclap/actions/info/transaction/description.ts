@@ -41,7 +41,7 @@ export const transactionDescription: INodeProperties[] = [
 		displayName: 'Transaction ID',
 		name: 'id',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['info'],
@@ -68,7 +68,7 @@ export const transactionDescription: INodeProperties[] = [
 		displayName: 'Stellar Transaction ID',
 		name: 'stellarTransactionId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -78,13 +78,13 @@ export const transactionDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '',
-		description: 'The stellar transaction id of the transaction.',
+		description: 'The stellar transaction ID of the transaction',
 	},
 	{
 		displayName: 'External Transaction ID',
 		name: 'externalTransactionId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -94,13 +94,13 @@ export const transactionDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '',
-		description: 'The external transaction id of the transaction.',
+		description: 'The external transaction ID of the transaction',
 	},
 	{
 		displayName: 'Language',
 		name: 'lang',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],

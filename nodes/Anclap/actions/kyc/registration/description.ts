@@ -34,10 +34,10 @@ export const registrationDescription: INodeProperties[] = [
 		default: 'sep12',
 	},
 	{
-		displayName: 'Family name',
+		displayName: 'Family Name',
 		name: 'familyName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -45,13 +45,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Family name',
+
 	},
 	{
-		displayName: 'Last name',
+		displayName: 'Last Name',
 		name: 'lastName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -59,13 +59,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Last name',
+
 	},
 	{
-		displayName: 'Given name',
+		displayName: 'Given Name',
 		name: 'givenName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -73,13 +73,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Given name',
+
 	},
 	{
-		displayName: 'First name',
+		displayName: 'First Name',
 		name: 'firstName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -87,13 +87,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'First name',
+
 	},
 	{
-		displayName: 'Additional name',
+		displayName: 'Additional Name',
 		name: 'additionalName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -107,7 +107,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Address Country Code',
 		name: 'addressCountryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -121,7 +121,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'State or Province',
 		name: 'stateOrProvince',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -135,7 +135,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'City',
 		name: 'city',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -149,7 +149,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Postal Code',
 		name: 'postalCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -163,7 +163,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Address',
 		name: 'address',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -175,10 +175,10 @@ export const registrationDescription: INodeProperties[] = [
 			'Entire address (country, state, postal code, street address, etc...) as a multi-line string',
 	},
 	{
-		displayName: 'Mobile number',
+		displayName: 'Mobile Number',
 		name: 'mobileNumber',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -192,7 +192,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Email Address',
 		name: 'emailAddress',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -200,13 +200,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Email address',
+
 	},
 	{
 		displayName: 'Birth Date',
 		name: 'birthDate',
 		type: 'dateTime',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -220,7 +220,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Birth Place',
 		name: 'birthPlace',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -234,7 +234,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Birth Country Code',
 		name: 'birthCountryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -248,7 +248,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Bank Account Number',
 		name: 'bankAccountNumber',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -262,7 +262,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Tax ID',
 		name: 'taxId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -276,7 +276,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Tax ID Name',
 		name: 'taxIdName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -290,7 +290,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Occupation ISCO Code',
 		name: 'occupation',
 		type: 'number',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -298,13 +298,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Occupation ISCO code',
+
 	},
 	{
 		displayName: 'Employer Name',
 		name: 'employerName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -318,7 +318,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Employer Address',
 		name: 'employerAddress',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -332,7 +332,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Language Code',
 		name: 'languageCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -346,7 +346,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'ID Type',
 		name: 'idType',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -354,13 +354,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Passport, drivers_license, id_card, etc...',
+		description: 'Passport, drivers_license, id_card, etc',
 	},
 	{
 		displayName: 'ID Country Code',
 		name: 'idCountryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -374,7 +374,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'ID Issue Date',
 		name: 'idIssueDate',
 		type: 'dateTime',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -382,13 +382,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'ID issue date',
+
 	},
 	{
 		displayName: 'ID Expiration Date',
 		name: 'idExpirationDate',
 		type: 'dateTime',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -396,13 +396,13 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'ID expiration date',
+
 	},
 	{
 		displayName: 'ID Number',
 		name: 'idNumber',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -416,7 +416,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'IP Address',
 		name: 'ipAddress',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -430,7 +430,7 @@ export const registrationDescription: INodeProperties[] = [
 		displayName: 'Sex',
 		name: 'sex',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],

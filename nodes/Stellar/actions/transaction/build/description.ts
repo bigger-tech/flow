@@ -62,7 +62,7 @@ export const transactionDescription: TransactionProperties = [
 		name: 'id',
 		type: 'string',
 		default: '',
-		description: 'A 64-bit unsigned integer.',
+		description: 'A 64-bit unsigned integer',
 		displayOptions: {
 			show: {
 				memo: [true],
@@ -76,8 +76,7 @@ export const transactionDescription: TransactionProperties = [
 		name: 'hash',
 		type: 'string',
 		default: '',
-		description:
-			'A 32-byte hash.',
+		description: 'A 32-byte hash',
 		displayOptions: {
 			show: {
 				memo: [true],
@@ -91,8 +90,7 @@ export const transactionDescription: TransactionProperties = [
 		name: 'return',
 		type: 'string',
 		default: '',
-		description:
-			'A 32-byte hash intended to be interpreted as the hash of the transaction the sender is refunding.',
+		description: 'A 32-byte hash intended to be interpreted as the hash of the transaction the sender is refunding',
 		displayOptions: {
 			show: {
 				memo: [true],

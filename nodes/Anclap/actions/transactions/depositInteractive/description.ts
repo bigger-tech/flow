@@ -26,8 +26,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: 'ARS',
-		description:
-			'The code of the on-chain asset the user wants to get from the Anchor after doing an off-chain deposit.',
+		description: 'The code of the on-chain asset the user wants to get from the Anchor after doing an off-chain deposit',
 	},
 	{
 		displayName: 'Amount',
@@ -76,7 +75,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayName: 'Memo Type',
 		name: 'memoType',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -85,14 +84,13 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'Type of memo that the anchor should attach to the Stellar payment transaction, one of text, id or hash.',
+		description: 'Type of memo that the anchor should attach to the Stellar payment transaction, one of text, ID or hash',
 	},
 	{
 		displayName: 'Memo',
 		name: 'memo',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -108,7 +106,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayName: 'Email Address',
 		name: 'emailAddress',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -124,7 +122,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayName: 'Wallet Name',
 		name: 'walletName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -133,14 +131,13 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'In communications / pages about the deposit, anchor should display the wallet name to the user to explain where funds are going.',
+		description: 'In communications / pages about the deposit, anchor should display the wallet name to the user to explain where funds are going',
 	},
 	{
 		displayName: 'Wallet Url',
 		name: 'walletUrl',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -149,14 +146,13 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'Anchor should link to this when notifying the user that the transaction has completed.',
+		description: 'Anchor should link to this when notifying the user that the transaction has completed',
 	},
 	{
 		displayName: 'Language',
 		name: 'lang',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -172,7 +168,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayName: 'Callback Url',
 		name: 'onChangeCallback',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -188,7 +184,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 		displayName: 'Country Code',
 		name: 'countryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -201,10 +197,10 @@ export const depositInteractiveDescription: INodeProperties[] = [
 			"The ISO 3166-1 alpha-3 code of the user's current address. This field may be necessary for the anchor to determine what KYC information is necessary to collect.",
 	},
 	{
-		displayName: 'Claimable balance supported',
+		displayName: 'Claimable Balance Supported',
 		name: 'claimableBalanceSupported',
 		type: 'boolean',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -212,8 +208,7 @@ export const depositInteractiveDescription: INodeProperties[] = [
 				operation: ['depositInteractive'],
 			},
 		},
-		default: 'false',
-		description:
-			'true if the client supports receiving deposit transactions as a claimable balance, false otherwise.',
+		default: false,
+		description: 'Whether the client supports receiving deposit transactions as a claimable balance',
 	},
 ];

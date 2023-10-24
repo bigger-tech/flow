@@ -50,7 +50,7 @@ export const statusDescription: INodeProperties[] = [
 		displayName: 'Customer ID',
 		name: 'id',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -60,14 +60,13 @@ export const statusDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '',
-		description:
-			'The ID of the customer as returned in the response of a previous PUT request. If the customer has not been registered, they do not yet have an id.',
+		description: 'The ID of the customer as returned in the response of a previous PUT request. If the customer has not been registered, they do not yet have an ID.',
 	},
 	{
 		displayName: 'Memo',
 		name: 'memo',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -84,7 +83,7 @@ export const statusDescription: INodeProperties[] = [
 		displayName: 'Memo Type',
 		name: 'memoType',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -94,14 +93,13 @@ export const statusDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '',
-		description:
-			"Type of memo. One of text, id or hash. Deprecated because memos should always be of type id, although anchors should continue to support this parameter for outdated clients. If hash, memo should be base64-encoded. If a memo is present in the decoded SEP-10 JWT's sub value, this parameter can be ignored. See the Shared Accounts section for more information.",
+		description: 'Type of memo. One of text, ID or hash. Deprecated because memos should always be of type ID, although anchors should continue to support this parameter for outdated clients. If hash, memo should be base64-encoded. If a memo is present in the decoded SEP-10 JWT\'s sub value, this parameter can be ignored. See the Shared Accounts section for more information.',
 	},
 	{
 		displayName: 'Type',
 		name: 'type',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -118,7 +116,7 @@ export const statusDescription: INodeProperties[] = [
 		displayName: 'Language',
 		name: 'lang',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],

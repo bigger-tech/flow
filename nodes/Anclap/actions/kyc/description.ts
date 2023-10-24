@@ -13,7 +13,7 @@ const description: INodeProperties[] = [
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
-		default: 'kyc',
+		default: 'status',
 		noDataExpression: true,
 		displayOptions: {
 			show: {
@@ -24,42 +24,42 @@ const description: INodeProperties[] = [
 			{
 				name: 'Get Status',
 				value: 'status',
-				action: 'Get Status',
+				action: 'Get status',
 			},
 			{
 				name: 'Set Callback URL',
 				value: 'callback',
-				action: 'Set Callback URL',
+				action: 'Set callback url',
 			},
 			{
 				name: 'Send KYC Information',
 				value: 'registration',
-				action: 'Send KYC Information',
+				action: 'Send kyc information',
 			},
 			{
 				name: 'Upload Binary File',
 				value: 'fileUpload',
-				action: 'Upload Binary File',
+				action: 'Upload binary file',
 			},
 			{
 				name: 'Get Files',
 				value: 'files',
-				action: 'Get Files',
+				action: 'Get files',
 			},
 			{
-				name: 'Send Binary file IDs',
+				name: 'Send Binary File IDs',
 				value: 'binaryRegistration',
-				action: 'Send Binary file IDs',
+				action: 'Send binary file i ds',
 			},
 			{
 				name: 'Delete KYC Information',
 				value: 'deleteKYCInformation',
-				action: 'Delete KYC Information',
+				action: 'Delete kyc information',
 			},
 			{
 				name: 'Send Verification Code',
 				value: 'verificationCodes',
-				action: 'Send Verification Code',
+				action: 'Send verification code',
 			},
 		],
 	},

@@ -26,8 +26,7 @@ export const depositExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: 'iso4217:ARS',
-		description:
-			'The off-chain asset the Anchor will receive from the user. The value must match one of the asset values included in a SEP-38 GET /prices?buy_asset=stellar:<destination_asset>:<asset_issuer> response using SEP-38 Asset Identification Format.',
+		description: 'The off-chain asset the Anchor will receive from the user. The value must match one of the asset values included in a SEP-38 GET /prices?buy_asset=stellar:&lt;destination_asset&gt;:&lt;asset_issuer&gt; response using SEP-38 Asset Identification Format.',
 	},
 	{
 		displayName: 'Amount',
@@ -41,8 +40,7 @@ export const depositExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			"The amount of the source_asset the user would like to deposit to the anchor's off-chain account.",
+		description: 'The amount of the source_asset the user would like to deposit to the anchor\'s off-chain account',
 	},
 	{
 		displayName: 'Destination Asset',
@@ -88,10 +86,10 @@ export const depositExchangeDescription: INodeProperties[] = [
 		default: false,
 	},
 	{
-		displayName: 'Quote Id',
+		displayName: 'Quote ID',
 		name: 'quoteId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -100,13 +98,13 @@ export const depositExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The id returned from a SEP-38 POST /quote response.',
+		description: 'The ID returned from a SEP-38 POST /quote response',
 	},
 	{
 		displayName: 'Memo Type',
 		name: 'memoType',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -115,14 +113,13 @@ export const depositExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'Type of memo that the anchor should attach to the Stellar payment transaction, one of text, id or hash.',
+		description: 'Type of memo that the anchor should attach to the Stellar payment transaction, one of text, ID or hash',
 	},
 	{
 		displayName: 'Memo',
 		name: 'memo',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -138,7 +135,7 @@ export const depositExchangeDescription: INodeProperties[] = [
 		displayName: 'Email Address',
 		name: 'emailAddress',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -154,7 +151,7 @@ export const depositExchangeDescription: INodeProperties[] = [
 		displayName: 'Wallet Name',
 		name: 'walletName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -163,14 +160,13 @@ export const depositExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'In communications / pages about the deposit, anchor should display the wallet name to the user to explain where funds are going.',
+		description: 'In communications / pages about the deposit, anchor should display the wallet name to the user to explain where funds are going',
 	},
 	{
 		displayName: 'Wallet Url',
 		name: 'walletUrl',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -179,14 +175,13 @@ export const depositExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'Anchor should link to this when notifying the user that the transaction has completed.',
+		description: 'Anchor should link to this when notifying the user that the transaction has completed',
 	},
 	{
 		displayName: 'Language',
 		name: 'lang',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -202,7 +197,7 @@ export const depositExchangeDescription: INodeProperties[] = [
 		displayName: 'Callback Url',
 		name: 'onChangeCallback',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -218,7 +213,7 @@ export const depositExchangeDescription: INodeProperties[] = [
 		displayName: 'Country Code',
 		name: 'countryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -231,10 +226,10 @@ export const depositExchangeDescription: INodeProperties[] = [
 			"The ISO 3166-1 alpha-3 code of the user's current address. This field may be necessary for the anchor to determine what KYC information is necessary to collect.",
 	},
 	{
-		displayName: 'Claimable balance supported',
+		displayName: 'Claimable Balance Supported',
 		name: 'claimableBalanceSupported',
 		type: 'boolean',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -242,8 +237,7 @@ export const depositExchangeDescription: INodeProperties[] = [
 				operation: ['depositExchange'],
 			},
 		},
-		default: 'false',
-		description:
-			'true if the client supports receiving deposit transactions as a claimable balance, false otherwise.',
+		default: false,
+		description: 'Whether the client supports receiving deposit transactions as a claimable balance',
 	},
 ];

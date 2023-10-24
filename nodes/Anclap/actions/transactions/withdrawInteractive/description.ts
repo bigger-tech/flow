@@ -91,10 +91,10 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		default: false,
 	},
 	{
-		displayName: 'Destination Extra info',
+		displayName: 'Destination Extra Info',
 		name: 'destExtra',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -110,7 +110,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		displayName: 'Memo',
 		name: 'memo',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -126,7 +126,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		displayName: 'Memo Type',
 		name: 'memoType',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -135,14 +135,13 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'Type of memo. One of text, id or hash. Deprecated because memos used to identify users of the same Stellar account should always be of type of id.',
+		description: 'Type of memo. One of text, ID or hash. Deprecated because memos used to identify users of the same Stellar account should always be of type of ID.',
 	},
 	{
 		displayName: 'Wallet Name',
 		name: 'walletName',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -151,14 +150,13 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'In communications / pages about the withdrawal, anchor should display the wallet name to the user to explain where funds are coming from.',
+		description: 'In communications / pages about the withdrawal, anchor should display the wallet name to the user to explain where funds are coming from',
 	},
 	{
 		displayName: 'Wallet Url',
 		name: 'walletUrl',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -174,7 +172,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		displayName: 'Language',
 		name: 'lang',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -190,7 +188,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		displayName: 'Callback Url',
 		name: 'onChangeCallback',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -206,7 +204,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		displayName: 'Country Code',
 		name: 'countryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -222,7 +220,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		displayName: 'Refund Memo',
 		name: 'refundMemo',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -238,7 +236,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 		displayName: 'Refund Memo Type',
 		name: 'refundMemoType',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -247,7 +245,6 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description:
-			'The type of the refund_memo. Can be id, text, or hash. See the memos documentation for more information. If specified, refund_memo must also be specified.',
+		description: 'The type of the refund_memo. Can be ID, text, or hash. See the memos documentation for more information. If specified, refund_memo must also be specified.',
 	},
 ];
