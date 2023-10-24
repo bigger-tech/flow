@@ -8,38 +8,38 @@ import { Asset } from 'soroban-client';
 const SOROBAN_FUTURENET_NETWORK = 'https://horizon-futurenet.stellar.org';
 const SOROBAN_FUTURENET_PASSPHRASE = 'Test SDF Future Network ; October 2022';
 
-export async function setNetwork(
-	this: IExecuteFunctions | ITriggerFunctions,
-): Promise<SorobanNetwork> {
-	const credentials = await this.getCredentials('sorobanNetworkApi');
-	let sorobanNetwork;
+export class SorobanNetwork {
+  url: string;
+  passphrase: string;
 
-	switch (credentials.network) {
-		case 'futurenet':
-			sorobanNetwork = new SorobanNetwork(SOROBAN_FUTURENET_NETWORK, SOROBAN_FUTURENET_PASSPHRASE);
-			break;
-		case 'custom':
-			sorobanNetwork = new SorobanNetwork(
-				credentials.networkUrl as string,
-				credentials.networkPassphrase as string,
-			);
-	}
+  constructor(networkUrl: string, networkPassphrase: string) {
+    this.url = networkUrl;
+    this.passphrase = networkPassphrase;
+  }
 
-	if (sorobanNetwork) {
-		return sorobanNetwork;
-	} else {
-		throw new SetNetworkError();
-	}
-}
+  static async setNetwork(
+    this: IExecuteFunctions | ITriggerFunctions
+  ): Promise<SorobanNetwork> {
+    const credentials = await this.getCredentials('sorobanNetworkApi');
+    let sorobanNetwork;
 
-class SorobanNetwork {
-	url: string;
-	passphrase: string;
+    switch (credentials.network) {
+      case 'futurenet':
+        sorobanNetwork = new SorobanNetwork(SOROBAN_FUTURENET_NETWORK, SOROBAN_FUTURENET_PASSPHRASE);
+        break;
+      case 'custom':
+        sorobanNetwork = new SorobanNetwork(
+          credentials.networkUrl as string,
+          credentials.networkPassphrase as string
+        );
+    }
 
-	constructor(networkUrl: string, networkPassphrase: string) {
-		this.url = networkUrl;
-		this.passphrase = networkPassphrase;
-	}
+    if (sorobanNetwork) {
+      return sorobanNetwork;
+    } else {
+      throw new SetNetworkError();
+    }
+  }
 }
 
 export function convertAmountToBigNumber(amount: number): string {
