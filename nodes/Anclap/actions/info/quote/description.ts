@@ -46,6 +46,7 @@ export const quoteDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'de762cda-a193-4961-861e-57b31fed6eb3',
-		description: 'The unique identifier for the quote. Same as the ID returned in the POST /quote response.',
+		description:
+			'The unique identifier for the quote. Same as the ID returned in the POST /quote response.',
 	},
 ];

@@ -85,7 +85,8 @@ export const depositDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Type of memo that the anchor should attach to the Stellar payment transaction, one of text, ID or hash',
+		description:
+			'Type of memo that the anchor should attach to the Stellar payment transaction, one of text, ID or hash',
 	},
 	{
 		displayName: 'Memo',
@@ -132,7 +133,8 @@ export const depositDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'In communications / pages about the deposit, anchor should display the wallet name to the user to explain where funds are going',
+		description:
+			'In communications / pages about the deposit, anchor should display the wallet name to the user to explain where funds are going',
 	},
 	{
 		displayName: 'Wallet Url',
@@ -147,7 +149,8 @@ export const depositDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Anchor should link to this when notifying the user that the transaction has completed',
+		description:
+			'Anchor should link to this when notifying the user that the transaction has completed',
 	},
 	{
 		displayName: 'Language',
@@ -210,6 +213,7 @@ export const depositDescription: INodeProperties[] = [
 			},
 		},
 		default: false,
-		description: 'Whether the client supports receiving deposit transactions as a claimable balance',
+		description:
+			'Whether the client supports receiving deposit transactions as a claimable balance',
 	},
 ];

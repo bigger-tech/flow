@@ -47,8 +47,7 @@ export const transactionDescription: TransactionProperties = [
 		name: 'text',
 		type: 'string',
 		default: '',
-		description:
-			'A string encoded using either ASCII or UTF-8, up to 28-bytes long',
+		description: 'A string encoded using either ASCII or UTF-8, up to 28-bytes long',
 		displayOptions: {
 			show: {
 				memo: [true],
@@ -90,7 +89,8 @@ export const transactionDescription: TransactionProperties = [
 		name: 'return',
 		type: 'string',
 		default: '',
-		description: 'A 32-byte hash intended to be interpreted as the hash of the transaction the sender is refunding',
+		description:
+			'A 32-byte hash intended to be interpreted as the hash of the transaction the sender is refunding',
 		displayOptions: {
 			show: {
 				memo: [true],

@@ -135,7 +135,8 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Type of memo. One of text, ID or hash. Deprecated because memos used to identify users of the same Stellar account should always be of type of ID.',
+		description:
+			'Type of memo. One of text, ID or hash. Deprecated because memos used to identify users of the same Stellar account should always be of type of ID.',
 	},
 	{
 		displayName: 'Wallet Name',
@@ -150,7 +151,8 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'In communications / pages about the withdrawal, anchor should display the wallet name to the user to explain where funds are coming from',
+		description:
+			'In communications / pages about the withdrawal, anchor should display the wallet name to the user to explain where funds are coming from',
 	},
 	{
 		displayName: 'Wallet Url',
@@ -245,6 +247,7 @@ export const withdrawInteractiveDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The type of the refund_memo. Can be ID, text, or hash. See the memos documentation for more information. If specified, refund_memo must also be specified.',
+		description:
+			'The type of the refund_memo. Can be ID, text, or hash. See the memos documentation for more information. If specified, refund_memo must also be specified.',
 	},
 ];

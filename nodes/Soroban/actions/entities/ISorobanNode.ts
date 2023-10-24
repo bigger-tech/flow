@@ -9,4 +9,3 @@ export type Soroban = AllEntities<SorobanResources>;
 type SorobanNewAccount = Entity<SorobanResources, 'newAccount'>;
 
 export type NewAccountProperties = PropertiesOf<SorobanNewAccount>;
-

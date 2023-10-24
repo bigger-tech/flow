@@ -75,6 +75,7 @@ export const filesDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The ID returned from a previous PUT /customer request. The response should include all files uploaded for the specified customer.',
+		description:
+			'The ID returned from a previous PUT /customer request. The response should include all files uploaded for the specified customer.',
 	},
 ];

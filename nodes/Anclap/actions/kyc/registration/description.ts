@@ -45,7 +45,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'Last Name',
@@ -59,7 +58,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'Given Name',
@@ -73,7 +71,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'First Name',
@@ -87,7 +84,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'Additional Name',
@@ -200,7 +196,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'Birth Date',
@@ -298,7 +293,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'Employer Name',
@@ -382,7 +376,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'ID Expiration Date',
@@ -396,7 +389,6 @@ export const registrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'ID Number',

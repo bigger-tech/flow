@@ -75,6 +75,7 @@ export const deleteDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Type of memo. One of text, ID or hash. Deprecated because memos should always be of type ID, although anchors should continue to support this parameter for outdated clients. If hash, memo should be base64-encoded. If a memo is present in the decoded SEP-10 JWT\'s sub value, this parameter can be ignored. See the Shared Accounts section for more information.',
+		description:
+			"Type of memo. One of text, ID or hash. Deprecated because memos should always be of type ID, although anchors should continue to support this parameter for outdated clients. If hash, memo should be base64-encoded. If a memo is present in the decoded SEP-10 JWT's sub value, this parameter can be ignored. See the Shared Accounts section for more information.",
 	},
 ];

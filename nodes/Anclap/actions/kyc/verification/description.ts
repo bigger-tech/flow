@@ -59,7 +59,6 @@ export const verificationCodesDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-
 	},
 	{
 		displayName: 'Email Address Verification Code.',

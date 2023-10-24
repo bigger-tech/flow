@@ -45,7 +45,8 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Photo ID back"',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Photo ID back"',
 	},
 	{
 		displayName: 'Photo ID Front File ID',
@@ -59,7 +60,8 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Photo ID front"',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Photo ID front"',
 	},
 	{
 		displayName: 'Notary Approval of Photo ID File ID',
@@ -73,7 +75,8 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Notary Approval of photo ID"',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Notary Approval of photo ID"',
 	},
 	{
 		displayName: 'Photo Proof Residence File ID',
@@ -87,7 +90,8 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Photo proof Residence"',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Photo proof Residence"',
 	},
 	{
 		displayName: 'Proof of Income File ID',
@@ -101,7 +105,8 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Proof of Income"',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Proof of Income"',
 	},
 	{
 		displayName: 'Proof of Liveness File ID',
@@ -115,6 +120,7 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The file ID returned when the customer uploaded the binary file for the "Proof of Liveness"',
+		description:
+			'The file ID returned when the customer uploaded the binary file for the "Proof of Liveness"',
 	},
 ];

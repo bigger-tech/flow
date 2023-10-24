@@ -43,7 +43,8 @@ export const withdrawExchangeDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'iso4217:ARS',
-		description: 'The off-chain asset the Anchor will deliver to the user\'s account. The value must match one of the asset values included in a SEP-38 GET /prices?sell_asset=stellar:&lt;source_asset&gt;:&lt;asset_issuer&gt; response using SEP-38 Asset Identification Format.',
+		description:
+			"The off-chain asset the Anchor will deliver to the user's account. The value must match one of the asset values included in a SEP-38 GET /prices?sell_asset=stellar:&lt;source_asset&gt;:&lt;asset_issuer&gt; response using SEP-38 Asset Identification Format.",
 	},
 	{
 		displayName: 'Amount',
@@ -134,7 +135,8 @@ export const withdrawExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The ID returned from a SEP-38 POST /quote response. If this parameter is provided and the Stellar transaction used to send the asset to the Anchor has a created_at timestamp earlier than the quote\'s expires_at attribute, the Anchor should respect the conversion rate agreed in that quote. If the values of destination_asset, source_asset and amount conflict with the ones used to create the SEP-38 quote, this request should be rejected with a 400.',
+		description:
+			"The ID returned from a SEP-38 POST /quote response. If this parameter is provided and the Stellar transaction used to send the asset to the Anchor has a created_at timestamp earlier than the quote's expires_at attribute, the Anchor should respect the conversion rate agreed in that quote. If the values of destination_asset, source_asset and amount conflict with the ones used to create the SEP-38 quote, this request should be rejected with a 400.",
 	},
 	{
 		displayName: 'Memo',
@@ -165,7 +167,8 @@ export const withdrawExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Type of memo. One of text, ID or hash. Deprecated because memos used to identify users of the same Stellar account should always be of type of ID.',
+		description:
+			'Type of memo. One of text, ID or hash. Deprecated because memos used to identify users of the same Stellar account should always be of type of ID.',
 	},
 	{
 		displayName: 'Wallet Name',
@@ -180,7 +183,8 @@ export const withdrawExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'In communications / pages about the withdrawal, anchor should display the wallet name to the user to explain where funds are coming from',
+		description:
+			'In communications / pages about the withdrawal, anchor should display the wallet name to the user to explain where funds are coming from',
 	},
 	{
 		displayName: 'Wallet Url',
@@ -275,6 +279,7 @@ export const withdrawExchangeDescription: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The type of the refund_memo. Can be ID, text, or hash. See the memos documentation for more information. If specified, refund_memo must also be specified.',
+		description:
+			'The type of the refund_memo. Can be ID, text, or hash. See the memos documentation for more information. If specified, refund_memo must also be specified.',
 	},
 ];
