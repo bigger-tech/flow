@@ -16,18 +16,18 @@ export class SorobanNetwork {
   static async setNetwork(
     this: IExecuteFunctions | ITriggerFunctions
   ): Promise<SorobanNetwork> {
-    const credentials = await this.getCredentials('sorobanNetworkApi');
+    const {network, networkUrl, networkPassphrase} = await this.getCredentials('sorobanNetworkApi');
 
     let sorobanNetwork;
 
-    switch (credentials.network) {
+    switch (network) {
       case 'futurenet':
         sorobanNetwork = new SorobanNetwork(SOROBAN_FUTURENET_NETWORK, SOROBAN_FUTURENET_PASSPHRASE);
         break;
       case 'custom':
         sorobanNetwork = new SorobanNetwork(
-          credentials.networkUrl as string,
-          credentials.networkPassphrase as string
+          networkUrl as string,
+          networkPassphrase as string
         );
     }
 
