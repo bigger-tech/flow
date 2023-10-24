@@ -25,7 +25,8 @@
 		"lintfix": "eslint nodes credentials package.json --fix",
 		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
 		"test": "vitest nodes",
-    "build:n8n": "tsc && gulp build:icons && n8n start"
+		"build:n8n": "tsc && gulp build:icons && n8n start",
+    "watch:n8n": "nodemon -e ts,json,yaml -x  \"npm run build:n8n\""
 	},
 	"files": [
 		"dist"
@@ -51,7 +52,9 @@
 		"@types/request-promise-native": "~1.0.15",
 		"@typescript-eslint/parser": "~5.45",
 		"eslint-plugin-n8n-nodes-base": "^1.11.0",
+		"husky": "^8.0.3",
 		"jsdom": "^21.1.1",
+		"nodemon": "^3.0.1",
 		"prettier": "^2.7.1",
 		"typescript": "~4.8.4",
 		"vitest": "^0.29.2"
