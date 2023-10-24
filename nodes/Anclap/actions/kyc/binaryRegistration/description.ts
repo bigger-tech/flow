@@ -37,7 +37,7 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		displayName: 'Photo ID Back File ID',
 		name: 'photoIdBackFileId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -46,13 +46,13 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		},
 		default: '',
 		description:
-			'The file ID returned when the customer uploaded the binary file for the "Photo ID back".',
+			'The file ID returned when the customer uploaded the binary file for the "Photo ID back"',
 	},
 	{
 		displayName: 'Photo ID Front File ID',
 		name: 'photoIdFrontFileId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -61,13 +61,13 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		},
 		default: '',
 		description:
-			'The file ID returned when the customer uploaded the binary file for the "Photo ID front".',
+			'The file ID returned when the customer uploaded the binary file for the "Photo ID front"',
 	},
 	{
-		displayName: 'Notary Approval of photo ID File ID',
+		displayName: 'Notary Approval of Photo ID File ID',
 		name: 'notaryApprovalOfPhotoIdFileId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -76,13 +76,13 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		},
 		default: '',
 		description:
-			'The file ID returned when the customer uploaded the binary file for the "Notary Approval of photo ID".',
+			'The file ID returned when the customer uploaded the binary file for the "Notary Approval of photo ID"',
 	},
 	{
-		displayName: 'Photo proof Residence File ID',
+		displayName: 'Photo Proof Residence File ID',
 		name: 'photoProofResidenceFileId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -91,13 +91,13 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		},
 		default: '',
 		description:
-			'The file ID returned when the customer uploaded the binary file for the "Photo proof Residence".',
+			'The file ID returned when the customer uploaded the binary file for the "Photo proof Residence"',
 	},
 	{
 		displayName: 'Proof of Income File ID',
 		name: 'proofOfIncomeFileId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -106,13 +106,13 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		},
 		default: '',
 		description:
-			'The file ID returned when the customer uploaded the binary file for the "Proof of Income".',
+			'The file ID returned when the customer uploaded the binary file for the "Proof of Income"',
 	},
 	{
 		displayName: 'Proof of Liveness File ID',
 		name: 'proofOfLivenessFileId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],
@@ -121,6 +121,6 @@ export const binaryRegistrationDescription: INodeProperties[] = [
 		},
 		default: '',
 		description:
-			'The file ID returned when the customer uploaded the binary file for the "Proof of Liveness".',
+			'The file ID returned when the customer uploaded the binary file for the "Proof of Liveness"',
 	},
 ];

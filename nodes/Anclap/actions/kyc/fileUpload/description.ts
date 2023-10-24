@@ -37,7 +37,7 @@ export const fileUploadDescription: INodeProperties[] = [
 		displayName: 'Binary File',
 		name: 'file',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['kyc'],

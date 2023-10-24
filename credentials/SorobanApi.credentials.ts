@@ -3,7 +3,7 @@ import { ICredentialType, INodeProperties } from 'n8n-workflow';
 export class SorobanApi implements ICredentialType {
 	name = 'sorobanNetworkApi';
 	displayName = 'Soroban Network API';
-	description = 'You\'re operating in this network';
+	description = "You're operating in this network";
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Soroban Network',

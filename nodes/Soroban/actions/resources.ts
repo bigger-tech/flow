@@ -6,8 +6,7 @@ interface IOperations {
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
-		operations: {
-		},
+		operations: {},
 	},
 };
 

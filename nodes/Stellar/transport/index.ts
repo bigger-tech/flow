@@ -13,7 +13,7 @@ const STELLAR_PUBNET_PASSPHRASE = 'Public Global Stellar Network ; September 201
 export async function setNetwork(
 	this: IExecuteFunctions | ITriggerFunctions,
 ): Promise<StellarNetwork> {
-	const {network, networkUrl, networkPassphrase} = await this.getCredentials('stellarNetworkApi');
+	const { network, networkUrl, networkPassphrase } = await this.getCredentials('stellarNetworkApi');
 	let stellarNetwork;
 
 	switch (network) {
@@ -25,10 +25,7 @@ export async function setNetwork(
 			break;
 			break;
 		case 'custom':
-			stellarNetwork = new StellarNetwork(
-				networkUrl as string,
-				networkPassphrase as string,
-			);
+			stellarNetwork = new StellarNetwork(networkUrl as string, networkPassphrase as string);
 	}
 
 	if (stellarNetwork) {

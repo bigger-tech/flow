@@ -34,7 +34,7 @@ export const firmQuoteDescription: INodeProperties[] = [
 		default: 'sep38',
 	},
 	{
-		displayName: 'Asset to sell',
+		displayName: 'Asset to Sell',
 		name: 'sellAsset',
 		type: 'string',
 		required: true,
@@ -49,10 +49,10 @@ export const firmQuoteDescription: INodeProperties[] = [
 		description: 'The asset the client would like to sell. Ex. USDC:G..., iso4217:ARS',
 	},
 	{
-		displayName: 'Amount to sell',
+		displayName: 'Amount to Sell',
 		name: 'sellAmount',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['info'],
@@ -61,10 +61,10 @@ export const firmQuoteDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '10000',
-		description: 'The amount of sell_asset the client would exchange for each of the buy_assets.',
+		description: 'The amount of sell_asset the client would exchange for each of the buy_assets',
 	},
 	{
-		displayName: 'Asset to buy',
+		displayName: 'Asset to Buy',
 		name: 'buyAsset',
 		type: 'string',
 		required: true,
@@ -76,13 +76,13 @@ export const firmQuoteDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'stellar:USDC:GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5',
-		description: 'The asset the client would like to exchange for sell_asset.',
+		description: 'The asset the client would like to exchange for sell_asset',
 	},
 	{
-		displayName: 'Amount to buy',
+		displayName: 'Amount to Buy',
 		name: 'buyAmount',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['info'],
@@ -91,13 +91,13 @@ export const firmQuoteDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '1000',
-		description: 'The amount of buy_asset the client would like to purchase with sell_asset.',
+		description: 'The amount of buy_asset the client would like to purchase with sell_asset',
 	},
 	{
-		displayName: 'Sell delivery method',
+		displayName: 'Sell Delivery Method',
 		name: 'sellDeliveryMethod',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['info'],
@@ -110,10 +110,10 @@ export const firmQuoteDescription: INodeProperties[] = [
 			'One of the name values specified by the sell_delivery_methods array for the associated asset returned from GET /info. Can be provided if the user is delivering an off-chain asset to the anchor but is not strictly required.',
 	},
 	{
-		displayName: 'Buy delivery method',
+		displayName: 'Buy Delivery Method',
 		name: 'buyDeliveryMethod',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['info'],
@@ -150,7 +150,7 @@ export const firmQuoteDescription: INodeProperties[] = [
 				operation: ['firmQuote'],
 			},
 		},
-		default: '',
+		default: 'sep6',
 		placeholder: '',
 		description:
 			'The context for what this quote will be used for. Must be one of sep6, sep24 or sep31.',
@@ -169,10 +169,10 @@ export const firmQuoteDescription: INodeProperties[] = [
 		default: false,
 	},
 	{
-		displayName: 'Quote expiration date',
+		displayName: 'Quote Expiration Date',
 		name: 'expireAfter',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -189,7 +189,7 @@ export const firmQuoteDescription: INodeProperties[] = [
 		displayName: 'Country Code',
 		name: 'countryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],

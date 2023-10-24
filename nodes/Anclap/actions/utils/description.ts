@@ -17,7 +17,7 @@ const description: INodeProperties[] = [
 			{
 				name: 'Convert Memo to HEX',
 				value: 'memoToHex',
-				action: 'Convert Memo to HEX',
+				action: 'Convert memo to hex',
 			},
 		],
 	},

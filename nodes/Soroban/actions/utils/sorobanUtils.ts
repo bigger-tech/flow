@@ -1,6 +1,6 @@
 import { BigNumber } from 'bignumber.js';
-import { Asset } from "soroban-client";
-import IAsset from "../entities/IAsset";
+import { Asset } from 'soroban-client';
+import IAsset from '../entities/IAsset';
 import NoAssetSelectedError from '../../transport/errors/NoAssetSelectedError';
 
 export function convertAmountToBigNumber(amount: number): string {

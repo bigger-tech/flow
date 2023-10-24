@@ -27,8 +27,7 @@ export class Soroban implements INodeType {
 				name: 'resource',
 				type: 'options',
 				default: '',
-				options: [
-				],
+				options: [],
 				noDataExpression: true,
 				required: true,
 				description: 'Operation Type:',

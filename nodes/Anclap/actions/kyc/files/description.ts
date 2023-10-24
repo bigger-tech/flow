@@ -50,7 +50,7 @@ export const filesDescription: INodeProperties[] = [
 		displayName: 'File ID',
 		name: 'fileId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -66,7 +66,7 @@ export const filesDescription: INodeProperties[] = [
 		displayName: 'Customer ID',
 		name: 'customerId',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -76,6 +76,6 @@ export const filesDescription: INodeProperties[] = [
 		},
 		default: '',
 		description:
-			'The id returned from a previous PUT /customer request. The response should include all files uploaded for the specified customer.',
+			'The ID returned from a previous PUT /customer request. The response should include all files uploaded for the specified customer.',
 	},
 ];

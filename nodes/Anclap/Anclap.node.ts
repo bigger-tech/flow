@@ -51,7 +51,7 @@ export class Anclap implements INodeType {
 						value: 'kyc',
 					},
 					{
-						name: 'Utils',
+						name: 'Util',
 						value: 'utils',
 					},
 				],

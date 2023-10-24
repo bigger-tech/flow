@@ -34,7 +34,7 @@ export const priceDescription: INodeProperties[] = [
 		default: 'sep38',
 	},
 	{
-		displayName: 'Asset to sell',
+		displayName: 'Asset to Sell',
 		name: 'sellAsset',
 		type: 'string',
 		required: true,
@@ -49,10 +49,10 @@ export const priceDescription: INodeProperties[] = [
 		description: 'The asset the client would like to sell. Ex. USDC:G..., iso4217:ARS',
 	},
 	{
-		displayName: 'Amount to sell',
+		displayName: 'Amount to Sell',
 		name: 'sellAmount',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['info'],
@@ -61,10 +61,10 @@ export const priceDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '1000',
-		description: 'The amount of sell_asset the client would exchange for each of the buy_assets.',
+		description: 'The amount of sell_asset the client would exchange for each of the buy_assets',
 	},
 	{
-		displayName: 'Asset to buy',
+		displayName: 'Asset to Buy',
 		name: 'buyAsset',
 		type: 'string',
 		required: true,
@@ -76,13 +76,13 @@ export const priceDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: 'iso4217:ARS',
-		description: 'The asset the client would like to exchange for sell_asset.',
+		description: 'The asset the client would like to exchange for sell_asset',
 	},
 	{
-		displayName: 'Amount to buy',
+		displayName: 'Amount to Buy',
 		name: 'buyAmount',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				resource: ['info'],
@@ -91,7 +91,7 @@ export const priceDescription: INodeProperties[] = [
 		},
 		default: '',
 		placeholder: '1000',
-		description: 'The amount of buy_asset the client would like to purchase with sell_asset.',
+		description: 'The amount of buy_asset the client would like to purchase with sell_asset',
 	},
 	{
 		displayName: 'Protocol Context',
@@ -114,7 +114,7 @@ export const priceDescription: INodeProperties[] = [
 				operation: ['price'],
 			},
 		},
-		default: '',
+		default: 'sep6',
 		placeholder: '',
 		description: 'The context for what this quote will be used for. Must be one of sep6 or sep31.',
 	},
@@ -132,10 +132,10 @@ export const priceDescription: INodeProperties[] = [
 		default: false,
 	},
 	{
-		displayName: 'Sell delivery method',
+		displayName: 'Sell Delivery Method',
 		name: 'sellDeliveryMethod',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -149,10 +149,10 @@ export const priceDescription: INodeProperties[] = [
 			'One of the name values specified by the sell_delivery_methods array for the associated asset returned from GET /info. Can be provided if the user is delivering an off-chain asset to the anchor but is not strictly required.',
 	},
 	{
-		displayName: 'Buy delivery method',
+		displayName: 'Buy Delivery Method',
 		name: 'buyDeliveryMethod',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],
@@ -169,7 +169,7 @@ export const priceDescription: INodeProperties[] = [
 		displayName: 'Country Code',
 		name: 'countryCode',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],

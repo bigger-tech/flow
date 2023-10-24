@@ -41,7 +41,7 @@ export const transferServerDescription: INodeProperties[] = [
 		displayName: 'Language',
 		name: 'lang',
 		type: 'string',
-		required: false,
+
 		displayOptions: {
 			show: {
 				showOptionalValues: [true],

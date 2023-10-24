@@ -32,22 +32,22 @@ const description: INodeProperties[] = [
 			{
 				name: 'Deposit Interactive',
 				value: 'depositInteractive',
-				action: 'Deposit Interactive',
+				action: 'Deposit interactive',
 			},
 			{
 				name: 'Withdraw Interactive',
 				value: 'withdrawInteractive',
-				action: 'Withdraw Interactive',
+				action: 'Withdraw interactive',
 			},
 			{
 				name: 'Deposit Exchange',
 				value: 'depositExchange',
-				action: 'Deposit Exchange',
+				action: 'Deposit exchange',
 			},
 			{
 				name: 'Withdraw Exchange',
 				value: 'withdrawExchange',
-				action: 'Withdraw Exchange',
+				action: 'Withdraw exchange',
 			},
 		],
 	},
