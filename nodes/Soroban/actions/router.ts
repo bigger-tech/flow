@@ -12,7 +12,8 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 	let response;
 
 	for (const item of items) {
-		if ( item.json.operation ) {
+		const { json: { operation } } = item;
+		if ( operation) {
 			nodeOutput.push(item);
 		}
 	}
