@@ -13,10 +13,12 @@ export async function build(this: IExecuteFunctions) {
 		const memo = this.getNodeParameter('memo', 0) as boolean;
 
 		const operations = items.map((item) => {
-			const operation = item.json.operation as string;
+			const {
+				json: { operation },
+			} = item;
 
 			if (operation) {
-				return operation;
+				return operation as string;
 			}
 
 			return;
