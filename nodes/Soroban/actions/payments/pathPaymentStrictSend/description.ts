@@ -1,4 +1,4 @@
-import { PaymentsProperties } from '../../entities/ISorobanNode';
+import { PaymentsProperties } from '../../entities/SorobanNode';
 
 export const pathPaymentStrictSendDescription: PaymentsProperties = [
 	{
