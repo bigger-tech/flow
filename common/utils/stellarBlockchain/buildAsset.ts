@@ -10,11 +10,11 @@ export function buildAsset(
 ): SorobanAsset | StellarAsset {
 	if (!assetValues) throw new NoAssetSelectedError('An asset must be selected');
 
-	const asset = network === StellarPlatformEnum.SOROBAN ? SorobanAsset : StellarAsset;
+	const Asset = network === StellarPlatformEnum.SOROBAN ? SorobanAsset : StellarAsset;
 
 	if (assetValues.isNative) {
-		return asset.native();
+		return Asset.native();
 	} else {
-		return new asset(assetValues.code, assetValues.issuer);
+		return new Asset(assetValues.code, assetValues.issuer);
 	}
 }
