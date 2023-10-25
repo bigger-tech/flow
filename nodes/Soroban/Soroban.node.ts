@@ -8,6 +8,7 @@ import { router } from './actions/router';
 import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
+import * as fundAccount from './actions/fundAccount';
 
 export class Soroban implements INodeType {
 	description: INodeTypeDescription = {
@@ -40,6 +41,10 @@ export class Soroban implements INodeType {
 						value: 'newAccount',
 					},
 					{
+						name: 'Fund Account in testnet',
+						value: 'fundAccount',
+					},
+					{
 						name: 'Transaction',
 						value: 'transaction',
 					},
@@ -50,6 +55,7 @@ export class Soroban implements INodeType {
 			},
 			...payments.description,
 			...newAccount.description,
+			...fundAccount.description,
 			...transaction.description,
 		],
 	};

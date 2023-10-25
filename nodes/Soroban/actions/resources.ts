@@ -1,6 +1,7 @@
 import { SorobanResources } from './entities/SorobanNode';
 import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './payments';
 import { createAccount } from './newAccount';
+import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
 
 interface IOperations {
@@ -11,6 +12,11 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
 		operations: {
 			createAccount: { execute: createAccount.execute },
+		},
+	},
+	fundAccount: {
+		operations: {
+			fundAccount: { execute: fundAccount.execute },
 		},
 	},
 	transaction: {
