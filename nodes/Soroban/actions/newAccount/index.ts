@@ -1,27 +1,4 @@
-import { NewAccountProperties } from '../entities/SorobanNode';
 import * as createAccount from './createAccount';
+import description from './description';
 
-export { createAccount };
-
-export const description: NewAccountProperties = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		default: 'createAccount',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['newAccount'],
-			},
-		},
-		options: [
-			{
-				name: 'Create Account',
-				value: 'createAccount',
-				description: 'Create a new Soroban account',
-				action: 'Create a new soroban account',
-			},
-		],
-	},
-];
+export { createAccount, description };
