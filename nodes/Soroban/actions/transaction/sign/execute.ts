@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { TransactionBuilder, Keypair, Server } from 'soroban-client';
+import { TransactionBuilder, Keypair, Server, SorobanRpc } from 'soroban-client';
 import { SorobanNetwork } from '../../../transport';
 
 type SecretKeys = {
@@ -13,14 +13,14 @@ export async function sign(this: IExecuteFunctions) {
 	const stellarNetwork = await SorobanNetwork.setNetwork.call(this);
 	const server = new Server(stellarNetwork.url);
 	const xdr = this.getNodeParameter('xdr', 0) as string;
-	const secretKeys = this.getNodeParameter('secretKeys', 1) as SecretKeys;
+	const { keys } = this.getNodeParameter('secretKeys', 1) as SecretKeys;
 	const isSubmitToggleOn = this.getNodeParameter('submit', 1) as boolean;
 	const transaction = TransactionBuilder.fromXDR(xdr as string, stellarNetwork.passphrase);
 
-	let transactionResult: any;
+	let transactionResult: SorobanRpc.BaseSendTransactionResponse | undefined;
 
-	for (const account of secretKeys.keys) {
-		const keypair = Keypair.fromSecret(account.key);
+	for (const { key } of keys) {
+		const keypair = Keypair.fromSecret(key);
 		transaction.sign(keypair);
 	}
 
