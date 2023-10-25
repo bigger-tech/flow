@@ -4,7 +4,7 @@ import { setNetwork } from '../../../transport';
 import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
-import { NetworkEnum } from '../../../../../common/enum/stellarBlockchain/networkEnum';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
 import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
 
 export async function swapAssets(this: IExecuteFunctions) {
@@ -20,8 +20,11 @@ export async function swapAssets(this: IExecuteFunctions) {
 			0,
 		) as IAsset;
 
-		const sourceAsset = buildAsset(sourceAssetValues, NetworkEnum.STELLAR) as Asset;
-		const destinationAsset = buildAsset(destinationAssetValues, NetworkEnum.STELLAR) as Asset;
+		const sourceAsset = buildAsset(sourceAssetValues, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const destinationAsset = buildAsset(
+			destinationAssetValues,
+			StellarPlatformEnum.STELLAR_CLASSIC,
+		) as Asset;
 
 		const swapAssetOperation = await getSwapAssetsOperation(
 			server,

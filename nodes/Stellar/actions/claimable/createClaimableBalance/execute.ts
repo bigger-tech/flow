@@ -5,7 +5,7 @@ import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
 import IClaimants from '../../../../../common/interfaces/stellarBlockchain/IClaimants';
 import buildClaimantsList from './helpers/helpers';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
-import { NetworkEnum } from '../../../../../common/enum/stellarBlockchain/networkEnum';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
 
 export async function createClaimableBalance(this: IExecuteFunctions) {
 	try {
@@ -13,7 +13,7 @@ export async function createClaimableBalance(this: IExecuteFunctions) {
 		const claimableAmount = this.getNodeParameter('amount', 0) as number;
 		const { values: claimantsValues } = this.getNodeParameter('claimants', 0) as IClaimants;
 
-		const asset = buildAsset(claimableAsset, NetworkEnum.STELLAR) as Asset;
+		const asset = buildAsset(claimableAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const claimants = buildClaimantsList(claimantsValues);
 		const amount = convertAmountToBigNumber(claimableAmount);
 

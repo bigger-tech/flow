@@ -3,7 +3,7 @@ import { Asset, Operation } from 'stellar-sdk';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
 import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
 import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
-import { NetworkEnum } from '../../../../../common/enum/stellarBlockchain/networkEnum';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
 
 export async function makePayment(this: IExecuteFunctions) {
 	try {
@@ -11,7 +11,7 @@ export async function makePayment(this: IExecuteFunctions) {
 		const { values: destinationAsset } = this.getNodeParameter('destinationAsset', 0) as IAsset;
 		const paymentAmount = this.getNodeParameter('amount', 0) as number;
 
-		const asset = buildAsset(destinationAsset, NetworkEnum.STELLAR) as Asset;
+		const asset = buildAsset(destinationAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const amount = convertAmountToBigNumber(paymentAmount);
 
 		const paymentOperation = Operation.payment({ amount, asset, destination }).toXDR('base64');

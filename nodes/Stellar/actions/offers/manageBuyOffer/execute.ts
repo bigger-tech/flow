@@ -3,7 +3,7 @@ import { Operation, Asset } from 'stellar-sdk';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
 import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
 import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
-import { NetworkEnum } from '../../../../../common/enum/stellarBlockchain/networkEnum';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
 
 export async function manageBuyOffer(this: IExecuteFunctions) {
 	try {
@@ -13,8 +13,8 @@ export async function manageBuyOffer(this: IExecuteFunctions) {
 		const sellingPrice = this.getNodeParameter('price', 0) as number;
 		const offerId = this.getNodeParameter('offerId', 0) as string;
 
-		const selling = buildAsset(sellingAsset, NetworkEnum.STELLAR) as Asset;
-		const buying = buildAsset(buyingAsset, NetworkEnum.STELLAR) as Asset;
+		const selling = buildAsset(sellingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const buying = buildAsset(buyingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const buyAmount = convertAmountToBigNumber(sellingAmount);
 		const price = convertAmountToBigNumber(sellingPrice);
 

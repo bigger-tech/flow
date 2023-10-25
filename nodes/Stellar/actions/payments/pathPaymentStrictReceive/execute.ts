@@ -4,7 +4,7 @@ import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlo
 import IAssetsPath from '../../../../../common/interfaces/stellarBlockchain/IAssetsPath';
 import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
 import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
-import { NetworkEnum } from '../../../../../common/enum/stellarBlockchain/networkEnum';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
 
 export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 	try {
@@ -19,14 +19,14 @@ export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 			[],
 		) as IAssetsPath;
 
-		const sendAsset = buildAsset(sendingAsset, NetworkEnum.STELLAR) as Asset;
+		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const sendMax = convertAmountToBigNumber(maxSendingAmount);
-		const destAsset = buildAsset(destinationAsset, NetworkEnum.STELLAR) as Asset;
+		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const destAmount = convertAmountToBigNumber(destinationAmount);
 		let path: Asset[] = [];
 
 		intermediateAssets.forEach((asset) => {
-			const intermediateAsset = buildAsset(asset, NetworkEnum.STELLAR) as Asset;
+			const intermediateAsset = buildAsset(asset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 			path.push(intermediateAsset);
 		});
 
