@@ -41,7 +41,7 @@ export class Soroban implements INodeType {
 						value: 'newAccount',
 					},
 					{
-						name: 'Fund Account in testnet',
+						name: 'Fund Account in futurenet',
 						value: 'fundAccount',
 					},
 					{

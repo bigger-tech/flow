@@ -16,8 +16,8 @@ const description: FundAccountProperties = [
 			{
 				name: 'Fund Account with Friendbot',
 				value: 'fundAccount',
-				description: 'Get testnet lumens',
-				action: 'Fund account in testnet',
+				description: 'Get futurenet lumens',
+				action: 'Fund account in futurenet',
 			},
 		],
 	},
