@@ -1,4 +1,4 @@
-import { NewAccountProperties } from '../entities/ISorobanNode';
+import { NewAccountProperties } from '../entities/SorobanNode';
 import * as createAccount from './createAccount';
 
 export { createAccount };

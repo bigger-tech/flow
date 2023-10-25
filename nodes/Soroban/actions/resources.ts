@@ -1,4 +1,4 @@
-import { SorobanResources } from './entities/ISorobanNode';
+import { SorobanResources } from './entities/SorobanNode';
 import { createAccount } from './newAccount';
 import { build, sign } from './transaction';
 
