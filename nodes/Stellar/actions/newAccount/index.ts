@@ -1,4 +1,4 @@
-import { NewAccountProperties } from '../entities/IStellarNode';
+import { NewAccountProperties } from '../entities/StellarNode';
 import * as createAccount from './createAccount';
 
 export { createAccount };

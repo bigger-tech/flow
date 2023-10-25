@@ -1,16 +1,19 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
-import { buildAsset, convertAmountToBigNumber } from '../../../transport';
-import IAsset from '../../entities/IAsset';
-import IClaimants from '../../entities/IClaimants';
+import { Operation, Asset } from 'stellar-sdk';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import IClaimants from '../../../../../common/interfaces/stellar/IClaimants';
 import buildClaimantsList from './helpers/helpers';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
+
 export async function createClaimableBalance(this: IExecuteFunctions) {
 	try {
 		const { values: claimableAsset } = this.getNodeParameter('claimableAsset', 0) as IAsset;
 		const claimableAmount = this.getNodeParameter('amount', 0) as number;
 		const { values: claimantsValues } = this.getNodeParameter('claimants', 0) as IClaimants;
 
-		const asset = buildAsset(claimableAsset);
+		const asset = buildAsset(claimableAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const claimants = buildClaimantsList(claimantsValues);
 		const amount = convertAmountToBigNumber(claimableAmount);
 

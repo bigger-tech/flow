@@ -1,7 +1,9 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
-import { buildAsset, convertAmountToBigNumber } from '../../../transport';
-import IAsset from '../../entities/IAsset';
+import { Operation, Asset } from 'stellar-sdk';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export async function manageBuyOffer(this: IExecuteFunctions) {
 	try {
@@ -11,8 +13,8 @@ export async function manageBuyOffer(this: IExecuteFunctions) {
 		const sellingPrice = this.getNodeParameter('price', 0) as number;
 		const offerId = this.getNodeParameter('offerId', 0) as string;
 
-		const selling = buildAsset(sellingAsset);
-		const buying = buildAsset(buyingAsset);
+		const selling = buildAsset(sellingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const buying = buildAsset(buyingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const buyAmount = convertAmountToBigNumber(sellingAmount);
 		const price = convertAmountToBigNumber(sellingPrice);
 

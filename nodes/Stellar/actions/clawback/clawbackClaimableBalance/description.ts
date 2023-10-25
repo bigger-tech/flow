@@ -1,4 +1,4 @@
-import { ClawbackProperties } from '../../entities/IStellarNode';
+import { ClawbackProperties } from '../../entities/StellarNode';
 
 export const clawbackClaimableBalanceDescription: ClawbackProperties = [
 	{

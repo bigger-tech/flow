@@ -1,6 +1,6 @@
-import { convertAmountToBigNumber } from '../../../../transport';
-import ILiquidityPoolPrice from '../../../entities/ILiquidityPoolPrice';
-import IPriceFraction from '../../../entities/IPriceFraction';
+import { convertAmountToBigNumber } from '../../../../../../common/utils/stellar/convertAmountToBigNumber';
+import ILiquidityPoolPrice from '../../../../../../common/interfaces/stellar/ILiquidityPoolPrice';
+import IPriceFraction from '../../../../../../common/interfaces/stellar/IPriceFraction';
 import NoPriceSelectedError from '../errors/NoPriceSelectedError';
 
 export default function getPrice(price: ILiquidityPoolPrice['values']): string | IPriceFraction {

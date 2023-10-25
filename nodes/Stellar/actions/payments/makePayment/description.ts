@@ -1,4 +1,4 @@
-import { PaymentsProperties } from '../../entities/IStellarNode';
+import { PaymentsProperties } from '../../entities/StellarNode';
 
 export const makePaymentDescription: PaymentsProperties = [
 	{

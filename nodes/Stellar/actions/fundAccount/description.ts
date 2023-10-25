@@ -1,4 +1,4 @@
-import { FundAccountProperties } from '../entities/IStellarNode';
+import { FundAccountProperties } from '../entities/StellarNode';
 
 const description: FundAccountProperties = [
 	{

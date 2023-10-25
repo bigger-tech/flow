@@ -1,4 +1,4 @@
-import { LiquidityPoolProperties } from '../../entities/IStellarNode';
+import { LiquidityPoolProperties } from '../../entities/StellarNode';
 
 export const liquidityPoolWithdrawDescription: LiquidityPoolProperties = [
 	{

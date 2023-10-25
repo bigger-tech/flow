@@ -1,4 +1,4 @@
-import { SponsorshipProperties } from '../../../entities/IStellarNode';
+import { SponsorshipProperties } from '../../../entities/StellarNode';
 
 export const revokeClaimableBalanceSponsorshipDescription: SponsorshipProperties = [
 	{

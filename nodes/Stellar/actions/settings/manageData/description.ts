@@ -1,4 +1,4 @@
-import { SettingsProperties } from '../../entities/IStellarNode';
+import { SettingsProperties } from '../../entities/StellarNode';
 
 export const manageDataDescription: SettingsProperties = [
 	{

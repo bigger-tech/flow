@@ -1,4 +1,4 @@
-import { AccountMergeProperties } from '../../entities/IStellarNode';
+import { AccountMergeProperties } from '../../entities/StellarNode';
 
 export const accountMergeDescription: AccountMergeProperties = [
 	{

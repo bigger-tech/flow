@@ -1,4 +1,4 @@
-import { ClaimableBalanceProperties } from '../../entities/IStellarNode';
+import { ClaimableBalanceProperties } from '../../entities/StellarNode';
 
 export const createClaimableBalanceDescription: ClaimableBalanceProperties = [
 	{

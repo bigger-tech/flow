@@ -1,9 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Server } from 'stellar-sdk';
-import { buildAsset, setNetwork } from '../../../transport';
-import IAsset from '../../entities/IAsset';
+import { Server, Asset } from 'stellar-sdk';
+import { setNetwork } from '../../../transport';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function swapAssets(this: IExecuteFunctions) {
 	try {
@@ -18,8 +20,11 @@ export async function swapAssets(this: IExecuteFunctions) {
 			0,
 		) as IAsset;
 
-		const sourceAsset = buildAsset(sourceAssetValues);
-		const destinationAsset = buildAsset(destinationAssetValues);
+		const sourceAsset = buildAsset(sourceAssetValues, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const destinationAsset = buildAsset(
+			destinationAssetValues,
+			StellarPlatformEnum.STELLAR_CLASSIC,
+		) as Asset;
 
 		const swapAssetOperation = await getSwapAssetsOperation(
 			server,

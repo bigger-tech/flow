@@ -1,7 +1,9 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
-import { buildAsset, convertAmountToBigNumber } from '../../../transport';
-import IAsset from '../../entities/IAsset';
+import { Asset, Operation } from 'stellar-sdk';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export async function makePayment(this: IExecuteFunctions) {
 	try {
@@ -9,7 +11,7 @@ export async function makePayment(this: IExecuteFunctions) {
 		const { values: destinationAsset } = this.getNodeParameter('destinationAsset', 0) as IAsset;
 		const paymentAmount = this.getNodeParameter('amount', 0) as number;
 
-		const asset = buildAsset(destinationAsset);
+		const asset = buildAsset(destinationAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const amount = convertAmountToBigNumber(paymentAmount);
 
 		const paymentOperation = Operation.payment({ amount, asset, destination }).toXDR('base64');

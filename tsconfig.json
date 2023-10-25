@@ -23,8 +23,9 @@
 	},
 	"include": [
     "credentials/**/*",
+		"common/**/*",
     "nodes/**/**/*",
     "nodes/**/**/*.json",
     "package.json"
-  ]
+	]
 }

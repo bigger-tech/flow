@@ -1,8 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
-import { buildAsset, convertAmountToBigNumber } from '../../../transport';
-import IAssetsPath from '../../entities/IAssetsPath';
-import IAsset from '../../entities/IAsset';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import IAssetsPath from '../../../../../common/interfaces/stellar/IAssetsPath';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 	try {
@@ -17,14 +19,14 @@ export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 			[],
 		) as IAssetsPath;
 
-		const sendAsset = buildAsset(sendingAsset);
+		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const sendMax = convertAmountToBigNumber(maxSendingAmount);
-		const destAsset = buildAsset(destinationAsset);
+		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 		const destAmount = convertAmountToBigNumber(destinationAmount);
 		let path: Asset[] = [];
 
 		intermediateAssets.forEach((asset) => {
-			const intermediateAsset = buildAsset(asset);
+			const intermediateAsset = buildAsset(asset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
 			path.push(intermediateAsset);
 		});
 

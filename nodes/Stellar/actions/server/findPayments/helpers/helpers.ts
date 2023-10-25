@@ -1,7 +1,7 @@
 import { Server, ServerApi } from 'stellar-sdk';
 import Payment from '../../../entities/Payment';
 import NoPaymentFoundError from '../errors/NoPaymentFoundError';
-import IAsset from '../../../entities/IAsset';
+import IAsset from '../../../../../../common/interfaces/stellar/IAsset';
 
 function paymentMapper(paymentRecord: ServerApi.PaymentOperationRecord) {
 	const {
