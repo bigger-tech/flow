@@ -30,7 +30,7 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			path.push(intermediateAsset);
 		});
 
-		let pathPaymentStrictSendOperation = Operation.pathPaymentStrictSend({
+		const pathPaymentStrictSendOperation = Operation.pathPaymentStrictSend({
 			sendAsset,
 			sendAmount,
 			destination,
