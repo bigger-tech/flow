@@ -1,4 +1,5 @@
 import { SorobanResources } from './entities/ISorobanNode';
+import { createAccount } from './newAccount';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
@@ -6,7 +7,9 @@ interface IOperations {
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
-		operations: {},
+		operations: {
+			createAccount: { execute: createAccount.execute },
+		},
 	},
 };
 
