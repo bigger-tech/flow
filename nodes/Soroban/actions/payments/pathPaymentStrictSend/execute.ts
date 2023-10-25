@@ -19,14 +19,14 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			[],
 		) as IAssetsPath;
 
-		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.SOROBAN) as Asset;
 		const sendAmount = convertAmountToBigNumber(sendingAmount);
-		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.SOROBAN) as Asset;
 		const destMin = convertAmountToBigNumber(minDestinationAmount);
 		let path: Asset[] = [];
 
 		intermediateAssets.forEach((asset) => {
-			const intermediateAsset = buildAsset(asset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+			const intermediateAsset = buildAsset(asset, StellarPlatformEnum.SOROBAN) as Asset;
 			path.push(intermediateAsset);
 		});
 

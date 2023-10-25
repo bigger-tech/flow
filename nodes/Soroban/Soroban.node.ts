@@ -5,6 +5,7 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { router } from './actions/router';
+import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
 
@@ -31,6 +32,10 @@ export class Soroban implements INodeType {
 				default: 'transaction',
 				options: [
 					{
+						name: 'Payment',
+						value: 'payments',
+					},
+					{
 						name: 'New Account',
 						value: 'newAccount',
 					},
@@ -43,6 +48,7 @@ export class Soroban implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
+			...payments.description,
 			...newAccount.description,
 			...transaction.description,
 		],

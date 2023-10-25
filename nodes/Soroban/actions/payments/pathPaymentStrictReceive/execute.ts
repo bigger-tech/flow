@@ -6,40 +6,40 @@ import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
-export async function pathPaymentStrictSend(this: IExecuteFunctions) {
+export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 	try {
 		const { values: sendingAsset } = this.getNodeParameter('sendingAsset', 0) as IAsset;
-		const sendingAmount = this.getNodeParameter('sendAmount', 0) as number;
+		const maxSendingAmount = this.getNodeParameter('maxSendAmount', 0) as number;
 		const destination = this.getNodeParameter('destinationAccount', 0) as string;
 		const { values: destinationAsset } = this.getNodeParameter('destinationAsset', 0) as IAsset;
-		const minDestinationAmount = this.getNodeParameter('minDestinationAmount', 0) as number;
+		const destinationAmount = this.getNodeParameter('destinationAmount', 0) as number;
 		const { values: intermediateAssets } = this.getNodeParameter(
 			'intermediatePathAssets',
 			0,
 			[],
 		) as IAssetsPath;
 
-		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
-		const sendAmount = convertAmountToBigNumber(sendingAmount);
-		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
-		const destMin = convertAmountToBigNumber(minDestinationAmount);
+		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.SOROBAN) as Asset;
+		const sendMax = convertAmountToBigNumber(maxSendingAmount);
+		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.SOROBAN) as Asset;
+		const destAmount = convertAmountToBigNumber(destinationAmount);
 		let path: Asset[] = [];
 
 		intermediateAssets.forEach((asset) => {
-			const intermediateAsset = buildAsset(asset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+			const intermediateAsset = buildAsset(asset, StellarPlatformEnum.SOROBAN) as Asset;
 			path.push(intermediateAsset);
 		});
 
-		const pathPaymentStrictSendOperation = Operation.pathPaymentStrictSend({
+		let pathPaymentStrictReceiveOperation = Operation.pathPaymentStrictReceive({
 			sendAsset,
-			sendAmount,
+			sendMax,
 			destination,
 			destAsset,
-			destMin,
+			destAmount,
 			path,
 		}).toXDR('base64');
 
-		return { operation: pathPaymentStrictSendOperation };
+		return { operation: pathPaymentStrictReceiveOperation };
 	} catch (error) {
 		throw new Error(error);
 	}
