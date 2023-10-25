@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation, Asset } from 'stellar-sdk';
-import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
-import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
-import IClaimants from '../../../../../common/interfaces/stellarBlockchain/IClaimants';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import IClaimants from '../../../../../common/interfaces/stellar/IClaimants';
 import buildClaimantsList from './helpers/helpers';
-import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export async function createClaimableBalance(this: IExecuteFunctions) {
 	try {

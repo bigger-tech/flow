@@ -1,6 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'stellar-sdk';
-import { signerType } from '../../../../../../common/types/stellarBlockchain/signerType';
+import { signerType } from '../../../../../../common/types/stellar/signerType';
 
 export async function revokeSignerSponsorship(this: IExecuteFunctions) {
 	try {

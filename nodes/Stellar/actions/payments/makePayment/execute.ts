@@ -1,9 +1,9 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
-import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
-import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
-import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export async function makePayment(this: IExecuteFunctions) {
 	try {

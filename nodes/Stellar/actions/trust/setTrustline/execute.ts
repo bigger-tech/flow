@@ -1,8 +1,8 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation, Asset } from 'stellar-sdk';
-import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
-import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function setTrustline(this: IExecuteFunctions) {
 	try {

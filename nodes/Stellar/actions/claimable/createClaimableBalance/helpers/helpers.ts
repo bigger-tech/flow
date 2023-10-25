@@ -1,8 +1,8 @@
 import { Claimant } from 'stellar-sdk';
 import ClaimantPredicate from 'stellar-sdk';
-import IPredicate from '../../../../../../common/interfaces/stellarBlockchain/IPredicate';
+import IPredicate from '../../../../../../common/interfaces/stellar/IPredicate';
 import InvalidPredicateError from './../error/InvalidPredicateError';
-import IClaimants from '../../../../../../common/interfaces/stellarBlockchain/IClaimants';
+import IClaimants from '../../../../../../common/interfaces/stellar/IClaimants';
 
 export default function buildClaimantsList(claimantsValues: IClaimants['values']) {
 	const claimants: Claimant[] = [];

@@ -1,5 +1,5 @@
 import type { IExecuteFunctions, ITriggerFunctions } from 'n8n-workflow';
-import SetNetworkError from '../../../common/errors/stellarBlockchain/SetNetworkError';
+import SetNetworkError from '../../../common/errors/stellar/SetNetworkError';
 
 const STELLAR_TESTNET_NETWORK = 'https://horizon-testnet.stellar.org/';
 const STELLAR_TESTNET_PASSPHRASE = 'Test SDF Network ; September 2015';

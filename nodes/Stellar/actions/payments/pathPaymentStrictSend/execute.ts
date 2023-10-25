@@ -1,10 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Operation } from 'stellar-sdk';
-import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
-import IAssetsPath from '../../../../../common/interfaces/stellarBlockchain/IAssetsPath';
-import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
-import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import IAssetsPath from '../../../../../common/interfaces/stellar/IAssetsPath';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 	try {

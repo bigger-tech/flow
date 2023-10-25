@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Server, Asset } from 'stellar-sdk';
 import { setNetwork } from '../../../transport';
-import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
-import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function swapAssets(this: IExecuteFunctions) {
 	try {

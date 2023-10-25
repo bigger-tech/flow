@@ -1,8 +1,8 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, Server } from 'stellar-sdk';
 import { setNetwork } from '../../../transport';
-import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
-import IAssetsPath from '../../../../../common/interfaces/stellarBlockchain/IAssetsPath';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import IAssetsPath from '../../../../../common/interfaces/stellar/IAssetsPath';
 import liquidityPoolMapper from './helpers/helpers';
 import LiquidityPoolNotFoundError from './errors/LiquidityPoolNotFoundError';
 import LiquidityPool from '../../entities/LiquidityPool';

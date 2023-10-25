@@ -1,8 +1,8 @@
 import { Asset as SorobanAsset } from 'soroban-client';
 import { Asset as StellarAsset } from 'stellar-sdk';
-import IAsset from '../../interfaces/stellarBlockchain/IAsset';
-import NoAssetSelectedError from '../../errors/stellarBlockchain/NoAssetSelectedError';
-import { StellarPlatformEnum } from '../../enum/stellarBlockchain/StellarPlatformEnum';
+import IAsset from '../../interfaces/stellar/IAsset';
+import NoAssetSelectedError from '../../errors/stellar/NoAssetSelectedError';
+import { StellarPlatformEnum } from '../../enum/stellar/StellarPlatformEnum';
 
 export function buildAsset(
 	assetValues: IAsset['values'],

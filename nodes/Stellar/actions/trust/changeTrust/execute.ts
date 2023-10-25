@@ -1,9 +1,9 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, LiquidityPoolAsset, Operation } from 'stellar-sdk';
-import { convertAmountToBigNumber } from '../../../../../common/utils/stellarBlockchain/convertAmountToBigNumber';
-import IAsset from '../../../../../common/interfaces/stellarBlockchain/IAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellarBlockchain/StellarPlatformEnum';
-import { buildAsset } from '../../../../../common/utils/stellarBlockchain/buildAsset';
+import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
+import IAsset from '../../../../../common/interfaces/stellar/IAsset';
+import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
+import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function changeTrust(this: IExecuteFunctions) {
 	try {
