@@ -12,8 +12,10 @@ export async function changeTrust(this: IExecuteFunctions) {
 
 		switch (assetType) {
 			case 'asset':
-				const assetToTrust = this.getNodeParameter('trustAsset', 0) as IAsset;
-				asset = new Asset(assetToTrust.values.code, assetToTrust.values.issuer);
+				const {
+					values: { code, issuer },
+				} = this.getNodeParameter('trustAsset', 0) as IAsset;
+				asset = new Asset(code, issuer);
 				break;
 			default:
 				asset = Asset.native();
