@@ -6,6 +6,10 @@ import { build, sign } from './transaction';
 import { claimClaimableBalance, createClaimableBalance } from './claimable';
 import { changeTrust, setTrustline } from './trust';
 
+interface IOperations {
+	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
+}
+
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
 		operations: {
