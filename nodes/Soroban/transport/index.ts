@@ -1,8 +1,10 @@
 import type { IExecuteFunctions, ITriggerFunctions } from 'n8n-workflow';
 import SetNetworkError from '../../../common/errors/stellar/SetNetworkError';
 
-const SOROBAN_FUTURENET_NETWORK = 'https://horizon-futurenet.stellar.org';
-const SOROBAN_FUTURENET_PASSPHRASE = 'Test SDF Future Network ; October 2022';
+const SOROBAN_HORIZON_RPC_NETWORK = 'https://horizon-futurenet.stellar.org';
+const SOROBAN_HORIZON_RPC_PASSPHRASE = 'Test SDF Future Network ; October 2022';
+const SOROBAN_SOROBAN_RPC_NETWORK = 'https://rpc-futurenet.stellar.org';
+const SOROBAN_SOROBAN_RPC_PASSPHRASE = 'Test SDF Future Network ; October 2022';
 
 export class SorobanNetwork {
 	url: string;
@@ -21,10 +23,16 @@ export class SorobanNetwork {
 		let sorobanNetwork;
 
 		switch (network) {
-			case 'futurenet':
+			case 'sorobanRpc':
 				sorobanNetwork = new SorobanNetwork(
-					SOROBAN_FUTURENET_NETWORK,
-					SOROBAN_FUTURENET_PASSPHRASE,
+					SOROBAN_SOROBAN_RPC_NETWORK,
+					SOROBAN_SOROBAN_RPC_PASSPHRASE,
+				);
+				break;
+			case 'horizonRpc':
+				sorobanNetwork = new SorobanNetwork(
+					SOROBAN_HORIZON_RPC_NETWORK,
+					SOROBAN_HORIZON_RPC_PASSPHRASE,
 				);
 				break;
 			case 'custom':

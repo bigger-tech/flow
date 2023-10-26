@@ -11,12 +11,13 @@ export class SorobanApi implements ICredentialType {
 			type: 'options',
 			default: '',
 			options: [
-				{ name: 'Futurenet', value: 'futurenet' },
+				{ name: 'Soroban RPC', value: 'sorobanRpc' },
+				{ name: 'Horizon RPC ', value: 'horizonRpc' },
 				{ name: 'Custom', value: 'custom' },
 			],
 		},
 		{
-			displayName: 'Futurenet URL',
+			displayName: 'Soroban RPC URL',
 			name: 'networkUrl',
 			type: 'string',
 			required: true,
@@ -26,7 +27,7 @@ export class SorobanApi implements ICredentialType {
 				},
 			},
 			default: '',
-			placeholder: 'https://horizon-futurenet.stellar.org',
+			placeholder: 'https://rpc-futurenet.stellar.org',
 		},
 		{
 			displayName: 'Network Passphrase',
