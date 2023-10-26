@@ -4,7 +4,7 @@ import IAsset from '../../../../../../common/interfaces/stellar/IAsset';
 import { StellarPlatformEnum } from '../../../../../../common/enum/stellar/StellarPlatformEnum';
 import { buildAsset } from '../../../../../../common/utils/stellar/buildAsset';
 
-export async function revokeTrustlineSponsorship(this: IExecuteFunctions) {
+export function revokeTrustlineSponsorship(this: IExecuteFunctions) {
 	try {
 		const account = this.getNodeParameter('account', 0) as string;
 		const { values: assetValues } = this.getNodeParameter('asset', 0) as IAsset;

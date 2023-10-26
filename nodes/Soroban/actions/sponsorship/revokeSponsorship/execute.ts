@@ -7,7 +7,7 @@ import * as revokeTrustlineSponsorship from './revokeTrustlineSponsorship';
 import * as revokeSignerSponsorship from './revokeSignerSponsorship';
 import type { revokeSponsorshipType } from '../../../../../common/types/stellar/RevokeSponsorshipType';
 
-export async function revokeSponsorship(this: IExecuteFunctions) {
+export function revokeSponsorship(this: IExecuteFunctions) {
 	const revokeSponsorshipType = this.getNodeParameter(
 		'revokeSponsorshipType',
 		0,
@@ -21,5 +21,5 @@ export async function revokeSponsorship(this: IExecuteFunctions) {
 		revokeTrustlineSponsorship,
 	};
 
-	return await revokeSponsorship[revokeSponsorshipType].execute.call(this);
+	return revokeSponsorship[revokeSponsorshipType].execute.call(this);
 }

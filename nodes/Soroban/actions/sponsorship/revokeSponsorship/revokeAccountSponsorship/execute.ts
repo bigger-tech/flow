@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'soroban-client';
 
-export async function revokeAccountSponsorship(this: IExecuteFunctions) {
+export function revokeAccountSponsorship(this: IExecuteFunctions) {
 	try {
 		const account = this.getNodeParameter('account', 0) as string;
 		const revokeAccountSponsorshipOperation = Operation.revokeAccountSponsorship({

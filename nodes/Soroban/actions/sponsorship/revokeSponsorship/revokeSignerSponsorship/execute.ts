@@ -2,12 +2,14 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'stellar-sdk';
 import { signerType } from '../../../../../../common/types/stellar/signerType';
 
-export async function revokeSignerSponsorship(this: IExecuteFunctions) {
+export function revokeSignerSponsorship(this: IExecuteFunctions) {
 	try {
 		const account = this.getNodeParameter('account', 0) as string;
 		const signerType = this.getNodeParameter('signerType', 0) as signerType;
 		const signerKey = this.getNodeParameter('signerKey', 0) as string;
+
 		let signer;
+
 		switch (signerType) {
 			case 'ed25519PublicKey':
 				signer = { ed25519PublicKey: signerKey };

@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'soroban-client';
 
-export async function endSponsoring(this: IExecuteFunctions) {
+export function endSponsoring(this: IExecuteFunctions) {
 	try {
 		const source = this.getNodeParameter('accountSponsoring', 0) as string;
 		const endSponsoringOperation = Operation.endSponsoringFutureReserves({

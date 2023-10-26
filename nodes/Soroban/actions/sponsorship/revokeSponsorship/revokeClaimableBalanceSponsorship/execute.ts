@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'soroban-client';
 
-export async function revokeClaimableBalanceSponsorship(this: IExecuteFunctions) {
+export function revokeClaimableBalanceSponsorship(this: IExecuteFunctions) {
 	try {
 		const balanceId = this.getNodeParameter('balanceId', 0) as string;
 		const revokeClaimableBalanceSponsorshipOperation = Operation.revokeClaimableBalanceSponsorship({

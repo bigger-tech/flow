@@ -1,7 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
 import { Operation } from 'soroban-client';
 
-export async function beginSponsoring(this: IExecuteFunctions) {
+export function beginSponsoring(this: IExecuteFunctions) {
 	try {
 		const sponsoredId = this.getNodeParameter('sponsoredId', 0) as string;
 		const beginSponsoringOperation = Operation.beginSponsoringFutureReserves({ sponsoredId }).toXDR(
