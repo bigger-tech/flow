@@ -27,6 +27,12 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			pathPaymentStrictSend: { execute: pathPaymentStrictSend.execute },
 		},
 	},
+	clawback: {
+		operations: {
+			clawback: { execute: clawback.execute },
+			clawbackClaimableBalance: { execute: clawbackClaimableBalance.execute },
+		},
+	},
 };
 
 export default resources;
