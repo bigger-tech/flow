@@ -10,6 +10,7 @@ import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
 import * as fundAccount from './actions/fundAccount';
+import * as clawback from './actions/clawback';
 import * as trust from './actions/trust';
 
 export class Soroban implements INodeType {
@@ -55,6 +56,10 @@ export class Soroban implements INodeType {
 						value: 'transaction',
 					},
 					{
+						name: 'Clawback',
+						value: 'clawback',
+					},
+					{
 						name: 'Trust',
 						value: 'trust',
 					},
@@ -68,6 +73,7 @@ export class Soroban implements INodeType {
 			...newAccount.description,
 			...fundAccount.description,
 			...transaction.description,
+			...clawback.description,
 			...trust.description,
 		],
 	};
