@@ -7,6 +7,7 @@ import { build, sign } from './transaction';
 import { claimClaimableBalance, createClaimableBalance } from './claimable';
 import { clawback, clawbackClaimableBalance } from './clawback';
 import { changeTrust, setTrustline } from './trust';
+import { liquidityPoolDeposit, liquidityPoolWithdraw } from './liquidityPool';
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
@@ -17,6 +18,12 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 	fundAccount: {
 		operations: {
 			fundAccount: { execute: fundAccount.execute },
+		},
+	},
+	liquidityPool: {
+		operations: {
+			liquidityPoolDeposit: { execute: liquidityPoolDeposit.execute },
+			liquidityPoolWithdraw: { execute: liquidityPoolWithdraw.execute },
 		},
 	},
 	transaction: {
