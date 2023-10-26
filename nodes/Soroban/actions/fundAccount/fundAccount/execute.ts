@@ -1,4 +1,4 @@
-import StellarSdk from 'stellar-sdk';
+import { StrKey } from 'soroban-client';
 import type { IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 import InvalidPublicKeyError from '../../../../../common/errors/stellar/InvalidPublicKeyError';
 
@@ -9,7 +9,7 @@ export async function fundAccount(this: IExecuteFunctions) {
 		const items = this.getInputData();
 		const publicKey = items[0].json.publicKey as string;
 
-		if (StellarSdk.StrKey.isValidEd25519PublicKey(publicKey)) {
+		if (StrKey.isValidEd25519PublicKey(publicKey)) {
 			const fundAccountRequest: IHttpRequestOptions = {
 				url: `${FRIENDBOT_URL}${publicKey}`,
 				method: 'GET',
