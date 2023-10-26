@@ -3,6 +3,7 @@ import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './
 import { createAccount } from './newAccount';
 import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
+import { beginSponsoring, endSponsoring, revokeSponsorship } from './sponsorship';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
@@ -27,6 +28,13 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			makePayment: { execute: makePayment.execute },
 			pathPaymentStrictReceive: { execute: pathPaymentStrictReceive.execute },
 			pathPaymentStrictSend: { execute: pathPaymentStrictSend.execute },
+		},
+	},
+	sponsorship: {
+		operations: {
+			beginSponsoring: { execute: beginSponsoring.execute },
+			endSponsoring: { execute: endSponsoring.execute },
+			revokeSponsorship: { execute: revokeSponsorship.execute },
 		},
 	},
 };
