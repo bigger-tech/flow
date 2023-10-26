@@ -5,11 +5,13 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { router } from './actions/router';
+import * as claimable from './actions/claimable';
 import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
 import * as fundAccount from './actions/fundAccount';
 import * as sponsorship from './actions/sponsorship';
+import * as clawback from './actions/clawback';
 import * as trust from './actions/trust';
 
 export class Soroban implements INodeType {
@@ -35,6 +37,10 @@ export class Soroban implements INodeType {
 				default: 'transaction',
 				options: [
 					{
+						name: 'Claimable Balance',
+						value: 'claimableBalance',
+					},
+					{
 						name: 'Payment',
 						value: 'payments',
 					},
@@ -55,6 +61,10 @@ export class Soroban implements INodeType {
 						value: 'sponsorship',
 					},
 					{
+						name: 'Clawback',
+						value: 'clawback',
+					},
+					{
 						name: 'Trust',
 						value: 'trust',
 					},
@@ -63,11 +73,13 @@ export class Soroban implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
+			...claimable.description,
 			...payments.description,
 			...newAccount.description,
 			...fundAccount.description,
 			...transaction.description,
 			...sponsorship.description,
+			...clawback.description,
 			...trust.description,
 		],
 	};
