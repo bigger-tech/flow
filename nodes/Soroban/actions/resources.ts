@@ -4,6 +4,7 @@ import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './
 import { createAccount } from './newAccount';
 import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
+import { claimClaimableBalance, createClaimableBalance } from './claimable';
 import { clawback, clawbackClaimableBalance } from './clawback';
 import { changeTrust, setTrustline } from './trust';
 
@@ -26,6 +27,12 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			makePayment: { execute: makePayment.execute },
 			pathPaymentStrictReceive: { execute: pathPaymentStrictReceive.execute },
 			pathPaymentStrictSend: { execute: pathPaymentStrictSend.execute },
+		},
+	},
+	claimableBalance: {
+		operations: {
+			claimClaimableBalance: { execute: claimClaimableBalance.execute },
+			createClaimableBalance: { execute: createClaimableBalance.execute },
 		},
 	},
 	clawback: {
