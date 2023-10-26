@@ -5,6 +5,7 @@ export type SorobanResources = {
 	transaction: 'build' | 'sign';
 	payments: 'getPayment' | 'makePayment' | 'pathPaymentStrictSend' | 'pathPaymentStrictReceive';
 	fundAccount: 'fundAccount';
+	clawback: 'clawback' | 'clawbackClaimableBalance';
 	trust: 'changeTrust' | 'setTrustline';
 };
 
@@ -14,10 +15,12 @@ type SorobanNewAccount = Entity<SorobanResources, 'newAccount'>;
 type SorobanTransaction = Entity<SorobanResources, 'transaction'>;
 type SorobanPayments = Entity<SorobanResources, 'payments'>;
 type SorobanFundAccount = Entity<SorobanResources, 'fundAccount'>;
+type SorobanClawback = Entity<SorobanResources, 'clawback'>;
 type SorobanTrust = Entity<SorobanResources, 'trust'>;
 
 export type NewAccountProperties = PropertiesOf<SorobanNewAccount>;
 export type TransactionProperties = PropertiesOf<SorobanTransaction>;
 export type PaymentsProperties = PropertiesOf<SorobanPayments>;
 export type FundAccountProperties = PropertiesOf<SorobanFundAccount>;
+export type ClawbackProperties = PropertiesOf<SorobanClawback>;
 export type TrustProperties = PropertiesOf<SorobanTrust>;

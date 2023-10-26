@@ -1,13 +1,11 @@
+import IOperations from '../../../common/interfaces/stellar/IOperations';
 import { SorobanResources } from './entities/SorobanNode';
 import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './payments';
 import { createAccount } from './newAccount';
 import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
+import { clawback, clawbackClaimableBalance } from './clawback';
 import { changeTrust, setTrustline } from './trust';
-
-interface IOperations {
-	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
-}
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
@@ -28,6 +26,12 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			makePayment: { execute: makePayment.execute },
 			pathPaymentStrictReceive: { execute: pathPaymentStrictReceive.execute },
 			pathPaymentStrictSend: { execute: pathPaymentStrictSend.execute },
+		},
+	},
+	clawback: {
+		operations: {
+			clawback: { execute: clawback.execute },
+			clawbackClaimableBalance: { execute: clawbackClaimableBalance.execute },
 		},
 	},
 	trust: {
