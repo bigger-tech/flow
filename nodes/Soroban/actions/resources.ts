@@ -4,10 +4,7 @@ import { createAccount } from './newAccount';
 import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
 import { claimClaimableBalance, createClaimableBalance } from './claimable';
-
-interface IOperations {
-	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
-}
+import { changeTrust, setTrustline } from './trust';
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
@@ -34,6 +31,12 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 		operations: {
 			claimClaimableBalance: { execute: claimClaimableBalance.execute },
 			createClaimableBalance: { execute: createClaimableBalance.execute },
+		},
+	},
+	trust: {
+		operations: {
+			changeTrust: { execute: changeTrust.execute },
+			setTrustline: { execute: setTrustline.execute },
 		},
 	},
 };
