@@ -18,7 +18,7 @@ export const setTrustlineDescription: TrustProperties = [
 	},
 	{
 		displayName: 'Asset',
-		name: 'asset',
+		name: 'trustAsset',
 		type: 'fixedCollection',
 		default: {},
 		required: true,

@@ -13,7 +13,7 @@ export async function changeTrust(this: IExecuteFunctions) {
 
 		switch (assetType) {
 			case 'asset':
-				const assetToTrust = this.getNodeParameter('asset', 0) as IAsset;
+				const assetToTrust = this.getNodeParameter('trustAsset', 0) as IAsset;
 				asset = new Asset(assetToTrust.values.code, assetToTrust.values.issuer);
 				break;
 
