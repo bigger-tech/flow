@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation, Asset } from 'stellar-sdk';
+import { Operation, Asset } from 'soroban-client';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
@@ -15,7 +15,7 @@ export async function setTrustline(this: IExecuteFunctions) {
 		) as boolean;
 		const clawbackEnabled = this.getNodeParameter('clawbackEnabled', 0) as boolean;
 
-		const asset = buildAsset(assetToTrust, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const asset = buildAsset(assetToTrust, StellarPlatformEnum.SOROBAN) as Asset;
 
 		const setTrustlineOperation = Operation.setTrustLineFlags({
 			trustor,

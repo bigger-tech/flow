@@ -1,4 +1,4 @@
-import { TrustProperties } from '../../entities/StellarNode';
+import { TrustProperties } from '../../entities/SorobanNode';
 
 export const setTrustlineDescription: TrustProperties = [
 	{

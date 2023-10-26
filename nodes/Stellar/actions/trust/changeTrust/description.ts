@@ -26,7 +26,7 @@ export const changeTrustDescription: TrustProperties = [
 	},
 	{
 		displayName: 'Asset',
-		name: 'asset',
+		name: 'trustAsset',
 		type: 'fixedCollection',
 		default: {},
 		required: true,
