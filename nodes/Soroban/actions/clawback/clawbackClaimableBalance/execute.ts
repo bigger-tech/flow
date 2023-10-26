@@ -7,7 +7,7 @@ export async function clawbackClaimableBalance(this: IExecuteFunctions) {
 		const transaction = this.getNodeParameter('transaction', 0) as string;
 
 		if (!transaction && !balanceId) {
-			throw new Error('Either transaction or balanceId must be provided');
+			throw new Error('Either transaction xdr or claim claimable balance id must be provided');
 		}
 
 		if (!balanceId) {
