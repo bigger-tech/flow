@@ -4,6 +4,7 @@ import { createAccount } from './newAccount';
 import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
 import { beginSponsoring, endSponsoring, revokeSponsorship } from './sponsorship';
+import { changeTrust, setTrustline } from './trust';
 
 interface IOperations {
 	operations: { [key: string]: { execute: () => Promise<{}> | {} } };
@@ -35,6 +36,12 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			beginSponsoring: { execute: beginSponsoring.execute },
 			endSponsoring: { execute: endSponsoring.execute },
 			revokeSponsorship: { execute: revokeSponsorship.execute },
+		},
+	},
+	trust: {
+		operations: {
+			changeTrust: { execute: changeTrust.execute },
+			setTrustline: { execute: setTrustline.execute },
 		},
 	},
 };

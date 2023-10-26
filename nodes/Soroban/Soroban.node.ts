@@ -10,6 +10,7 @@ import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
 import * as fundAccount from './actions/fundAccount';
 import * as sponsorship from './actions/sponsorship';
+import * as trust from './actions/trust';
 
 export class Soroban implements INodeType {
 	description: INodeTypeDescription = {
@@ -53,6 +54,10 @@ export class Soroban implements INodeType {
 						name: 'Sponsorship',
 						value: 'sponsorship',
 					},
+					{
+						name: 'Trust',
+						value: 'trust',
+					},
 				],
 				noDataExpression: true,
 				required: true,
@@ -63,6 +68,7 @@ export class Soroban implements INodeType {
 			...fundAccount.description,
 			...transaction.description,
 			...sponsorship.description,
+			...trust.description,
 		],
 	};
 
