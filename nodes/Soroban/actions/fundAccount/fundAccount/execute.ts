@@ -6,10 +6,12 @@ const FRIENDBOT_URL = 'https://friendbot-futurenet.stellar.org/?addr=';
 
 export async function fundAccount(this: IExecuteFunctions) {
 	try {
-		const items = this.getInputData();
-		const publicKey = items[0].json.publicKey as string;
+		const [item] = this.getInputData();
+		const {
+			json: { publicKey },
+		} = item;
 
-		if (StrKey.isValidEd25519PublicKey(publicKey)) {
+		if (StrKey.isValidEd25519PublicKey(publicKey as string)) {
 			const fundAccountRequest: IHttpRequestOptions = {
 				url: `${FRIENDBOT_URL}${publicKey}`,
 				method: 'GET',
