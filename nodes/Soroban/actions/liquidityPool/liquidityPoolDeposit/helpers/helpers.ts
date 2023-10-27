@@ -4,14 +4,17 @@ import IPriceFraction from '../../../../../../common/interfaces/stellar/IPriceFr
 import NoPriceSelectedError from '../../../../../../common/errors/stellar/NoPriceSelectedError';
 
 export default function getPrice(price: ILiquidityPoolPrice['values']): string | IPriceFraction {
-	if (price.isPriceAFraction && price.priceNumerator && price.priceDenominator) {
+	const { isPriceAFraction, priceNumerator, priceDenominator, priceNumber } = price;
+
+	if (isPriceAFraction && priceNumerator && priceDenominator) {
 		return {
-			n: convertAmountToBigNumber(price.priceNumerator),
-			d: convertAmountToBigNumber(price.priceDenominator),
+			n: convertAmountToBigNumber(priceNumerator),
+			d: convertAmountToBigNumber(priceDenominator),
 		};
 	}
-	if (price.priceNumber) {
-		return convertAmountToBigNumber(price.priceNumber);
+
+	if (priceNumber) {
+		return convertAmountToBigNumber(priceNumber);
 	}
 	throw new NoPriceSelectedError();
 }
