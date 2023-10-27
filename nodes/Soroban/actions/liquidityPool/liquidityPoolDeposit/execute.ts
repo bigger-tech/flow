@@ -1,7 +1,6 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
+import { Operation } from 'soroban-client';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
-
 import ILiquidityPoolPrice from '../../../../../common/interfaces/stellar/ILiquidityPoolPrice';
 import getPrice from './helpers/helpers';
 
