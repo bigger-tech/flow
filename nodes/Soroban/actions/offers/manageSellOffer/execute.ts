@@ -5,7 +5,7 @@ import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
-export async function manageSellOffer(this: IExecuteFunctions) {
+export function manageSellOffer(this: IExecuteFunctions) {
 	try {
 		const { values: sellingAsset } = this.getNodeParameter('sellingAsset', 0) as IAsset;
 		const { values: buyingAsset } = this.getNodeParameter('buyingAsset', 0) as IAsset;
