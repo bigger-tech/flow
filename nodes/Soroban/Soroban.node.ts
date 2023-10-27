@@ -6,6 +6,7 @@ import {
 } from 'n8n-workflow';
 import { router } from './actions/router';
 import * as claimable from './actions/claimable';
+import * as settings from './actions/settings';
 import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
@@ -41,6 +42,10 @@ export class Soroban implements INodeType {
 						value: 'claimableBalance',
 					},
 					{
+						name: 'Account Setting',
+						value: 'settings',
+					},
+					{
 						name: 'Payment',
 						value: 'payments',
 					},
@@ -74,6 +79,7 @@ export class Soroban implements INodeType {
 				description: 'Operation Type:',
 			},
 			...claimable.description,
+			...settings.description,
 			...payments.description,
 			...newAccount.description,
 			...fundAccount.description,

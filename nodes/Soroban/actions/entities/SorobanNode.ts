@@ -2,6 +2,7 @@ import type { AllEntities, Entity, PropertiesOf } from 'n8n-workflow';
 
 export type SorobanResources = {
 	claimableBalance: 'createClaimableBalance' | 'claimClaimableBalance';
+	settings: 'bumpSequence' | 'manageData' | 'setOptions';
 	newAccount: 'createAccount';
 	transaction: 'build' | 'sign';
 	payments: 'getPayment' | 'makePayment' | 'pathPaymentStrictSend' | 'pathPaymentStrictReceive';
@@ -14,6 +15,7 @@ export type SorobanResources = {
 export type Soroban = AllEntities<SorobanResources>;
 
 type SorobanClaimableBalance = Entity<SorobanResources, 'claimableBalance'>;
+type SorobanSettings = Entity<SorobanResources, 'settings'>;
 type SorobanNewAccount = Entity<SorobanResources, 'newAccount'>;
 type SorobanTransaction = Entity<SorobanResources, 'transaction'>;
 type SorobanPayments = Entity<SorobanResources, 'payments'>;
@@ -23,6 +25,7 @@ type SorobanClawback = Entity<SorobanResources, 'clawback'>;
 type SorobanTrust = Entity<SorobanResources, 'trust'>;
 
 export type ClaimableBalanceProperties = PropertiesOf<SorobanClaimableBalance>;
+export type SettingsProperties = PropertiesOf<SorobanSettings>;
 export type NewAccountProperties = PropertiesOf<SorobanNewAccount>;
 export type TransactionProperties = PropertiesOf<SorobanTransaction>;
 export type PaymentsProperties = PropertiesOf<SorobanPayments>;
