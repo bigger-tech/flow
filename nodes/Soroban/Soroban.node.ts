@@ -7,6 +7,7 @@ import {
 import { router } from './actions/router';
 import * as accountMerge from './actions/accountMerge';
 import * as claimable from './actions/claimable';
+import * as settings from './actions/settings';
 import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
@@ -46,6 +47,10 @@ export class Soroban implements INodeType {
 					{
 						name: 'Claimable Balance',
 						value: 'claimableBalance',
+					},
+					{
+						name: 'Account Setting',
+						value: 'settings',
 					},
 					{
 						name: 'Payment',
@@ -90,6 +95,7 @@ export class Soroban implements INodeType {
 			},
 			...accountMerge.description,
 			...claimable.description,
+			...settings.description,
 			...payments.description,
 			...newAccount.description,
 			...offers.description,
