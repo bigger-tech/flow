@@ -13,6 +13,7 @@ import * as fundAccount from './actions/fundAccount';
 import * as sponsorship from './actions/sponsorship';
 import * as clawback from './actions/clawback';
 import * as trust from './actions/trust';
+import * as offers from './actions/offers';
 
 export class Soroban implements INodeType {
 	description: INodeTypeDescription = {
@@ -49,6 +50,10 @@ export class Soroban implements INodeType {
 						value: 'newAccount',
 					},
 					{
+						name: 'Offer',
+						value: 'offers',
+					},
+					{
 						name: 'Fund Account in futurenet',
 						value: 'fundAccount',
 					},
@@ -76,6 +81,7 @@ export class Soroban implements INodeType {
 			...claimable.description,
 			...payments.description,
 			...newAccount.description,
+			...offers.description,
 			...fundAccount.description,
 			...transaction.description,
 			...sponsorship.description,

@@ -1,6 +1,7 @@
 import IOperations from '../../../common/interfaces/stellar/IOperations';
 import { SorobanResources } from './entities/SorobanNode';
 import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './payments';
+import { createPassiveSellOffer, manageBuyOffer, manageSellOffer } from './offers';
 import { createAccount } from './newAccount';
 import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
@@ -28,6 +29,13 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			makePayment: { execute: makePayment.execute },
 			pathPaymentStrictReceive: { execute: pathPaymentStrictReceive.execute },
 			pathPaymentStrictSend: { execute: pathPaymentStrictSend.execute },
+		},
+	},
+	offers: {
+		operations: {
+			createPassiveSellOffer: { execute: createPassiveSellOffer.execute },
+			manageBuyOffer: { execute: manageBuyOffer.execute },
+			manageSellOffer: { execute: manageSellOffer.execute },
 		},
 	},
 	sponsorship: {
