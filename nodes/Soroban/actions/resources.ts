@@ -1,6 +1,7 @@
 import IOperations from '../../../common/interfaces/stellar/IOperations';
 import { SorobanResources } from './entities/SorobanNode';
 import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './payments';
+import { createPassiveSellOffer, manageBuyOffer, manageSellOffer } from './offers';
 import { createAccount } from './newAccount';
 import { accountMerge } from './accountMerge';
 import { fundAccount } from './fundAccount';
@@ -9,6 +10,7 @@ import { beginSponsoring, endSponsoring, revokeSponsorship } from './sponsorship
 import { claimClaimableBalance, createClaimableBalance } from './claimable';
 import { clawback, clawbackClaimableBalance } from './clawback';
 import { changeTrust, setTrustline } from './trust';
+import { liquidityPoolDeposit, liquidityPoolWithdraw } from './liquidityPool';
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
@@ -21,6 +23,12 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			fundAccount: { execute: fundAccount.execute },
 		},
 	},
+	liquidityPool: {
+		operations: {
+			liquidityPoolDeposit: { execute: liquidityPoolDeposit.execute },
+			liquidityPoolWithdraw: { execute: liquidityPoolWithdraw.execute },
+		},
+	},
 	transaction: {
 		operations: { build: { execute: build.execute }, sign: { execute: sign.execute } },
 	},
@@ -30,6 +38,13 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 			makePayment: { execute: makePayment.execute },
 			pathPaymentStrictReceive: { execute: pathPaymentStrictReceive.execute },
 			pathPaymentStrictSend: { execute: pathPaymentStrictSend.execute },
+		},
+	},
+	offers: {
+		operations: {
+			createPassiveSellOffer: { execute: createPassiveSellOffer.execute },
+			manageBuyOffer: { execute: manageBuyOffer.execute },
+			manageSellOffer: { execute: manageSellOffer.execute },
 		},
 	},
 	sponsorship: {
