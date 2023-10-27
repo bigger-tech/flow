@@ -4,8 +4,7 @@ import { Operation } from 'soroban-client';
 export async function manageData(this: IExecuteFunctions) {
 	try {
 		const name = this.getNodeParameter('entryName', 0) as string;
-		const entryValue = this.getNodeParameter('entryValue', 0) as string;
-		let value = entryValue ? entryValue : null;
+		const value = this.getNodeParameter('entryValue', 0) as string;
 
 		const manageDataOperation = Operation.manageData({ name, value }).toXDR('base64');
 
