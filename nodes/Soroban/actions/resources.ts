@@ -3,6 +3,7 @@ import { SorobanResources } from './entities/SorobanNode';
 import { makePayment, pathPaymentStrictReceive, pathPaymentStrictSend } from './payments';
 import { createPassiveSellOffer, manageBuyOffer, manageSellOffer } from './offers';
 import { createAccount } from './newAccount';
+import { accountMerge } from './accountMerge';
 import { fundAccount } from './fundAccount';
 import { build, sign } from './transaction';
 import { beginSponsoring, endSponsoring, revokeSponsorship } from './sponsorship';
@@ -31,6 +32,7 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 	transaction: {
 		operations: { build: { execute: build.execute }, sign: { execute: sign.execute } },
 	},
+	accountMerge: { operations: { accountMerge: { execute: accountMerge.execute } } },
 	payments: {
 		operations: {
 			makePayment: { execute: makePayment.execute },

@@ -1,6 +1,7 @@
 import type { AllEntities, Entity, PropertiesOf } from 'n8n-workflow';
 
 export type SorobanResources = {
+	accountMerge: 'accountMerge';
 	claimableBalance: 'createClaimableBalance' | 'claimClaimableBalance';
 	newAccount: 'createAccount';
 	offers: 'manageSellOffer' | 'manageBuyOffer' | 'createPassiveSellOffer';
@@ -15,6 +16,7 @@ export type SorobanResources = {
 
 export type Soroban = AllEntities<SorobanResources>;
 
+type SorobanAccountMerge = Entity<SorobanResources, 'accountMerge'>;
 type SorobanClaimableBalance = Entity<SorobanResources, 'claimableBalance'>;
 type SorobanNewAccount = Entity<SorobanResources, 'newAccount'>;
 type SorobanOffers = Entity<SorobanResources, 'offers'>;
@@ -26,6 +28,7 @@ type SorobanSponsorship = Entity<SorobanResources, 'sponsorship'>;
 type SorobanClawback = Entity<SorobanResources, 'clawback'>;
 type SorobanTrust = Entity<SorobanResources, 'trust'>;
 
+export type AccountMergeProperties = PropertiesOf<SorobanAccountMerge>;
 export type ClaimableBalanceProperties = PropertiesOf<SorobanClaimableBalance>;
 export type NewAccountProperties = PropertiesOf<SorobanNewAccount>;
 export type OffersProperties = PropertiesOf<SorobanOffers>;

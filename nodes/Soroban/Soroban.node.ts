@@ -5,6 +5,7 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { router } from './actions/router';
+import * as accountMerge from './actions/accountMerge';
 import * as claimable from './actions/claimable';
 import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
@@ -38,6 +39,10 @@ export class Soroban implements INodeType {
 				type: 'options',
 				default: 'transaction',
 				options: [
+					{
+						name: 'Account Merge',
+						value: 'accountMerge',
+					},
 					{
 						name: 'Claimable Balance',
 						value: 'claimableBalance',
@@ -83,6 +88,7 @@ export class Soroban implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
+			...accountMerge.description,
 			...claimable.description,
 			...payments.description,
 			...newAccount.description,
