@@ -32,12 +32,12 @@ export function buildSigner(signerValues: ISigner['values']) {
 	const weight = Number(signerWeight);
 
 	if (typeof signerKey != 'string' && signerType != 'ed25519PublicKey') {
-		const signerData =
+		const signer =
 			signerType === 'sha256Hash'
 				? { sha256Hash: signerKey, weight }
 				: { preAuthTx: signerKey, weight };
 
-		return signerData as Signer;
+		return signer as Signer;
 	}
 
 	return { ed25519PublicKey: signerKey as string, weight } as Signer;
