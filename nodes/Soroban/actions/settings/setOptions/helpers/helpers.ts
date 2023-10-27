@@ -16,26 +16,29 @@ export function buildFlags(flags: IFlags['values']): AuthFlag {
 		authorizationInmutable,
 		authorizationClawbackEnabled,
 	} = flags;
+
 	let totalFlags = 0;
+
 	if (authorizationRequired) totalFlags += AuthRequiredFlag;
 	if (authorizationRevocable) totalFlags += AuthRevocableFlag;
 	if (authorizationInmutable) totalFlags += AuthImmutableFlag;
 	if (authorizationClawbackEnabled) totalFlags += AuthClawbackEnabledFlag;
+
 	return totalFlags as AuthFlag;
 }
 
 export function buildSigner(signerValues: ISigner['values']) {
-	const signerType = signerValues.signerType;
-	const signerKey = signerValues.signerKey;
-	const weight = Number(signerValues.signerWeight);
+	const { signerType, signerKey, signerWeight } = signerValues;
+	const weight = Number(signerWeight);
 
-	let signer: Signer;
 	if (typeof signerKey != 'string' && signerType != 'ed25519PublicKey') {
-		signerType === 'sha256Hash'
-			? (signer = { sha256Hash: signerKey, weight })
-			: (signer = { preAuthTx: signerKey, weight });
-	} else {
-		signer = { ed25519PublicKey: signerKey as string, weight };
+		const signerData =
+			signerType === 'sha256Hash'
+				? { sha256Hash: signerKey, weight }
+				: { preAuthTx: signerKey, weight };
+
+		return signerData as Signer;
 	}
-	return signer;
+
+	return { ed25519PublicKey: signerKey as string, weight } as Signer;
 }
