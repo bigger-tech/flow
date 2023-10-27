@@ -10,11 +10,17 @@ import IFlags from '../../../../../../common/interfaces/stellar/IFlags';
 import ISigner from '../../../../../../common/interfaces/stellar/ISigner';
 
 export function buildFlags(flags: IFlags['values']): AuthFlag {
+	const {
+		authorizationRequired,
+		authorizationRevocable,
+		authorizationInmutable,
+		authorizationClawbackEnabled,
+	} = flags;
 	let totalFlags = 0;
-	if (flags.authorizationRequired) totalFlags += AuthRequiredFlag;
-	if (flags.authorizationRevocable) totalFlags += AuthRevocableFlag;
-	if (flags.authorizationInmutable) totalFlags += AuthImmutableFlag;
-	if (flags.authorizationClawbackEnabled) totalFlags += AuthClawbackEnabledFlag;
+	if (authorizationRequired) totalFlags += AuthRequiredFlag;
+	if (authorizationRevocable) totalFlags += AuthRevocableFlag;
+	if (authorizationInmutable) totalFlags += AuthImmutableFlag;
+	if (authorizationClawbackEnabled) totalFlags += AuthClawbackEnabledFlag;
 	return totalFlags as AuthFlag;
 }
 
