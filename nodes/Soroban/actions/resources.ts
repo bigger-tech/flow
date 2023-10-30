@@ -8,6 +8,7 @@ import { beginSponsoring, endSponsoring, revokeSponsorship } from './sponsorship
 import { claimClaimableBalance, createClaimableBalance } from './claimable';
 import { clawback, clawbackClaimableBalance } from './clawback';
 import { changeTrust, setTrustline } from './trust';
+import { swap } from './swapAssets';
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
@@ -53,6 +54,11 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 		operations: {
 			changeTrust: { execute: changeTrust.execute },
 			setTrustline: { execute: setTrustline.execute },
+		},
+	},
+	swapAssets: {
+		operations: {
+			swap: { execute: swap.execute },
 		},
 	},
 };
