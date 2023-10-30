@@ -16,7 +16,7 @@ export async function swapAssets(this: IExecuteFunctions) {
 		const slippageAmount = this.getNodeParameter('slippage', 0) as ISlippageParameter;
 		const { values: sourceAssetValues } = this.getNodeParameter('sourceAsset', 0) as IAsset;
 		const { values: destinationAssetValues } = this.getNodeParameter(
-			'destinationValues',
+			'destinationAsset',
 			0,
 		) as IAsset;
 
