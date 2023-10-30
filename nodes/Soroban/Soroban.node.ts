@@ -5,7 +5,9 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { router } from './actions/router';
+import * as accountMerge from './actions/accountMerge';
 import * as claimable from './actions/claimable';
+import * as settings from './actions/settings';
 import * as payments from './actions/payments';
 import * as newAccount from './actions/newAccount';
 import * as transaction from './actions/transaction';
@@ -14,6 +16,8 @@ import * as sponsorship from './actions/sponsorship';
 import * as clawback from './actions/clawback';
 import * as trust from './actions/trust';
 import * as swapAssets from './actions/swapAssets';
+import * as offers from './actions/offers';
+import * as liquidityPool from './actions/liquidityPool';
 
 export class Soroban implements INodeType {
 	description: INodeTypeDescription = {
@@ -38,8 +42,16 @@ export class Soroban implements INodeType {
 				default: 'transaction',
 				options: [
 					{
+						name: 'Account Merge',
+						value: 'accountMerge',
+					},
+					{
 						name: 'Claimable Balance',
 						value: 'claimableBalance',
+					},
+					{
+						name: 'Account Setting',
+						value: 'settings',
 					},
 					{
 						name: 'Payment',
@@ -50,8 +62,16 @@ export class Soroban implements INodeType {
 						value: 'newAccount',
 					},
 					{
+						name: 'Offer',
+						value: 'offers',
+					},
+					{
 						name: 'Fund Account in futurenet',
 						value: 'fundAccount',
+					},
+					{
+						name: 'Liquidity Pool',
+						value: 'liquidityPool',
 					},
 					{
 						name: 'Transaction',
@@ -78,10 +98,14 @@ export class Soroban implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
+			...accountMerge.description,
 			...claimable.description,
+			...settings.description,
 			...payments.description,
 			...newAccount.description,
+			...offers.description,
 			...fundAccount.description,
+			...liquidityPool.description,
 			...transaction.description,
 			...sponsorship.description,
 			...clawback.description,
