@@ -1,6 +1,20 @@
 import { Asset, Operation, Server } from 'soroban-client';
 import axios from 'axios';
 
+enum AssetTypeEnum {
+	NATIVE = 'native',
+	CREDIT_ALPHANUM_4 = 'credit_alphanum4',
+	CREDIT_ALPHANUM_12 = 'credit_alphanum12',
+}
+
+enum PathQueryParamsEnum {
+	SOURCE_AMOUNT = 'source_amount',
+	SOURCE_ASSET_TYPE = 'source_asset_type',
+	SOURCE_ASSET_CODE = 'source_asset_code',
+	SOURCE_ASSET_ISSUER = 'source_asset_issuer',
+	DESTINATION_ASSETS = 'destination_assets',
+}
+
 export async function getSwapAssetsOperation(
 	server: Server,
 	sourceAsset: Asset,
@@ -10,19 +24,19 @@ export async function getSwapAssetsOperation(
 	slippageAmount: string,
 ) {
 	if (!slippageAmount) {
-		return 'Please, select a slippage tolerance';
+		throw new Error('Please, select a slippage tolerance');
 	}
 
 	const offers = await findOffers(server, sourceAsset, destinationAsset, amount);
 
 	if (offers) {
-		const bestOffer = offers[0];
+		const { destination_amount } = offers[0];
 		const paymentOperation = Operation.pathPaymentStrictSend({
 			destination: publicKey,
 			sendAsset: sourceAsset,
 			sendAmount: amount,
 			destAsset: destinationAsset,
-			destMin: getMinDestinationAmount(bestOffer.destination_amount, slippageAmount),
+			destMin: getMinDestinationAmount(destination_amount, slippageAmount),
 		});
 
 		return paymentOperation.toXDR('base64');
@@ -34,9 +48,8 @@ export async function getSwapAssetsOperation(
 function getMinDestinationAmount(offer: string, percentage: string) {
 	const parsedOffer = Number(offer);
 	const parsedPercentage = Number(percentage);
-	const result = parsedOffer - parsedOffer * (parsedPercentage / 100);
 
-	return `${result}`;
+	return (parsedOffer - parsedOffer * (parsedPercentage / 100)).toString();
 }
 
 async function findOffers(
@@ -54,26 +67,32 @@ async function findOffers(
 	const { code: destinationAssetCode, issuer: destinationAssetIssuer } = destinationAsset;
 
 	const queryParams = new URLSearchParams();
-	queryParams.append('source_amount', sourceAmount);
+	queryParams.append(PathQueryParamsEnum.SOURCE_AMOUNT, sourceAmount);
 
-	if (sourceAssetType !== 'native') {
+	if (sourceAssetType !== AssetTypeEnum.NATIVE) {
 		queryParams.append(
-			'source_asset_type',
-			sourceAssetType === 'credit_alphanum4' ? 'credit_alphanum4' : 'credit_alphanum12',
+			PathQueryParamsEnum.SOURCE_ASSET_TYPE,
+			sourceAssetType === AssetTypeEnum.CREDIT_ALPHANUM_4
+				? AssetTypeEnum.CREDIT_ALPHANUM_4
+				: AssetTypeEnum.CREDIT_ALPHANUM_12,
 		);
-		queryParams.append('source_asset_code', sourceAssetCode);
-		queryParams.append('source_asset_issuer', sourceAssetIssuer);
+		queryParams.append(PathQueryParamsEnum.SOURCE_ASSET_CODE, sourceAssetCode);
+		queryParams.append(PathQueryParamsEnum.SOURCE_ASSET_ISSUER, sourceAssetIssuer);
 	} else {
-		queryParams.append('source_asset_type', 'native');
+		queryParams.append(PathQueryParamsEnum.SOURCE_ASSET_TYPE, AssetTypeEnum.NATIVE);
 	}
 
-	if (destinationAssetType !== 'native') {
-		queryParams.append('destination_assets', `${destinationAssetCode}:${destinationAssetIssuer}`);
+	if (destinationAssetType !== AssetTypeEnum.NATIVE) {
+		queryParams.append(
+			PathQueryParamsEnum.DESTINATION_ASSETS,
+			`${destinationAssetCode}:${destinationAssetIssuer}`,
+		);
 	} else {
-		queryParams.append('destination_assets', 'native');
+		queryParams.append(PathQueryParamsEnum.DESTINATION_ASSETS, AssetTypeEnum.NATIVE);
 	}
 
 	const queryString = queryParams.toString();
+
 	const {
 		data: {
 			_embedded: { records: offers },
