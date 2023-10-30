@@ -12,11 +12,17 @@ import { claimClaimableBalance, createClaimableBalance } from './claimable';
 import { clawback, clawbackClaimableBalance } from './clawback';
 import { changeTrust, setTrustline } from './trust';
 import { liquidityPoolDeposit, liquidityPoolWithdraw } from './liquidityPool';
+import { findLiquidityPool } from './server';
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
 		operations: {
 			createAccount: { execute: createAccount.execute },
+		},
+	},
+	server: {
+		operations: {
+			findLiquidityPool: { execute: findLiquidityPool.execute },
 		},
 	},
 	settings: {

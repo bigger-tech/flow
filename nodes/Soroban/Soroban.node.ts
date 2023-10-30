@@ -17,6 +17,7 @@ import * as clawback from './actions/clawback';
 import * as trust from './actions/trust';
 import * as offers from './actions/offers';
 import * as liquidityPool from './actions/liquidityPool';
+import * as server from './actions/server';
 
 export class Soroban implements INodeType {
 	description: INodeTypeDescription = {
@@ -73,6 +74,10 @@ export class Soroban implements INodeType {
 						value: 'liquidityPool',
 					},
 					{
+						name: 'Server',
+						value: 'server',
+					},
+					{
 						name: 'Transaction',
 						value: 'transaction',
 					},
@@ -93,6 +98,7 @@ export class Soroban implements INodeType {
 				required: true,
 				description: 'Operation Type:',
 			},
+			...server.description,
 			...accountMerge.description,
 			...claimable.description,
 			...settings.description,
