@@ -12,7 +12,7 @@ export async function swapAssets(this: IExecuteFunctions) {
 	const server = new Server(stellarNetwork.url as string);
 	const amount = this.getNodeParameter('amount', 0) as string;
 	const publicKeyParam = this.getNodeParameter('publicKey', 0) as string;
-	const slippageAmount = this.getNodeParameter('slippage', 0) as ISlippageParameter;
+	const { amount: slippageAmount } = this.getNodeParameter('slippage', 0) as ISlippageParameter;
 	const { values: sourceAssetValues } = this.getNodeParameter('sourceAsset', 0) as IAsset;
 	const { values: destinationAssetValues } = this.getNodeParameter('destinationAsset', 0) as IAsset;
 
@@ -25,7 +25,7 @@ export async function swapAssets(this: IExecuteFunctions) {
 		destinationAsset,
 		amount,
 		publicKeyParam,
-		slippageAmount.amount,
+		slippageAmount,
 	);
 
 	return { operation: swapAssetOperation };
