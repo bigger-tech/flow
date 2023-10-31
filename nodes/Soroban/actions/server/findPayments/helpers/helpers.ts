@@ -4,6 +4,7 @@ import { Server } from 'soroban-client';
 import NoPaymentFoundError from '../../../../../../common/errors/stellar/NoPaymentFoundError';
 import { IPaymentRecord } from '../../../../../../common/interfaces/stellar/IPaymentRecord';
 import IAsset from '../../../../../../common/interfaces/stellar/IAsset';
+import PaymentMapper from '../../../../../../common/mappers/stellar/PaymentMapper';
 
 enum FiltersTypeEnum {
 	LIMIT = 'limit',
@@ -16,14 +17,14 @@ export async function getPayments(
 	limit: number,
 	order: orderType,
 ) {
-	// const firstPayments: Payment[] = [];
 	const url = `${server.serverURL}accounts/`;
 
 	const queryParams = new URLSearchParams();
+
 	if (limit) queryParams.append(FiltersTypeEnum.LIMIT, limit.toString());
 	if (order) queryParams.append(FiltersTypeEnum.ORDER, order);
 
-	const queryString = `${queryParams.toString()}`;
+	const queryString = queryParams.toString();
 
 	const payments: Payment[] = [];
 	try {
@@ -34,41 +35,13 @@ export async function getPayments(
 		} = await axios.get(`${url}${destinationAccount}/payments?${queryString}`);
 
 		records.forEach((paymentRecord: IPaymentRecord) => {
-			payments.push(paymentMapper(paymentRecord));
+			payments.push(PaymentMapper.paymentMapper(paymentRecord));
 		});
 
 		return payments;
 	} catch {
 		throw new NoPaymentFoundError('No payment found for the given account');
 	}
-}
-
-function paymentMapper(paymentRecord: IPaymentRecord) {
-	const {
-		id,
-		source_account,
-		transaction_hash,
-		asset_type,
-		asset_code,
-		asset_issuer,
-		from,
-		amount,
-		created_at,
-		_links,
-	} = paymentRecord;
-	return new Payment(
-		id,
-		source_account,
-		transaction_hash,
-		asset_type,
-		from,
-		amount,
-		created_at,
-		_links.transaction,
-		_links.self,
-		asset_code,
-		asset_issuer,
-	);
 }
 
 export function filterPaymentFromAccount(fromAccount: string, paymentList: Payment[]) {
