@@ -22,7 +22,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 		response = await resources[soroban.resource].operations[soroban.operation].execute.call(this);
 		nodeOutput.push(response as IDataObject);
 	} catch (error) {
-		throw new Error(error);
+		throw new Error(error.message);
 	}
 
 	return [this.helpers.returnJsonArray(nodeOutput)];
