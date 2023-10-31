@@ -1,4 +1,4 @@
-import { SwapAssetsProperties } from '../../entities/StellarNode';
+import { SwapAssetsProperties } from '../../entities/SorobanNode';
 
 export const swapAssetsDescription: SwapAssetsProperties = [
 	{

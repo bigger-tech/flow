@@ -15,6 +15,7 @@ import * as fundAccount from './actions/fundAccount';
 import * as sponsorship from './actions/sponsorship';
 import * as clawback from './actions/clawback';
 import * as trust from './actions/trust';
+import * as swapAssets from './actions/swapAssets';
 import * as offers from './actions/offers';
 import * as liquidityPool from './actions/liquidityPool';
 
@@ -88,6 +89,10 @@ export class Soroban implements INodeType {
 						name: 'Trust',
 						value: 'trust',
 					},
+					{
+						name: 'Swap Asset',
+						value: 'swapAssets',
+					},
 				],
 				noDataExpression: true,
 				required: true,
@@ -105,6 +110,7 @@ export class Soroban implements INodeType {
 			...sponsorship.description,
 			...clawback.description,
 			...trust.description,
+			...swapAssets.description,
 		],
 	};
 
