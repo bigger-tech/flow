@@ -16,8 +16,8 @@ export async function findPayments(this: IExecuteFunctions) {
 
 		const order = isOrderDescending ? 'desc' : 'asc';
 
-		const sorobanNetwork = await SorobanNetwork.setNetwork.call(this);
-		const server = new Server(sorobanNetwork.url as string);
+		const { url } = await SorobanNetwork.setNetwork.call(this);
+		const server = new Server(url as string);
 		const payments = await getPayments(server, publicKey, limit, order);
 
 		if (additionalFilters) {
