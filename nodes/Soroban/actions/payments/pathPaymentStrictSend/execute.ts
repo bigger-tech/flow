@@ -19,6 +19,10 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			[],
 		) as IAssetsPath;
 
+		if (minDestinationAmount === 0 || sendingAmount === 0) {
+			throw new Error('Minimum destination amount and sending amount must be greater than 0');
+		}
+
 		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.SOROBAN) as Asset;
 		const sendAmount = convertAmountToBigNumber(sendingAmount);
 		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.SOROBAN) as Asset;
