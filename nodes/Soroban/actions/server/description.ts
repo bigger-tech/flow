@@ -1,5 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as findLiquidityPool from './findLiquidityPool';
+import * as findPayments from './findPayments';
 const description: INodeProperties[] = [
 	{
 		displayName: 'Operation',
@@ -27,6 +28,7 @@ const description: INodeProperties[] = [
 			},
 		],
 	},
+	...findPayments.description,
 	...findLiquidityPool.description,
 ];
 
