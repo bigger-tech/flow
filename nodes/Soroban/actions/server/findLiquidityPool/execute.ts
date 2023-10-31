@@ -23,7 +23,9 @@ export async function findLiquidityPool(this: IExecuteFunctions) {
 			break;
 		case 'liquidityPoolForAssets':
 			const { values } = this.getNodeParameter('reserves', 0, []) as IAssetsPath;
+
 			let param: string = 'reserves=';
+
 			if (values)
 				values.forEach((asset: IAsset['values']) => {
 					if (asset.isNative) {
@@ -38,6 +40,7 @@ export async function findLiquidityPool(this: IExecuteFunctions) {
 						_embedded: { records },
 					},
 				} = await axios.get(`${fetchUrl}?${param.slice(0, -1)}`);
+
 				liquidityPools = records;
 			} catch {
 				throw new LiquidityPoolNotFoundError('Liquidity pool not found');
