@@ -20,7 +20,7 @@ export async function pathPaymentStrictReceive(this: IExecuteFunctions) {
 		) as IAssetsPath;
 
 		if (maxSendingAmount === 0 || destinationAmount === 0) {
-			throw new Error('Maximum sending amount and destination amount must be greater than 0');
+			throw new Error('Maximum sending and destination amount must be greater than 0');
 		}
 
 		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
