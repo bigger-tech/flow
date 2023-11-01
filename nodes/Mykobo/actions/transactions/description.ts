@@ -3,6 +3,8 @@ import { description as depositDescription } from './deposit';
 import { description as withdrawDescription } from './withdraw';
 import { description as depositInteractiveDescription } from './depositInteractive';
 import { description as withdrawInteractiveDescription } from './withdrawInteractive';
+import { description as paymentDescription } from './payment';
+import { description as paymentCallback } from './paymentCallback';
 
 const description: INodeProperties[] = [
 	{
@@ -37,12 +39,24 @@ const description: INodeProperties[] = [
 				value: 'withdrawInteractive',
 				action: 'Withdraw interactive',
 			},
+			{
+				name: 'Initiate Direct Payment',
+				value: 'payment',
+				action: 'Initiate direct payment',
+			},
+			{
+				name: 'Direct Payment Callback',
+				value: 'paymentCallback',
+				action: 'Direct payment callback',
+			},
 		],
 	},
 	...depositDescription,
 	...withdrawDescription,
 	...depositInteractiveDescription,
 	...withdrawInteractiveDescription,
+	...paymentDescription,
+	...paymentCallback,
 ];
 
 export default description;
