@@ -3,6 +3,8 @@ import { transactionsDescription } from './transactions/description';
 import { transactionDescription } from './transaction/description';
 import { feeDescription } from './fee/description';
 import { transferServerDescription } from './transferServer/description';
+import { supportedCurrenciesDescription } from './directPayment/description';
+import { directPaymentDescription } from './directPaymentTransaction/description';
 
 const description: INodeProperties[] = [
 	{
@@ -37,12 +39,24 @@ const description: INodeProperties[] = [
 				value: 'transferServer',
 				action: 'Get transfer server info',
 			},
+			{
+				name: 'Get Direct Payment Currencies',
+				value: 'directPayment',
+				action: 'Get direct payment currencies',
+			},
+			{
+				name: 'Get Direct Payment Transaction',
+				value: 'directPaymentTransaction',
+				action: 'Get direct payment transaction',
+			},
 		],
 	},
 	...transactionsDescription,
 	...transactionDescription,
 	...feeDescription,
 	...transferServerDescription,
+	...supportedCurrenciesDescription,
+	...directPaymentDescription,
 ];
 
 export default description;
