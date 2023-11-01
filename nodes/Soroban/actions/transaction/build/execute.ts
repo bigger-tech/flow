@@ -6,9 +6,9 @@ export async function build(this: IExecuteFunctions) {
 	try {
 		const stellarNetwork = await SorobanNetwork.setNetwork.call(this);
 		const server = new Server(stellarNetwork.url as string);
-		const sourceAccount = this.getNodeParameter('publicKey', 1) as string;
-		const fee = this.getNodeParameter('fee', 1) as string;
-		const timeout = this.getNodeParameter('timeout', 1) as number;
+		const sourceAccount = this.getNodeParameter('publicKey', 0) as string;
+		const fee = this.getNodeParameter('fee', 0) as string;
+		const timeout = this.getNodeParameter('timeout', 0) as number;
 		const items = this.getInputData();
 		const memo = this.getNodeParameter('memo', 0) as boolean;
 

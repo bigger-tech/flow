@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Asset, Operation } from 'stellar-sdk';
+import { Asset, Operation } from 'soroban-client';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
 import IAssetsPath from '../../../../../common/interfaces/stellar/IAssetsPath';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
@@ -18,6 +18,10 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			0,
 			[],
 		) as IAssetsPath;
+
+		if (minDestinationAmount === 0 || sendingAmount === 0) {
+			throw new Error('Minimum destination amount and sending amount must be greater than 0');
+		}
 
 		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.SOROBAN) as Asset;
 		const sendAmount = convertAmountToBigNumber(sendingAmount);
