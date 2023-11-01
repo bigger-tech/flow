@@ -1,6 +1,20 @@
-import { transactions, transaction, fee, transferServer } from './info';
+import {
+	transactions,
+	transaction,
+	fee,
+	transferServer,
+	directPayment,
+	directPaymentTransaction,
+} from './info';
 import { get, send, validate, sign } from './token';
-import { deposit, withdraw, depositInteractive, withdrawInteractive } from './transactions';
+import {
+	deposit,
+	withdraw,
+	depositInteractive,
+	withdrawInteractive,
+	payment,
+	paymentCallback,
+} from './transactions';
 import { status, callback, deleteKYCInformation } from './kyc';
 import { memoToHex } from './utils';
 
@@ -15,6 +29,8 @@ const resources: { [key in MykoboResources]: IOperations } = {
 			transaction: { execute: transaction },
 			fee: { execute: fee },
 			transferServer: { execute: transferServer },
+			directPayment: { execute: directPayment },
+			directPaymentTransaction: { execute: directPaymentTransaction },
 		},
 	},
 	token: {
@@ -31,6 +47,8 @@ const resources: { [key in MykoboResources]: IOperations } = {
 			withdraw: { execute: withdraw },
 			depositInteractive: { execute: depositInteractive },
 			withdrawInteractive: { execute: withdrawInteractive },
+			payment: { execute: payment },
+			paymentCallback: { execute: paymentCallback },
 		},
 	},
 	kyc: {
