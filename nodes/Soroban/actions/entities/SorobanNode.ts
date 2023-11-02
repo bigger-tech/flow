@@ -15,6 +15,7 @@ export type SorobanResources = {
 	clawback: 'clawback' | 'clawbackClaimableBalance';
 	trust: 'changeTrust' | 'setTrustline';
 	swapAssets: 'swap';
+	contract: 'deployContract';
 };
 
 export type Soroban = AllEntities<SorobanResources>;
@@ -33,6 +34,7 @@ type SorobanSponsorship = Entity<SorobanResources, 'sponsorship'>;
 type SorobanClawback = Entity<SorobanResources, 'clawback'>;
 type SorobanTrust = Entity<SorobanResources, 'trust'>;
 type SorobanSwapAssets = Entity<SorobanResources, 'swapAssets'>;
+type SorobanContracts = Entity<SorobanResources, 'contract'>;
 
 export type AccountMergeProperties = PropertiesOf<SorobanAccountMerge>;
 export type ClaimableBalanceProperties = PropertiesOf<SorobanClaimableBalance>;
@@ -48,3 +50,4 @@ export type SponsorshipProperties = PropertiesOf<SorobanSponsorship>;
 export type ClawbackProperties = PropertiesOf<SorobanClawback>;
 export type TrustProperties = PropertiesOf<SorobanTrust>;
 export type SwapAssetsProperties = PropertiesOf<SorobanSwapAssets>;
+export type ContractsProperties = PropertiesOf<SorobanContracts>;
