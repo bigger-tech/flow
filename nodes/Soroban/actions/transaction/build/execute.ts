@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { BASE_FEE, Server, Memo, TransactionBuilder, xdr } from 'soroban-client';
+import { BASE_FEE, Server, Memo, TransactionBuilder, xdr, Transaction } from 'soroban-client';
 import { SorobanNetwork } from '../../../transport';
 
 export async function build(this: IExecuteFunctions) {
@@ -60,9 +60,10 @@ export async function build(this: IExecuteFunctions) {
 			}
 		}
 
-		const transactionXdr = transaction.build().toXDR();
+		const transactionXdr = transaction.build();
+		const tx = (await server.prepareTransaction(transactionXdr)) as Transaction;
 
-		return { transaction: transactionXdr };
+		return { transaction: tx.toXDR() };
 	} catch (error) {
 		throw new Error(error);
 	}
