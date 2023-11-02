@@ -23,7 +23,7 @@ export async function payment(this: IExecuteFunctions) {
 			});
 		} else {
 			const assetIssuer = this?.getNodeParameter('assetIssuer', 0) as string;
-			const destinationAsset = this?.getNodeParameter('dest', 0) as string;
+			const destinationAsset = this?.getNodeParameter('destinationAsset', 0) as string;
 			const quoteId = this?.getNodeParameter('quoteId', 0) as string;
 			const senderId = this?.getNodeParameter('senderId', 0) as string;
 			const receiverId = this?.getNodeParameter('receiverId', 0) as string;

@@ -173,7 +173,7 @@ export const paymentDescription: INodeProperties[] = [
 	},
 	{
 		displayName: 'Refund Memo Type',
-		name: 'refundMemo',
+		name: 'refundMemoType',
 		type: 'string',
 		displayOptions: {
 			show: {
