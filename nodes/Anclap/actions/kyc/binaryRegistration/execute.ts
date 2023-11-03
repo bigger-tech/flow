@@ -1,10 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import NaturalPersonFileIdRequest from '../../../transport/requests/StandardFieldsRequest/NaturalPersonFileIdRequest';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import SEP12 from '../../../transport/SEP12';
+import NaturalPersonFileIdRequest from '../../../../../common/requests/anchor/StandardFieldsRequest/NaturalPersonFileIdRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP12 from '../../../../../common/repository/anchor/SEP12';
 
 export async function sendBinaryFields(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const photoIdBackFileId = this.getNodeParameter('photoIdBackFileId', 0) as string;

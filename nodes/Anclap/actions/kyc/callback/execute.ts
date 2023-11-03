@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import SEP12 from '../../../transport/SEP12';
-import { ICallbackRequest } from '../../../transport/requests/KYCRequest/ICallbackRequest';
-import CallbackRequest from '../../../transport/requests/KYCRequest/CallbackRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP12 from '../../../../../common/repository/anchor/SEP12';
+import { ICallbackRequest } from '../../../../../common/requests/anchor/KYCRequest/ICallbackRequest';
+import CallbackRequest from '../../../../../common/requests/anchor/KYCRequest/CallbackRequest';
 
 export async function setCallbackUrl(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const url = this.getNodeParameter('url', 0) as string;

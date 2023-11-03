@@ -1,73 +1,75 @@
 {
-	"name": "n8n-nodes-stellar",
-	"version": "0.1.0",
-	"description": "",
-	"keywords": [
-		"n8n-community-node-package"
-	],
-	"license": "MIT",
-	"homepage": "",
-	"author": {
-		"name": "",
-		"email": ""
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/<...>/n8n-nodes-<...>.git"
-	},
-	"main": "index.js",
-	"scripts": {
-		"clean": "rm -rf dist",
-		"build": "npm run clean && tsc && gulp build:icons",
-		"dev": "tsc --watch",
-		"format": "prettier nodes credentials --write",
-		"lint": "eslint nodes credentials package.json",
-		"lintfix": "eslint nodes credentials package.json --fix",
-		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
-		"test": "vitest nodes",
-		"build:n8n": "tsc && gulp build:icons && n8n start",
-		"watch:n8n": "nodemon -e ts,json,yaml -x  \"npm run build:n8n\"",
-		"prepare": "husky install"
-	},
-	"files": [
-		"dist"
-	],
-	"n8n": {
-		"n8nNodesApiVersion": 1,
-		"credentials": [
-			"dist/credentials/SorobanApi.credentials.js",
-			"dist/credentials/AnclapApi.credentials.js",
-			"dist/credentials/StellarApi.credentials.js"
-		],
-		"nodes": [
-			"dist/nodes/Soroban/Soroban.node.js",
-			"dist/nodes/Anclap/Anclap.node.js",
-			"dist/nodes/StellarTrigger/StellarTrigger.node.js",
-			"dist/nodes/Stellar/Stellar.node.js"
-		]
-	},
-	"devDependencies": {
-		"@types/express": "^4.17.6",
-		"@types/form-data": "^2.5.0",
-		"@types/node": "^20.4.6",
-		"@types/request-promise-native": "~1.0.15",
-		"@typescript-eslint/parser": "~5.45",
-		"eslint-plugin-n8n-nodes-base": "^1.11.0",
-		"husky": "^8.0.3",
-		"jsdom": "^21.1.1",
-		"lint-staged": "^15.0.2",
-		"nodemon": "^3.0.1",
-		"prettier": "^2.7.1",
-		"typescript": "~4.8.4",
-		"vitest": "^0.29.2"
-	},
-	"dependencies": {
-		"axios": "^1.4.0",
-		"bignumber": "^1.1.0",
-		"gulp": "^4.0.2",
-		"n8n-core": "^0.161.2",
-		"n8n-workflow": "^0.143.2",
-		"soroban-client": "^1.0.0-beta.3",
-		"stellar-sdk": "^10.4.1"
-	}
+  "name": "n8n-nodes-stellar",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "n8n-community-node-package"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
+    "test": "vitest nodes",
+    "build:n8n": "tsc && gulp build:icons && n8n start",
+    "watch:n8n": "nodemon -e ts,json,yaml -x  \"npm run build:n8n\"",
+    "prepare": "husky install"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/SorobanApi.credentials.js",
+      "dist/credentials/AnclapApi.credentials.js",
+      "dist/credentials/StellarApi.credentials.js",
+      "dist/credentials/MykoboApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Soroban/Soroban.node.js",
+      "dist/nodes/Anclap/Anclap.node.js",
+      "dist/nodes/StellarTrigger/StellarTrigger.node.js",
+      "dist/nodes/Stellar/Stellar.node.js",
+      "dist/nodes/Mykobo/Mykobo.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/form-data": "^2.5.0",
+    "@types/node": "^20.4.6",
+    "@types/request-promise-native": "~1.0.15",
+    "@typescript-eslint/parser": "~5.45",
+    "eslint-plugin-n8n-nodes-base": "^1.11.0",
+    "husky": "^8.0.3",
+    "jsdom": "^21.1.1",
+    "lint-staged": "^15.0.2",
+    "nodemon": "^3.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "~4.8.4",
+    "vitest": "^0.29.2"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bignumber": "^1.1.0",
+    "gulp": "^4.0.2",
+    "n8n-core": "^1.14.1",
+    "n8n-workflow": "^0.143.2",
+    "soroban-client": "^1.0.0-beta.3",
+    "stellar-sdk": "^10.4.1"
+  }
 }

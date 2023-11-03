@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import SEP38 from '../../../transport/SEP38';
-import IQuotePostRequest from '../../../transport/requests/PricesRequest/IQuotePostRequest';
-import QuotePostRequest from '../../../transport/requests/PricesRequest/QuotePostRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP38 from '../../../../../common/repository/anchor/SEP38';
+import IQuotePostRequest from '../../../../../common/requests/anchor/PricesRequest/IQuotePostRequest';
+import QuotePostRequest from '../../../../../common/requests/anchor/PricesRequest/QuotePostRequest';
 
 export async function getFirmQuote(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const sellAsset = this.getNodeParameter('sellAsset', 0) as string;

@@ -1,10 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import QuoteRequest from '../../../transport/requests/PricesRequest/QuoteRequest';
-import SEP38 from '../../../transport/SEP38';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
+import QuoteRequest from '../../../../../common/requests/anchor/PricesRequest/QuoteRequest';
+import SEP38 from '../../../../../common/repository/anchor/SEP38';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
 
 export async function getQuote(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const id = this.getNodeParameter('id', 0) as string;
