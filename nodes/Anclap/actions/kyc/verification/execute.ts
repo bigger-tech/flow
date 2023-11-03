@@ -1,10 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import SEP12 from '../../../transport/SEP12';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import { IKYCVerification } from '../../../transport/requests/KYCRequest/IKYCVerification';
+import SEP12 from '../../../../../common/repository/anchor/SEP12';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import { IKYCVerification } from '../../../../../common/requests/anchor/KYCRequest/IKYCVerification';
 
 export async function sendVerificationCodes(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const id = this.getNodeParameter('id', 0) as string;

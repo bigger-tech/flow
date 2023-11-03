@@ -33,13 +33,21 @@ export async function changeTrust(this: IExecuteFunctions) {
 			default:
 				asset = Asset.native();
 		}
-		const limit = trustLimit ? convertAmountToBigNumber(Number(trustLimit)) : undefined;
 
-		const changeTrustOperation = Operation.changeTrust({
-			asset,
-			limit,
-		}).toXDR('base64');
+		let changeTrustOperation;
 
+		if (trustLimit) {
+			const limit = convertAmountToBigNumber(Number(trustLimit));
+
+			changeTrustOperation = Operation.changeTrust({
+				asset,
+				limit,
+			}).toXDR('base64');
+		} else {
+			changeTrustOperation = Operation.changeTrust({
+				asset,
+			}).toXDR('base64');
+		}
 		return { operation: changeTrustOperation };
 	} catch (error) {
 		throw new Error(error);

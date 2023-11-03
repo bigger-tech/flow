@@ -70,20 +70,24 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 		displayName: 'Source Asset',
 		name: 'sourceAsset',
 		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: false,
+		},
 		default: {},
 		required: true,
 		placeholder: 'Select source asset',
 		options: [
 			{
-				name: 'values',
 				displayName: 'Asset',
+				name: 'values',
+				type: 'options',
+				default: '',
 				values: [
 					{
 						displayName: 'Asset',
 						name: 'isNative',
 						type: 'options',
 						required: true,
-
 						options: [
 							{
 								name: 'Native',
@@ -133,20 +137,24 @@ export const swapAssetsDescription: SwapAssetsProperties = [
 		displayName: 'Destination Asset',
 		name: 'destinationAsset',
 		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: false,
+		},
 		default: {},
 		required: true,
 		placeholder: 'Select destination asset',
 		options: [
 			{
-				name: 'values',
 				displayName: 'Asset',
+				name: 'values',
+				type: 'options',
+				default: '',
 				values: [
 					{
 						displayName: 'Asset',
 						name: 'isNative',
 						type: 'options',
 						required: true,
-
 						options: [
 							{
 								name: 'Native',

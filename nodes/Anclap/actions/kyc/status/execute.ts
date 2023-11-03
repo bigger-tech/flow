@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import { IKYCRequest } from '../../../transport/requests/KYCRequest/IKYCRequest';
-import SEP12 from '../../../transport/SEP12';
-import KYCRequest from '../../../transport/requests/KYCRequest/KYCRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import { IKYCRequest } from '../../../../../common/requests/anchor/KYCRequest/IKYCRequest';
+import SEP12 from '../../../../../common/repository/anchor/SEP12';
+import KYCRequest from '../../../../../common/requests/anchor/KYCRequest/KYCRequest';
 
 export async function getStatus(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const showOptionalValues = this.getNodeParameter('showOptionalValues', 0) as boolean;
