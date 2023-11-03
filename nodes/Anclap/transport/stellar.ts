@@ -1,6 +1,6 @@
-import { StellarNetwork } from './types';
+import { StellarNetworkType } from '../../../common/types/anchor/StellarNetworkType';
 
-const stellar: { [key in StellarNetwork]: { url: string; passphrase: string } } = {
+const stellar: { [key in StellarNetworkType]: { url: string; passphrase: string } } = {
 	public: {
 		url: 'https://horizon.stellar.org/',
 		passphrase: 'Public Global Stellar Network ; September 2015',

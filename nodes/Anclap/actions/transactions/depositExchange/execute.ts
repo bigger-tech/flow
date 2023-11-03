@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import SEP6 from '../../../transport/SEP6';
-import DepositExchangeRequest from '../../../transport/requests/DepositRequest/DepositExchangeRequest';
-import IDepositExchangeRequest from '../../../transport/requests/DepositRequest/IDepositExchangeRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP6 from '../../../../../common/repository/anchor/SEP6';
+import DepositExchangeRequest from '../../../../../common/requests/anchor/DepositRequest/DepositExchangeRequest';
+import IDepositExchangeRequest from '../../../../../common/requests/anchor/DepositRequest/IDepositExchangeRequest';
 
 export async function depositExchange(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const sourceAsset = this.getNodeParameter('sourceAsset', 0) as string;

@@ -1,10 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import SEP12 from '../../../transport/SEP12';
-import BinaryFieldRequest from '../../../transport/requests/KYCRequest/BinaryFieldRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP12 from '../../../../../common/repository/anchor/SEP12';
+import BinaryFieldRequest from '../../../../../common/requests/anchor/KYCRequest/BinaryFieldRequest';
 
 export async function uploadBinaryFile(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const sep12 = new SEP12(anclapCredentials, token);

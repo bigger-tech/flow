@@ -1,10 +1,10 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import SEP12 from '../../../transport/SEP12';
-import NaturalPersonFieldsRequest from '../../../transport/requests/StandardFieldsRequest/NaturalPersonFieldsRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP12 from '../../../../../common/repository/anchor/SEP12';
+import NaturalPersonFieldsRequest from '../../../../../common/requests/anchor/StandardFieldsRequest/NaturalPersonFieldsRequest';
 
 export async function sendFields(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const sep12 = new SEP12(anclapCredentials, token);

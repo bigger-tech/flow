@@ -1,12 +1,12 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import TransferServerRequest from '../../../transport/requests/TransferServerRequest/TransferServerRequest';
-import getProtocolProvider from '../../../transport/providers/protocolProvider';
-import { Protocol } from '../../../transport/enums/protocol';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import TransferServerRequest from '../../../../../common/requests/anchor/TransferServerRequest/TransferServerRequest';
+import getProtocolProvider from '../../../../../common/repository/anchor/providers/protocolProvider';
+import { ProtocolEnum } from '../../../../../common/enum/anchor/protocolEnum';
 
 export async function getTransferServer(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
-	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
+	const protocol = this.getNodeParameter('protocol', 0) as ProtocolEnum;
 
 	const showOptionalValues = this.getNodeParameter('showOptionalValues', 0) as boolean;
 

@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import IWithdrawExchangeRequest from '../../../transport/requests/WithdrawRequest/IWithdrawExchangeRequest';
-import SEP6 from '../../../transport/SEP6';
-import WithdrawExchangeRequest from '../../../transport/requests/WithdrawRequest/WithdrawExchangeRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import IWithdrawExchangeRequest from '../../../../../common/requests/anchor/WithdrawRequest/IWithdrawExchangeRequest';
+import SEP6 from '../../../../../common/repository/anchor/SEP6';
+import WithdrawExchangeRequest from '../../../../../common/requests/anchor/WithdrawRequest/WithdrawExchangeRequest';
 
 export async function withdrawExchange(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const type = this.getNodeParameter('type', 0) as string;
