@@ -39,5 +39,12 @@ export class MykoboApi implements ICredentialType {
 				password: true,
 			},
 		},
+		{
+			displayName: 'Anchor Name',
+			required: true,
+			name: 'anchorName',
+			type: 'hidden',
+			default: 'mykobo',
+		},
 	];
 }
