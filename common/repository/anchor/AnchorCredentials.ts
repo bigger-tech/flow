@@ -24,7 +24,7 @@ export default class AnchorCredentials implements IAnchorCredentials {
 
 		if (toml) return toml;
 		else {
-			throw new GetAnchorTomlError('anchor toml not found');
+			throw new GetAnchorTomlError('Anchor toml not found');
 		}
 	}
 }
