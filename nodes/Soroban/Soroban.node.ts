@@ -19,6 +19,7 @@ import * as swapAssets from './actions/swapAssets';
 import * as offers from './actions/offers';
 import * as liquidityPool from './actions/liquidityPool';
 import * as server from './actions/server';
+import * as contract from './actions/contract';
 
 export class Soroban implements INodeType {
 	description: INodeTypeDescription = {
@@ -98,6 +99,10 @@ export class Soroban implements INodeType {
 						name: 'Swap Asset',
 						value: 'swapAssets',
 					},
+					{
+						name: 'Contract',
+						value: 'contract',
+					},
 				],
 				noDataExpression: true,
 				required: true,
@@ -117,6 +122,7 @@ export class Soroban implements INodeType {
 			...clawback.description,
 			...trust.description,
 			...swapAssets.description,
+			...contract.description,
 		],
 	};
 

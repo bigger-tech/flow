@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { BASE_FEE, Server, Memo, TransactionBuilder, xdr } from 'soroban-client';
+import { BASE_FEE, Server, Memo, TransactionBuilder, xdr, Transaction } from 'soroban-client';
 import { SorobanNetwork } from '../../../transport';
 
 export async function build(this: IExecuteFunctions) {
@@ -11,6 +11,7 @@ export async function build(this: IExecuteFunctions) {
 		const timeout = this.getNodeParameter('timeout', 0) as number;
 		const items = this.getInputData();
 		const memo = this.getNodeParameter('memo', 0) as boolean;
+		const isContractToggleOn = this.getNodeParameter('isContract', 0) as boolean;
 
 		const operations = items.map((item) => {
 			const {
@@ -60,9 +61,14 @@ export async function build(this: IExecuteFunctions) {
 			}
 		}
 
-		const transactionXdr = transaction.build().toXDR();
+		const txBuild = transaction.build();
 
-		return { transaction: transactionXdr };
+		if (isContractToggleOn) {
+			const preparedTransaction = (await server.prepareTransaction(txBuild)) as Transaction;
+			return { transaction: preparedTransaction.toXDR() };
+		}
+
+		return { transaction: txBuild.toXDR() };
 	} catch (error) {
 		throw new Error(error);
 	}
