@@ -1,6 +1,5 @@
 import { INodeProperties } from 'n8n-workflow';
 import { description as statusDescription } from './status';
-import { description as callbackDescription } from './callback';
 import { description as deleteDescription } from './delete';
 
 const description: INodeProperties[] = [
@@ -22,11 +21,6 @@ const description: INodeProperties[] = [
 				action: 'Get status',
 			},
 			{
-				name: 'Set Callback URL',
-				value: 'callback',
-				action: 'Set callback url',
-			},
-			{
 				name: 'Delete KYC Information',
 				value: 'deleteKYCInformation',
 				action: 'Delete kyc information',
@@ -34,7 +28,6 @@ const description: INodeProperties[] = [
 		],
 	},
 	...statusDescription,
-	...callbackDescription,
 	...deleteDescription,
 ];
 

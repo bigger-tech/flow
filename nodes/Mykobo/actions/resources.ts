@@ -1,7 +1,7 @@
 import { transactions, transaction, fee, transferServer } from './info';
 import { get, send, validate, sign } from './token';
 import { deposit, withdraw, depositInteractive, withdrawInteractive } from './transactions';
-import { status, callback, deleteKYCInformation } from './kyc';
+import { status, deleteKYCInformation } from './kyc';
 import { memoToHex } from './utils';
 
 interface IOperations {
@@ -36,7 +36,6 @@ const resources: { [key in MykoboResources]: IOperations } = {
 	kyc: {
 		operations: {
 			status: { execute: status },
-			callback: { execute: callback },
 			deleteKYCInformation: { execute: deleteKYCInformation },
 		},
 	},
