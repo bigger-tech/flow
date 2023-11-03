@@ -64,7 +64,7 @@ export async function build(this: IExecuteFunctions) {
 		const txBuild = transaction.build();
 
 		if (isContractToggleOn) {
-			let preparedTransaction = (await server.prepareTransaction(txBuild)) as Transaction;
+			const preparedTransaction = (await server.prepareTransaction(txBuild)) as Transaction;
 			return { transaction: preparedTransaction.toXDR() };
 		}
 
