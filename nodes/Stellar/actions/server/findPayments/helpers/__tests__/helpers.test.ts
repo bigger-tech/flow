@@ -63,7 +63,7 @@ describe('filterPaymentFromAsset', () => {
 	});
 
 	it('should throw a NoPaymentFoundError when no payment matches the asset', () => {
-		const asset: IAsset['values'] = { isNative: false, code: 'ARS', issuer: 'issuerA' };
+		const asset: IAsset['values'] = { isNative: false, code: 'EURC', issuer: 'issuerA' };
 
 		expect(() => filterPaymentFromAsset(asset, paymentList)).toThrow(NoPaymentFoundError);
 	});
