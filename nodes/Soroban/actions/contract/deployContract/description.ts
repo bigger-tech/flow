@@ -26,7 +26,7 @@ export const deployContractDescription: ContractsProperties = [
 				operation: ['deployContract'],
 			},
 		},
-		default: '',
-		placeholder: 'b053248d579b13717ea635c70727658eb8fee731c01f658152ddc72a1035e246',
+		default: '24a4f9b0a5bcbb82b24d1f623e874f5da2ee1188c5a4886ddb77a46b8c32bf87',
+		placeholder: '24a4f9b0a5bcbb82b24d1f623e874f5da2ee1188c5a4886ddb77a46b8c32bf87',
 	},
 ];
