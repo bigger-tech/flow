@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import SEP6 from '../../../transport/SEP6';
-import MykoboCredentials from '../../../transport/MykoboCredentials';
-import IWithdrawRequest from '../../../transport/requests/WithdrawRequest/IWithdrawRequest';
-import WithdrawRequest from '../../../transport/requests/WithdrawRequest/WithdrawRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import IWithdrawRequest from '../../../../../common/requests/anchor/WithdrawRequest/IWithdrawRequest';
+import SEP6 from '../../../../../common/repository/anchor/SEP6';
+import WithdrawRequest from '../../../../../common/requests/anchor/WithdrawRequest/WithdrawRequest';
 
 export async function withdraw(this: IExecuteFunctions) {
-	const mykoboCredentials = new MykoboCredentials(await this.getCredentials('mykoboApi'));
+	const mykoboCredentials = new AnchorCredentials(await this.getCredentials('mykoboApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const assetCode = this.getNodeParameter('assetCode', 0) as string;

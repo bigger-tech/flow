@@ -1,14 +1,15 @@
 import { IExecuteFunctions } from 'n8n-core';
-import MykoboCredentials from '../../../transport/MykoboCredentials';
-import { Protocol } from '../../../transport/enums/protocol';
-import FeeRequest from '../../../transport/requests/FeeRequest/FeeRequest';
-import getProtocolProvider from '../../../transport/providers/protocolProvider';
-import { OffChainOperationType, TransactionType } from '../../../transport/types';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import { ProtocolEnum } from '../../../../../common/enum/anchor/protocolEnum';
+import { TransactionType } from '../../../../../common/types/anchor/TransactionType';
+import { OffChainOperationType } from '../../../../../common/types/anchor/OffChainOperationType';
+import FeeRequest from '../../../../../common/requests/anchor/FeeRequest/FeeRequest';
+import getProtocolProvider from '../../../../../common/repository/anchor/providers/protocolProvider';
 
 export async function getFeeAmount(this: IExecuteFunctions) {
-	const mykoboCredentials = new MykoboCredentials(await this.getCredentials('mykoboApi'));
+	const mykoboCredentials = new AnchorCredentials(await this.getCredentials('mykoboApi'));
 	const token = this.getNodeParameter('token', 0) as string;
-	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
+	const protocol = this.getNodeParameter('protocol', 0) as ProtocolEnum;
 	const operationType = this.getNodeParameter('operationType', 0) as TransactionType;
 	const type = this.getNodeParameter('type', 0) as OffChainOperationType;
 	const assetCode = this.getNodeParameter('assetCode', 0) as string;

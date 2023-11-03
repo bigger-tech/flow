@@ -1,15 +1,15 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import MykoboCredentials from '../../../transport/MykoboCredentials';
-import TransactionsRequest from '../../../transport/requests/TransactionsRequest/TransactionsRequest';
-import ITransactionsRequest from '../../../transport/requests/TransactionsRequest/ITransactionsRequest';
-import { Protocol } from '../../../transport/enums/protocol';
-import { TransactionType } from '../../../transport/types';
-import getProtocolProvider from '../../../transport/providers/protocolProvider';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import { ProtocolEnum } from '../../../../../common/enum/anchor/protocolEnum';
+import ITransactionsRequest from '../../../../../common/requests/anchor/TransactionsRequest/ITransactionsRequest';
+import { TransactionType } from '../../../../../common/types/anchor/TransactionType';
+import TransactionsRequest from '../../../../../common/requests/anchor/TransactionsRequest/TransactionsRequest';
+import getProtocolProvider from '../../../../../common/repository/anchor/providers/protocolProvider';
 
 export async function getTransactions(this: IExecuteFunctions) {
-	const mykoboCredentials = new MykoboCredentials(await this.getCredentials('mykoboApi'));
+	const mykoboCredentials = new AnchorCredentials(await this.getCredentials('mykoboApi'));
 	const token = this.getNodeParameter('token', 0) as string;
-	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
+	const protocol = this.getNodeParameter('protocol', 0) as ProtocolEnum;
 
 	const assetCode = this.getNodeParameter('assetCode', 0) as string;
 

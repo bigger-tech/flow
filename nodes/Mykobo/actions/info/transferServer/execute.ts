@@ -1,12 +1,12 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import MykoboCredentials from '../../../transport/MykoboCredentials';
-import TransferServerRequest from '../../../transport/requests/TransferServerRequest/TransferServerRequest';
-import { Protocol } from '../../../transport/enums/protocol';
-import getProtocolProvider from '../../../transport/providers/protocolProvider';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import { ProtocolEnum } from '../../../../../common/enum/anchor/protocolEnum';
+import TransferServerRequest from '../../../../../common/requests/anchor/TransferServerRequest/TransferServerRequest';
+import getProtocolProvider from '../../../../../common/repository/anchor/providers/protocolProvider';
 
 export async function getTransferServer(this: IExecuteFunctions) {
-	const mykoboCredentials = new MykoboCredentials(await this.getCredentials('mykoboApi'));
-	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
+	const mykoboCredentials = new AnchorCredentials(await this.getCredentials('mykoboApi'));
+	const protocol = this.getNodeParameter('protocol', 0) as ProtocolEnum;
 
 	const showOptionalValues = this.getNodeParameter('showOptionalValues', 0) as boolean;
 

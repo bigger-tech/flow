@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import MykoboCredentials from '../../../transport/MykoboCredentials';
-import SEP24 from '../../../transport/SEP24';
-import IDepositRequest from '../../../transport/requests/DepositRequest/IDepositRequest';
-import DepositRequest from '../../../transport/requests/DepositRequest/DepositRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP24 from '../../../../../common/repository/anchor/SEP24';
+import IDepositRequest from '../../../../../common/requests/anchor/DepositRequest/IDepositRequest';
+import DepositRequest from '../../../../../common/requests/anchor/DepositRequest/DepositRequest';
 
 export async function depositInteractive(this: IExecuteFunctions) {
-	const mykoboCredentials = new MykoboCredentials(await this.getCredentials('mykoboApi'));
+	const mykoboCredentials = new AnchorCredentials(await this.getCredentials('mykoboApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const amount = this.getNodeParameter('amount', 0) as string;

@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import MykoboCredentials from '../../../transport/MykoboCredentials';
-import { IKYCRequest } from '../../../transport/requests/KYCRequest/IKYCRequest';
-import SEP12 from '../../../transport/SEP12';
-import KYCRequest from '../../../transport/requests/KYCRequest/KYCRequest';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import SEP12 from '../../../../../common/repository/anchor/SEP12';
+import { IKYCRequest } from '../../../../../common/requests/anchor/KYCRequest/IKYCRequest';
+import KYCRequest from '../../../../../common/requests/anchor/KYCRequest/KYCRequest';
 
 export async function getStatus(this: IExecuteFunctions) {
-	const mykoboCredentials = new MykoboCredentials(await this.getCredentials('mykoboApi'));
+	const mykoboCredentials = new AnchorCredentials(await this.getCredentials('mykoboApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const showOptionalValues = this.getNodeParameter('showOptionalValues', 0) as boolean;
