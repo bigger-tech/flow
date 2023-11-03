@@ -11,6 +11,7 @@ export async function build(this: IExecuteFunctions) {
 		const timeout = this.getNodeParameter('timeout', 0) as number;
 		const items = this.getInputData();
 		const memo = this.getNodeParameter('memo', 0) as boolean;
+		const isContractToggleOn = this.getNodeParameter('isContract', 0) as boolean;
 
 		const operations = items.map((item) => {
 			const {
@@ -60,10 +61,14 @@ export async function build(this: IExecuteFunctions) {
 			}
 		}
 
-		const transactionXdr = transaction.build();
-		const tx = (await server.prepareTransaction(transactionXdr)) as Transaction;
+		const txBuild = transaction.build();
 
-		return { transaction: tx.toXDR() };
+		if (isContractToggleOn) {
+			let preparedTransaction = (await server.prepareTransaction(txBuild)) as Transaction;
+			return { transaction: preparedTransaction.toXDR() };
+		}
+
+		return { transaction: txBuild.toXDR() };
 	} catch (error) {
 		throw new Error(error);
 	}
