@@ -1,4 +1,4 @@
-import { IExecuteFunctions } from 'n8n-core';
+import { IExecuteFunctions } from 'n8n-workflow';
 import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
 import { ProtocolEnum } from '../../../../../common/enum/anchor/protocolEnum';
 import { TransactionType } from '../../../../../common/types/anchor/TransactionType';
