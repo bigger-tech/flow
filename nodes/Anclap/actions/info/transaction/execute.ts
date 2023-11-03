@@ -1,13 +1,13 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import AnclapCredentials from '../../../transport/AnclapCredentials';
-import TransactionRequest from '../../../transport/requests/TransactionRequest/TransactionRequest';
-import ITransactionRequest from '../../../transport/requests/TransactionRequest/ITransactionRequest';
-import getProtocolProvider from '../../../transport/providers/protocolProvider';
-import { Protocol } from '../../../transport/enums/protocol';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
+import TransactionRequest from '../../../../../common/requests/anchor/TransactionRequest/TransactionRequest';
+import ITransactionRequest from '../../../../../common/requests/anchor/TransactionRequest/ITransactionRequest';
+import getProtocolProvider from '../../../../../common/repository/anchor/providers/protocolProvider';
+import { ProtocolEnum } from '../../../../../common/enum/anchor/protocolEnum';
 
 export async function getTransaction(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
-	const protocol = this.getNodeParameter('protocol', 0) as Protocol;
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
+	const protocol = this.getNodeParameter('protocol', 0) as ProtocolEnum;
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const id = this.getNodeParameter('id', 0) as string;

@@ -1,11 +1,11 @@
-import AnclapCredentials from '../../../transport/AnclapCredentials';
+import AnchorCredentials from '../../../../../common/repository/anchor/AnchorCredentials';
 import { IExecuteFunctions } from 'n8n-workflow';
-import SEP38 from '../../../transport/SEP38';
-import IPriceRequest from '../../../transport/requests/PricesRequest/IPriceRequest';
-import PriceRequest from '../../../transport/requests/PricesRequest/PriceRequest';
+import SEP38 from '../../../../../common/repository/anchor/SEP38';
+import IPriceRequest from '../../../../../common/requests/anchor/PricesRequest/IPriceRequest';
+import PriceRequest from '../../../../../common/requests/anchor/PricesRequest/PriceRequest';
 
 export async function getPrice(this: IExecuteFunctions) {
-	const anclapCredentials = new AnclapCredentials(await this.getCredentials('anclapApi'));
+	const anclapCredentials = new AnchorCredentials(await this.getCredentials('anclapApi'));
 	const token = this.getNodeParameter('token', 0) as string;
 
 	const sellAsset = this.getNodeParameter('sellAsset', 0) as string;
