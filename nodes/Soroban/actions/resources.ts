@@ -15,6 +15,7 @@ import { swap } from './swapAssets';
 import { liquidityPoolDeposit, liquidityPoolWithdraw } from './liquidityPool';
 import { findLiquidityPool, findPayments } from './server';
 import { deployContract } from './contract';
+
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
 		operations: {

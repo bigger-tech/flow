@@ -7,7 +7,7 @@ export type SorobanResources = {
 	newAccount: 'createAccount';
 	server: 'findLiquidityPool' | 'findPayments';
 	offers: 'manageSellOffer' | 'manageBuyOffer' | 'createPassiveSellOffer';
-	transaction: 'build' | 'sign';
+	transaction: 'build' | 'sign' | 'prepareTransaction';
 	payments: 'getPayment' | 'makePayment' | 'pathPaymentStrictSend' | 'pathPaymentStrictReceive';
 	fundAccount: 'fundAccount';
 	liquidityPool: 'liquidityPoolDeposit' | 'liquidityPoolWithdraw';

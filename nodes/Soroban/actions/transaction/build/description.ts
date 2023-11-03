@@ -112,4 +112,16 @@ export const transactionDescription: TransactionProperties = [
 		default: 30,
 		description: 'Time in seconds where the TX is valid',
 	},
+	{
+		displayName: 'Is Contract',
+		name: 'isContract',
+		type: 'boolean',
+		displayOptions: {
+			show: {
+				resource: ['transaction'],
+				operation: ['build'],
+			},
+		},
+		default: false,
+	},
 ];
