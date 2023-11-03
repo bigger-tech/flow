@@ -29,7 +29,7 @@ export async function deployContract(this: IExecuteFunctions) {
 
 		const hostFunction: xdr.HostFunction =
 			xdr.HostFunction.hostFunctionTypeCreateContract(createContract);
-		const operation: any = Operation.invokeHostFunction({
+		const operation: xdr.Operation = Operation.invokeHostFunction({
 			func: hostFunction,
 			auth: [],
 		});
