@@ -13,8 +13,8 @@ export default class SEP1 {
 
 	async getInfo(): Promise<IAnchorTomlResponse> {
 		try {
-			const result = await axios.get(this.anchorUrl);
-			return toml.parse(result.data) as IAnchorTomlResponse;
+			const { data } = await axios.get(this.anchorUrl);
+			return toml.parse(data) as IAnchorTomlResponse;
 		} catch (e) {
 			throw new AxiosHttpRequestError(e);
 		}
