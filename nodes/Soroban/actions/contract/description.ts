@@ -1,5 +1,6 @@
 import { INodeProperties } from 'n8n-workflow';
 import * as deployContract from './deployContract';
+import * as invokeContract from './invokeContract';
 
 const description: INodeProperties[] = [
 	{
@@ -20,9 +21,16 @@ const description: INodeProperties[] = [
 				description: 'Deploy a contract to the blockchain',
 				action: 'Deploy contract',
 			},
+			{
+				name: 'Invoke Contract',
+				value: 'invokeContract',
+				description: 'Invoke a contract from the blockchain',
+				action: 'Invoke contract',
+			},
 		],
 	},
 	...deployContract.description,
+	...invokeContract.description,
 ];
 
 export default description;
