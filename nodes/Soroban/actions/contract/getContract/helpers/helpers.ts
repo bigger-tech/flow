@@ -1,54 +1,49 @@
 import { xdr } from 'soroban-client';
-import { IExplorerContractResponse } from '../../../../../../common/interfaces/stellar/IExplorerContractResponse';
+import { IExplorerContractResponse } from '../../../../../../common/interfaces/soroban/IExplorerContractResponse';
 
 export async function getContractAbi(contractId: string) {
-	/* Retrieves the ABI (Application Binary Interface) of a smart contract by its contract address.*/
 	const EXPLORER_BASE_URL = 'https://api.stellarchain.io/v1';
+	const FUNCTION_TYPE = 'functionV0';
 	const response = await fetch(`${EXPLORER_BASE_URL}/contracts/${contractId}`);
 
 	if (!response.ok) {
 		throw new Error(`Failed to fetch contract with id ${contractId}`);
 	}
-	const data = (await response.json()) as IExplorerContractResponse;
+	const { wasmParsed } = (await response.json()) as IExplorerContractResponse;
 
-	const abi = JSON.parse(data.wasmParsed);
+	const { specs } = JSON.parse(wasmParsed);
 
-	const methods: any[] = abi.specs
-		.filter((spec: any) => spec.type === 'functionV0')
-		.map((spec: any) => {
-			const params = JSON.parse(spec.inputs);
-			const outputs = JSON.parse(spec.outputs);
+	return specs
+		.filter(({ type }: any) => type === FUNCTION_TYPE)
+		.map(({ inputs, outputs, name }: any) => {
+			const params: any = JSON.parse(inputs);
+			const returns: any = JSON.parse(outputs);
 
 			return {
-				name: spec.name,
-				params: params.map((param: any) => ({
-					name: param.name,
-					type: param.type.type.value,
+				name: name,
+				params: params.map(({ name, type }: any) => ({
+					name: name,
+					type: type.type.value,
 				})),
-				outputs: outputs.map((param: any) => ({
-					name: param.name,
-					type: param.type.value,
+				outputs: returns.map(({ name, type }: any) => ({
+					name: name,
+					type: type.value,
 				})),
 			};
 		});
-
-	return methods;
 }
 
-export const transformABI = (abi: any): any[] => {
-	const methods: any[] = abi.map((spec: any) => {
-		const params = spec.params;
+export const transformAbi = (abi: any): any[] => {
+	return abi.map(({ params, name, outputs }: any) => {
 		return {
-			name: spec.name,
-			params: params.map((param: any) => ({
-				name: param.name,
-				type: getDataType(param.type),
+			name: name,
+			params: params.map(({ name, type }: any) => ({
+				name: name,
+				type: getDataType(type),
 			})),
-			outputs: spec.outputs,
+			outputs: outputs,
 		};
 	});
-
-	return methods;
 };
 
 const getDataType = (value: number): string => {
@@ -56,7 +51,7 @@ const getDataType = (value: number): string => {
 	return (type && type.name) || xdr.ScValType.scvVoid().name;
 };
 
-const scValtypes: any[] = [
+const scValtypes: xdr.ScValType[] = [
 	xdr.ScValType.scvBool(),
 	xdr.ScValType.scvVoid(),
 	xdr.ScValType.scvError(),
@@ -79,5 +74,4 @@ const scValtypes: any[] = [
 	xdr.ScValType.scvContractInstance(),
 	xdr.ScValType.scvLedgerKeyContractInstance(),
 	xdr.ScValType.scvLedgerKeyNonce(),
-	{ value: 1006, name: 'scvBytes' },
 ];
