@@ -14,7 +14,7 @@ import { changeTrust, setTrustline } from './trust';
 import { swap } from './swapAssets';
 import { liquidityPoolDeposit, liquidityPoolWithdraw } from './liquidityPool';
 import { findLiquidityPool, findPayments } from './server';
-import { deployContract } from './contract';
+import { deployContract, invokeContract } from './contract';
 
 const resources: { [key in keyof SorobanResources]: IOperations } = {
 	newAccount: {
@@ -47,7 +47,10 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 		},
 	},
 	transaction: {
-		operations: { build: { execute: build.execute }, sign: { execute: sign.execute } },
+		operations: {
+			build: { execute: build.execute },
+			sign: { execute: sign.execute },
+		},
 	},
 	accountMerge: { operations: { accountMerge: { execute: accountMerge.execute } } },
 	payments: {
@@ -97,6 +100,7 @@ const resources: { [key in keyof SorobanResources]: IOperations } = {
 	contract: {
 		operations: {
 			deployContract: { execute: deployContract.execute },
+			invokeContract: { execute: invokeContract.execute },
 		},
 	},
 };
