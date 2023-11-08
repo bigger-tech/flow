@@ -14,18 +14,18 @@ export async function getContractAbi(contractId: string) {
 	const { specs } = JSON.parse(wasmParsed);
 
 	return specs
-		.filter(({ type }: any) => type === FUNCTION_TYPE)
-		.map(({ inputs, outputs, name }: any) => {
-			const params: any = JSON.parse(inputs);
-			const returns: any = JSON.parse(outputs);
+		.filter(({ type }: Spec) => type === FUNCTION_TYPE)
+		.map(({ inputs, outputs, name }: Spec) => {
+			const params: Parameter[] = JSON.parse(inputs);
+			const returns: Parameter[] = JSON.parse(outputs);
 
 			return {
 				name: name,
-				params: params.map(({ name, type }: any) => ({
+				params: params.map(({ name, type }: Parameter) => ({
 					name: name,
 					type: type.type.value,
 				})),
-				outputs: returns.map(({ name, type }: any) => ({
+				outputs: returns.map(({ name, type }: Parameter) => ({
 					name: name,
 					type: type.value,
 				})),
@@ -45,6 +45,23 @@ export const transformAbi = (abi: any): any[] => {
 		};
 	});
 };
+
+interface Spec {
+	type: string;
+	name: string;
+	inputs: string;
+	outputs: string;
+}
+
+interface Parameter {
+	name: string;
+	type: {
+		value: string;
+		type: {
+			value: string;
+		};
+	};
+}
 
 const getDataType = (value: number): string => {
 	const type = scValtypes.find((x) => x.value === value);
