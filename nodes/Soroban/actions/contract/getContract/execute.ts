@@ -1,11 +1,20 @@
+import { ContractType } from './../../../../../common/interfaces/soroban/IContract';
 import { IExecuteFunctions } from 'n8n-workflow';
-import { getContractAbi, transformAbi } from './helpers/helpers';
+import { IContract } from '../../../../../common/interfaces/soroban/IContract';
+import { getContractABI, getContractAddress } from './helpers/helpers';
+import { SorobanNetwork } from '../../../transport';
+import { Server } from 'soroban-client';
 
 export async function getContract(this: IExecuteFunctions) {
-	const contractId = this.getNodeParameter('contractId', 0) as string;
+	const stellarNetwork = await SorobanNetwork.setNetwork.call(this);
+	const server = new Server(stellarNetwork.url);
 
-	const methods = await getContractAbi(contractId);
-	const methodsTransformed = transformAbi(methods);
+	const {
+		values: { contractType, contractValue },
+	} = this.getNodeParameter('contract', 0) as IContract;
 
-	return { methods: methodsTransformed };
+	const contractAddress =
+		contractType === ContractType.contractId ? getContractAddress(contractValue) : contractValue;
+
+	return await getContractABI(contractAddress, server);
 }
