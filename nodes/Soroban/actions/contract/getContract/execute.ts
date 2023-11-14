@@ -1,7 +1,7 @@
 import { ContractType } from './../../../../../common/interfaces/soroban/IContract';
 import { IExecuteFunctions } from 'n8n-workflow';
 import { IContract } from '../../../../../common/interfaces/soroban/IContract';
-import { getContractABI, getContractAddress } from './helpers/helpers';
+import { getContractAbi, getContractAddress } from './helpers/helpers';
 import { SorobanNetwork } from '../../../transport';
 import { Server } from 'soroban-client';
 
@@ -16,5 +16,5 @@ export async function getContract(this: IExecuteFunctions) {
 	const contractAddress =
 		contractType === ContractType.contractId ? getContractAddress(contractValue) : contractValue;
 
-	return await getContractABI(contractAddress, server);
+	return await getContractAbi(contractAddress, server);
 }

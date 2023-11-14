@@ -3,10 +3,10 @@ import { IStorageElement } from '../../../../../../common/interfaces/soroban/ISt
 
 export function getContractHash(contractId: string) {
 	try {
-		const c = new Contract(contractId);
-		return c.address().toScAddress().contractId().toString('hex');
+		const contract = new Contract(contractId);
+		return contract.address().toScAddress().contractId().toString('hex');
 	} catch (e) {
-		return '';
+		throw new Error('Cannot get contract hash');
 	}
 }
 
@@ -14,14 +14,14 @@ export const getContractAddress = (contractHash: string) => {
 	return StrKey.encodeContract(hexToByte(contractHash));
 };
 
-export async function getContractABI(contractAddress: string, server: Server) {
-	const data = await getContractData(contractAddress, server);
+export async function getContractAbi(contractAddress: string, server: Server) {
+	const contract = await getContractData(contractAddress, server);
 
-	if (!data) {
-		return '';
+	if (!contract) {
+		throw new Error('Contract not found');
 	}
 
-	const code = await getContractCode(data.wasmId, server);
+	const code = await getContractCode(contract.wasmId, server);
 	const buffer = Buffer.from(code?.wasmCode || '', 'hex');
 
 	const executable = new WebAssembly.Module(buffer);
@@ -30,7 +30,7 @@ export async function getContractABI(contractAddress: string, server: Server) {
 		'contractspecv0',
 	);
 
-	let functions: any[] = [];
+	const functions: object[] = [];
 	for (const item of contractSpecificationSection) {
 		const entries = await decodeContractSpecBuffer(item);
 
@@ -75,7 +75,7 @@ async function getContractData(contractAddress: string, server: Server) {
 		console.error(e.message);
 	}
 
-	if (ledgerEntries == null || ledgerEntries.entries == null || ledgerEntries.entries.length == 0) {
+	if (!ledgerEntries || !ledgerEntries.entries || !ledgerEntries.entries.length) {
 		return null;
 	}
 
@@ -102,7 +102,7 @@ async function getContractCode(
 
 	const ledgerEntries = await server.getLedgerEntries(ledgerKey);
 
-	if (ledgerEntries == null || ledgerEntries.entries == null) {
+	if (!ledgerEntries || !ledgerEntries.entries) {
 		return null;
 	}
 
@@ -115,19 +115,18 @@ async function getContractCode(
 }
 
 async function decodeContractSpecBuffer(buffer: ArrayBuffer) {
-	const bufferData = new Uint8Array(buffer);
+	const uint8 = new Uint8Array(buffer);
 	const decodedEntries = [];
 
 	let offset = 0;
 
-	while (offset < bufferData.length) {
-		const { partialDecodedData, length } = tryDecodeEntry(bufferData, offset);
+	while (offset < uint8.length) {
+		const { partialDecodedEntry, length } = tryDecodeEntry(uint8, offset);
 
-		if (partialDecodedData) {
-			decodedEntries.push(partialDecodedData);
+		if (partialDecodedEntry) {
+			decodedEntries.push(partialDecodedEntry);
 			offset += length;
 		} else {
-			console.log('Failed to decode further. Stopping.');
 			break;
 		}
 	}
@@ -135,29 +134,31 @@ async function decodeContractSpecBuffer(buffer: ArrayBuffer) {
 	return decodedEntries;
 }
 
-const tryDecodeEntry = (bufferData: Uint8Array, offset: number) => {
-	for (let length = 1; length <= bufferData.length - offset; length++) {
-		const subArray = bufferData.subarray(offset, offset + length);
+const tryDecodeEntry = (uint8: Uint8Array, offset: number) => {
+	for (let length = 1; length <= uint8.length - offset; length++) {
+		const subArray = uint8.subarray(offset, offset + length);
 
 		try {
-			const partialDecodedData = xdr.ScSpecEntry.fromXDR(Buffer.from(subArray));
-			return { partialDecodedData, length };
+			const partialDecodedEntry = xdr.ScSpecEntry.fromXDR(Buffer.from(subArray));
+			return { partialDecodedEntry, length };
 		} catch (e) {
 			console.error(e.message);
 		}
 	}
 
-	return { partialDecodedData: null, length: 0 };
+	return { partialDecodedEntry: null, length: 0 };
 };
 
 function hexToByte(hexString: string) {
-	if (hexString.length % 2 !== 0) {
+	const hexCompleteLength = 2;
+	const radix = 16;
+	if (hexString.length % hexCompleteLength !== 0) {
 		throw new Error('Must have an even number of hex digits to convert to bytes');
 	}
-	var numBytes = hexString.length / 2;
+	var numBytes = hexString.length / hexCompleteLength;
 	var byteArray = Buffer.alloc(numBytes);
-	for (var i = 0; i < numBytes; i++) {
-		byteArray[i] = parseInt(hexString.substr(i * 2, 2), 16);
+	for (let i = 0; i < numBytes; i++) {
+		byteArray[i] = parseInt(hexString.substr(i * hexCompleteLength, hexCompleteLength), radix);
 	}
 	return byteArray;
 }
