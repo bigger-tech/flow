@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@webassemblyjs/wasm-parser": "^1.11.6",
-    "axios": "^1.4.0",
+    "axios": "^1.6.0",
     "bignumber": "^1.1.0",
     "gulp": "^4.0.2",
     "n8n-core": "^0.161.2",
