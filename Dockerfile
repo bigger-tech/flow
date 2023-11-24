@@ -9,9 +9,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+RUN npm install --save-dev vitest && npm install
+
 COPY . .
 
-RUN npm pkg delete scripts.prepare && npm install
+RUN npm pkg delete scripts.prepare
 
 RUN npm run build && npm link
 
