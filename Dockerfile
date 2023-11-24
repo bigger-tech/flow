@@ -13,7 +13,7 @@ COPY . .
 
 RUN npm pkg delete scripts.prepare && npm install
 
-RUN npm run build && npm link && npm install
+RUN npm run build && npm link
 
 WORKDIR /usr/local/lib/node_modules/n8n
 
