@@ -18,7 +18,13 @@ module.exports = {
 		extraFileExtensions: ['.json'],
 	},
 
-	ignorePatterns: ['.eslintrc.js', '**/*.js', '**/node_modules/**', '**/dist/**'],
+	ignorePatterns: [
+		'.eslintrc.js',
+		'**/*.js',
+		'**/node_modules/**',
+		'**/dist/**',
+		'**/__tests__/*.test.ts',
+	],
 
 	overrides: [
 		{
@@ -28,9 +34,9 @@ module.exports = {
 			rules: {
 				'n8n-nodes-base/community-package-json-name-still-default': 'off',
 				'n8n-nodes-base/community-package-json-author-email-still-default': 'off',
-				'n8n-nodes-base/community-package-json-author-name-still-default':'off',
-				'n8n-nodes-base/community-package-json-description-still-default':'off',
-				'n8n-nodes-base/community-package-json-repository-url-still-default':'off'
+				'n8n-nodes-base/community-package-json-author-name-still-default': 'off',
+				'n8n-nodes-base/community-package-json-description-still-default': 'off',
+				'n8n-nodes-base/community-package-json-repository-url-still-default': 'off',
 			},
 		},
 		{

@@ -11,7 +11,7 @@ COPY package*.json ./
 
 COPY . .
 
-RUN npm install
+RUN npm pkg delete scripts.prepare && npm install
 
 RUN npm run build && npm link
 
