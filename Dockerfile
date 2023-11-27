@@ -1,9 +1,10 @@
-ARG N8N_VERSION=latest
+ARG N8N_VERSION=0.218.0
+
 FROM n8nio/n8n:$N8N_VERSION as build
 
 USER root
 
-RUN npm install --global --unsafe-perm n8n typescript
+RUN npm install --global --unsafe-perm n8n@0.218.0 typescript
 
 WORKDIR /usr/src/app
 
