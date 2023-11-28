@@ -15,7 +15,7 @@ export type SorobanResources = {
 	clawback: 'clawback' | 'clawbackClaimableBalance';
 	trust: 'changeTrust' | 'setTrustline';
 	swapAssets: 'swap';
-	contract: 'deployContract' | 'getContract';
+	contract: 'deployContract' | 'invokeContract' | 'getContract';
 };
 
 export type Soroban = AllEntities<SorobanResources>;
