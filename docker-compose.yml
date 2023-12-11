@@ -6,9 +6,9 @@ services:
     cap_add:
       - SYS_NICE
     environment:
-      - POSTGRES_PASSWORD=password123
-      - POSTGRES_USER=postgres
-      - POSTGRES_HOST=localhost
+      - POSTGRES_PASSWORD=${DB_POSTGRESDB_PASSWORD}
+      - POSTGRES_USER=${DB_POSTGRESDB_USER}
+      - POSTGRES_HOST=${DB_POSTGRESDB_HOST}
     ports:
       - '5432:5432'
     volumes:
