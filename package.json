@@ -71,6 +71,6 @@
     "n8n-core": "^0.161.2",
     "n8n-workflow": "^0.143.2",
     "soroban-client": "^1.0.0-beta.3",
-    "stellar-sdk": "^10.4.1"
+    "stellar-sdk": "^10.0.1"
   }
 }
