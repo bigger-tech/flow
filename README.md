@@ -26,6 +26,7 @@ You need the following installed on your development machine:
 - Run `npm link` in the project root. This will link our local project to the global context of NPM. We can check that if we run `npm list -g` we should see our project in the list.
 - Run `npm list -g` to see where the global dependencies are installed. For most of the cases should be in `C:\Users\YOUR_WINDOWS_USER_NAME\AppData\Roaming\npm`, but it may vary in every machine.
 - Navigate to `GLOBAL_DEPENDENCIES_FOLDER/node_modules/n8n` and run `npm link n8n-nodes-stellar` to link the project. The name passed to `npm link` should be the same as the defined in the `name` property of the project's `package.json` file.
+- If you want to use `postgres` as your database, create a `.env` file in the project root copying to contents of the `.env.dist` file. `DB_TYPE` must be set to `postgresdb`. Then you must run `docker-compose up` to run the Postgres local database.
 - Run `n8n start` to start the n8n server with the custom nodes.
 
 ## Using this starter
