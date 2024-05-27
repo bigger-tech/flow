@@ -1,6 +1,6 @@
 import { randomBytes } from 'crypto';
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Address, Operation, xdr } from 'soroban-client';
+import { Address, Operation, xdr } from '@stellar/stellar-sdk';
 import { binascii } from './helpers/helpers';
 
 export async function deployContract(this: IExecuteFunctions) {

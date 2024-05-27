@@ -1,5 +1,5 @@
-import { Claimant } from 'soroban-client';
-import ClaimantPredicate from 'soroban-client';
+import { Claimant } from '@stellar/stellar-sdk';
+import ClaimantPredicate from '@stellar/stellar-sdk';
 import IPredicate from '../../../../../../common/interfaces/stellar/IPredicate';
 import InvalidPredicateError from '../../../../../../common/errors/stellar/InvalidPredicateError';
 import IClaimants from '../../../../../../common/interfaces/stellar/IClaimants';

@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation, Asset } from 'soroban-client';
+import { Operation, Asset } from '@stellar/stellar-sdk';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';

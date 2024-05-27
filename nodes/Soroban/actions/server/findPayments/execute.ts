@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Server } from 'soroban-client';
+import { SorobanRpc } from '@stellar/stellar-sdk';
 import { SorobanNetwork } from '../../../transport';
 import { getPayments, filterPaymentFromAccount, filterPaymentFromAsset } from './helpers/helpers';
 import IAdditionalPaymentFilter from '../../../../../common/interfaces/stellar/IAdditionalPaymentFilter';
@@ -17,7 +17,7 @@ export async function findPayments(this: IExecuteFunctions) {
 		const order = isOrderDescending ? 'desc' : 'asc';
 
 		const { url } = await SorobanNetwork.setNetwork.call(this);
-		const server = new Server(url as string);
+		const server = new SorobanRpc.Server(url as string);
 		const payments = await getPayments(server, publicKey, limit, order);
 
 		if (additionalFilters) {

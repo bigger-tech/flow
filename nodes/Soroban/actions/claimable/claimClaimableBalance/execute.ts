@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation, Transaction } from 'soroban-client';
+import { Operation, Transaction } from '@stellar/stellar-sdk';
 
 export async function claimClaimableBalance(this: IExecuteFunctions) {
 	try {

@@ -1,4 +1,4 @@
-import { Asset, Operation, Server } from 'soroban-client';
+import { Asset, Operation, SorobanRpc } from '@stellar/stellar-sdk';
 import axios from 'axios';
 
 enum AssetTypeEnum {
@@ -16,7 +16,7 @@ enum PathQueryParamsEnum {
 }
 
 export async function getSwapAssetsOperation(
-	server: Server,
+	server: SorobanRpc.Server,
 	sourceAsset: Asset,
 	destinationAsset: Asset,
 	amount: string,
@@ -53,7 +53,7 @@ function getMinDestinationAmount(offer: string, percentage: string) {
 }
 
 async function findOffers(
-	server: Server,
+	server: SorobanRpc.Server,
 	sourceAsset: Asset,
 	destinationAsset: Asset,
 	sourceAmount: string,

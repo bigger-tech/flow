@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'soroban-client';
+import { Operation } from '@stellar/stellar-sdk';
 
 export async function bumpSequence(this: IExecuteFunctions) {
 	try {
