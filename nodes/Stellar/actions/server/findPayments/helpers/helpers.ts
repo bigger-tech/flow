@@ -1,9 +1,9 @@
-import { Server, ServerApi } from 'stellar-sdk';
+import { Horizon } from '@stellar/stellar-sdk';
 import Payment from '../../../entities/Payment';
 import NoPaymentFoundError from '../errors/NoPaymentFoundError';
 import IAsset from '../../../../../../common/interfaces/stellar/IAsset';
 
-function paymentMapper(paymentRecord: ServerApi.PaymentOperationRecord) {
+function paymentMapper(paymentRecord: Horizon.ServerApi.PaymentOperationRecord) {
 	const {
 		id,
 		source_account,
@@ -58,7 +58,7 @@ export function filterPaymentFromAsset(asset: IAsset['values'], paymentList: Pay
 }
 
 export async function getPayments(
-	server: Server,
+	server: Horizon.Server,
 	destinationAccount: string,
 	limit: number,
 	order: orderType,
@@ -73,7 +73,9 @@ export async function getPayments(
 			.limit(limit)
 			.call();
 		paymentRecords.forEach((paymentRecord) => {
-			firstPayments.push(paymentMapper(paymentRecord));
+			if ('sender' in paymentRecord) {
+				firstPayments.push(paymentMapper(paymentRecord));
+			}
 		});
 		return firstPayments;
 	} catch {

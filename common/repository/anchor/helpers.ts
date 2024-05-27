@@ -1,4 +1,4 @@
-import { Operation, TransactionBuilder, Transaction, Keypair } from 'stellar-sdk';
+import { Operation, TransactionBuilder, Transaction, Keypair } from '@stellar/stellar-sdk';
 import GetChallengeValidationError from '../../errors/anchor/errors/GetChallengeValidationError';
 import AnchorCredentials from './AnchorCredentials';
 import { NetworkPassphraseEnum } from '../../enum/anchor/networkPassphraseEnum';

@@ -1,4 +1,4 @@
-import StellarSdk from 'stellar-sdk';
+import StellarSdk from '@stellar/stellar-sdk';
 import type { IExecuteFunctions } from 'n8n-workflow';
 
 export async function createAccount(this: IExecuteFunctions) {

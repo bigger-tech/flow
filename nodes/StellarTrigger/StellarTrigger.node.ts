@@ -1,6 +1,6 @@
 import { INodeType, INodeTypeDescription, ITriggerFunctions, ITriggerResponse } from 'n8n-workflow';
 
-import { Server } from 'stellar-sdk';
+import { Horizon } from '@stellar/stellar-sdk';
 import { ICodesParam, IIssuersParam } from './fixedCollectionTypes';
 import { mapFixedCollectionAssets, validateTx } from './helpers/helpers';
 import { setNetwork } from '../Stellar/transport';
@@ -87,7 +87,7 @@ export class StellarTrigger implements INodeType {
 	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
 		const publicKey = this.getNodeParameter('account', 1) as string;
 		const network = await setNetwork.call(this);
-		const server = new Server(network.url);
+		const server = new Horizon.Server(network.url);
 		const codes = this.getNodeParameter('assetsCode', 1) as ICodesParam;
 		const issuers = this.getNodeParameter('assetsIssuers', 1) as IIssuersParam;
 		const assets = mapFixedCollectionAssets(codes, issuers);

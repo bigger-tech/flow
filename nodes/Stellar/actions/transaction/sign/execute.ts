@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { TransactionBuilder, Keypair, Server } from 'stellar-sdk';
+import { TransactionBuilder, Keypair, Horizon } from '@stellar/stellar-sdk';
 import { setNetwork } from '../../../transport';
 
 type SecretKeys = {
@@ -11,7 +11,7 @@ type SecretKeys = {
 
 export async function sign(this: IExecuteFunctions) {
 	const stellarNetwork = await setNetwork.call(this);
-	const server = new Server(stellarNetwork.url);
+	const server = new Horizon.Server(stellarNetwork.url);
 	const xdr = this.getNodeParameter('xdr', 0) as string;
 	const secretKeys = this.getNodeParameter('secretKeys', 0) as SecretKeys;
 	const isSubmitToggleOn = this.getNodeParameter('submit', 0) as boolean;

@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation, Asset } from 'stellar-sdk';
+import { Operation, Asset } from '@stellar/stellar-sdk';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import IClaimants from '../../../../../common/interfaces/stellar/IClaimants';

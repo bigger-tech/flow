@@ -1,5 +1,5 @@
-import { Claimant } from 'stellar-sdk';
-import ClaimantPredicate from 'stellar-sdk';
+import { Claimant } from '@stellar/stellar-sdk';
+import ClaimantPredicate from '@stellar/stellar-sdk';
 import IPredicate from '../../../../../../common/interfaces/stellar/IPredicate';
 import InvalidPredicateError from './../error/InvalidPredicateError';
 import IClaimants from '../../../../../../common/interfaces/stellar/IClaimants';

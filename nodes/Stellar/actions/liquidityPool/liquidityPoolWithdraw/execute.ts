@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
+import { Operation } from '@stellar/stellar-sdk';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
 
 export async function liquidityPoolWithdraw(this: IExecuteFunctions) {

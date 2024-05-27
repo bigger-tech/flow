@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Asset, Operation } from 'stellar-sdk';
+import { Asset, Operation } from '@stellar/stellar-sdk';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
 import IAssetsPath from '../../../../../common/interfaces/stellar/IAssetsPath';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';

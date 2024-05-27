@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Asset, Server } from 'stellar-sdk';
+import { Asset, Horizon } from '@stellar/stellar-sdk';
 import { setNetwork } from '../../../transport';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import IAssetsPath from '../../../../../common/interfaces/stellar/IAssetsPath';
@@ -9,7 +9,7 @@ import LiquidityPool from '../../entities/LiquidityPool';
 
 export async function findLiquidityPool(this: IExecuteFunctions) {
 	const stellarNetwork = await setNetwork.call(this);
-	const server = new Server(stellarNetwork.url as string);
+	const server = new Horizon.Server(stellarNetwork.url as string);
 	const liquiditPoolSearchType = this.getNodeParameter('liquiditPoolSearchType', 0) as string;
 	const liquidityPools: LiquidityPool[] = [];
 	switch (liquiditPoolSearchType) {
