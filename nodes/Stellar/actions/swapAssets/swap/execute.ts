@@ -4,7 +4,6 @@ import { setNetwork } from '../../../transport';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function swapAssets(this: IExecuteFunctions) {
@@ -20,11 +19,8 @@ export async function swapAssets(this: IExecuteFunctions) {
 			0,
 		) as IAsset;
 
-		const sourceAsset = buildAsset(sourceAssetValues, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
-		const destinationAsset = buildAsset(
-			destinationAssetValues,
-			StellarPlatformEnum.STELLAR_CLASSIC,
-		) as Asset;
+		const sourceAsset = buildAsset(sourceAssetValues) as Asset;
+		const destinationAsset = buildAsset(destinationAssetValues) as Asset;
 
 		const swapAssetOperation = await getSwapAssetsOperation(
 			server,

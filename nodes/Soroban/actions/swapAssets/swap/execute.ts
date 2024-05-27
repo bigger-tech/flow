@@ -4,7 +4,6 @@ import { SorobanNetwork } from '../../../transport';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import ISlippageParameter from './entities/ISlippageParameter';
 import { getSwapAssetsOperation } from './helpers';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function swapAssets(this: IExecuteFunctions) {
@@ -16,8 +15,8 @@ export async function swapAssets(this: IExecuteFunctions) {
 	const { values: sourceAssetValues } = this.getNodeParameter('sourceAsset', 0) as IAsset;
 	const { values: destinationAssetValues } = this.getNodeParameter('destinationAsset', 0) as IAsset;
 
-	const sourceAsset = buildAsset(sourceAssetValues, StellarPlatformEnum.SOROBAN) as Asset;
-	const destinationAsset = buildAsset(destinationAssetValues, StellarPlatformEnum.SOROBAN) as Asset;
+	const sourceAsset = buildAsset(sourceAssetValues) as Asset;
+	const destinationAsset = buildAsset(destinationAssetValues) as Asset;
 
 	const swapAssetOperation = await getSwapAssetsOperation(
 		server,

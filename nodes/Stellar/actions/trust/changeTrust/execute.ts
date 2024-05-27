@@ -2,7 +2,6 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { Asset, LiquidityPoolAsset, Operation } from '@stellar/stellar-sdk';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function changeTrust(this: IExecuteFunctions) {
@@ -24,8 +23,8 @@ export async function changeTrust(this: IExecuteFunctions) {
 				const { values: assetBValues } = this.getNodeParameter('assetB', 0) as IAsset;
 				const fee = this.getNodeParameter('fee', 0) as number;
 
-				const assetA = buildAsset(assetAValues, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
-				const assetB = buildAsset(assetBValues, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+				const assetA = buildAsset(assetAValues) as Asset;
+				const assetB = buildAsset(assetBValues) as Asset;
 
 				asset = new LiquidityPoolAsset(assetA, assetB, fee);
 				break;

@@ -4,7 +4,6 @@ import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/co
 import IAssetsPath from '../../../../../common/interfaces/stellar/IAssetsPath';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 	try {
@@ -23,14 +22,14 @@ export async function pathPaymentStrictSend(this: IExecuteFunctions) {
 			throw new Error('Minimum destination and sending amount must be greater than 0');
 		}
 
-		const sendAsset = buildAsset(sendingAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const sendAsset = buildAsset(sendingAsset) as Asset;
 		const sendAmount = convertAmountToBigNumber(sendingAmount);
-		const destAsset = buildAsset(destinationAsset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+		const destAsset = buildAsset(destinationAsset) as Asset;
 		const destMin = convertAmountToBigNumber(minDestinationAmount);
 		let path: Asset[] = [];
 
 		intermediateAssets.forEach((asset) => {
-			const intermediateAsset = buildAsset(asset, StellarPlatformEnum.STELLAR_CLASSIC) as Asset;
+			const intermediateAsset = buildAsset(asset) as Asset;
 			path.push(intermediateAsset);
 		});
 
