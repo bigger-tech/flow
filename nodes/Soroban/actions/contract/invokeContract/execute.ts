@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Contract, xdr } from 'soroban-client';
+import { Contract, xdr } from '@stellar/stellar-sdk';
 import { CustomScVal, toScVal } from './helpers/helpers';
 
 export async function invokeContract(this: IExecuteFunctions) {

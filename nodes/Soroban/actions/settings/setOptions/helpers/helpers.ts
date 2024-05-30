@@ -5,7 +5,7 @@ import {
 	AuthImmutableFlag,
 	Signer,
 	AuthFlag,
-} from 'soroban-client';
+} from '@stellar/stellar-sdk';
 import IFlags from '../../../../../../common/interfaces/stellar/IFlags';
 import ISigner from '../../../../../../common/interfaces/stellar/ISigner';
 

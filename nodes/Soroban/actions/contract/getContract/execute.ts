@@ -3,11 +3,11 @@ import { IExecuteFunctions } from 'n8n-workflow';
 import { IContract } from '../../../../../common/interfaces/soroban/IContract';
 import { getContractAbi, getContractAddress } from './helpers/helpers';
 import { SorobanNetwork } from '../../../transport';
-import { Server } from 'soroban-client';
+import { SorobanRpc } from '@stellar/stellar-sdk';
 
 export async function getContract(this: IExecuteFunctions) {
 	const { url } = await SorobanNetwork.setNetwork.call(this);
-	const server = new Server(url);
+	const server = new SorobanRpc.Server(url);
 
 	const {
 		values: { contractType, contractValue },

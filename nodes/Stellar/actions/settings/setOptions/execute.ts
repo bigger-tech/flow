@@ -7,7 +7,7 @@ import {
 	AuthImmutableFlag,
 	Signer,
 	AuthFlag,
-} from 'stellar-sdk';
+} from '@stellar/stellar-sdk';
 import IFlags from '../../../../../common/interfaces/stellar/IFlags';
 import ISigner from '../../../../../common/interfaces/stellar/ISigner';
 import ISetOptionsOperationOptions from '../../interfaces/ISetOptionsOperationOptions';

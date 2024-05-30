@@ -1,8 +1,7 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Asset, Operation } from 'soroban-client';
+import { Asset, Operation } from '@stellar/stellar-sdk';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
 
 export async function clawback(this: IExecuteFunctions) {
@@ -12,7 +11,7 @@ export async function clawback(this: IExecuteFunctions) {
 		const amountToBurn = this.getNodeParameter('amount', 0) as number;
 
 		const amount = convertAmountToBigNumber(amountToBurn);
-		const asset = buildAsset(assetToBurn, StellarPlatformEnum.SOROBAN) as Asset;
+		const asset = buildAsset(assetToBurn) as Asset;
 		const clawbackOperation = Operation.clawback({ asset, amount, from }).toXDR('base64');
 
 		return { operation: clawbackOperation };

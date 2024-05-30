@@ -1,7 +1,7 @@
-import { Asset, Operation, Server } from 'stellar-sdk';
+import { Asset, Operation, Horizon } from '@stellar/stellar-sdk';
 
 export async function getSwapAssetsOperation(
-	server: Server,
+	server: Horizon.Server,
 	sourceAsset: Asset,
 	destinationAsset: Asset,
 	amount: string,
@@ -38,7 +38,7 @@ function getMinDestinationAmount(offer: string, percentage: string) {
 }
 
 async function findOffers(
-	server: Server,
+	server: Horizon.Server,
 	sourceAsset: Asset,
 	destinationAsset: Asset,
 	sourceAmount: string,

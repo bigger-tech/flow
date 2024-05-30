@@ -1,4 +1,4 @@
-import { Horizon } from 'stellar-sdk';
+import { Horizon } from '@stellar/stellar-sdk';
 import ILiquidityPool from '../../../../common/interfaces/stellar/ILiquidityPool';
 import ILiquidityPoolReserve from '../../../../common/interfaces/stellar/ILiquidityPoolReserve';
 
@@ -15,7 +15,7 @@ export default class LiquidityPool implements ILiquidityPool {
 		total_trustlines: string,
 		total_shares: string,
 		reserves: ILiquidityPoolReserve[],
-		self: Horizon.ResponseLink,
+		self: Horizon.HorizonApi.ResponseLink,
 	) {
 		this.id = id;
 		this.feeBp = fee_bp;

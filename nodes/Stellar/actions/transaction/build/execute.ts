@@ -1,11 +1,11 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { BASE_FEE, Server, Memo, TransactionBuilder, xdr } from 'stellar-sdk';
+import { BASE_FEE, Horizon, Memo, TransactionBuilder, xdr } from '@stellar/stellar-sdk';
 import { setNetwork } from '../../../transport';
 
 export async function build(this: IExecuteFunctions) {
 	try {
 		const stellarNetwork = await setNetwork.call(this);
-		const server = new Server(stellarNetwork.url as string);
+		const server = new Horizon.Server(stellarNetwork.url as string);
 		const sourceAccount = this.getNodeParameter('publicKey', 0) as string;
 		const fee = this.getNodeParameter('fee', 0) as string;
 		const timeout = this.getNodeParameter('timeout', 0) as number;

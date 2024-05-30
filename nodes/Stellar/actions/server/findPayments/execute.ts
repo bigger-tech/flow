@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Server } from 'stellar-sdk';
+import { Horizon } from '@stellar/stellar-sdk';
 import { setNetwork } from '../../../transport';
 import { getPayments, filterPaymentFromAccount, filterPaymentFromAsset } from './helpers/helpers';
 import IAdditionalPaymentFilter from '../../../../../common/interfaces/stellar/IAdditionalPaymentFilter';
@@ -17,7 +17,7 @@ export async function findPayments(this: IExecuteFunctions) {
 		const order = isOrderDescending ? 'desc' : 'asc';
 
 		const stellarNetwork = await setNetwork.call(this);
-		const server = new Server(stellarNetwork.url as string);
+		const server = new Horizon.Server(stellarNetwork.url as string);
 		const payments = await getPayments(server, publicKey, limit, order);
 
 		if (additionalFilters) {

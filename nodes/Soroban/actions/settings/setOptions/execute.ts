@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'soroban-client';
+import { Operation } from '@stellar/stellar-sdk';
 import { buildFlags, buildSigner } from './helpers/helpers';
 import IFlags from '../../../../../common/interfaces/stellar/IFlags';
 import ISigner from '../../../../../common/interfaces/stellar/ISigner';

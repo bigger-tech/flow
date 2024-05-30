@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation } from 'stellar-sdk';
+import { Operation } from '@stellar/stellar-sdk';
 
 export async function endSponsoring(this: IExecuteFunctions) {
 	try {

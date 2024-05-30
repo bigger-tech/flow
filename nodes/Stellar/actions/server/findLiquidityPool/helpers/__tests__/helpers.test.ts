@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import liquidityPoolMapper from '../helpers';
 import LiquidityPool from '../../../../entities/LiquidityPool';
-import { Horizon } from 'stellar-sdk';
+import { Horizon } from '@stellar/stellar-sdk';
 
 describe('liquidityPoolMapper', () => {
 	const liquidityPoolRecord = {
@@ -21,7 +21,7 @@ describe('liquidityPoolMapper', () => {
 		id: 'a468d41d8e9b8f3c7209651608b74b7db7ac9952dcae0cdf24871d1d9c7b0088',
 		paging_token: 'a468d41d8e9b8f3c7209651608b74b7db7ac9952dcae0cdf24871d1d9c7b0088',
 		fee_bp: 30,
-		type: 'constant_product' as Horizon.LiquidityPoolType,
+		type: 'constant_product' as Horizon.HorizonApi.LiquidityPoolType,
 		total_trustlines: '5678',
 		total_shares: '5518642.1221118',
 		reserves: [

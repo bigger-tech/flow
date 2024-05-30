@@ -1,4 +1,4 @@
-import { StrKey } from 'soroban-client';
+import { StrKey } from '@stellar/stellar-sdk';
 import type { IExecuteFunctions, IHttpRequestOptions } from 'n8n-workflow';
 import InvalidPublicKeyError from '../../../../../common/errors/stellar/InvalidPublicKeyError';
 

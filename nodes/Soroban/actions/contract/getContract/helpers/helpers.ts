@@ -1,4 +1,4 @@
-import { Contract, Server, SorobanRpc, scValToNative, xdr, StrKey } from 'soroban-client';
+import { Contract, SorobanRpc, scValToNative, xdr, StrKey } from '@stellar/stellar-sdk';
 import { IStorageElement } from '../../../../../../common/interfaces/soroban/IStorageElement';
 
 export function getContractHash(contractId: string) {
@@ -14,7 +14,7 @@ export const getContractAddress = (contractHash: string) => {
 	return StrKey.encodeContract(hexToByte(contractHash));
 };
 
-export async function getContractAbi(contractAddress: string, server: Server) {
+export async function getContractAbi(contractAddress: string, server: SorobanRpc.Server) {
 	const contract = await getContractData(contractAddress, server);
 
 	if (!contract) {
@@ -59,7 +59,7 @@ export async function getContractAbi(contractAddress: string, server: Server) {
 	return functions;
 }
 
-async function getContractData(contractAddress: string, server: Server) {
+async function getContractData(contractAddress: string, server: SorobanRpc.Server) {
 	const ledgerKey = xdr.LedgerKey.contractData(
 		new xdr.LedgerKeyContractData({
 			contract: new Contract(contractAddress).address().toScAddress(),
@@ -79,7 +79,7 @@ async function getContractData(contractAddress: string, server: Server) {
 		return null;
 	}
 
-	const ledgerEntry = ledgerEntries.entries[0] as SorobanRpc.LedgerEntryResult;
+	const ledgerEntry = ledgerEntries.entries[0] as SorobanRpc.Api.LedgerEntryResult;
 	const codeData = ledgerEntry.val.contractData();
 	const wasmIdLedger = ledgerEntry.lastModifiedLedgerSeq;
 	const contractInstance = codeData.val().instance();
@@ -92,7 +92,7 @@ async function getContractData(contractAddress: string, server: Server) {
 
 async function getContractCode(
 	wasmId: Buffer,
-	server: Server,
+	server: SorobanRpc.Server,
 ): Promise<{ wasmCode: string; wasmCodeLedger: number } | null> {
 	const ledgerKey = xdr.LedgerKey.contractCode(
 		new xdr.LedgerKeyContractCode({
@@ -106,7 +106,7 @@ async function getContractCode(
 		return null;
 	}
 
-	const ledgerEntry = ledgerEntries.entries[0] as SorobanRpc.LedgerEntryResult;
+	const ledgerEntry = ledgerEntries.entries[0] as SorobanRpc.Api.LedgerEntryResult;
 	const wasmCodeLedger = ledgerEntry.lastModifiedLedgerSeq as number;
 	const codeEntry = ledgerEntry.val;
 	const wasmCode = codeEntry.contractCode().code().toString('hex');

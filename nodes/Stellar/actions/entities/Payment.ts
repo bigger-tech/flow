@@ -1,4 +1,4 @@
-import { Horizon } from 'stellar-sdk';
+import { Horizon } from '@stellar/stellar-sdk';
 import IPayment from '../../../../common/interfaces/stellar/IPayment';
 
 export default class Payment implements IPayment {
@@ -22,8 +22,8 @@ export default class Payment implements IPayment {
 		from: string,
 		amount: string,
 		createdAt: string,
-		transaction: Horizon.ResponseLink,
-		link: Horizon.ResponseLink,
+		transaction: Horizon.HorizonApi.ResponseLink,
+		link: Horizon.HorizonApi.ResponseLink,
 		assetCode?: string,
 		assetIssuer?: string,
 	) {

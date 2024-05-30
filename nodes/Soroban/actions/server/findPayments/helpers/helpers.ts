@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Payment from '../../../entities/Payment';
-import { Server } from 'soroban-client';
+import { SorobanRpc } from '@stellar/stellar-sdk';
 import NoPaymentFoundError from '../../../../../../common/errors/stellar/NoPaymentFoundError';
 import { IPaymentRecord } from '../../../../../../common/interfaces/stellar/IPaymentRecord';
 import IAsset from '../../../../../../common/interfaces/stellar/IAsset';
@@ -12,7 +12,7 @@ enum FiltersTypeEnum {
 }
 
 export async function getPayments(
-	server: Server,
+	server: SorobanRpc.Server,
 	destinationAccount: string,
 	limit: number,
 	order: orderType,
@@ -72,3 +72,4 @@ export function filterPaymentFromAsset(asset: IAsset['values'], paymentList: Pay
 }
 
 type orderType = 'asc' | 'desc';
+

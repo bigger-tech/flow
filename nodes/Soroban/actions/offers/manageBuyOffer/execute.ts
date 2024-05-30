@@ -1,9 +1,8 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { Operation, Asset } from 'soroban-client';
+import { Operation, Asset } from '@stellar/stellar-sdk';
 import { convertAmountToBigNumber } from '../../../../../common/utils/stellar/convertAmountToBigNumber';
 import IAsset from '../../../../../common/interfaces/stellar/IAsset';
 import { buildAsset } from '../../../../../common/utils/stellar/buildAsset';
-import { StellarPlatformEnum } from '../../../../../common/enum/stellar/StellarPlatformEnum';
 
 export function manageBuyOffer(this: IExecuteFunctions) {
 	try {
@@ -13,8 +12,8 @@ export function manageBuyOffer(this: IExecuteFunctions) {
 		const sellingPrice = this.getNodeParameter('price', 0) as number;
 		const offerId = this.getNodeParameter('offerId', 0) as string;
 
-		const selling = buildAsset(sellingAsset, StellarPlatformEnum.SOROBAN) as Asset;
-		const buying = buildAsset(buyingAsset, StellarPlatformEnum.SOROBAN) as Asset;
+		const selling = buildAsset(sellingAsset) as Asset;
+		const buying = buildAsset(buyingAsset) as Asset;
 		const buyAmount = convertAmountToBigNumber(sellingAmount);
 		const price = convertAmountToBigNumber(sellingPrice);
 

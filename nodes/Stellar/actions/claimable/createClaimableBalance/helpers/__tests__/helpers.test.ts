@@ -1,6 +1,6 @@
 import { it, describe, expect } from 'vitest';
-import { Claimant } from 'stellar-sdk';
-import ClaimantPredicate from 'stellar-sdk';
+import { Claimant } from '@stellar/stellar-sdk';
+import ClaimantPredicate from '@stellar/stellar-sdk';
 import buildClaimantsList from '../helpers';
 
 describe('buildClaimantsList', () => {

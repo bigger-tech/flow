@@ -1,11 +1,18 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import { BASE_FEE, Server, Memo, TransactionBuilder, xdr, Transaction } from 'soroban-client';
+import {
+	BASE_FEE,
+	SorobanRpc,
+	Memo,
+	TransactionBuilder,
+	xdr,
+	Transaction,
+} from '@stellar/stellar-sdk';
 import { SorobanNetwork } from '../../../transport';
 
 export async function build(this: IExecuteFunctions) {
 	try {
 		const stellarNetwork = await SorobanNetwork.setNetwork.call(this);
-		const server = new Server(stellarNetwork.url as string);
+		const server = new SorobanRpc.Server(stellarNetwork.url as string);
 		const sourceAccount = this.getNodeParameter('publicKey', 0) as string;
 		const fee = this.getNodeParameter('fee', 0) as string;
 		const timeout = this.getNodeParameter('timeout', 0) as number;

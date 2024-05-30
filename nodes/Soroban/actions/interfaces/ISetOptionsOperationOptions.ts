@@ -1,4 +1,4 @@
-import { AuthFlag, Signer } from 'soroban-client';
+import { AuthFlag, Signer } from '@stellar/stellar-sdk';
 
 export default interface ISetOptionsOperationOptions {
 	inflationDest?: string;

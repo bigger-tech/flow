@@ -1,4 +1,4 @@
-import { Address, nativeToScVal, xdr } from 'soroban-client';
+import { Address, nativeToScVal, xdr } from '@stellar/stellar-sdk';
 
 export const toScVal = (arg: any, type?: string): xdr.ScVal => {
 	type = (type && type.toLowerCase()) || '';

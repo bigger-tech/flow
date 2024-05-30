@@ -1,4 +1,4 @@
-import { AuthFlag, Signer } from 'stellar-sdk';
+import { AuthFlag, Signer } from '@stellar/stellar-sdk';
 
 export default interface ISetOptionsOperationOptions {
 	inflationDest?: string;
