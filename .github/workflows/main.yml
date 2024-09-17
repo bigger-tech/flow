@@ -20,7 +20,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Build the Docker image
-        run: docker build . --tag planet-pay/flow:${{ github.sha }}
+        run: docker build . --tag flow:${{ github.sha }}
 
       - name: Login to ECR
         id: ecr
@@ -28,8 +28,8 @@ jobs:
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          local-image: planet-pay/flow:${{ github.sha }}
-          image: planet-pay/flow:${{ github.sha }}, planet-pay/flow:latest
+          local-image: flow:${{ github.sha }}
+          image: flow:${{ github.sha }}, flow:latest
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -37,7 +37,7 @@ jobs:
         with:
           task-definition: .aws/task-definition.json
           container-name: ${{ secrets.ECS_CONTAINER_NAME }}
-          image: planet-pay/flow:${{ github.sha }}, planet-pay/flow:latest
+          image: flow:${{ github.sha }}, flow:latest
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
