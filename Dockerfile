@@ -1,6 +1,6 @@
 ARG N8N_VERSION=0.218.0
 
-FROM n8nio/n8n:$N8N_VERSION as build
+FROM n8nio/n8n:$N8N_VERSION AS build
 
 USER root
 
