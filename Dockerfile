@@ -1,6 +1,7 @@
 ARG N8N_VERSION=0.218.0
 
 FROM n8nio/n8n:$N8N_VERSION AS build
+FROM node:18-alpine AS nodebuilder
 
 USER root
 
