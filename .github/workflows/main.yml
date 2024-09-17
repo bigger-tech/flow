@@ -2,7 +2,7 @@ name: Docker Image CD
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   build:
@@ -11,22 +11,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Build the Docker image
-        run: docker build . --tag scalemote/flow:${{ github.sha }}
+        run: docker build . --tag bigger-tech/flow:${{ github.sha }}
+
       - name: Login to ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          local-image: scalemote/flow:${{ github.sha }}
-          image: scalemote/flow:${{ github.sha }}, scalemote/flow:latest
+          local-image: bigger-tech/flow:${{ github.sha }}
+          image: bigger-tech/flow:${{ github.sha }}, bigger-tech/flow:latest
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -34,7 +37,7 @@ jobs:
         with:
           task-definition: .aws/task-definition.json
           container-name: ${{ secrets.ECS_CONTAINER_NAME }}
-          image: scalemote/flow:${{ github.sha }}, scalemote/flow:latest
+          image: bigger-tech/flow:${{ github.sha }}, bigger-tech/flow:latest
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
