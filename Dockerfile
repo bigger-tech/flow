@@ -5,6 +5,8 @@ FROM node:18-alpine AS nodebuilder
 
 USER root
 
+RUN apk add --no-cache tini
+
 RUN npm install --global --unsafe-perm n8n@0.218.0 typescript
 
 WORKDIR /usr/src/app
@@ -21,4 +23,6 @@ WORKDIR /usr/local/lib/node_modules/n8n
 
 RUN npm link n8n-nodes-stellar
 
-ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
+WORKDIR /usr/local/lib/node_modules
+
+ENTRYPOINT ["tini", "--", "n8n"]
